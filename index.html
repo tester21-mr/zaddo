@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaddo.online - Unlock Premium Games</title>
+    <meta name="description" content="Download premium mobile games for free. Access modified versions of popular games like GTA 5, Spider-Man, The Last of Us and more.">
+    <meta name="keywords" content="free games, premium games, mobile games, download games, GTA 5, Spider-Man, The Last of Us">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Zaddo.online - Unlock Premium Games">
+    <meta property="og:description" content="Download premium mobile games for free - GTA, Spider-Man, Fortnite and more!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zaddo.online">
+    <meta property="og:image" content="https://i.ibb.co/LBKP4bC/nbanner1.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Zaddo.online",
+      "url": "https://zaddo.online",
+      "description": "Download premium mobile games for free",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://zaddo.online/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <style>
+        /* ========================================== */
+       
+        /* ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0d1419;
+            color: white;
+            /* Direction RTL pour l'arabe si besoin plus tard */
+            /* direction: rtl; */
+        }
+
+        /* Styles originaux conservés */
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 15px; background-color: #0d1419; }
+        .logo { display: flex; align-items: center; }
+        .logo-icon { display: flex; }
+        .logo-text { color: #00e6b8; font-size: 22px; font-weight: bold; margin-left: 10px; }
+        .logo-tagline { font-size: 12px; color: #ccc; margin-top: 2px; }
+        .menu-button { font-size: 24px; color: white; cursor: pointer; }
+        .banner { width: 100%; height: 180px; object-fit: cover; margin-bottom: 20px; }
+        .action-buttons { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+        .button { display: flex; align-items: center; justify-content: center; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; }
+        .explore-btn { background-color: #00e6b8; color: black; }
+        .how-it-works-btn { background-color: #ff6b6b; color: white; }
+        .section-title { color: #00e6b8; font-size: 24px; margin: 0 15px 10px; }
+        .view-all { color: #00e6b8; text-decoration: none; margin: 0 15px 20px; display: block; }
+        .games-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 15px; margin-bottom: 30px; }
+
+        .game-card {
+            background-color: #1a2530;
+            border-radius: 10px;
+            overflow: hidden;
+            padding-bottom: 5px; /* Réduit un peu pour éviter le bouton collé */
+            cursor: pointer; /* Add cursor pointer to the whole card */
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* Added transition from original JS */
+        }
+        /* Keep original hover effect from JS via CSS */
+        .game-card:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .game-image { width: 100%; aspect-ratio: 1/1; background-color: white; object-fit: cover; pointer-events: none; /* Empêche l'image d'intercepter le clic */ }
+        .game-title { margin: 10px 10px 5px; font-size: 16px; pointer-events: none; }
+        .game-version { margin: 0 10px 5px; font-size: 12px; color: #999; pointer-events: none; }
+        .rating { margin: 0 10px; display: flex; align-items: center; pointer-events: none; }
+        .stars { color: gold; /* Changed from #fe00 to gold */ margin-right: 5px; pointer-events: none; }
+        /* Style original du bouton, but sans le onclick ici */
+        .download-btn { background-color: #00e6b8; color: black; border: none; padding: 8px 15px; border-radius: 5px; margin: 10px; /* Conserve la marge */ cursor: pointer; font-weight: bold; display: block; width: calc(100% - 20px); text-align: center; pointer-events: none; /* Empêche le bouton d'intercepter le clic pour la délégation, le parent .game-card gère */ }
+
+        .how-it-works { margin-top: 20px; }
+        .how-it-works-title { display: flex; align-items: center; gap: 10px; margin: 0 15px 15px; }
+        .steps-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 15px; }
+        .step-card { background-color: #1a2530; border-radius: 10px; padding: 15px; }
+        .step-icon { font-size: 24px; color: #00e6b8; margin-bottom: 10px; }
+        .step-title { font-weight: bold; margin-bottom: 5px; }
+        .step-desc { color: #aaa; font-size: 14px; line-height: 1.4; }
+        .need-help { margin-top: 40px; text-align: center; padding-bottom: 30px; }
+        .need-help-text { color: #00e6b8; font-size: 24px; margin-bottom: 20px; }
+        .help-button { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background-color: #00e6b8; color: black; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; text-decoration: none; font-weight: bold; }
+        .more-games-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #0d1419; z-index: 1000; overflow-y: auto; padding: 20px; }
+        .more-games-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .close-button { font-size: 24px; color: white; background: none; border: none; cursor: pointer; }
+        .nav-menu { position: fixed; top: 0; right: -280px; width: 280px; height: 100%; background-color: #1a2530; z-index: 1001; transition: right 0.3s ease; overflow-y: auto; box-shadow: -2px 0 5px rgba(0,0,0,0.3); }
+        .nav-menu.open { right: 0; }
+        .nav-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 15px; border-bottom: 1px solid #2c3e50; }
+        .nav-close { color: white; font-size: 24px; background: none; border: none; cursor: pointer; }
+        .nav-items { list-style-type: none; padding: 0;} /* Ajout padding 0 */
+        .nav-item a { display: block; padding: 15px; color: white; text-decoration: none; border-bottom: 1px solid #2c3e50; transition: background-color 0.2s; }
+        .nav-item a:hover { background-color: #2c3e50; }
+        .nav-item a.active { color: #00e6b8; border-left: 3px solid #00e6b8; padding-left: 12px; /* Ajustement pour border */}
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; }
+        .footer { background-color: #1a2530; padding: 30px 15px; margin-top: 50px; }
+        .footer-content { display: flex; flex-direction: column; gap: 20px; }
+        .footer-logo { display: flex; align-items: center; margin-bottom: 15px; }
+        .footer-section { margin-bottom: 20px; }
+        .footer-section h3 { color: #00e6b8; margin-bottom: 10px; font-size: 18px; }
+        .footer-links { list-style-type: none; padding: 0;} /* Ajout padding 0 */
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a { color: #ddd; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .footer-links a:hover { color: #00e6b8; }
+        .footer-social { display: flex; gap: 15px; margin-top: 10px; }
+        .footer-social a { color: white; font-size: 18px; text-decoration: none; }
+        .footer-bottom { text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #2c3e50; font-size: 12px; color: #aaa; }
+        .about-container { display: none; padding: 20px 15px; background-color: #0d1419; position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow-y: auto; z-index: 1002; }
+        .about-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .about-content { line-height: 1.6; }
+        .about-content h2 { color: #00e6b8; margin-bottom: 15px; }
+        .about-content p { margin-bottom: 20px; color: #ddd; }
+        .about-team { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 30px; }
+        .team-member { background-color: #1a2530; border-radius: 10px; padding: 15px; text-align: center; }
+        .team-member img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px; object-fit: cover; }
+        .team-member h3 { color: #00e6b8; margin-bottom: 5px; }
+        .team-member p { color: #aaa; font-size: 14px; }
+        @media (min-width: 768px) { .games-grid { grid-template-columns: repeat(3, 1fr); } .steps-container { grid-template-columns: repeat(4, 1fr); } .footer-content { flex-direction: row; flex-wrap: wrap; } .footer-section { flex: 1; min-width: 200px; } .about-team { grid-template-columns: repeat(3, 1fr); } }
+
+        /* Game details page style */
+        #game-details-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0d1419;
+            z-index: 1050;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .game-details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .game-details-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1a2530;
+            border-radius: 15px;
+        }
+
+        .game-details-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #4b5563;
+        }
+
+        .game-details-title {
+            font-size: 28px;
+            color: #00e6b8;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .game-details-version {
+            font-size: 16px;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .game-details-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .game-details-description {
+            color: #ddd;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .game-details-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .play-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .play-btn:hover {
+            background-color: #ff5252;
+        }
+
+        .play-btn:active {
+            transform: scale(0.98);
+        }
+
+        #search-results {
+            display: none;
+            padding: 20px;
+            background-color: #0d1419;
+            position: fixed; /* Added to ensure it covers content like other modals */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1040; /* Ensure it's above main content but below game details if needed */
+            overflow-y: auto;
+        }
+
+        #search-results-header {
+            display: flex; /* Added to enable alignment */
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* Game descriptions for game details pages */
+        .game-descriptions {
+            display: none; /* Hidden by default */
+        }
+
+        /* Search results styling */
+        #search-results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 0 15px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 768px) {
+            #search-results-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            color: #aaa;
+            padding: 30px;
+            font-size: 18px;
+        }
+
+        .search-title {
+            color: #00e6b8;
+            font-size: 24px;
+            margin: 0 0 15px 0; /* Adjusted margin for header layout */
+        }
+
+         /* Style to hide body scroll when popup/page is open */
+        body.modal-visible {
+             overflow: hidden !important; /* Added !important to ensure it overrides other styles if necessary */
+        }
+
+    </style>
+    </head>
+<body>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div id="main-content">
+
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <circle cx="15" cy="20" r="15" fill="white"/>
+                        <circle cx="25" cy="20" r="15" fill="#00e6b8"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="logo-text">Zaddo.online</div>
+                    <div class="logo-tagline">Unlock Premium Games</div>
+                </div>
+            </div>
+            <div class="search-container" style="flex: 1; margin: 0 15px;">
+                <form id="search-form" style="display: flex;">
+                    <input type="text" id="search-input" placeholder="Search games..." style="flex: 1; padding: 8px 15px; border-radius: 20px 0 0 20px; border: none; background: #1a2530; color: white;">
+                    <button type="submit" style="background: #00e6b8; border: none; border-radius: 0 20px 20px 0; padding: 0 15px; cursor: pointer;">🔍</button>
+                </form>
+            </div>
+            <div class="menu-button" id="menu-btn">☰</div>
+        </header>
+
+        <nav class="nav-menu" id="nav-menu">
+            <div class="nav-header">
+                <span>Menu</span>
+                <button class="nav-close" id="nav-close">✕</button>
+            </div>
+            <ul class="nav-items">
+                <li class="nav-item"><a href="#" class="active">Home</a></li>
+                <li class="nav-item"><a href="#" id="about-link">About Us</a></li>
+                <li class="nav-item"><a href="#" id="games-link">Games</a></li>
+                <li class="nav-item"><a href="#" id="how-it-works-menu-link">How It Works</a></li>
+                <li class="nav-item"><a href="#">Contact</a></li>
+                <li class="nav-item"><a href="#">Privacy Policy</a></li>
+                <li class="nav-item"><a href="#">Terms of Service</a></li>
+            </ul>
+        </nav>
+
+        <div class="about-container" id="about-container">
+            <div class="about-header">
+                <h1>About Us</h1>
+                <button class="close-button" id="close-about">✕</button>
+            </div>
+            <div class="about-content">
+                <h2>Welcome to Zaddo.online</h2>
+                <p>At Zaddo.online, we are passionate about bringing premium gaming experiences to everyone. Our platform was founded in 2023 with a simple mission: to provide easy access to high-quality games that are typically expensive or hard to access.</p>
+                <p>We understand the frustration of wanting to enjoy premium games without the hefty price tags. That's why we've created a unique platform that lets you unlock and download premium games by simply completing short offers.</p>
+                <h2>Our Mission</h2>
+                <p>Our mission is to democratize gaming by making premium titles accessible to everyone, regardless of budget constraints. We believe that gaming should be an inclusive experience, not limited by financial barriers.</p>
+                <h2>How We Work</h2>
+                <p>We partner with developers and publishers to provide modified versions of popular games that include premium features. Through our simple offer-completion system, you can access these games without direct payment. This helps support developers while giving you access to great gaming experiences.</p>
+                <h2>Our Team</h2>
+                <div class="about-team">
+                    <div class="team-member"> <img src="https://i.ibb.co/0QBD4MD/team1.jpg" alt="Team Member"> <h3>Alex Johnson</h3> <p>Founder & CEO</p> </div>
+                    <div class="team-member"> <img src="https://i.ibb.co/svWjY7K/team2.jpg" alt="Team Member"> <h3>Sophia Chen</h3> <p>Lead Developer</p> </div>
+                    <div class="team-member"> <img src="https://i.ibb.co/5xpFMhY/team3.jpg" alt="Team Member"> <h3>Michael Rodriguez</h3> <p>Game Curator</p> </div>
+                </div>
+                <h2>Contact Us</h2>
+                <p>Have questions or suggestions? We'd love to hear from you! Reach out to us at support@zaddo.online for assistance or feedback.</p>
+            </div>
+        </div>
+
+        <img src="https://i.ibb.co/LBKP4bC/nbanner1.jpg" alt="Game Banner" class="banner">
+
+        <div class="action-buttons">
+            <a href="#" class="button explore-btn">🎮 Explore</a>
+            <a href="#" class="button how-it-works-btn">ⓘ How It Works</a>
+        </div>
+
+        <h2 class="section-title">Featured Games</h2>
+        <a href="#" class="view-all" id="more-games-link">View All →</a>
+
+        <div class="games-grid" id="featured-games-grid"> <div class="game-card">
+                <img src="https://i.ibb.co/FzQ7s9s/gta5.jpg" class="game-image" alt="GTA 5">
+                <h3 class="game-title">Grand Theft Auto V Mobile</h3>
+                <div class="game-version">v1.0.3095/1.68</div> <div class="rating"> <span class="stars">★★★★★</span> 4.9 </div>
+                <button class="download-btn">↓ Download</button> </div>
+            <div class="game-card">
+                <img src="https://i.ibb.co/McjvCfj/spiderman2.png" class="game-image" alt="Spider-Man 2">
+                <h3 class="game-title">Spider-Man 2 Mobile</h3>
+                <div class="game-version">v1.8.2</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.7 </div>
+                <button class="download-btn">↓ Download</button> </div>
+            <div class="game-card">
+                <img src="https://i.ibb.co/tLx5P3D/tlou-1.jpg" class="game-image" alt="The Last of Us">
+                <h3 class="game-title">The Last of Us Mobile</h3>
+                <div class="game-version">v3.1.0</div> <div class="rating"> <span class="stars">★★★★★</span> 4.9 </div>
+                <button class="download-btn">↓ Download</button> </div>
+            <div class="game-card">
+                <img src="https://i.ibb.co/n0tBVMs/horizon.jpg" class="game-image" alt="Horizon Zero Dawn">
+                <h3 class="game-title">Horizon Zero Dawn Mobile</h3>
+                <div class="game-version">v2.4.1</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.6 </div>
+                <button class="download-btn">↓ Download</button> </div>
+            <div class="game-card">
+                <img src="https://i.ibb.co/kDmVtwv/rdr2-1.jpg" class="game-image" alt="Red Dead Redemption 2">
+                <h3 class="game-title">Red Dead Redemption 2 Mobile</h3>
+                <div class="game-version">v1.9.8</div> <div class="rating"> <span class="stars">★★★★★</span> 5.0 </div>
+                <button class="download-btn">↓ Download</button> </div>
+            <div class="game-card">
+                <img src="https://i.ibb.co/W5j9ZXx/fortnite.jpg" class="game-image" alt="Fortnite">
+                <h3 class="game-title">Fortnite Mobile Mod</h3>
+                <div class="game-version">v25.30.2</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.5 </div>
+                <button class="download-btn">↓ Download</button> </div>
+            <div class="game-card">
+                <img src="https://i.ibb.co/k92hJwF/roblox.png" class="game-image" alt="Roblox">
+                <h3 class="game-title">Roblox Premium Mobile</h3>
+                <div class="game-version">v2.567.589</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.7 </div>
+                <button class="download-btn">↓ Download</button> </div>
+            <div class="game-card">
+                <img src="https://i.ibb.co/Mcfhc3g/gta4-1.jpg" class="game-image" alt="GTA 4">
+                <h3 class="game-title">GTA 4 Mobile</h3>
+                <div class="game-version">v1.2.0</div> <div class="rating"> <span class="stars">★★★★★</span> 4.8 </div>
+                <button class="download-btn">↓ Download</button> </div>
+        </div>
+
+        <div class="how-it-works" id="how-it-works-section">
+            <div class="how-it-works-title"> <span>⚙️</span> <span>How It Works</span> </div>
+            <div class="steps-container">
+                <div class="step-card"> <div class="step-icon">🔍</div> <div class="step-title">Find Your Game</div> <div class="step-desc">Browse our collection of modded games or search for what you want.</div> </div>
+                <div class="step-card"> <div class="step-icon">☁️</div> <div class="step-title">Complete Offer</div> <div class="step-desc">Complete a quick offer (less than 1 minute) to unlock the download.</div> </div>
+                <div class="step-card"> <div class="step-icon">📱</div> <div class="step-title">Download & Install</div> <div class="step-desc">Get your download link and install the game with our instructions.</div> </div>
+                <div class="step-card"> <div class="step-icon">🎮</div> <div class="step-title">Enjoy Premium</div> <div class="step-desc">Play with all premium features unlocked - unlimited money, no ads!</div> </div>
+            </div>
+        </div>
+
+        <div class="need-help"> <div class="need-help-text">Need Help?</div> </div>
+        <a href="#" class="help-button">?</a>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo"> <div class="logo-icon"> <svg width="30" height="30" viewBox="0 0 40 40"> <circle cx="15" cy="20" r="15" fill="white"/> <circle cx="25" cy="20" r="15" fill="#00e6b8"/> </svg> </div> <div class="logo-text" style="margin-left: 10px;">Zaddo.online</div> </div>
+                    <p style="color: #aaa; font-size: 14px;">Your gateway to premium gaming experiences without the premium price.</p>
+                    <div class="footer-social"> <a href="#">📱</a> <a href="#">📘</a> <a href="#">🐦</a> <a href="#">📸</a> </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links"> <li><a href="#">Home</a></li> <li><a href="#" id="about-footer-link">About Us</a></li> <li><a href="#">Contact</a></li> <li><a href="#">Games</a></li> </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul class="footer-links"> <li><a href="#">Action Games</a></li> <li><a href="#">Adventure</a></li> <li><a href="#">Racing</a></li> <li><a href="#">Sports Games</a></li> </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links"> <li><a href="#">Terms of Service</a></li> <li><a href="#">Privacy Policy</a></li> <li><a href="#">DMCA</a></li> <li><a href="#">Disclaimer</a></li> </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"> <p>© 2023 Zaddo.online. All rights reserved.</p> </div>
+        </footer>
+
+        <div class="more-games-container" id="more-games-container">
+            <div class="more-games-header"> <h2>More Games</h2> <button class="close-button" id="close-more-games">✕</button> </div>
+            <div class="games-grid" id="more-games-grid"> <div class="game-card"> <img src="https://i.ibb.co/FzQ7s9s/gta5.jpg" class="game-image" alt="GTA 5"> <h3 class="game-title">Grand Theft Auto V Mobile</h3> <div class="game-version">v1.0.3095/1.68</div> <div class="rating"> <span class="stars">★★★★★</span> 4.9 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.ibb.co/McjvCfj/spiderman2.png" class="game-image" alt="Spider-Man 2"> <h3 class="game-title">Spider-Man 2 Mobile</h3> <div class="game-version">v1.8.2</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.7 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.ibb.co/tLx5P3D/tlou-1.jpg" class="game-image" alt="The Last of Us"> <h3 class="game-title">The Last of Us Mobile</h3> <div class="game-version">v3.1.0</div> <div class="rating"> <span class="stars">★★★★★</span> 4.9 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.ibb.co/n0tBVMs/horizon.jpg" class="game-image" alt="Horizon Zero Dawn"> <h3 class="game-title">Horizon Zero Dawn Mobile</h3> <div class="game-version">v2.4.1</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.6 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.ibb.co/kDmVtwv/rdr2-1.jpg" class="game-image" alt="Red Dead Redemption 2"> <h3 class="game-title">Red Dead Redemption 2 Mobile</h3> <div class="game-version">v1.9.8</div> <div class="rating"> <span class="stars">★★★★★</span> 5.0 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.ibb.co/W5j9ZXx/fortnite.jpg" class="game-image" alt="Fortnite"> <h3 class="game-title">Fortnite Mobile Mod</h3> <div class="game-version">v25.30.2</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.5 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.ibb.co/k92hJwF/roblox.png" class="game-image" alt="Roblox"> <h3 class="game-title">Roblox Premium Mobile</h3> <div class="game-version">v2.567.589</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.7 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.ibb.co/Mcfhc3g/gta4-1.jpg" class="game-image" alt="GTA 4"> <h3 class="game-title">GTA 4 Mobile</h3> <div class="game-version">v1.2.0</div> <div class="rating"> <span class="stars">★★★★★</span> 4.8 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://www5.0zz0.com/2023/10/15/08/332140079.jpeg" class="game-image" alt="GTA 5 Mobile"> <h3 class="game-title">GTA 5 Mobile</h3> <div class="game-version">Latest: 3.2.1</div> <div class="rating"> <span class="stars">★★★★★</span> 4.9 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="http://t0.gstatic.com/images?q=tbn:ANd9GcS3Ft-oM67UR15mSle49VHnUqLeq1kodsEQeiNQiO_hY-tIyDkoz6U7QvoWy6dBNTGj7IV8EQ" class="game-image" alt="Vice City"> <h3 class="game-title">GTA Vice City Mod</h3> <div class="game-version">Latest: 1.8.9</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.8 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://images.sftcdn.net/images/t_app-icon-m/p/7d0609b1-0194-4eb2-9307-12f91266dc7b/3469311303/beamng-drive-mobile-logo" class="game-image" alt="BeamNG.drive"> <h3 class="game-title">BeamNG.drive MOBILE</h3> <div class="game-version">Latest: 2.4.1</div> <div class="rating"> <span class="stars">★★★★★</span> 4.9 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://upload.wikimedia.org/wikipedia/en/a/aa/Spider-Man_Unlimited.png" class="game-image" alt="Spiderman"> <h3 class="game-title">SPIDERMAN MOBILE</h3> <div class="game-version">Latest: 5.3.1</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.7 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://lh3.googleusercontent.com/PYlSCwbwrv6JFzp0-KtITrrN2VK4iCdEYK_9yBiADhV_vR5V-cAzrQcdDJu_rUz8BgMxU0aQpgEaypMneKXp" class="game-image" alt="Hitman Sniper"> <h3 class="game-title">Hitman Sniper</h3> <div class="game-version">Latest: 5.3.1</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.7 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/qRdgbrH2/god-of-war-3-wallpaper-kg2nhyxsdeicjjyp.webp" class="game-image" alt="God Of War 3"> <h3 class="game-title">God Of War 3</h3> <div class="game-version">Latest: 1.1.3</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.8 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/Kv9kZCty/images-3.jpg" class="game-image" alt="Efootball 2024"> <h3 class="game-title">Efootball 2024</h3> <div class="game-version">Latest: 2.1.3</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.6 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://image.api.playstation.com/cdn/EP0001/CUSA06328_00/0oRMkLrk8IoCyGQfYpdIzVF5dzPP6cM4.png" class="game-image" alt="Watch Dogs 2"> <h3 class="game-title">Watch Dogs 2</h3> <div class="game-version">Latest: 2.1.3</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.6 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://sm.ign.com/ign_nordic/cover/f/forza-hori/forza-horizon-5_5jjv.jpg" class="game-image" alt="Forza Horizon 5"> <h3 class="game-title">Forza Horizon 5</h3> <div class="game-version">Latest: 2.1.3</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.6 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="http://t0.gstatic.com/images?q=tbn:ANd9GcQKFrwPJcaQVe6qNoplr5y4BR3CGOjZmGpwiRNka1oVz1ci9Y12r4YfPTjC2v6TgUF0iQbh_g" class="game-image" alt="SAN ANDREAS"> <h3 class="game-title">GTA SAN ANDREAS</h3> <div class="game-version">Latest: 4.1.2</div> <div class="rating"> <span class="stars">★★★★★</span> 4.9 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://m.media-amazon.com/images/I/41GZrXhv0BL.jpg" class="game-image" alt="Dream League Soccer Mod"> <h3 class="game-title">Dream League Soccer Mod</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://modyolo.com/wp-content/uploads/2021/09/dragon-ball-z-dokkan-battle-150x150.jpg" class="game-image" alt="DRAGON BALL Z DOKKAN MOD"> <h3 class="game-title">DRAGON BALL Z DOKKAN MOD</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://assets.2k.com/1a6ngf98576c/4oCqsi6G8MfDjHKhjhBtrP/d43164117e00d78c0cf85dfafeb3b906/NBA23-WEBSITE-ATHLETE_HUB-MODULE1-STD_THUMBNAIL-828x828.jpg" class="game-image" alt="NBA2K23 MOBILE"> <h3 class="game-title">NBA2K23 MOBILE</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.git99.com/upload/android/icon/2024/05/22/abccb969549318afaea4e78fb72cad3a.jpg" class="game-image" alt="Car Parking Multiplayer"> <h3 class="game-title">Car Parking Multiplayer</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://preview.redd.it/avjal33hpqo61.png?width=512&format=png&auto=webp&s=b652d83347448df74c8ba61c17b322e686ee32a4" class="game-image" alt="MINECRAFT"> <h3 class="game-title">MINECRAFT</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://assets-prd.ignimgs.com/2023/05/01/farmingsim23-1682967114647.jpg" class="game-image" alt="Farming Simulator 23"> <h3 class="game-title">Farming Simulator 23</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://portsized.fun/etsicon.png" class="game-image" alt="Euro Truck Simulator Mobile"> <h3 class="game-title">Euro Truck Simulator Mobile</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlAVOfsF2cxZAxOEMlBN8FxG8xZW8aO5IVsA&s" class="game-image" alt="ASSETTO CORSA MOBILE"> <h3 class="game-title">ASSETTO CORSA MOBILE</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://image.winudf.com/v2/image1/Y29tLlB0cm9uUGxheURpZ2l0YWwuQ0dNb3RvT25saW5lX2ljb25fMTcyMzMyNTk3NV8wMjM/icon.webp?w=280&fakeurl=1&type=.webp" class="game-image" alt="CG Moto Online"> <h3 class="game-title">CG Moto Online</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://modyolo.com/wp-content/uploads/2021/09/subway-surfers-150x150.jpg" class="game-image" alt="Subway Surfers MOD"> <h3 class="game-title">Subway Surfers MOD</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://modyolo.com/wp-content/uploads/2021/09/monopoly-board-game-classic-about-real-estate-150x150.jpg" class="game-image" alt="Monopoly MOD"> <h3 class="game-title">Monopoly MOD</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://an1.com/uploads/posts/2023-04/1682881529_ppsspp-gold.png" class="game-image" alt="PPSSPP Gold"> <h3 class="game-title">PPSSPP Gold</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://modyolo.com/wp-content/uploads/2021/09/8-ball-pool-150x150.jpg" class="game-image" alt="8 Ball Pool Mod"> <h3 class="game-title">8 Ball Pool Mod</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://modyolo.com/wp-content/uploads/2021/10/coin-master-apk-150x150.png" class="game-image" alt="Coin Master MOD"> <h3 class="game-title">Coin Master MOD</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://image.winudf.com/v2/image1/Y29tLmVscGF0cml4Zi5PdU9faWNvbl8xNTY2OTk5Mjg1XzAxMg/icon.webp?w=280&fakeurl=1&type=.webp" class="game-image" alt="OuO Game"> <h3 class="game-title">OuO Game</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://modyolo.com/wp-content/uploads/2021/11/spotify-apk-mod-premium-150x150.png" class="game-image" alt="Spotify Premium MOD"> <h3 class="game-title">Spotify Premium MOD</h3> <div class="game-version">Latest: 1.5.2</div> <div class="rating"> <span class="stars">★★★★★</span> 5.1 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.ibb.co/XL2Fj7Y/collegebrawl.png" class="game-image" alt="College Brawl"> <h3 class="game-title">College Brawl</h3> <div class="game-version">Last Version</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.5 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://mobdroplus.com/wp-content/uploads/2022/12/Haileys-Treasure-Adventure-apk.png" class="game-image" alt="Hailey's Adventure"> <h3 class="game-title">hailey's adventure</h3> <div class="game-version">Last Version</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.5 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://images.sftcdn.net/images/t_app-icon-m/p/3b18a092-6db6-47f7-bd8d-e8ade3e3575e/1591711617/learn-the-heart-logo" class="game-image" alt="Learn The Heart"> <h3 class="game-title">Learn The Heart</h3> <div class="game-version">Last Version</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.5 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://techloky.com/public/uploads/images/Syahata_A_Bad_Day.jpg" class="game-image" alt="Syahata A Bad Day"> <h3 class="game-title">Syahata A Bad Day</h3> <div class="game-version">Last Version</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.5 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://techloky.com/public/uploads/images/Survive.jpg" class="game-image" alt="Survive APK"> <h3 class="game-title">Survive APK</h3> <div class="game-version">Last Version</div> <div class="rating"> <span class="stars">★★★★★</span> 5 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://img.utdstc.com/icon/79a/7a3/79a7a35b0f8d775d97b6d89761bcdb478c6c2ef7941cae0de952cde8207bf355:200" class="game-image" alt="One Piece: Fighting Path"> <h3 class="game-title">One Piece: Fighting Path</h3> <div class="game-version">Last Version</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.5 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://modgila.com/uploads/2024/1/ben10-battle-for-the-omnitrix-1.jpg" class="game-image" alt="BEN10 Battle for the Omnitrix"> <h3 class="game-title">BEN10 Battle for the Omnitrix</h3> <div class="game-version">Last Version</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.5 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/bN6TKCJZ/FC-24-Mobile.jpg" class="game-image" alt="FIFA 24 Mobile"> <h3 class="game-title">FIFA 24 Mobile</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★★</span> 4.9 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/TwPBXLxx/PUBG.jpg" class="game-image" alt="PUBG Mobile"> <h3 class="game-title">PUBG Mobile Mod</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★★</span> 4.8 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/ZnGQ3wdY/cod.jpg" class="game-image" alt="Call of Duty Mobile"> <h3 class="game-title">Call of Duty Mobile</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★★</span> 4.9 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/kM2XQDbL/Genshin-Impact-Mobile.jpg" class="game-image" alt="Genshin Impact"> <h3 class="game-title">Genshin Impact Mobile</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★★</span> 4.7 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/j2cXqv4k/Asphalt-Legends-Unite.jpg" class="game-image" alt="Asphalt 9 Legends"> <h3 class="game-title">Asphalt 9 Legends</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★★</span> 4.6 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://image.api.playstation.com/vulcan/ap/rnd/202210/0706/EVWyZD63pahuh95eKloFaJuC.png" class="game-image" alt="Need for Speed Unbound"> <h3 class="game-title">Need for Speed Unbound</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★★</span> 4.8 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/7ZfVD3Gm/Real-Racing-3-v3-3-0-mod-apk.jpg" class="game-image" alt="Real Racing 3"> <h3 class="game-title">Real Racing 3 Premium</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★★</span> 4.7 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/SQfVGNb7/CSR-Racing-2.jpg" class="game-image" alt="CSR Racing 2"> <h3 class="game-title">CSR Racing 2 MOD</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★★</span> 4.9 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/G29g5WPh/9aaca89247c74854774d67da1c0154b91d116de64e4bb96d91aca7fdac61268d-200.jpg" class="game-image" alt="Drift Max Pro"> <h3 class="game-title">Drift Max Pro Unlimited</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.5 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/9FXbg5W3/Forza-Motorsport-Mobile.jpg" class="game-image" alt="Forza Motorsport Mobile"> <h3 class="game-title">Forza Motorsport Mobile</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★★</span> 4.9 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/4N59MmWw/WRC-TGR.jpg" class="game-image" alt="WRC 10"> <h3 class="game-title">WRC 10 Mobile Rally</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.5 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/3wy0d9Yb/Need-For-Speed-Key-Art-Brendan-Mc-Caffrey.jpg" class="game-image" alt="Need for Speed Hot Pursuit"> <h3 class="game-title">Need for Speed Hot Pursuit</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★★</span> 4.8 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/RZpnS25H/GRID.jpg" class="game-image" alt="GRID Autosport"> <h3 class="game-title">GRID Autosport Mobile</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★★</span> 4.8 </div> <button class="download-btn">↓ Download</button> </div>
+                <div class="game-card"> <img src="https://i.postimg.cc/0yywqP3v/Car-X-Drift-Racing-2.jpg" class="game-image" alt="CarX Drift Racing"> <h3 class="game-title">CarX Drift Racing Online</h3> <div class="game-version">Latest Version</div> <div class="rating"> <span class="stars">★★★★☆</span> 4.6 </div> <button class="download-btn">↓ Download</button> </div>
+            </div>
+        </div>
+        </div>
+
+        <div id="game-details-page">
+            <div class="game-details-header">
+                <h2>Game Details</h2>
+                <button class="close-button" id="close-game-details">✕</button>
+            </div>
+            <div class="game-details-content">
+                <img src="" alt="Game" class="game-details-image" id="details-game-image">
+                <h3 class="game-details-title" id="details-game-title"></h3>
+                <div class="game-details-version" id="details-game-version"></div>
+                <div class="game-details-rating" id="details-game-rating"></div>
+                <p class="game-details-description" id="details-game-description"></p>
+                <div class="game-details-buttons">
+                    <button class="play-btn" id="play-game-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        PLAY NOW
+                    </button>
+                    <button class="download-btn" id="details-download-btn" style="margin: 0; width: auto; padding: 12px 30px; pointer-events: all; border-radius: 50px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+                            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L10 11.586V3a1 1 0 112 0v8.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                        DOWNLOAD
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="search-results">
+            <div id="search-results-header">
+                <h2 class="search-title">Search Results</h2>
+                <button class="close-button" id="close-search-results">✕</button>
+            </div>
+            <div id="search-results-grid"></div>
+        </div>
+
+        <div class="game-descriptions">
+            <div id="desc-gta5" data-title="Grand Theft Auto V Mobile" data-version="v1.0.3095/1.68" data-rating="★★★★★ 4.9">
+                Experience the acclaimed open-world action game on your mobile device. This modified version brings the complete GTA 5 experience with enhanced graphics, all missions unlocked, and unlimited money. Explore the vast city of Los Santos, complete heists, race through streets, and enjoy the immersive storytelling that made GTA 5 a global phenomenon.
+            </div>
+
+            <div id="desc-spiderman2" data-title="Spider-Man 2 Mobile" data-version="v1.8.2" data-rating="★★★★☆ 4.7">
+                Swing through the streets of New York City as Spider-Man in this incredible mobile adaptation. Take on iconic villains, complete thrilling missions, and master Spider-Man's abilities with intuitive touch controls. This version features enhanced graphics, all suits unlocked, and exclusive mobile content.
+            </div>
+
+            <div id="desc-tlou" data-title="The Last of Us Mobile" data-version="v3.1.0" data-rating="★★★★★ 4.9">
+                Survive in a post-apocalyptic world overrun by infected creatures. This mobile version of The Last of Us brings the emotional storyline and intense gameplay to your device with optimized controls and visuals. Play as Joel and Ellie as they journey across a devastated America, facing both human and infected threats.
+            </div>
+
+            <div id="desc-fifa24" data-title="FIFA 24 Mobile" data-version="Latest Version" data-rating="★★★★★ 4.9">
+                Experience the beautiful game with FIFA 24 Mobile. This version includes all the latest teams, players, and stadiums from around the world. Enjoy enhanced gameplay mechanics, improved AI, and stunning visuals optimized for mobile devices. Features unlimited coins and all players unlocked.
+            </div>
+
+            <div id="desc-pubg" data-title="PUBG Mobile Mod" data-version="Latest Version" data-rating="★★★★★ 4.8">
+                Dive into intense battle royale action with this enhanced version of PUBG Mobile. This mod features advanced aiming assistance, unlimited UC, all outfits unlocked, and enhanced visuals. Drop into various maps, collect weapons, and fight to be the last player standing with these premium advantages.
+            </div>
+
+            <div id="desc-codm" data-title="Call of Duty Mobile" data-version="Latest Version" data-rating="★★★★★ 4.9">
+                Experience the ultimate FPS action on mobile with Call of Duty Mobile. This version includes unlimited CP, all weapons unlocked with max levels, and all character skins available. Enjoy multiplayer modes, battle royale, and special operations with premium benefits that give you the competitive edge.
+            </div>
+
+            <div id="desc-genshin" data-title="Genshin Impact Mobile" data-version="Latest Version" data-rating="★★★★★ 4.7">
+                Embark on a magical adventure in the world of Teyvat with this enhanced version of Genshin Impact. This mod gives you unlimited Primogems, all characters unlocked, and maxed-out weapons. Explore the vast open world, defeat powerful enemies, and enjoy the breathtaking visuals of this action RPG.
+            </div>
+
+            <div id="desc-asphalt9" data-title="Asphalt 9 Legends" data-version="Latest Version" data-rating="★★★★★ 4.6">
+                Race through breathtaking locations with the most prestigious cars in this arcade racing game. This modified version includes unlimited tokens and credits, all cars unlocked, and maxed-out specifications. Experience the thrill of speed with stunning graphics and exciting race modes.
+            </div>
+
+            <div id="desc-nfs-unbound" data-title="Need for Speed Unbound" data-version="Latest Version" data-rating="★★★★★ 4.8">
+                Experience the ultimate street racing in Need for Speed Unbound. This mobile adaptation brings the full experience with stunning cel-shaded visual effects and graffiti animations. Customize your dream car from a collection of over 150 vehicles including exotic supercars, muscle cars, and Japanese tuners. Compete in high-stakes races through vibrant urban environments, master drift challenges, and evade cops in adrenaline-pumping pursuits with dynamic day-night cycles and weather effects. Features all DLCs, unlimited money, and all performance parts unlocked for the ultimate street racing experience.
+            </div>
+
+            <div id="desc-real-racing" data-title="Real Racing 3 Premium" data-version="Latest Version" data-rating="★★★★★ 4.7">
+                Real Racing 3 Premium brings true-to-life racing simulation to your mobile device. Experience precision handling physics, detailed damage modeling, and dynamic real-time racing with up to 8 players. Drive premium vehicles from manufacturers like Ferrari, Lamborghini, Aston Martin, Porsche, and Mercedes-Benz with meticulously modeled interiors and authentic engine sounds. This modified version includes unlimited gold and money, all 300+ officially licensed vehicles unlocked, and removed waiting times for repairs and upgrades. Race across 40 meticulously detailed tracks including Silverstone, Spa-Francorchamps, and Nürburgring with realistic weather effects and day-night transitions.
+            </div>
+
+            <div id="desc-csr2" data-title="CSR Racing 2 MOD" data-version="Latest Version" data-rating="★★★★★ 4.9">
+                Dominate the drag racing scene with CSR Racing 2 MOD. This hyper-realistic racing game features meticulously detailed supercars from top manufacturers like Ferrari, McLaren, and Bugatti. The modified version provides unlimited cash and gold, all cars unlocked with maxed stats, and instant race wins if desired. Customize every aspect of your vehicle, from paint jobs to performance parts, and climb the ranks in intense multiplayer competitions.
+            </div>
+
+            <div id="desc-drift-max" data-title="Drift Max Pro Unlimited" data-version="Latest Version" data-rating="★★★★☆ 4.5">
+                Master the art of drifting with Drift Max Pro Unlimited. This advanced drifting simulator brings realistic physics and tire smoke effects for the ultimate drift experience. The modded version includes unlimited gold and cash, all 30+ cars unlocked, and all drift tracks available from the start. Customize your drift machines with performance upgrades and visual modifications, then compete in global leaderboards to show off your skills.
+            </div>
+
+            <div id="desc-forza" data-title="Forza Motorsport Mobile" data-version="Latest Version" data-rating="★★★★★ 4.9">
+                Experience console-quality racing on your mobile device with Forza Motorsport. This unofficial mobile port brings the acclaimed racing simulator to your fingertips with photorealistic graphics, advanced lighting effects, and sophisticated driving physics featuring realistic tire friction, suspension dynamics, and aerodynamics. Features over 100 meticulously detailed vehicles from manufacturers like Ferrari, Porsche, Lamborghini, McLaren, and Bugatti with accurately modeled cockpits and mechanical damage. Race on 20 precisely laser-scanned tracks including iconic circuits like Laguna Seca, Spa, and Suzuka with dynamic weather conditions, day/night cycles, and variable track temperatures affecting handling. This modified version includes unlimited credits, all cars unlocked, and premium customization options for the ultimate automotive enthusiast experience.
+            </div>
+
+            <div id="desc-beamng" data-title="BeamNG.drive MOBILE" data-version="Latest: 2.4.1" data-rating="★★★★★ 4.9">
+                Experience the most realistic vehicle physics simulation on mobile with BeamNG.drive. This unofficial mobile port brings the PC's premier soft-body physics engine to your device, allowing for incredibly realistic vehicle crashes, deformations, and driving dynamics. Explore open-world environments, complete challenging scenarios, and test the limits of over 30 highly detailed and customizable vehicles. This modded version includes all maps, all vehicles, and enhanced performance for mobile devices.
+            </div>
+
+            <div id="desc-ets" data-title="Euro Truck Simulator Mobile" data-version="Latest Version" data-rating="★★★★★ 4.8">
+                Experience the thrill of being a truck driver in Europe with Euro Truck Simulator Mobile. This unofficial port brings the beloved PC simulator to your mobile device with impressive graphics and realistic physics. Drive across detailed European countries, deliver cargo on schedule, build your trucking empire, and customize your fleet with various upgrades. This modded version includes unlimited money, all trucks unlocked, and all map DLCs available from the start.
+            </div>
+
+            <div id="desc-assetto" data-title="ASSETTO CORSA MOBILE" data-version="Latest Version" data-rating="★★★★★ 4.9">
+                Experience the ultimate racing simulation with Assetto Corsa Mobile. This adaptation of the acclaimed PC racing simulator brings unprecedented physics accuracy and driving realism to mobile devices. With laser-scanned tracks, authentic car handling, and a wide selection of high-performance vehicles from top manufacturers, this is the most realistic racing experience on mobile. The modded version includes all cars and tracks unlocked, unlimited credits, and enhanced graphics options.
+            </div>
+
+            <div id="desc-carparking" data-title="Car Parking Multiplayer" data-version="Latest Version" data-rating="★★★★★ 4.7">
+                Master the art of car parking and driving with Car Parking Multiplayer. This simulator offers realistic vehicle physics, detailed car models, and challenging parking scenarios. Create your own virtual garage filled with custom cars, interact with other players online, and showcase your driving skills. This modded version includes unlimited money, all cars unlocked with maximum upgrades, and removed advertisements for a premium experience.
+            </div>
+
+             <div id="desc-wrc" data-title="WRC 10 Mobile Rally" data-version="Latest Version" data-rating="★★★★☆ 4.5">
+                Master the challenging world of rally racing with WRC 10 Mobile Rally. This rally racing simulator features the complete FIA World Rally Championship with authentic cars, teams, and stages from the 2021 season. Experience the thrill of off-road racing across varied surfaces and weather conditions with realistic physics and damage modeling. The modded version includes all rally cars unlocked, unlimited resources for upgrades, and all special stages available from the start. Perfect for fans of technical driving challenges and authentic motorsport experiences.
+            </div>
+
+            <div id="desc-nfs-hot-pursuit" data-title="Need for Speed Hot Pursuit" data-version="Latest Version" data-rating="★★★★★ 4.8">
+                Experience the adrenaline-pumping chase from both sides of the law in Need for Speed Hot Pursuit. This mobile adaptation brings the high-octane police chases and exotic car races to your fingertips with stunning graphics and responsive controls. Play as either an elite cop with tactical equipment or a renegade racer with evasive abilities. The modified version includes all 60+ super-performance cars unlocked, including Lamborghinis, Ferraris, and the exclusive Pagani Zonda Cinque. Features the innovative Autolog system that connects you with friends' racing activities, all pursuit tech weapons unlocked, and expanded career events without any grinding.
+            </div>
+
+            <div id="desc-grid-autosport" data-title="GRID Autosport Mobile" data-version="Latest Version" data-rating="★★★★★ 4.8">
+                Experience console-quality motorsport racing on your mobile device with GRID Autosport. This premium racing simulator features 100 cars and 100 circuits with a wide variety of racing disciplines including Touring, Endurance, Open Wheel, Tuner, and Street racing. The modified version includes all downloadable content packs unlocked, custom tuning options available from the start, and enhanced graphics settings with dynamic lighting effects. Master advanced driving techniques like proper braking points, racing lines, and throttle control with the realistic handling model that balances simulation and accessibility.
+            </div>
+
+            <div id="desc-carx" data-title="CarX Drift Racing Online" data-version="Latest Version" data-rating="★★★★☆ 4.6">
+                Master the art of drifting with CarX Drift Racing Online, the most realistic drift simulation on mobile. This physics-based racing game features finely-tuned handling models that simulate weight transfer, tire grip, and momentum with incredible precision. Customize over 50 licensed cars with real-world performance parts and visual modifications, then take them to 11 highly detailed tracks designed specifically for drift competition. The modded version provides unlimited gold and coins for upgrades, all cars unlocked, and premium drift tracks available from the start. Join multiplayer drift battles or perfect your technique in tandem drift competitions or compete against real players in drift battles.
+            </div>
+
+            <div id="desc-default" data-title="" data-version="" data-rating="">
+                Experience this premium mobile game with all features unlocked and enhanced. This modified version provides unlimited resources, removed ads, and exclusive content not available in the standard version. Download now to enjoy the full gaming experience without restrictions.
+            </div>
+        </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Global variables for DOM elements ---
+            const mainContent = document.getElementById('main-content');
+            const overlay = document.getElementById('overlay');
+            const body = document.body;
+
+            // Game details page elements
+            const gameDetailsPage = document.getElementById('game-details-page');
+            const closeGameDetails = document.getElementById('close-game-details');
+            const detailsGameImage = document.getElementById('details-game-image');
+            const detailsGameTitle = document.getElementById('details-game-title');
+            const detailsGameVersion = document.getElementById('details-game-version');
+            const detailsGameRating = document.getElementById('details-game-rating');
+            const detailsGameDescription = document.getElementById('details-game-description');
+            const playGameBtn = document.getElementById('play-game-btn');
+            const detailsDownloadBtn = document.getElementById('details-download-btn');
+
+            // Search elements
+            const searchForm = document.getElementById('search-form');
+            const searchInput = document.getElementById('search-input');
+            const searchResults = document.getElementById('search-results');
+            const searchResultsGrid = document.getElementById('search-results-grid');
+            const closeSearchResults = document.getElementById('close-search-results');
+
+            // Menu elements
+            const menuBtn = document.getElementById('menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+            const navClose = document.getElementById('nav-close');
+
+            // About page elements
+            const aboutLink = document.getElementById('about-link');
+            const aboutFooterLink = document.getElementById('about-footer-link');
+            const aboutContainer = document.getElementById('about-container');
+            const closeAbout = document.getElementById('close-about');
+
+            // More Games elements
+            const moreGamesLink = document.getElementById('more-games-link');
+            const gamesLink = document.getElementById('games-link'); // Link in the menu
+            const moreGamesContainer = document.getElementById('more-games-container');
+            const closeMoreGames = document.getElementById('close-more-games');
+
+            // Game Grids (for event delegation)
+            const featuredGamesGrid = document.getElementById('featured-games-grid');
+            const moreGamesGridElem = document.getElementById('more-games-grid'); // Renamed to avoid conflict
+
+            // --- Scroll Management ---
+            function isAnyModalVisible() {
+                return (gameDetailsPage && getComputedStyle(gameDetailsPage).display !== 'none') ||
+                       (searchResults && getComputedStyle(searchResults).display !== 'none') ||
+                       (navMenu && navMenu.classList.contains('open')) ||
+                       (aboutContainer && getComputedStyle(aboutContainer).display !== 'none') ||
+                       (moreGamesContainer && getComputedStyle(moreGamesContainer).display !== 'none');
+            }
+
+            function updateBodyScroll() {
+                if (isAnyModalVisible()) {
+                    body.classList.add('modal-visible');
+                } else {
+                    body.classList.remove('modal-visible');
+                }
+            }
+
+
+            // --- Game Details Page Functions ---
+            function showGameDetailsPage(gameCard) {
+                const imageElement = gameCard.querySelector('.game-image');
+                const titleElement = gameCard.querySelector('.game-title');
+                const versionElement = gameCard.querySelector('.game-version');
+                const ratingElement = gameCard.querySelector('.rating');
+
+                let gameTitle = titleElement ? titleElement.textContent.trim() : '';
+                let gameImgSrc = imageElement ? imageElement.src : '';
+                let gameVersion = versionElement ? versionElement.textContent : '';
+                let gameRatingHTML = ratingElement ? ratingElement.innerHTML : ''; // Get HTML for stars
+
+                let gameDescription = '';
+                let descriptionFound = false;
+                const gameDescriptionsContainer = document.querySelector('.game-descriptions');
+
+                if (gameDescriptionsContainer) {
+                    const descriptionElements = gameDescriptionsContainer.querySelectorAll('div[id^="desc-"]');
+                    for (const descElement of descriptionElements) {
+                        const dataTitle = descElement.getAttribute('data-title');
+                        if (dataTitle && gameTitle.toLowerCase().includes(dataTitle.toLowerCase().replace(/ mobile| mod| premium/g, '').trim())) {
+                            gameDescription = descElement.textContent.trim();
+                            gameTitle = dataTitle; // Use title from description for consistency
+                            gameVersion = descElement.getAttribute('data-version') || gameVersion;
+                            gameRatingHTML = descElement.getAttribute('data-rating') || gameRatingHTML; // Use rating from desc
+                            descriptionFound = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!descriptionFound) {
+                    const defaultDesc = document.getElementById('desc-default');
+                    if (defaultDesc) gameDescription = defaultDesc.textContent.trim();
+                }
+
+                detailsGameImage.src = gameImgSrc;
+                detailsGameImage.alt = gameTitle;
+                detailsGameTitle.textContent = gameTitle;
+                detailsGameVersion.textContent = gameVersion;
+                detailsGameRating.innerHTML = gameRatingHTML; // Set the HTML for rating
+                detailsGameDescription.textContent = gameDescription;
+
+                mainContent.style.display = 'none';
+                if(searchResults) searchResults.style.display = 'none'; // Hide search if open
+                if(aboutContainer) aboutContainer.style.display = 'none';
+                if(moreGamesContainer) moreGamesContainer.style.display = 'none';
+                if(navMenu) navMenu.classList.remove('open');
+                if(overlay) overlay.style.display = 'none';
+
+                gameDetailsPage.style.display = 'block';
+                gameDetailsPage.scrollTop = 0; // Scroll to top of details page
+                updateBodyScroll();
+            }
+
+            function hideGameDetailsPage() {
+                if (gameDetailsPage) gameDetailsPage.style.display = 'none';
+                mainContent.style.display = 'block';
+                updateBodyScroll();
+            }
+
+            function handleGameCardClick(event) {
+                const gameCard = event.target.closest('.game-card');
+                if (gameCard) {
+                    event.preventDefault();
+                    showGameDetailsPage(gameCard);
+                }
+            }
+
+            if (featuredGamesGrid) featuredGamesGrid.addEventListener('click', handleGameCardClick);
+            if (moreGamesGridElem) moreGamesGridElem.addEventListener('click', handleGameCardClick);
+            if (searchResultsGrid) searchResultsGrid.addEventListener('click', handleGameCardClick);
+            if (closeGameDetails) closeGameDetails.addEventListener('click', hideGameDetailsPage);
+
+
+            // --- OGAds and Game Details Buttons ---
+            function ogadsLock() {
+                console.log("Attempting to trigger OGAds Locker...");
+                window.location.href = 'https://appslocked.com/cl/i/6dxkge'; // <-- REPLACE WITH YOUR OGADS LOCKER URL
+            }
+
+            if (playGameBtn) {
+                playGameBtn.addEventListener('click', function() {
+                    console.log("PLAY NOW clicked. Redirecting to Google.");
+                    window.location.href = 'https://www.google.com';
+                });
+            }
+            if (detailsDownloadBtn) {
+                detailsDownloadBtn.addEventListener('click', function() {
+                    console.log("DOWNLOAD clicked. Triggering OGAds Locker.");
+                    ogadsLock();
+                });
+            }
+
+            // --- Search Functionality ---
+            function performSearch(query) {
+                query = query.toLowerCase().trim();
+                if (!query) {
+                    // If query is empty, optionally hide search results and show main content
+                    if (searchResults) searchResults.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    updateBodyScroll();
+                    return;
+                }
+
+                mainContent.style.display = 'none';
+                if(gameDetailsPage) gameDetailsPage.style.display = 'none';
+                if(aboutContainer) aboutContainer.style.display = 'none';
+                if(moreGamesContainer) moreGamesContainer.style.display = 'none';
+                if(navMenu) navMenu.classList.remove('open');
+                if(overlay) overlay.style.display = 'none';
+
+
+                searchResults.style.display = 'block';
+                searchResultsGrid.innerHTML = '';
+
+                const allGameCards = document.querySelectorAll('#featured-games-grid .game-card, #more-games-grid .game-card');
+                const uniqueSearchResults = [];
+                const addedTitles = new Set();
+
+                allGameCards.forEach(function(card) {
+                    const titleElement = card.querySelector('.game-title');
+                    if (titleElement) {
+                        const title = titleElement.textContent.trim();
+                        const lowerTitle = title.toLowerCase();
+                        if (lowerTitle.includes(query)) {
+                            const normalizedTitle = lowerTitle.replace(/ mobile| mod| premium/g, '').trim();
+                            if (!addedTitles.has(normalizedTitle)) {
+                                const clone = card.cloneNode(true);
+                                const downloadButton = clone.querySelector('.download-btn');
+                                if (downloadButton) downloadButton.style.pointerEvents = 'none';
+                                uniqueSearchResults.push(clone);
+                                addedTitles.add(normalizedTitle);
+                            }
+                        }
+                    }
+                });
+
+                uniqueSearchResults.forEach(card => searchResultsGrid.appendChild(card));
+
+                if (uniqueSearchResults.length === 0) {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    noResults.textContent = 'No games found matching "' + query + '"';
+                    searchResultsGrid.appendChild(noResults);
+                }
+                searchResults.scrollTop = 0; // Scroll to top of search results
+                updateBodyScroll();
+            }
+
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    performSearch(searchInput.value);
+                });
+            }
+
+            if (closeSearchResults) {
+                closeSearchResults.addEventListener('click', function() {
+                    searchResults.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    searchInput.value = ''; // Clear search input
+                    updateBodyScroll();
+                });
+            }
+
+            // --- Menu Functionality ---
+            if (menuBtn && navMenu && navClose && overlay) {
+                menuBtn.addEventListener('click', function() {
+                    navMenu.classList.add('open');
+                    overlay.style.display = 'block';
+                    updateBodyScroll();
+                });
+
+                function closeMenu() {
+                    navMenu.classList.remove('open');
+                    overlay.style.display = 'none';
+                    updateBodyScroll();
+                }
+
+                navClose.addEventListener('click', closeMenu);
+                overlay.addEventListener('click', function(e) {
+                     // Only close menu if overlay itself is clicked, not content on top of it
+                     // and if the menu is actually open.
+                    if (e.target === overlay && navMenu.classList.contains('open')) {
+                        closeMenu();
+                    }
+                });
+            }
+
+            // --- About Page Functionality ---
+            function openAboutPage() {
+                 if (aboutContainer) {
+                    closeAllModals(); // Close other modals before opening a new one
+                    aboutContainer.style.display = 'block';
+                    aboutContainer.scrollTop = 0;
+                    updateBodyScroll();
+                 }
+            }
+            if (aboutLink) aboutLink.addEventListener('click', function(e) { e.preventDefault(); openAboutPage(); });
+            if (aboutFooterLink) aboutFooterLink.addEventListener('click', function(e) { e.preventDefault(); openAboutPage(); });
+
+            if (closeAbout && aboutContainer) {
+                closeAbout.addEventListener('click', function() {
+                    aboutContainer.style.display = 'none';
+                    mainContent.style.display = 'block'; // Explicitly show main content
+                    updateBodyScroll();
+                });
+            }
+
+            // --- More Games Functionality ---
+            function openMoreGames() {
+                if (moreGamesContainer) {
+                   closeAllModals(); // Close other modals
+                   moreGamesContainer.style.display = 'block';
+                   moreGamesContainer.scrollTop = 0;
+                   updateBodyScroll();
+                }
+            }
+
+            if (moreGamesLink) moreGamesLink.addEventListener('click', function(e) { e.preventDefault(); openMoreGames(); });
+            if (gamesLink) gamesLink.addEventListener('click', function(e) { e.preventDefault(); openMoreGames(); });
+            const exploreBtn = document.querySelector('.explore-btn');
+            if (exploreBtn) exploreBtn.addEventListener('click', function(e) { e.preventDefault(); openMoreGames(); });
+
+            if (closeMoreGames && moreGamesContainer) {
+                closeMoreGames.addEventListener('click', function() {
+                    moreGamesContainer.style.display = 'none';
+                    mainContent.style.display = 'block'; // Explicitly show main content
+                    updateBodyScroll();
+                });
+            }
+
+            // --- Helper to close all modals/pages before opening a new one (except menu)
+            function closeAllModals() {
+                if (gameDetailsPage) gameDetailsPage.style.display = 'none';
+                if (searchResults) searchResults.style.display = 'none';
+                // if (navMenu) navMenu.classList.remove('open'); // Keep menu separate or close if desired
+                if (navMenu && navMenu.classList.contains('open')) { // Close menu if open
+                     navMenu.classList.remove('open');
+                     if(overlay) overlay.style.display = 'none';
+                }
+                if (aboutContainer) aboutContainer.style.display = 'none';
+                if (moreGamesContainer) moreGamesContainer.style.display = 'none';
+                mainContent.style.display = 'block'; // Ensure main content is visible before a new modal potentially hides it
+            }
+
+
+            // --- How It Works Links ---
+            function scrollToHowItWorks() {
+                const howItWorksSection = document.getElementById('how-it-works-section');
+                if (howItWorksSection) {
+                   closeAllModals(); // Close any open modals
+                   mainContent.style.display = 'block'; // Ensure main content is visible for scrolling
+                   updateBodyScroll(); // Update scroll before scrolling
+                   howItWorksSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            const howItWorksBtn = document.querySelector('.how-it-works-btn');
+            if (howItWorksBtn) {
+                howItWorksBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    scrollToHowItWorks();
+                });
+            }
+            const howItWorksMenuLink = document.getElementById('how-it-works-menu-link');
+            if (howItWorksMenuLink) {
+                 howItWorksMenuLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    scrollToHowItWorks();
+                 });
+            }
+
+
+            // Help button functionality
+            const helpButton = document.querySelector('.help-button');
+            if (helpButton) {
+                helpButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Need help? Contact us at support@zaddo.online');
+                });
+            }
+
+            // Initial body scroll check
+            updateBodyScroll();
+
+        }); // End of DOMContentLoaded
+    </script>
+
+</body>
+</html>
+
