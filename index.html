@@ -17,7 +17,7 @@
             --card-bg: #1a2530;
             --border-radius: 10px;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
         body { background-color: var(--background-color); color: var(--text-color); line-height: 1.6; }
         body.modal-open { overflow: hidden; }
         a { text-decoration: none; color: var(--text-color); }
@@ -60,6 +60,16 @@
         .game-card-category { font-size: 0.8rem; padding: 0.2rem 0.6rem; border-radius: 5px; color: var(--primary-color); background-color: rgba(0, 230, 184, 0.1); }
         .game-card-size { font-size: 0.8rem; color: var(--text-secondary); }
 
+        /* How It Works Section */
+        .how-it-works { padding: 2rem 0; }
+        .how-it-works-title { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
+        .how-it-works-title span { font-size: 2rem; color: var(--primary-color); }
+        .steps-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .step-card { background-color: var(--secondary-bg); border-radius: 10px; padding: 1.5rem; }
+        .step-icon { font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .step-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .step-desc { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+        
         /* Modals (Pop-ups) */
         .modal-overlay, .about-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(13, 20, 25, 0.95); z-index: 1000; overflow-y: auto; padding: 1rem; }
         .modal-content { background-color: var(--secondary-bg); border-radius: var(--border-radius); max-width: 900px; margin: 2rem auto; padding: 2rem; position: relative; }
@@ -109,7 +119,7 @@
         .team-member p { color: var(--primary-color); font-size: 0.9rem; }
         
         /* Footer */
-        .footer { background-color: var(--secondary-bg); padding: 3rem 1rem; margin-top: 3rem; border-radius: var(--border-radius) var(--border-radius) 0 0; }
+        .footer { background-color: var(--secondary-bg); padding: 3rem 1rem; margin-top: 3rem; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
         .footer-section h3 { color: var(--primary-color); margin-bottom: 1rem; }
         .footer-links { list-style: none; padding: 0; }
@@ -150,17 +160,46 @@
 
             <div class="action-buttons">
                 <a href="#" class="button explore-btn" id="explore-btn">🎮 Explore All Games</a>
-                <a href="#" class="button how-it-works-btn">ⓘ How It Works</a>
+                <a href="#how-it-works-section" class="button how-it-works-btn">ⓘ How It Works</a>
             </div>
 
             <h2 class="section-title">Featured Games</h2>
             <a href="#" class="view-all" id="view-all-btn">View All →</a>
             <div class="games-grid" id="featured-games-grid">
                 </div>
+            
+            <section class="how-it-works" id="how-it-works-section">
+                <div class="how-it-works-title">
+                     <span>⚙️</span>
+                     <h2 class="section-title" style="text-align: left; margin-bottom: 0;">How It Works</h2>
+                </div>
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-icon">🔍</div>
+                        <div class="step-title">Find Your Game</div>
+                        <div class="step-desc">Browse our collection of modded games or search for what you want.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">☁️</div>
+                        <div class="step-title">Complete Offer</div>
+                        <div class="step-desc">Complete a quick offer (less than 1 minute) to unlock the download.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">📱</div>
+                        <div class="step-title">Download & Install</div>
+                        <div class="step-desc">Get your download link and install the game with our instructions.</div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">🎮</div>
+                        <div class="step-title">Enjoy Premium</div>
+                        <div class="step-desc">Play with all premium features unlocked - unlimited money, no ads!</div>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
-    <div class="nav-menu-overlay" id="nav-overlay"></div>
+    <nav class="nav-menu-overlay" id="nav-overlay"></nav>
     <nav class="nav-menu" id="nav-menu">
         <div class="nav-header">
             <h3>Menu</h3>
@@ -210,7 +249,6 @@
         </div>
     </footer>
 
-
     <div class="modal-overlay" id="games-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -243,7 +281,6 @@
             </div>
         </div>
     </div>
-
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -310,27 +347,22 @@
         // --- DOM Elements ---
         const body = document.body;
         
-        // Grids
         const featuredGamesGrid = document.getElementById('featured-games-grid');
         const modalGamesGrid = document.getElementById('modal-games-grid');
         
-        // Modals
         const gamesModal = document.getElementById('games-modal');
         const gameDetailsModal = document.getElementById('game-details-modal');
         const aboutContainer = document.getElementById('about-container');
 
-        // Modal Content
         const gameDetailsContent = document.getElementById('game-details-content');
         const modalTitle = document.getElementById('modal-title');
         
-        // Buttons & Links
         const searchForm = document.getElementById('search-form');
         const exploreBtn = document.getElementById('explore-btn');
         const viewAllBtn = document.getElementById('view-all-btn');
         const modalCloseBtn = document.getElementById('modal-close-btn');
         const aboutCloseBtn = document.getElementById('about-close-btn');
 
-        // Menu
         const menuBtn = document.getElementById('menu-btn');
         const navMenu = document.getElementById('nav-menu');
         const navOverlay = document.getElementById('nav-overlay');
@@ -340,9 +372,7 @@
         const aboutFooterLink = document.getElementById('about-footer-link');
         const allGamesLink = document.getElementById('all-games-link');
 
-        // Footer
         const footerCategories = document.getElementById('footer-categories');
-
 
         // --- Functions ---
         const populateGrid = (gridElement, gamesList) => {
@@ -430,15 +460,11 @@
         const openNavMenu = () => {
             navMenu.classList.add('open');
             navOverlay.style.display = 'block';
-            body.classList.add('modal-open');
         };
         
         const closeNavMenu = () => {
             navMenu.classList.remove('open');
             navOverlay.style.display = 'none';
-            if (!document.querySelector('.modal-overlay:not([style*="display: none"])')) {
-                 body.classList.remove('modal-open');
-            }
         };
 
         const closeAllModals = () => {
@@ -481,7 +507,6 @@
         // --- Initial Load ---
         populateGrid(featuredGamesGrid, allGames.slice(0, 8));
 
-        // Populate footer categories
         const categories = [...new Set(allGames.map(g => g.category))];
         footerCategories.innerHTML = '';
         categories.slice(0, 4).forEach(cat => {
@@ -492,6 +517,5 @@
 
     });
     </script>
-
 </body>
 </html>
