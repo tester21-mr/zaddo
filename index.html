@@ -22,28 +22,30 @@
         body.modal-open { overflow: hidden; }
         a { text-decoration: none; color: var(--text-color); }
         .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
-        
+
         /* Header */
         .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; position: sticky; top: 0; z-index: 100; background-color: var(--background-color); }
         .logo-container { display: flex; align-items: center; gap: 10px; }
-        .logo-text { color: var(--primary-color); font-size: 1.5rem; font-weight: bold; }
+        .logo-icon svg { width: 40px; height: 40px; }
+        .logo-text-group .logo-text { color: var(--primary-color); font-size: 1.5rem; font-weight: bold; }
+        .logo-text-group .logo-tagline { font-size: 0.8rem; color: #ccc; margin-top: -5px; }
         .search-container { flex: 1; margin: 0 1rem; max-width: 500px; }
         #search-form { display: flex; }
         #search-input { width: 100%; background: var(--secondary-bg); border: 1px solid #333; color: white; padding: 0.5rem 1rem; border-radius: 20px 0 0 20px; outline: none; }
         #search-form button { background: var(--primary-color); border: none; padding: 0.5rem 1rem; border-radius: 0 20px 20px 0; cursor: pointer; color: black; }
         .menu-button { font-size: 1.5rem; cursor: pointer; }
-        
+
         /* Banner */
         .banner { width: 100%; border-radius: var(--border-radius); margin-bottom: 2rem; }
         
         /* Buttons */
         .action-buttons { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
-        .button { padding: 0.8rem 1.5rem; border-radius: 25px; font-weight: bold; cursor: pointer; border: none; text-decoration: none; }
+        .button { padding: 0.8rem 1.5rem; border-radius: 25px; font-weight: bold; cursor: pointer; border: none; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
         .explore-btn { background-color: var(--primary-color); color: black; }
         .how-it-works-btn { background-color: #fa6e59; color: white; }
 
         /* Titles */
-        .section-title { color: var(--primary-color); font-size: 2rem; margin-bottom: 1rem; text-align: center; }
+        .section-title { color: var(--primary-color); font-size: 2rem; margin-bottom: 1rem; }
         .view-all { color: var(--primary-color); text-decoration: none; display: block; text-align: right; margin: -1rem 0 1rem 0; font-weight: bold; }
 
         /* Game Grid & Cards */
@@ -58,12 +60,12 @@
         .game-card-category { font-size: 0.8rem; padding: 0.2rem 0.6rem; border-radius: 5px; color: var(--primary-color); background-color: rgba(0, 230, 184, 0.1); }
         .game-card-size { font-size: 0.8rem; color: var(--text-secondary); }
 
-        /* Pop-up Modals (Overlay) */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(13, 20, 25, 0.9); z-index: 1000; overflow-y: auto; padding: 2rem; }
+        /* Modals (Pop-ups) */
+        .modal-overlay, .about-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(13, 20, 25, 0.95); z-index: 1000; overflow-y: auto; padding: 1rem; }
         .modal-content { background-color: var(--secondary-bg); border-radius: var(--border-radius); max-width: 900px; margin: 2rem auto; padding: 2rem; position: relative; }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid #333; padding-bottom: 1rem; }
         .modal-title { font-size: 1.8rem; color: var(--primary-color); }
-        .modal-close { font-size: 2rem; cursor: pointer; color: #fff; }
+        .modal-close { font-size: 2rem; cursor: pointer; color: #fff; background: none; border: none; }
 
         /* Game Details Modal */
         #game-details-content .details-header-image { width: 100%; height: 300px; object-fit: cover; border-radius: var(--border-radius); margin-bottom: 1.5rem; }
@@ -77,26 +79,7 @@
         .os-button { display: flex; align-items: center; justify-content: center; gap: 0.7rem; padding: 1rem; border-radius: 10px; font-weight: 600; cursor: pointer; text-decoration: none; }
         .os-button.android { background-color: #3DDC84; color: #0d1419; }
         .os-button.ios { background-color: #A2AAAD; color: #0d1419; }
-        
-        /* BUTTON JDID */
-        .play-browser-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.7rem;
-            width: 100%;
-            padding: 1rem;
-            margin-top: 1rem;
-            border-radius: 10px;
-            background-color: var(--primary-color);
-            color: var(--background-color);
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
+        .play-browser-btn { display: flex; align-items: center; justify-content: center; gap: 0.7rem; width: 100%; padding: 1rem; margin-top: 1rem; border-radius: 10px; background-color: var(--primary-color); color: var(--background-color); font-size: 1.1rem; font-weight: bold; text-transform: uppercase; cursor: pointer; text-decoration: none; }
         .comments-section { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #333; }
         .comment { background-color: var(--background-color); border-radius: var(--border-radius); padding: 1rem; margin-bottom: 1rem; border-left: 3px solid var(--primary-color); }
         .comment-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
@@ -104,24 +87,64 @@
         .comment-rating .fa-star { color: #FFC107; }
         .comment-body { color: var(--text-secondary); }
 
+        /* Nav Menu */
+        .nav-menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1001; }
+        .nav-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background-color: var(--secondary-bg); z-index: 1002; transition: right 0.3s ease; box-shadow: -5px 0 15px rgba(0,0,0,0.2); }
+        .nav-menu.open { right: 0; }
+        .nav-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid var(--primary-color); }
+        .nav-header h3 { color: var(--primary-color); font-size: 1.5rem; margin: 0; }
+        .nav-close { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        .nav-items { list-style: none; padding: 1rem 0; }
+        .nav-item a { display: block; padding: 1rem 1.5rem; color: white; text-decoration: none; border-bottom: 1px solid #2a3b4c; transition: background-color 0.2s; }
+        .nav-item a:hover { background-color: #2c3e50; }
+
+        /* About Container */
+        .about-content { line-height: 1.6; }
+        .about-content h2 { color: var(--primary-color); margin-bottom: 15px; }
+        .about-content p { margin-bottom: 20px; color: var(--text-secondary); }
+        .about-team { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .team-member { text-align: center; }
+        .team-member img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px; object-fit: cover; }
+        .team-member h3 { color: #fff; margin-bottom: 5px; }
+        .team-member p { color: var(--primary-color); font-size: 0.9rem; }
+        
+        /* Footer */
+        .footer { background-color: var(--secondary-bg); padding: 3rem 1rem; margin-top: 3rem; border-radius: var(--border-radius) var(--border-radius) 0 0; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+        .footer-section h3 { color: var(--primary-color); margin-bottom: 1rem; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 0.7rem; }
+        .footer-links a { color: var(--text-secondary); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--primary-color); }
+        .footer-bottom { text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #2a3b4c; font-size: 0.9rem; color: var(--text-secondary); }
+
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header class="header">
-            <div class="logo-container">
-                <span class="logo-text">Zaddo.online</span>
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <svg viewBox="0 0 40 40">
+                    <circle cx="15" cy="20" r="15" fill="white"/>
+                    <circle cx="25" cy="20" r="15" fill="#00e6b8"/>
+                </svg>
             </div>
-            <div class="search-container">
-                <form id="search-form">
-                    <input type="text" id="search-input" placeholder="Search for games...">
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                </form>
+            <div class="logo-text-group">
+                <div class="logo-text">Zaddo.online</div>
+                <div class="logo-tagline">Unlock Premium Games</div>
             </div>
-            <div class="menu-button" id="menu-btn"><i class="fas fa-bars"></i></div>
-        </header>
+        </div>
+        <div class="search-container">
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Search for games...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="menu-button" id="menu-btn"><i class="fas fa-bars"></i></div>
+    </header>
 
+    <div class="container">
         <main>
             <img src="https://i.ibb.co/LBKP4bC/nbanner1.jpg" alt="Game Banner" class="banner">
 
@@ -137,20 +160,88 @@
         </main>
     </div>
 
+    <div class="nav-menu-overlay" id="nav-overlay"></div>
+    <nav class="nav-menu" id="nav-menu">
+        <div class="nav-header">
+            <h3>Menu</h3>
+            <button class="nav-close" id="nav-close">×</button>
+        </div>
+        <ul class="nav-items">
+            <li class="nav-item"><a href="#" id="home-link">Home</a></li>
+            <li class="nav-item"><a href="#" id="about-link">About Us</a></li>
+            <li class="nav-item"><a href="#" id="all-games-link">All Games</a></li>
+            <li class="nav-item"><a href="#">Contact</a></li>
+            <li class="nav-item"><a href="#">Privacy Policy</a></li>
+            <li class="nav-item"><a href="#">Terms of Service</a></li>
+        </ul>
+    </nav>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Zaddo</h3>
+                    <p>Your gateway to premium gaming experiences without the premium price.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#" id="about-footer-link">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul class="footer-links" id="footer-categories">
+                         </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Zaddo.online. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
     <div class="modal-overlay" id="games-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title" id="modal-title">All Games</h2>
-                <span class="modal-close" id="modal-close-btn">×</span>
+                <button class="modal-close" id="modal-close-btn">×</button>
             </div>
-            <div class="games-grid" id="modal-games-grid">
-                </div>
+            <div class="games-grid" id="modal-games-grid"></div>
         </div>
     </div>
 
     <div class="modal-overlay" id="game-details-modal">
-        <div class="modal-content" id="game-details-content">
+        <div class="modal-content" id="game-details-content"></div>
+    </div>
+
+    <div class="about-container" id="about-container">
+        <div class="modal-content">
+             <div class="modal-header">
+                <h2 class="modal-title">About Us</h2>
+                <button class="modal-close" id="about-close-btn">×</button>
             </div>
+            <div class="about-content">
+                <h2>Welcome to Zaddo.online</h2>
+                <p>At Zaddo.online, we are passionate about bringing premium gaming experiences to everyone. Our platform was founded with a simple mission: to provide easy access to high-quality games.</p>
+                <h2>Our Team</h2>
+                <div class="about-team">
+                    <div class="team-member"> <img src="https://i.ibb.co/0QBD4MD/team1.jpg" alt="Team Member"> <h3>Alex Johnson</h3> <p>Founder & CEO</p> </div>
+                    <div class="team-member"> <img src="https://i.ibb.co/svWjY7K/team2.jpg" alt="Team Member"> <h3>Sophia Chen</h3> <p>Lead Developer</p> </div>
+                    <div class="team-member"> <img src="https://i.ibb.co/5xpFMhY/team3.jpg" alt="Team Member"> <h3>Michael Rodriguez</h3> <p>Game Curator</p> </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -217,13 +308,41 @@
         ];
 
         // --- DOM Elements ---
+        const body = document.body;
+        
+        // Grids
         const featuredGamesGrid = document.getElementById('featured-games-grid');
         const modalGamesGrid = document.getElementById('modal-games-grid');
+        
+        // Modals
         const gamesModal = document.getElementById('games-modal');
         const gameDetailsModal = document.getElementById('game-details-modal');
+        const aboutContainer = document.getElementById('about-container');
+
+        // Modal Content
         const gameDetailsContent = document.getElementById('game-details-content');
         const modalTitle = document.getElementById('modal-title');
-        const body = document.body;
+        
+        // Buttons & Links
+        const searchForm = document.getElementById('search-form');
+        const exploreBtn = document.getElementById('explore-btn');
+        const viewAllBtn = document.getElementById('view-all-btn');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const aboutCloseBtn = document.getElementById('about-close-btn');
+
+        // Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const navOverlay = document.getElementById('nav-overlay');
+        const navClose = document.getElementById('nav-close');
+        
+        const aboutLink = document.getElementById('about-link');
+        const aboutFooterLink = document.getElementById('about-footer-link');
+        const allGamesLink = document.getElementById('all-games-link');
+
+        // Footer
+        const footerCategories = document.getElementById('footer-categories');
+
 
         // --- Functions ---
         const populateGrid = (gridElement, gamesList) => {
@@ -263,7 +382,7 @@
             }
 
             gameDetailsContent.innerHTML = `
-                <span class="modal-close" id="details-close-btn">×</span>
+                <button class="modal-close" id="details-close-btn">×</button>
                 <img src="${game.image}" alt="${game.title}" class="details-header-image" onerror="this.onerror=null;this.src='https://placehold.co/800x300/0d1419/fff?text=Image+Not+Found';">
                 <h2 class="details-main-title">${game.title}</h2>
                 <p class="details-description">${game.description}</p>
@@ -288,26 +407,49 @@
                 </div>
             `;
             
+            closeAllModals();
             gameDetailsModal.style.display = 'block';
             body.classList.add('modal-open');
             document.getElementById('details-close-btn').addEventListener('click', closeAllModals);
         };
 
         const openGamesModal = (title, gamesList) => {
+            closeAllModals();
             modalTitle.textContent = title;
             populateGrid(modalGamesGrid, gamesList);
             gamesModal.style.display = 'block';
             body.classList.add('modal-open');
         };
+        
+        const openAboutModal = () => {
+            closeAllModals();
+            aboutContainer.style.display = 'block';
+            body.classList.add('modal-open');
+        };
+        
+        const openNavMenu = () => {
+            navMenu.classList.add('open');
+            navOverlay.style.display = 'block';
+            body.classList.add('modal-open');
+        };
+        
+        const closeNavMenu = () => {
+            navMenu.classList.remove('open');
+            navOverlay.style.display = 'none';
+            if (!document.querySelector('.modal-overlay:not([style*="display: none"])')) {
+                 body.classList.remove('modal-open');
+            }
+        };
 
         const closeAllModals = () => {
             gamesModal.style.display = 'none';
             gameDetailsModal.style.display = 'none';
+            aboutContainer.style.display = 'none';
             body.classList.remove('modal-open');
         };
 
         // --- Event Listeners ---
-        document.getElementById('search-form').addEventListener('submit', (e) => {
+        searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const query = document.getElementById('search-input').value.toLowerCase();
             if (!query) return;
@@ -315,20 +457,38 @@
             openGamesModal(`Search Results for "${query}"`, results);
         });
 
-        document.getElementById('explore-btn').addEventListener('click', (e) => {
+        const allGamesTriggers = [exploreBtn, viewAllBtn, allGamesLink];
+        allGamesTriggers.forEach(btn => btn.addEventListener('click', (e) => {
             e.preventDefault();
+            closeNavMenu();
             openGamesModal('All Games', allGames);
-        });
+        }));
         
-        document.getElementById('view-all-btn').addEventListener('click', (e) => {
+        const aboutTriggers = [aboutLink, aboutFooterLink];
+        aboutTriggers.forEach(btn => btn.addEventListener('click', (e) => {
             e.preventDefault();
-            openGamesModal('All Games', allGames);
-        });
+            closeNavMenu();
+            openAboutModal();
+        }));
+        
+        modalCloseBtn.addEventListener('click', closeAllModals);
+        aboutCloseBtn.addEventListener('click', closeAllModals);
+        
+        menuBtn.addEventListener('click', openNavMenu);
+        navClose.addEventListener('click', closeNavMenu);
+        navOverlay.addEventListener('click', closeNavMenu);
 
-        document.getElementById('modal-close-btn').addEventListener('click', closeAllModals);
-        
         // --- Initial Load ---
         populateGrid(featuredGamesGrid, allGames.slice(0, 8));
+
+        // Populate footer categories
+        const categories = [...new Set(allGames.map(g => g.category))];
+        footerCategories.innerHTML = '';
+        categories.slice(0, 4).forEach(cat => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="#">${cat}</a>`;
+            footerCategories.appendChild(li);
+        });
 
     });
     </script>
