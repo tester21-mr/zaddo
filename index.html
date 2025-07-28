@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zaddo.online - Unlock Premium Games</title>
+    
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="copyright" content="© 2025 Zaddo.online – All Rights Reserved">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <meta name="description" content="Download premium mobile games for free. Access modified versions of popular games like GTA 5, Spider-Man, The Last of Us and more.">
     <meta name="keywords" content="free games, premium games, mobile games, download games, GTA 5, Spider-Man, The Last of Us, APK mods, game mods, Android games, iOS games">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,204 +18,1003 @@
         /* Base Styles */
         :root {
             --primary-color: #00e6b8;
+            --primary-hover: #2CFAD1;
             --background-color: #0d1419;
             --secondary-bg: #1a2530;
             --text-color: #ffffff;
             --text-secondary: #b0b0b0;
             --card-bg: #1a2530;
             --border-radius: 10px;
+            --shadow-light: 0 4px 12px rgba(0, 230, 184, 0.1);
+            --shadow-heavy: 0 10px 30px rgba(0, 230, 184, 0.2);
+            --transition: all 0.3s ease;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--background-color); color: var(--text-color); line-height: 1.6; }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            scroll-behavior: smooth; 
+        }
+        
+        body { 
+            background: linear-gradient(135deg, var(--background-color) 0%, #162028 100%);
+            color: var(--text-color); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+        
         body.modal-open { overflow: hidden; }
+        
         a { text-decoration: none; color: var(--text-color); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
-
-        /* Header */
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; position: sticky; top: 0; z-index: 100; background-color: var(--background-color); flex-wrap: wrap; gap: 10px; }
-        .logo-container { display: flex; align-items: center; gap: 10px; }
-        .logo-icon svg { width: 40px; height: 40px; }
-        .logo-text-group .logo-text { color: var(--primary-color); font-size: 1.5rem; font-weight: bold; }
-        .logo-text-group .logo-tagline { font-size: 0.8rem; color: #ccc; margin-top: -5px; }
-        .search-container { flex: 1; margin: 0 1rem; max-width: 500px; }
-        #search-form { display: flex; }
-        #search-input { width: 100%; background: var(--secondary-bg); border: 1px solid #333; color: white; padding: 0.5rem 1rem; border-radius: 20px 0 0 20px; outline: none; }
-        #search-form button { background: var(--primary-color); border: none; padding: 0.5rem 1rem; border-radius: 0 20px 20px 0; cursor: pointer; color: black; }
-        .menu-button { font-size: 1.5rem; cursor: pointer; }
-
-        /* Banner */
-        .banner { width: 100%; border-radius: var(--border-radius); margin-bottom: 2rem; }
         
-        /* Action Buttons */
-        .action-buttons { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
-        .button { padding: 0.8rem 1.5rem; border-radius: 25px; font-weight: bold; cursor: pointer; border: none; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
-        .explore-btn { background-color: var(--primary-color); color: black; }
-        .how-it-works-btn { background-color: #fa6e59; color: white; }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 1rem; 
+        }
 
-        /* Titles */
-        .section-title { color: var(--primary-color); font-size: 2rem; margin-bottom: 1rem; }
-        .view-all { color: var(--primary-color); text-decoration: none; display: block; text-align: right; margin: -1rem 0 1rem 0; font-weight: bold; }
-
-        /* Game Grid & Cards */
-        .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
-        .game-card { background-color: var(--card-bg); border-radius: var(--border-radius); overflow: hidden; cursor: pointer; border: 1px solid #2a3b4c; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .game-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 230, 184, 0.1); }
-        .game-card-image { height: 240px; }
-        .game-card-image img { width: 100%; height: 100%; object-fit: cover; }
-        .game-card-info { padding: 1rem; }
-        .game-card-title { font-size: 1.1rem; margin-bottom: 0.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .game-card-tags { display: flex; gap: 0.5rem; align-items: center; }
-        .game-card-category { font-size: 0.8rem; padding: 0.2rem 0.6rem; border-radius: 5px; color: var(--primary-color); background-color: rgba(0, 230, 184, 0.1); }
-        .game-card-size { font-size: 0.8rem; color: var(--text-secondary); }
-
-        /* How It Works Section */
-        .how-it-works { padding: 2rem 0; }
-        .how-it-works-title { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
-        .how-it-works-title span { font-size: 2rem; color: var(--primary-color); }
-        .steps-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-        .step-card { background-color: var(--secondary-bg); border-radius: 10px; padding: 1.5rem; }
-        .step-icon { font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem; }
-        .step-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem; }
-        .step-desc { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+        /* Loading Animation */
+        .loading-spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
         
-        /* Modals (Pop-ups) */
-        .modal-overlay, .about-container { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(13, 20, 25, 0.95); z-index: 1000; overflow-y: auto; padding: 1rem; }
-        .modal-content { background-color: var(--secondary-bg); border-radius: var(--border-radius); max-width: 900px; margin: 2rem auto; padding: 2rem; position: relative; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid #333; padding-bottom: 1rem; }
-        .modal-title { font-size: 1.8rem; color: var(--primary-color); }
-        .modal-close { font-size: 2rem; cursor: pointer; color: #fff; background: none; border: none; }
-
-        /* Game Details Modal */
-        #game-details-content .details-header-image { width: 100%; height: 300px; object-fit: cover; border-radius: var(--border-radius); margin-bottom: 1.5rem; }
-        #game-details-content .details-main-title { font-size: 2.2rem; margin-bottom: 1rem; }
-        #game-details-content .details-description { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
-        .details-info-box { background-color: var(--background-color); padding: 1.5rem; border-radius: 15px; margin-bottom: 1.5rem; }
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
-        .info-item { font-size: 1rem; }
-        .info-item i { color: var(--primary-color); margin-right: 0.5rem; }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(0, 230, 184, 0.1);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
         
-        /* --- NEW BUTTON STYLES (from Example 3) --- */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header - Enhanced */
+        .header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 1rem 2rem; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            background: rgba(13, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 230, 184, 0.1);
+            flex-wrap: wrap; 
+            gap: 10px; 
+            transition: transform 0.4s ease-in-out, all 0.3s ease; /* ✅ MODIFIED: Zedt l-transition hna */
+        }
+        
+        /* ✅ ADDED: Style jdid bach n-khebbiw l-header m3a scroll */
+        .header.hide-on-scroll {
+            transform: translateY(-110%);
+        }
+        
+        .header.scrolled {
+            box-shadow: var(--shadow-light);
+        }
+        
+        .logo-container { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+        
+        .logo-icon svg { 
+            width: 45px; 
+            height: 45px; 
+            filter: drop-shadow(0 2px 8px rgba(0, 230, 184, 0.3));
+        }
+        
+        .logo-text-group .logo-text { 
+            color: var(--primary-color); 
+            font-size: 1.6rem; 
+            font-weight: 700; 
+            text-shadow: 0 2px 8px rgba(0, 230, 184, 0.3);
+        }
+        
+        .logo-text-group .logo-tagline { 
+            font-size: 0.85rem; 
+            color: #ccc; 
+            margin-top: -2px; 
+        }
+        
+        .search-container { 
+            flex: 1; 
+            margin: 0 2rem; 
+            max-width: 500px; 
+            position: relative;
+        }
+        
+        #search-form { 
+            display: flex; 
+            box-shadow: var(--shadow-light);
+            border-radius: 25px;
+            overflow: hidden;
+        }
+        
+        #search-input { 
+            width: 100%; 
+            background: var(--secondary-bg); 
+            border: 2px solid transparent; 
+            color: white; 
+            padding: 0.7rem 1.2rem; 
+            border-radius: 25px 0 0 25px; 
+            outline: none; 
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        
+        #search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 230, 184, 0.1);
+        }
+        
+        #search-form button { 
+            background: var(--primary-color); 
+            border: none; 
+            padding: 0.7rem 1.2rem; 
+            border-radius: 0 25px 25px 0; 
+            cursor: pointer; 
+            color: black; 
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        #search-form button:hover {
+            background: var(--primary-hover);
+            transform: scale(1.05);
+        }
+        
+        .menu-button { 
+            font-size: 1.6rem; 
+            cursor: pointer; 
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+        
+        .menu-button:hover {
+            color: var(--primary-color);
+            background: rgba(0, 230, 184, 0.1);
+        }
+
+        /* Banner - Enhanced */
+        .banner { 
+            width: 100%; 
+            border-radius: 15px; 
+            margin-bottom: 2rem; 
+            box-shadow: var(--shadow-heavy);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 230, 184, 0.1) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        
+        /* Action Buttons - Enhanced */
+        .action-buttons { 
+            display: flex; 
+            justify-content: center; 
+            gap: 1.5rem; 
+            margin-bottom: 3rem; 
+        }
+        
+        .button { 
+            padding: 1rem 2rem; 
+            border-radius: 30px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            border: none; 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 0.7rem; 
+            transition: var(--transition);
+            font-size: 1.05rem;
+            box-shadow: var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        .button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .explore-btn { 
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: black; 
+        }
+        
+        .explore-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .how-it-works-btn { 
+            background: linear-gradient(135deg, #fa6e59, #ff8a6b);
+            color: white; 
+        }
+        
+        .how-it-works-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(250, 110, 89, 0.3);
+        }
+
+        /* Filter Bar - New Feature */
+        .filter-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--secondary-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.2rem;
+            border: 2px solid transparent;
+            background: transparent;
+            color: var(--text-secondary);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: rgba(0, 230, 184, 0.1);
+        }
+
+        /* Titles - Enhanced */
+        .section-title { 
+            color: var(--primary-color); 
+            font-size: 2.2rem; 
+            margin-bottom: 1.5rem; 
+            text-shadow: 0 2px 8px rgba(0, 230, 184, 0.3);
+            font-weight: 700;
+        }
+        
+        .view-all { 
+            color: var(--primary-color); 
+            text-decoration: none; 
+            display: block; 
+            text-align: right; 
+            margin: -1rem 0 1.5rem 0; 
+            font-weight: 600; 
+            transition: var(--transition);
+        }
+        
+        .view-all:hover {
+            color: var(--primary-hover);
+            transform: translateX(-5px);
+        }
+
+        /* Game Grid & Cards - Enhanced */
+        .games-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            gap: 2rem; 
+        }
+        
+        .game-card { 
+            background: var(--card-bg); 
+            border-radius: 15px; 
+            overflow: hidden; 
+            cursor: pointer; 
+            border: 1px solid rgba(42, 59, 76, 0.3); 
+            transition: var(--transition); 
+            position: relative;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 230, 184, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .game-card:hover::before {
+            opacity: 1;
+        }
+        
+        .game-card:hover { 
+            transform: translateY(-8px) scale(1.02); 
+            box-shadow: var(--shadow-heavy);
+            border-color: var(--primary-color);
+        }
+        
+        .game-card-image { 
+            height: 260px; 
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-card-image img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: var(--transition);
+        }
+        
+        .game-card:hover .game-card-image img {
+            transform: scale(1.1);
+        }
+        
+        .game-card-info { 
+            padding: 1.2rem; 
+        }
+        
+        .game-card-title { 
+            font-size: 1.15rem; 
+            margin-bottom: 0.7rem; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            font-weight: 600;
+        }
+        
+        .game-card-tags { 
+            display: flex; 
+            gap: 0.7rem; 
+            align-items: center; 
+            justify-content: space-between;
+        }
+        
+        .game-card-category { 
+            font-size: 0.85rem; 
+            padding: 0.3rem 0.8rem; 
+            border-radius: 15px; 
+            color: var(--primary-color); 
+            background: rgba(0, 230, 184, 0.15); 
+            font-weight: 600;
+        }
+        
+        .game-card-size { 
+            font-size: 0.85rem; 
+            color: var(--text-secondary); 
+            font-weight: 500;
+        }
+
+        /* Rating Stars - New Feature */
+        .game-card-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+        
+        .stars {
+            color: #FFC107;
+            font-size: 0.8rem;
+        }
+        
+        .rating-text {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-left: 0.3rem;
+        }
+
+        /* Trending Badge - New Feature */
+        .trending-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* How It Works Section - Enhanced */
+        .how-it-works { 
+            padding: 3rem 0; 
+            background: linear-gradient(135deg, var(--secondary-bg) 0%, rgba(26, 37, 48, 0.5) 100%);
+            border-radius: 20px;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .how-it-works-title { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            margin-bottom: 2rem; 
+            justify-content: center;
+        }
+        
+        .how-it-works-title span { 
+            font-size: 2.5rem; 
+            color: var(--primary-color); 
+        }
+        
+        .steps-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 2rem; 
+        }
+        
+        .step-card { 
+            background: rgba(13, 20, 25, 0.5); 
+            border-radius: 15px; 
+            padding: 2rem; 
+            transition: var(--transition);
+            border: 1px solid rgba(0, 230, 184, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 230, 184, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .step-card:hover::before {
+            left: 100%;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+            border-color: var(--primary-color);
+        }
+        
+        .step-icon { 
+            font-size: 2.5rem; 
+            color: var(--primary-color); 
+            margin-bottom: 1.2rem; 
+        }
+        
+        .step-title { 
+            font-size: 1.3rem; 
+            font-weight: 700; 
+            margin-bottom: 0.7rem; 
+        }
+        
+        .step-desc { 
+            color: var(--text-secondary); 
+            font-size: 1rem; 
+            line-height: 1.6; 
+        }
+        
+        /* Modals - Enhanced */
+        .modal-overlay, .about-container { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(13, 20, 25, 0.95); 
+            backdrop-filter: blur(10px);
+            z-index: 1000; 
+            overflow-y: auto; 
+            padding: 1rem; 
+        }
+        
+        .modal-content { 
+            background: var(--secondary-bg); 
+            border-radius: 20px; 
+            max-width: 900px; 
+            margin: 2rem auto; 
+            padding: 2.5rem; 
+            position: relative; 
+            box-shadow: var(--shadow-heavy);
+            border: 1px solid rgba(0, 230, 184, 0.2);
+        }
+        
+        .modal-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 2rem; 
+            border-bottom: 2px solid rgba(0, 230, 184, 0.2); 
+            padding-bottom: 1.5rem; 
+        }
+        
+        .modal-title { 
+            font-size: 2rem; 
+            color: var(--primary-color); 
+            font-weight: 700;
+        }
+        
+        .modal-close { 
+            font-size: 2.2rem; 
+            cursor: pointer; 
+            color: #fff; 
+            background: none; 
+            border: none; 
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary-color);
+            background: rgba(0, 230, 184, 0.1);
+            transform: rotate(90deg);
+        }
+
+        /* Game Details Modal - Enhanced */
+        #game-details-content .details-header-image { 
+            width: 100%; 
+            height: 350px; 
+            object-fit: cover; 
+            border-radius: 15px; 
+            margin-bottom: 2rem; 
+            box-shadow: var(--shadow-light);
+        }
+        
+        #game-details-content .details-main-title { 
+            font-size: 2.5rem; 
+            margin-bottom: 1.2rem; 
+            font-weight: 700;
+        }
+        
+        #game-details-content .details-description { 
+            color: var(--text-secondary); 
+            line-height: 1.8; 
+            margin-bottom: 2rem; 
+            font-size: 1.1rem;
+        }
+        
+        .details-info-box { 
+            background: var(--background-color); 
+            padding: 2rem; 
+            border-radius: 20px; 
+            margin-bottom: 2rem; 
+            border: 1px solid rgba(0, 230, 184, 0.1);
+        }
+        
+        .info-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 1.5rem; 
+        }
+        
+        .info-item { 
+            font-size: 1.05rem; 
+        }
+        
+        .info-item i { 
+            color: var(--primary-color); 
+            margin-right: 0.7rem; 
+        }
+        
+        /* Enhanced Button Styles */
         .details-buttons-container {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            gap: 1.2rem;
+            margin-top: 2rem;
         }
+        
         .game-button {
-            padding: 0.9rem;
-            border-radius: 50px; /* Pill shape */
-            font-weight: bold;
+            padding: 1rem;
+            border-radius: 50px;
+            font-weight: 700;
             cursor: pointer;
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.7rem;
-            transition: all 0.3s ease;
-            font-size: 1rem;
+            gap: 0.8rem;
+            transition: var(--transition);
+            font-size: 1.05rem;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .game-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        .game-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
         .game-button.outline {
             background-color: transparent;
             border: 2px solid;
         }
+        
         .game-button.android {
             color: #3DDC84;
             border-color: #3DDC84;
+            box-shadow: 0 4px 15px rgba(61, 220, 132, 0.2);
         }
+        
         .game-button.android:hover {
             background-color: #3DDC84;
             color: #0d1419;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(61, 220, 132, 0.3);
         }
+        
         .game-button.ios {
             color: #A2AAAD;
             border-color: #A2AAAD;
+            box-shadow: 0 4px 15px rgba(162, 170, 173, 0.2);
         }
+        
         .game-button.ios:hover {
             background-color: #A2AAAD;
             color: #0d1419;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(162, 170, 173, 0.3);
         }
+        
         .game-button.solid {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
             color: #0d1419;
             border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0, 230, 184, 0.3);
         }
+        
         .game-button.solid:hover {
-            background-color: #2CFAD1;
-            border-color: #2CFAD1;
-            transform: scale(1.03);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 230, 184, 0.4);
         }
-        /* --- END OF NEW BUTTON STYLES --- */
 
-        .comments-section { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #333; }
-        .comment { background-color: var(--background-color); border-radius: var(--border-radius); padding: 1rem; margin-bottom: 1rem; border-left: 3px solid var(--primary-color); }
-        .comment-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
-        .comment-user { font-weight: bold; }
-        .comment-rating .fa-star { color: #FFC107; }
-        .comment-body { color: var(--text-secondary); }
+        .comments-section { 
+            margin-top: 3rem; 
+            padding-top: 2rem; 
+            border-top: 2px solid rgba(0, 230, 184, 0.2); 
+        }
+        
+        .comment { 
+            background: var(--background-color); 
+            border-radius: 15px; 
+            padding: 1.5rem; 
+            margin-bottom: 1.5rem; 
+            border-left: 4px solid var(--primary-color); 
+            transition: var(--transition);
+        }
+        
+        .comment:hover {
+            box-shadow: var(--shadow-light);
+            transform: translateX(5px);
+        }
+        
+        .comment-header { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            margin-bottom: 0.7rem; 
+        }
+        
+        .comment-user { 
+            font-weight: 700; 
+        }
+        
+        .comment-rating .fa-star { 
+            color: #FFC107; 
+        }
+        
+        .comment-body { 
+            color: var(--text-secondary); 
+            line-height: 1.6;
+        }
 
-        /* Nav Menu */
-        .nav-menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1001; }
-        .nav-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100%; background-color: var(--secondary-bg); z-index: 1002; transition: right 0.3s ease; box-shadow: -5px 0 15px rgba(0,0,0,0.2); }
-        .nav-menu.open { right: 0; }
-        .nav-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid var(--primary-color); }
-        .nav-header h3 { color: var(--primary-color); font-size: 1.5rem; margin: 0; }
-        .nav-close { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
-        .nav-items { list-style: none; padding: 1rem 0; }
-        .nav-item a { display: block; padding: 1rem 1.5rem; color: white; text-decoration: none; border-bottom: 1px solid #2a3b4c; transition: background-color 0.2s; }
-        .nav-item a:hover { background-color: #2c3e50; }
+        /* Nav Menu - Enhanced */
+        .nav-menu-overlay { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.7); 
+            backdrop-filter: blur(5px);
+            z-index: 1001; 
+        }
+        
+        .nav-menu { 
+            position: fixed; 
+            top: 0; 
+            right: -350px; 
+            width: 350px; 
+            height: 100%; 
+            background: var(--secondary-bg); 
+            z-index: 1002; 
+            transition: right 0.4s ease; 
+            box-shadow: -10px 0 30px rgba(0,0,0,0.3); 
+            border-left: 1px solid rgba(0, 230, 184, 0.2);
+        }
+        
+        .nav-menu.open { 
+            right: 0; 
+        }
+        
+        .nav-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 1.5rem; 
+            border-bottom: 2px solid var(--primary-color); 
+            background: linear-gradient(135deg, rgba(0, 230, 184, 0.1), transparent);
+        }
+        
+        .nav-header h3 { 
+            color: var(--primary-color); 
+            font-size: 1.8rem; 
+            margin: 0; 
+            font-weight: 700;
+        }
+        
+        .nav-close { 
+            background: none; 
+            border: none; 
+            color: white; 
+            font-size: 1.8rem; 
+            cursor: pointer; 
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+        
+        .nav-close:hover {
+            color: var(--primary-color);
+            background: rgba(0, 230, 184, 0.1);
+            transform: rotate(90deg);
+        }
+        
+        .nav-items { 
+            list-style: none; 
+            padding: 1.5rem 0; 
+        }
+        
+        .nav-item a { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            color: white; 
+            text-decoration: none; 
+            border-bottom: 1px solid #2a3b4c; 
+            transition: background-color 0.2s, color 0.2s, padding-left 0.2s; 
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .nav-item a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary-color);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-item a:hover { 
+            background-color: #2c3e50; 
+            color: var(--primary-color);
+            padding-left: 2.5rem;
+        }
+
+        .nav-item a:hover::before {
+            transform: scaleY(1);
+        }
 
         /* About Container */
-        .about-content { line-height: 1.6; }
-        .about-content h2 { color: var(--primary-color); margin-bottom: 15px; }
-        .about-content p { margin-bottom: 20px; color: var(--text-secondary); }
-        .about-team { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 2rem; }
-        .team-member { text-align: center; }
-        .team-member img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px; object-fit: cover; }
-        .team-member h3 { color: #fff; margin-bottom: 5px; }
-        .team-member p { color: var(--primary-color); font-size: 0.9rem; }
+        .about-content { line-height: 1.8; font-size: 1.1rem; }
+        .about-content h2 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.8rem; }
+        .about-content p { margin-bottom: 1.5rem; color: var(--text-secondary); }
+        .about-team { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; margin-top: 2.5rem; }
+        .team-member { text-align: center; transition: var(--transition); }
+        .team-member:hover { transform: translateY(-5px); }
+        .team-member img { width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; border: 3px solid var(--primary-color); box-shadow: var(--shadow-heavy); }
+        .team-member h3 { color: #fff; margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .team-member p { color: var(--primary-color); font-size: 1rem; font-weight: 600; }
         
         /* Footer */
-        .footer { background-color: var(--secondary-bg); padding: 3rem 1rem; margin-top: 3rem; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
-        .footer-section h3 { color: var(--primary-color); margin-bottom: 1rem; }
+        .footer { 
+            background: var(--secondary-bg); 
+            padding: 4rem 1rem 2rem; 
+            margin-top: 4rem; 
+            border-top: 3px solid var(--primary-color);
+        }
+        
+        .footer-content { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 2.5rem; 
+        }
+        
+        .footer-section h3 { 
+            color: var(--primary-color); 
+            margin-bottom: 1.5rem; 
+            font-size: 1.4rem;
+        }
+        
         .footer-links { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: 0.7rem; }
-        .footer-links a { color: var(--text-secondary); transition: color 0.2s; }
-        .footer-links a:hover { color: var(--primary-color); }
-        .footer-bottom { text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #2a3b4c; font-size: 0.9rem; color: var(--text-secondary); }
+        .footer-links li { margin-bottom: 1rem; }
+        .footer-links a { 
+            color: var(--text-secondary); 
+            transition: color 0.2s, padding-left 0.2s;
+            position: relative;
+        }
+        .footer-links a:hover { 
+            color: var(--primary-color); 
+            padding-left: 10px;
+        }
+        .footer-links a:hover::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            margin-top: 3rem; 
+            padding-top: 2rem; 
+            border-top: 1px solid #2a3b4c; 
+            font-size: 1rem; 
+            color: var(--text-secondary); 
+        }
+
+        /* Scroll To Top Button - New Feature */
+        #scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            color: black;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            box-shadow: var(--shadow-heavy);
+            transition: var(--transition);
+        }
+
+        #scroll-to-top:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 230, 184, 0.5);
+        }
 
         /* Responsive Design Adjustments */
+        @media (max-width: 992px) {
+            .header { padding: 1rem; }
+            .search-container { margin: 0 1rem; }
+        }
+        
+        /* ✅ MODIFIED: L-Code dyal telephone */
         @media (max-width: 768px) {
             .header { gap: 1rem; }
-            .search-container { order: 3; width: 100%; margin: 0; max-width: none; }
-            .logo-container { flex-grow: 1; }
-            .games-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-            .steps-container { grid-template-columns: repeat(2, 1fr); }
+            .search-container { 
+                order: 3; 
+                flex: 0 0 100%; /* L-Fix dyal l-search bar */
+                margin: 0; 
+                max-width: none; 
+            }
+            .games-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
+            .steps-container { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: repeat(2, 1fr); }
             .info-grid { grid-template-columns: 1fr; }
-            #game-details-content .details-header-image { height: 200px; }
+            #game-details-content .details-header-image { height: 250px; }
+            .nav-menu { width: 300px; right: -300px; }
         }
+        
         @media (max-width: 480px) {
             .container { padding: 0.5rem; }
-            .action-buttons { flex-direction: column; align-items: center; }
-            .button { width: 90%; }
+            .action-buttons { flex-direction: column; align-items: stretch; gap: 1rem; }
+            .button { width: 100%; }
             .view-all { margin-right: 0.5rem; margin-left: 0.5rem; }
-            .steps-container, .footer-content { grid-template-columns: 1fr; }
-            .game-card-image { height: 180px; }
+            .footer-content { grid-template-columns: 1fr; }
+            
+            /* ✅ MODIFIED: 2-column grid on phones */
+            .games-grid {
+                grid-template-columns: 1fr 1fr; /* Two equal columns */
+                gap: 1rem; 
+            }
+
+            .game-card-image { height: 200px; }
             .game-card-title { font-size: 1rem; }
             .modal-content { padding: 1.5rem 1rem; margin: 1rem auto; }
-            #game-details-content .details-main-title { font-size: 1.5rem; }
+            #game-details-content .details-main-title { font-size: 1.8rem; }
+            #game-details-content .details-header-image { height: 200px; }
+            .nav-menu { width: 100%; right: -100%; }
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;"> <div class="loading-spinner" id="loading-spinner"><div class="spinner"></div></div>
 
-    <header class="header">
+    <header class="header" id="header">
         <div class="logo-container">
             <div class="logo-icon">
                 <svg viewBox="0 0 40 40">
-                    <circle cx="15" cy="20" r="15" fill="white"/>
-                    <circle cx="25" cy="20" r="15" fill="#00e6b8"/>
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:rgb(204,204,204);stop-opacity:1" />
+                        </linearGradient>
+                         <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:var(--primary-color);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:var(--primary-hover);stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="15" cy="20" r="15" fill="url(#grad1)"/>
+                    <circle cx="25" cy="20" r="15" fill="url(#grad2)"/>
                 </svg>
             </div>
             <div class="logo-text-group">
@@ -235,6 +1041,9 @@
             </div>
 
             <h2 class="section-title">Featured Games</h2>
+            
+            <div class="filter-bar" id="filter-bar"></div>
+
             <a href="#" class="view-all" id="view-all-btn">View All →</a>
             <div class="games-grid" id="featured-games-grid"></div>
             
@@ -318,7 +1127,6 @@
         </div>
     </footer>
 
-    <!-- Modals -->
     <div class="modal-overlay" id="games-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -352,17 +1160,29 @@
         </div>
     </div>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    <button id="scroll-to-top" style="display: none;"><i class="fas fa-arrow-up"></i></button>
 
+    <script>
+    // ✅ JavaScript - Hماية ضد النسخ و فحص الموقع
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'F12' || 
+           (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+           (e.ctrlKey && (e.key === 'U' || e.key === 'S'))) {
+            e.preventDefault();
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // ✅ L-CODE L-SḤIḤ DYAL L-GAMES HNA
         const allGames = [
-            { title: "Grand Theft Auto V Mobile (Beta)", image: "https://i.ibb.co/FzQ7s9s/gta5.jpg", category: "Action", rating: 4.9, size: "2.1 GB", downloads: "5.7M", multiplayer: true, description: "Experience the acclaimed open-world action game on your mobile device. This beta version brings the complete GTA V experience with enhanced graphics, all missions unlocked, and unlimited money.", trailerId: "QkkoHAzjnUs", reviews: [{ user: "GamerX123", rating: 5, text: "Absolutely stunning port! Runs surprisingly well on my phone." },{ user: "MobileMaverick", rating: 4, text: "The controls are a bit tricky at first, but you get used to them. It's the full GTA V experience!" }, { user: "CashKing", rating: 5, text: "Unlimited money makes this the most fun version of GTA V. No grinding, just pure chaos!"}] },
-            { title: "Spider-Man 2 Mobile (Beta)", image: "https://i.ibb.co/McjvCfj/spiderman2.png", category: "Action", rating: 4.7, size: "1.8 GB", downloads: "8.2M", multiplayer: false, description: "Swing through the streets of New York City as Spider-Man in this incredible mobile adaptation. Take on iconic villains, complete thrilling missions, and master Spider-Man's abilities.", trailerId: "nq1M_Wc4FIc", reviews: [{ user: "WebHead", rating: 5, text: "Swinging through the city feels incredible. A must-have for any Spider-Man fan." }, { user: "ActionJunkie", rating: 5, text: "The combat is fluid and the graphics are top-notch for a mobile game. 10/10"}, { user: "GraphicsGuru", rating: 5, text: "I can't believe how good this looks on my phone. It's like a console game in my hands."}] },
+            { title: "Grand Theft Auto V Mobile (Beta)", trending: true, image: "https://i.ibb.co/FzQ7s9s/gta5.jpg", category: "Action", rating: 4.9, size: "2.1 GB", downloads: "5.7M", multiplayer: true, description: "Experience the acclaimed open-world action game on your mobile device. This beta version brings the complete GTA V experience with enhanced graphics, all missions unlocked, and unlimited money.", trailerId: "QkkoHAzjnUs", reviews: [{ user: "GamerX123", rating: 5, text: "Absolutely stunning port! Runs surprisingly well on my phone." },{ user: "MobileMaverick", rating: 4, text: "The controls are a bit tricky at first, but you get used to them. It's the full GTA V experience!" }, { user: "CashKing", rating: 5, text: "Unlimited money makes this the most fun version of GTA V. No grinding, just pure chaos!"}] },
+            { title: "Spider-Man 2 Mobile (Beta)", trending: true, image: "https://i.ibb.co/McjvCfj/spiderman2.png", category: "Action", rating: 4.7, size: "1.8 GB", downloads: "8.2M", multiplayer: false, description: "Swing through the streets of New York City as Spider-Man in this incredible mobile adaptation. Take on iconic villains, complete thrilling missions, and master Spider-Man's abilities.", trailerId: "nq1M_Wc4FIc", reviews: [{ user: "WebHead", rating: 5, text: "Swinging through the city feels incredible. A must-have for any Spider-Man fan." }, { user: "ActionJunkie", rating: 5, text: "The combat is fluid and the graphics are top-notch for a mobile game. 10/10"}, { user: "GraphicsGuru", rating: 5, text: "I can't believe how good this looks on my phone. It's like a console game in my hands."}] },
             { title: "Counter Strike Mobile (Beta)", image: "https://i.postimg.cc/mrqCkcJb/wp7881077-csgo-logo-wallpapers.jpg", category: "Action", rating: 4.9, size: "1.9 GB", downloads: "3.1M", multiplayer: true, description: "Experience the intense tactical FPS action of Counter Strike on your mobile device. This beta brings the classic gameplay to a new platform.", trailerId: "a9d7ksou_44", reviews: [{ user: "ProGamer", rating: 5, text: "Best mobile FPS out there. The classic gameplay is perfectly translated."}, { user: "Tacticool", rating: 5, text: "The definitive tactical shooter experience, now portable. A must for any CS fan."}, { user: "Headshot", rating: 5, text: "The controls are surprisingly tight for a mobile shooter. Very impressive." }] },
             { title: "The Last of Us Mobile (Beta)", image: "https://i.ibb.co/tLx5P3D/tlou-1.jpg", category: "Adventure", rating: 4.9, size: "2.5 GB", downloads: "2.9M", multiplayer: false, description: "Survive in a post-apocalyptic world overrun by infected creatures. Play as Joel and Ellie as they journey across a devastated America in this ambitious mobile beta.", trailerId: "W01L70IGBgE", reviews: [{ user: "StoryLover", rating: 5, text: "The emotional story hits just as hard on mobile. A masterpiece."}, { user: "Survivalist", rating: 5, text: "It runs so well on my device. The tension and atmosphere are perfectly preserved."}] },
             { title: "Horizon Zero Dawn Mobile (Beta)", image: "https://i.ibb.co/n0tBVMs/horizon.jpg", category: "Adventure", rating: 4.6, size: "2.2 GB", downloads: "3.1M", multiplayer: false, description: "Explore a lush, post-apocalyptic world inhabited by mysterious mechanized creatures. This mobile beta lets you hunt machines on the go.", trailerId: "wzx96gYA8ek", reviews: [{ user: "Explorer", rating: 5, text: "The world is beautiful and hunting machines is so much fun."}, { user: "AloyFan", rating: 5, text: "Aloy's adventure is amazing on mobile. The controls are intuitive and the world is breathtaking."}] },
             { title: "Red Dead Redemption 2 Mobile (Beta)", image: "https://i.ibb.co/kDmVtwv/rdr2-1.jpg", category: "Action", rating: 5.0, size: "2.8 GB", downloads: "2.8M", multiplayer: true, description: "An epic tale of honor and loyalty at the dawn of the modern age. Live the life of an outlaw in a vast, atmospheric open world, now in an experimental mobile beta.", trailerId: "eaW0tYpxyp0", reviews: [{ user: "Cowboy", rating: 5, text: "Incredible detail and an amazing story. Can't believe it's on mobile." }, { user: "Wanderer", rating: 5, text: "The world feels so alive. I spend hours just exploring. This is a technical marvel!" }] },
-            { title: "Fortnite Mobile MOD", image: "https://i.ibb.co/W5j9ZXx/fortnite.jpg", category: "Action", rating: 4.5, size: "1.9 GB", downloads: "15M+", multiplayer: true, description: "The ultimate battle royale experience, now with premium mods for mobile. Includes unlocked skins, unlimited V-Bucks, and enhanced aim assist.", trailerId: "2gUtfBmw86Y", reviews: [{ user: "VBucksKing", rating: 5, text: "The mod works perfectly! I have all the skins I ever wanted."}, { user: "VictoryRoyale", rating: 5, text: "Finally got the Victory Royale thanks to the enhanced features. This is awesome!"}] },
+            { title: "Fortnite Mobile MOD", trending: true, image: "https://i.ibb.co/W5j9ZXx/fortnite.jpg", category: "Action", rating: 4.5, size: "1.9 GB", downloads: "15M+", multiplayer: true, description: "The ultimate battle royale experience, now with premium mods for mobile. Includes unlocked skins, unlimited V-Bucks, and enhanced aim assist.", trailerId: "2gUtfBmw86Y", reviews: [{ user: "VBucksKing", rating: 5, text: "The mod works perfectly! I have all the skins I ever wanted."}, { user: "VictoryRoyale", rating: 5, text: "Finally got the Victory Royale thanks to the enhanced features. This is awesome!"}] },
             { title: "Roblox Premium MOD", image: "https://i.ibb.co/k92hJwF/roblox.png", category: "Adventure", rating: 4.7, size: "980 MB", downloads: "20M+", multiplayer: true, description: "The ultimate virtual universe that lets you create, share experiences, and be anything you can imagine. This MOD unlocks premium features for free.", trailerId: "eAvX1_A2PNU", reviews: [{ user: "Creator", rating: 5, text: "So many games to play, and I can create my own. Endless fun!" }, { user: "RobuxRich", rating: 5, text: "The premium benefits make the experience so much better. Highly recommend!" }] },
             { title: "GTA 4 Mobile (Beta)", image: "https://i.ibb.co/Mcfhc3g/gta4-1.jpg", category: "Action", rating: 4.8, size: "1.7 GB", downloads: "3.5M", multiplayer: false, description: "For Niko Bellic, fresh off the boat from Europe, it is the hope he can escape from his past. Explore the gritty and realistic world of Liberty City in this mobile beta.", trailerId: "f_43z-I_d0s", reviews: [{ user: "NikoFan", rating: 5, text: "The story is amazing. A true classic." }, { user: "LibertyCityLover", rating: 5, text: "The dark, gritty atmosphere of Liberty City is perfectly captured. This port is a dream come true."}] },
             { title: "FIFA 24 Mobile (Beta)", image: "https://i.postimg.cc/bN6TKCJZ/FC-24-Mobile.jpg", category: "Sports", rating: 4.9, size: "1.8 GB", downloads: "15M+", multiplayer: true, description: "Experience the beautiful game with this beta version of FIFA 24 for mobile. This version includes all the latest teams, players, and stadiums.", trailerId: "XhP3Xh4LMAo", reviews: [{ user: "FootballFan", rating: 5, text: "The gameplay feels so realistic. Best soccer game on mobile." }, { user: "UltimateTeamer", rating: 5, text: "All the players I want for my Ultimate Team. It's a game changer!"}] },
@@ -388,7 +1208,7 @@
             { title: "Dragon Ball Z Dokkan Battle MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/dragon-ball-z-dokkan-battle-150x150.jpg", category: "Action", rating: 4.7, size: "450 MB", downloads: "7M", multiplayer: true, description: "A brand-new chapter in the Dragon Ball Z saga has arrived! This MOD gives you high attack and god mode to dominate the battlefield.", trailerId: "kIDOv_6-p2I", reviews: [{ user: "Z-Fighter", rating: 5, text: "The mod makes getting the best characters a breeze. My teams are unstoppable!"}] },
             { title: "NBA 2K23 MOD", image: "https://assets.2k.com/1a6ngf98576c/4oCqsi6G8MfDjHKhjhBtrP/d43164117e00d78c0cf85dfafeb3b906/NBA23-WEBSITE-ATHLETE_HUB-MODULE1-STD_THUMBNAIL-828x828.jpg", category: "Sports", rating: 4.8, size: "1.6 GB", downloads: "6.5M", multiplayer: true, description: "NBA 2K23 continues to push the limits of what's possible in a basketball game, with best-in-class graphics and gameplay and an immersive open-world 'Neighborhood'.", trailerId: "hf21TpyF_Wc", reviews: [{user: "Baller", rating: 5, text: "Graphics are insane for a mobile game. Plays just like the console version."}] },
             { title: "Car Parking Multiplayer MOD", image: "https://i.git99.com/upload/android/icon/2024/05/22/abccb969549318afaea4e78fb72cad3a.jpg", category: "Simulation", rating: 4.9, size: "750 MB", downloads: "28M", multiplayer: true, description: "More than just parking: open-world multiplayer mode, car tuning, free walking! This MOD unlocks all cars and gives you unlimited money.", trailerId: "uA424Kz0-CU", reviews: [{ user: "ProParker", rating: 5, text: "So much more than just parking. The online mode is hilarious fun." }, { user: "TunerGod", rating: 5, text: "All cars unlocked! I can finally build my dream garage."}] },
-            { title: "Minecraft MOD", image: "https://preview.redd.it/avjal33hpqo61.png?width=512&format=png&auto=webp&s=b652d83347448df74c8ba61c17b322e686ee32a4", category: "Adventure", rating: 5.0, size: "950 MB", downloads: "50M+", multiplayer: true, description: "Explore infinite worlds and build everything from the simplest of homes to the grandest of castles. This MOD unlocks all texture packs and skins.", trailerId: "MmB9b5njVbA", reviews: [{ user: "Steve", rating: 5, text: "The ultimate sandbox game. The freedom is incredible." }, { user: "Builder", rating: 5, text: "I've built entire cities. The only limit is your imagination. Works perfectly on mobile." }] },
+            { title: "Minecraft MOD", trending: true, image: "https://preview.redd.it/avjal33hpqo61.png?width=512&format=png&auto=webp&s=b652d83347448df74c8ba61c17b322e686ee32a4", category: "Adventure", rating: 5.0, size: "950 MB", downloads: "50M+", multiplayer: true, description: "Explore infinite worlds and build everything from the simplest of homes to the grandest of castles. This MOD unlocks all texture packs and skins.", trailerId: "MmB9b5njVbA", reviews: [{ user: "Steve", rating: 5, text: "The ultimate sandbox game. The freedom is incredible." }, { user: "Builder", rating: 5, text: "I've built entire cities. The only limit is your imagination. Works perfectly on mobile." }] },
             { title: "Farming Simulator 23 MOD", image: "https://assets-prd.ignimgs.com/2023/05/01/farmingsim23-1682967114647.jpg", category: "Simulation", rating: 4.7, size: "1.1 GB", downloads: "3.8M", multiplayer: true, description: "Step into the exciting world of farming with Farming Simulator 23! This MOD gives you a head start with unlimited money.", trailerId: "ycoVq_s_kR8", reviews: [{ user: "FarmLife", rating: 5, text: "So relaxing and addictive. The new machinery is amazing."}, { user: "RichFarmer", rating: 5, text: "I can finally afford the biggest tractor! This mod makes farming way more fun."}] },
             { title: "Euro Truck Simulator Mobile (Beta)", image: "https://portsized.fun/etsicon.png", category: "Simulation", rating: 4.8, size: "1.3 GB", downloads: "4.2M", multiplayer: false, description: "The king of the road is back! Travel across Europe as king of the road, a trucker who delivers important cargo across impressive distances! Experience the beta on mobile.", trailerId: "xlP4w-59oF4", reviews: [{ user: "Trucker", rating: 5, text: "The open road on my phone. Incredibly relaxing and detailed. A must-have for sim fans." }] },
             { title: "Assetto Corsa Mobile (Beta)", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlAVOfsF2cxZAxOEMlBN8FxG8xZW8aO5IVsA&s", category: "Racing", rating: 4.9, size: "2.5 GB", downloads: "3.9M", multiplayer: true, description: "Assetto Corsa features an advanced DirectX 11 graphics engine that recreates an immersive environment and realistic physics. Experience the acclaimed racing simulator in this mobile beta.", trailerId: "zRNCz_1s4yA", reviews: [{ user: "SimDrifter", rating: 5, text: "The best physics on any mobile racing game, period. Unlocks all the best cars for drifting." }] },
@@ -416,6 +1236,7 @@
 
         // --- DOM Elements ---
         const body = document.body;
+        const header = document.getElementById('header');
         const featuredGamesGrid = document.getElementById('featured-games-grid');
         const modalGamesGrid = document.getElementById('modal-games-grid');
         const gamesModal = document.getElementById('games-modal');
@@ -436,17 +1257,48 @@
         const aboutFooterLink = document.getElementById('about-footer-link');
         const allGamesLink = document.getElementById('all-games-link');
         const footerCategories = document.getElementById('footer-categories');
+        const filterBar = document.getElementById('filter-bar');
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        const loadingSpinner = document.getElementById('loading-spinner');
 
-        // --- Functions ---
+        // --- Enhanced Functions ---
+        const generateStars = (rating) => {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let starsHtml = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                starsHtml += '<i class="fas fa-star"></i>';
+            }
+            if (hasHalfStar) {
+                starsHtml += '<i class="fas fa-star-half-alt"></i>';
+            }
+            for (let i = fullStars + (hasHalfStar ? 1 : 0); i < 5; i++) {
+                starsHtml += '<i class="far fa-star"></i>';
+            }
+            return starsHtml;
+        };
+
         const populateGrid = (gridElement, gamesList) => {
             gridElement.innerHTML = '';
             gamesList.forEach(game => {
                 const gameCard = document.createElement('div');
                 gameCard.className = 'game-card';
+                
+                const trendingBadge = game.trending ? '<div class="trending-badge">🔥 Trending</div>' : '';
+                const stars = generateStars(game.rating);
+                
                 gameCard.innerHTML = `
-                    <div class="game-card-image"><img src="${game.image}" alt="${game.title}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/180x240/0d1419/fff?text=Error';"></div>
+                    ${trendingBadge}
+                    <div class="game-card-image">
+                        <img src="${game.image}" alt="${game.title}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/200x260/0d1419/fff?text=Error';">
+                    </div>
                     <div class="game-card-info">
                         <h3 class="game-card-title">${game.title}</h3>
+                        <div class="game-card-rating">
+                            <div class="stars">${stars}</div>
+                            <span class="rating-text">${game.rating}/5</span>
+                        </div>
                         <div class="game-card-tags">
                             <span class="game-card-category">${game.category}</span>
                             <span class="game-card-size">${game.size}</span>
@@ -462,7 +1314,7 @@
             let reviewsHtml = '';
             if (game.reviews && game.reviews.length > 0) {
                 reviewsHtml = game.reviews.map(review => {
-                    const stars = '<i class="fas fa-star"></i>'.repeat(review.rating) + '<i class="far fa-star"></i>'.repeat(5 - review.rating);
+                    const stars = generateStars(review.rating);
                     return `
                         <div class="comment">
                             <div class="comment-header">
@@ -474,15 +1326,16 @@
                 }).join('');
             }
 
-            // --- HTML FOR BUTTONS UPDATED HERE ---
+            const stars = generateStars(game.rating);
+
             gameDetailsContent.innerHTML = `
                 <button class="modal-close" id="details-close-btn">×</button>
-                <img src="${game.image}" alt="${game.title}" class="details-header-image" onerror="this.onerror=null;this.src='https://placehold.co/800x300/0d1419/fff?text=Image+Not+Found';">
+                <img src="${game.image}" alt="${game.title}" class="details-header-image" onerror="this.onerror=null;this.src='https://placehold.co/800x350/0d1419/fff?text=Image+Not+Found';">
                 <h2 class="details-main-title">${game.title}</h2>
                 <p class="details-description">${game.description}</p>
                 <div class="details-info-box">
                     <div class="info-grid">
-                        <div class="info-item"><i class="fas fa-star"></i> Rating: <strong>${game.rating}/5.0</strong></div>
+                        <div class="info-item"><i class="fas fa-star"></i> Rating: <strong>${game.rating}/5.0</strong> <div class="stars" style="display: inline; margin-left: 10px;">${stars}</div></div>
                         <div class="info-item"><i class="fas fa-download"></i> Downloads: <strong>${game.downloads}</strong></div>
                         <div class="info-item"><i class="fas fa-users"></i> Mode: <strong>${game.multiplayer ? 'Multiplayer' : 'Single Player'}</strong></div>
                         <div class="info-item"><i class="fas fa-tag"></i> Category: <strong>${game.category}</strong></div>
@@ -501,7 +1354,7 @@
                 </div>
                 <div class="comments-section">
                     <h3>User Reviews</h3>
-                    ${reviewsHtml || '<p>No reviews yet.</p>'}
+                    ${reviewsHtml || '<p>No reviews yet. Be the first to share your experience!</p>'}
                 </div>
             `;
             
@@ -542,13 +1395,33 @@
             body.classList.remove('modal-open');
         };
 
-        // Event Listeners
+        const handleScroll = () => {
+            // Scroll to Top Button
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollToTopBtn.style.display = "flex";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        const handleScrollToTop = () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        
+        // --- Event Listeners ---
+        window.addEventListener('scroll', handleScroll);
+        scrollToTopBtn.addEventListener('click', handleScrollToTop);
+
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const query = document.getElementById('search-input').value.toLowerCase();
             if (!query) return;
-            const results = allGames.filter(game => game.title.toLowerCase().includes(query));
-            openGamesModal(`Search Results for "${query}"`, results);
+            loadingSpinner.style.display = 'block';
+            setTimeout(() => {
+                const results = allGames.filter(game => game.title.toLowerCase().includes(query));
+                openGamesModal(`Search Results for "${query}"`, results);
+                loadingSpinner.style.display = 'none';
+            }, 500); // Simulate network delay
         });
 
         const allGamesTriggers = [exploreBtn, viewAllBtn, allGamesLink];
@@ -572,15 +1445,70 @@
         navClose.addEventListener('click', closeNavMenu);
         navOverlay.addEventListener('click', closeNavMenu);
 
-        // Initial Load
-        populateGrid(featuredGamesGrid, allGames.slice(0, 8));
+        // --- Initial Load ---
+        const categories = ['All', ...new Set(allGames.map(g => g.category))];
+        
+        // Populate Filter Bar
+        if (filterBar && allGames.length > 0) {
+            filterBar.innerHTML = '';
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn';
+                btn.textContent = cat;
+                if (cat === 'All') {
+                    btn.classList.add('active');
+                }
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filteredGames = cat === 'All' ? allGames.slice(0, 12) : allGames.filter(g => g.category === cat);
+                    populateGrid(featuredGamesGrid, filteredGames);
+                });
+                filterBar.appendChild(btn);
+            });
+        }
+        
+        if (featuredGamesGrid && allGames.length > 0) {
+            populateGrid(featuredGamesGrid, allGames.slice(0, 12));
+        }
+        if (footerCategories && allGames.length > 0) {
+            footerCategories.innerHTML = '';
+            categories.slice(1, 5).forEach(cat => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#';
+                a.textContent = cat;
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openGamesModal(`${cat} Games`, allGames.filter(g => g.category === cat));
+                });
+                li.appendChild(a);
+                footerCategories.appendChild(li);
+            });
+        }
 
-        const categories = [...new Set(allGames.map(g => g.category))];
-        footerCategories.innerHTML = '';
-        categories.slice(0, 4).forEach(cat => {
-            const li = document.createElement('li');
-            li.innerHTML = `<a href="#">${cat}</a>`;
-            footerCategories.appendChild(li);
+        // ✅ ADDED: L-CODE L-JDID BACH N-KHEBBIW L-HEADER M3A SCROLL
+        const headerToHide = document.getElementById('header');
+        let lastScrollPosition = 0;
+
+        window.addEventListener('scroll', function() {
+            const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScrollPosition < 50) {
+                // Ila konna qrab l-foq, dima n-biyyno l-header
+                headerToHide.classList.remove('hide-on-scroll');
+                lastScrollPosition = currentScrollPosition;
+                return;
+            }
+
+            if (currentScrollPosition > lastScrollPosition) {
+                // Hna kanhəbṭo -> Khebbi l-header
+                headerToHide.classList.add('hide-on-scroll');
+            } else {
+                // Hna kanṭəlʿo -> Biyyən l-header
+                headerToHide.classList.remove('hide-on-scroll');
+            }
+            lastScrollPosition = currentScrollPosition <= 0 ? 0 : currentScrollPosition; 
         });
 
     });
