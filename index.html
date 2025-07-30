@@ -1263,7 +1263,6 @@
 
         // --- Enhanced Functions ---
         const generateStars = (rating) => {
-            if (!rating) return '<i class="far fa-star"></i>'.repeat(5); // Return empty stars if no rating
             const fullStars = Math.floor(rating);
             const hasHalfStar = rating % 1 !== 0;
             let starsHtml = '';
@@ -1282,10 +1281,6 @@
 
         const populateGrid = (gridElement, gamesList) => {
             gridElement.innerHTML = '';
-            if (gamesList.length === 0) {
-                 gridElement.innerHTML = `<p style="grid-column: 1 / -1; text-align: center; font-size: 1.2rem;">No games found.</p>`;
-                 return;
-            }
             gamesList.forEach(game => {
                 const gameCard = document.createElement('div');
                 gameCard.className = 'game-card';
@@ -1302,11 +1297,11 @@
                         <h3 class="game-card-title">${game.title}</h3>
                         <div class="game-card-rating">
                             <div class="stars">${stars}</div>
-                            <span class="rating-text">${game.rating ? `${game.rating}/5` : 'N/A'}</span>
+                            <span class="rating-text">${game.rating}/5</span>
                         </div>
                         <div class="game-card-tags">
                             <span class="game-card-category">${game.category}</span>
-                            <span class="game-card-size">${game.size || 'N/A'}</span>
+                            <span class="game-card-size">${game.size}</span>
                         </div>
                     </div>
                 `;
@@ -1332,17 +1327,16 @@
             }
 
             const stars = generateStars(game.rating);
-            const defaultDescription = `Experience the world of ${game.title}. Download and play now with our unlocked version to get the full experience on your device.`;
 
             gameDetailsContent.innerHTML = `
                 <button class="modal-close" id="details-close-btn">×</button>
                 <img src="${game.image}" alt="${game.title}" class="details-header-image" onerror="this.onerror=null;this.src='https://placehold.co/800x350/0d1419/fff?text=Image+Not+Found';">
                 <h2 class="details-main-title">${game.title}</h2>
-                <p class="details-description">${game.description || defaultDescription}</p>
+                <p class="details-description">${game.description}</p>
                 <div class="details-info-box">
                     <div class="info-grid">
-                        <div class="info-item"><i class="fas fa-star"></i> Rating: <strong>${game.rating ? `${game.rating}/5.0` : 'N/A'}</strong> <div class="stars" style="display: inline; margin-left: 10px;">${stars}</div></div>
-                        <div class="info-item"><i class="fas fa-download"></i> Downloads: <strong>${game.downloads || 'Not Tracked'}</strong></div>
+                        <div class="info-item"><i class="fas fa-star"></i> Rating: <strong>${game.rating}/5.0</strong> <div class="stars" style="display: inline; margin-left: 10px;">${stars}</div></div>
+                        <div class="info-item"><i class="fas fa-download"></i> Downloads: <strong>${game.downloads}</strong></div>
                         <div class="info-item"><i class="fas fa-users"></i> Mode: <strong>${game.multiplayer ? 'Multiplayer' : 'Single Player'}</strong></div>
                         <div class="info-item"><i class="fas fa-tag"></i> Category: <strong>${game.category}</strong></div>
                     </div>
@@ -1360,7 +1354,7 @@
                 </div>
                 <div class="comments-section">
                     <h3>User Reviews</h3>
-                    ${reviewsHtml || `<p>No reviews available for this game.</p>`}
+                    ${reviewsHtml || '<p>No reviews yet. Be the first to share your experience!</p>'}
                 </div>
             `;
             
@@ -1402,6 +1396,7 @@
         };
 
         const handleScroll = () => {
+            // Scroll to Top Button
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 scrollToTopBtn.style.display = "flex";
             } else {
@@ -1417,66 +1412,17 @@
         window.addEventListener('scroll', handleScroll);
         scrollToTopBtn.addEventListener('click', handleScrollToTop);
 
-        // ✅ *** START: NEW SEARCH LOGIC WITH RAWG API INTEGRATION *** ✅
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const query = document.getElementById('search-input').value.toLowerCase();
             if (!query) return;
-
             loadingSpinner.style.display = 'block';
-
-            // First, search the local 'allGames' array.
-            const localResults = allGames.filter(game => game.title.toLowerCase().includes(query));
-
-            // If we find results in our local array, display them immediately.
-            if (localResults.length > 0) {
-                openGamesModal(`Search Results for "${query}"`, localResults);
+            setTimeout(() => {
+                const results = allGames.filter(game => game.title.toLowerCase().includes(query));
+                openGamesModal(`Search Results for "${query}"`, results);
                 loadingSpinner.style.display = 'none';
-            } else {
-                // If no local games are found, then call the RAWG API.
-                const apiKey = 'a82e160c2c6a4539bd44922f14380c3e';
-                const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&search=${encodeURIComponent(query)}&page_size=12`;
-
-                fetch(apiUrl)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.results && data.results.length > 0) {
-                            // Adapt the API data to match our existing game object structure.
-                            const apiResults = data.results.map(rawgGame => {
-                                return {
-                                    title: rawgGame.name,
-                                    image: rawgGame.background_image || 'https://placehold.co/200x260/0d1419/fff?text=No+Image',
-                                    category: rawgGame.genres.length > 0 ? rawgGame.genres[0].name : 'Game',
-                                    rating: rawgGame.rating,
-                                    size: 'N/A', // Data not available from API
-                                    downloads: 'Not Tracked', // Data not available from API
-                                    multiplayer: rawgGame.tags.some(tag => tag.slug === 'multiplayer'),
-                                    description: `Experience the world of ${rawgGame.name}. Download and play now with our unlocked version to get the full experience on your device.`,
-                                    reviews: [] // No reviews from API, so we provide an empty array
-                                };
-                            });
-                            openGamesModal(`Search Results for "${query}"`, apiResults);
-                        } else {
-                            // If no results from local or API, show a 'not found' message.
-                            openGamesModal(`No Games Found for "${query}"`, []);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching from RAWG API:', error);
-                        openGamesModal(`Error searching for "${query}"`, []);
-                    })
-                    .finally(() => {
-                        loadingSpinner.style.display = 'none';
-                    });
-            }
+            }, 500); // Simulate network delay
         });
-        // ✅ *** END: NEW SEARCH LOGIC WITH RAWG API INTEGRATION *** ✅
-
 
         const allGamesTriggers = [exploreBtn, viewAllBtn, allGamesLink];
         allGamesTriggers.forEach(btn => btn.addEventListener('click', (e) => {
@@ -1502,6 +1448,7 @@
         // --- Initial Load ---
         const categories = ['All', ...new Set(allGames.map(g => g.category))];
         
+        // Populate Filter Bar
         if (filterBar && allGames.length > 0) {
             filterBar.innerHTML = '';
             categories.forEach(cat => {
@@ -1540,6 +1487,7 @@
             });
         }
 
+        // ✅ ADDED: L-CODE L-JDID BACH N-KHEBBIW L-HEADER M3A SCROLL
         const headerToHide = document.getElementById('header');
         let lastScrollPosition = 0;
 
@@ -1547,14 +1495,17 @@
             const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
             if (currentScrollPosition < 50) {
+                // Ila konna qrab l-foq, dima n-biyyno l-header
                 headerToHide.classList.remove('hide-on-scroll');
                 lastScrollPosition = currentScrollPosition;
                 return;
             }
 
             if (currentScrollPosition > lastScrollPosition) {
+                // Hna kanhəbṭo -> Khebbi l-header
                 headerToHide.classList.add('hide-on-scroll');
             } else {
+                // Hna kanṭəlʿo -> Biyyən l-header
                 headerToHide.classList.remove('hide-on-scroll');
             }
             lastScrollPosition = currentScrollPosition <= 0 ? 0 : currentScrollPosition; 
