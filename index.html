@@ -3,19 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zaddo.online - Unlock Premium Games</title>
+    <title>Zaddo.online - Premium Mobile Games Unlocked</title>
     
+    <!-- 
+    ================================================================================
+    
+        WARNING: THIS SOURCE CODE IS THE INTELLECTUAL PROPERTY OF ZADDO.ONLINE.
+    
+        UNAUTHORIZED COPYING, DISTRIBUTION, OR USE OF THIS CODE IS STRICTLY 
+        PROHIBITED AND WILL BE PROSECUTED TO THE FULLEST EXTENT OF THE LAW.
+    
+        © 2025 Zaddo.online – All Rights Reserved.
+    
+    ================================================================================
+    -->
+
     <meta name="robots" content="noindex, nofollow, noarchive">
     <meta name="copyright" content="© 2025 Zaddo.online – All Rights Reserved">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-
-    <meta name="description" content="Download premium mobile games for free. Access modified versions of popular games like GTA 5, Spider-Man, The Last of Us and more.">
-    <meta name="keywords" content="free games, premium games, mobile games, download games, GTA 5, Spider-Man, The Last of Us, APK mods, game mods, Android games, iOS games">
+    <meta name="description" content="Zaddo.online provides free access to premium mobile games. Note: All games are property of their respective owners. This service is for educational purposes only.">
+    <meta name="keywords" content="free games, premium games, mobile games, modded games, Android games, iOS games, game mods, APK mods">
+    
+    <link rel="icon" href="https://i.ibb.co/0QBD4MD/team1.jpg" type="image/x-icon">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Base Styles */
+        /* Enhanced Base Styles */
         :root {
             --primary-color: #00e6b8;
             --primary-hover: #2CFAD1;
@@ -24,17 +42,18 @@
             --text-color: #ffffff;
             --text-secondary: #b0b0b0;
             --card-bg: #1a2530;
-            --border-radius: 10px;
+            --border-radius: 12px;
             --shadow-light: 0 4px 12px rgba(0, 230, 184, 0.1);
-            --shadow-heavy: 0 10px 30px rgba(0, 230, 184, 0.2);
-            --transition: all 0.3s ease;
+            --shadow-heavy: 0 10px 30px rgba(0, 230, 184, 0.3);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --header-height: 80px;
         }
         
         * { 
             margin: 0; 
             padding: 0; 
             box-sizing: border-box; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: 'Poppins', sans-serif; 
             scroll-behavior: smooth; 
         }
         
@@ -43,35 +62,62 @@
             color: var(--text-color); 
             line-height: 1.6; 
             overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            /* Added protection against text selection */
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         
         body.modal-open { overflow: hidden; }
         
-        a { text-decoration: none; color: var(--text-color); }
+        a { 
+            text-decoration: none; 
+            color: var(--text-color);
+            transition: var(--transition);
+        }
         
         .container { 
-            max-width: 1200px; 
+            max-width: 1400px; 
             margin: 0 auto; 
-            padding: 1rem; 
+            padding: 1.5rem; 
+            position: relative;
         }
 
-        /* Loading Animation */
+        /* Loading Animation - Enhanced */
         .loading-spinner {
             display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 20, 25, 0.8);
+            backdrop-filter: blur(5px);
             z-index: 9999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         
         .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(0, 230, 184, 0.1);
-            border-top: 4px solid var(--primary-color);
+            width: 70px;
+            height: 70px;
+            border: 5px solid rgba(0, 230, 184, 0.1);
+            border-top: 5px solid var(--primary-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        .loading-text {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 15px;
+            text-align: center;
         }
         
         @keyframes spin {
@@ -79,24 +125,33 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Header - Enhanced */
+        /* Pulse Animation */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        /* Header - Enhanced with glass morphism */
         .header { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             padding: 1rem 2rem; 
-            position: sticky; 
+            position: fixed; 
             top: 0; 
-            z-index: 100; 
-            background: rgba(13, 20, 25, 0.95);
+            left: 0;
+            width: 100%;
+            z-index: 1000; 
+            background: rgba(13, 20, 25, 0.85);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 230, 184, 0.1);
+            border-bottom: 1px solid rgba(0, 230, 184, 0.15);
             flex-wrap: wrap; 
-            gap: 10px; 
-            transition: transform 0.4s ease-in-out, all 0.3s ease; /* ✅ MODIFIED: Zedt l-transition hna */
+            gap: 15px; 
+            transition: transform 0.4s ease-in-out, all 0.3s ease;
+            min-height: var(--header-height);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
         }
         
-        /* ✅ ADDED: Style jdid bach n-khebbiw l-header m3a scroll */
         .header.hide-on-scroll {
             transform: translateY(-110%);
         }
@@ -109,39 +164,55 @@
             display: flex; 
             align-items: center; 
             gap: 12px; 
+            flex-shrink: 0;
         }
         
         .logo-icon svg { 
             width: 45px; 
             height: 45px; 
             filter: drop-shadow(0 2px 8px rgba(0, 230, 184, 0.3));
+            transition: var(--transition);
+        }
+        
+        .logo-container:hover .logo-icon svg {
+            transform: rotate(15deg);
         }
         
         .logo-text-group .logo-text { 
             color: var(--primary-color); 
-            font-size: 1.6rem; 
+            font-size: 1.8rem; 
             font-weight: 700; 
             text-shadow: 0 2px 8px rgba(0, 230, 184, 0.3);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
         }
         
         .logo-text-group .logo-tagline { 
             font-size: 0.85rem; 
             color: #ccc; 
             margin-top: -2px; 
+            letter-spacing: 0.5px;
         }
         
         .search-container { 
             flex: 1; 
             margin: 0 2rem; 
-            max-width: 500px; 
+            max-width: 600px; 
             position: relative;
+            min-width: 250px;
         }
         
         #search-form { 
             display: flex; 
             box-shadow: var(--shadow-light);
-            border-radius: 25px;
+            border-radius: 30px;
             overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        #search-form:focus-within {
+            box-shadow: 0 0 0 3px rgba(0, 230, 184, 0.3);
         }
         
         #search-input { 
@@ -149,74 +220,157 @@
             background: var(--secondary-bg); 
             border: 2px solid transparent; 
             color: white; 
-            padding: 0.7rem 1.2rem; 
-            border-radius: 25px 0 0 25px; 
+            padding: 0.8rem 1.5rem; 
+            border-radius: 30px 0 0 30px; 
             outline: none; 
             transition: var(--transition);
-            font-size: 0.95rem;
+            font-size: 1rem;
+        }
+        
+        #search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
         
         #search-input:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 230, 184, 0.1);
+            background: rgba(26, 37, 48, 0.8);
         }
         
         #search-form button { 
             background: var(--primary-color); 
             border: none; 
-            padding: 0.7rem 1.2rem; 
-            border-radius: 0 25px 25px 0; 
+            padding: 0 1.5rem; 
+            border-radius: 0 30px 30px 0; 
             cursor: pointer; 
-            color: black; 
+            color: #0d1419; 
             font-weight: 600;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 50px;
         }
         
         #search-form button:hover {
             background: var(--primary-hover);
-            transform: scale(1.05);
+        }
+
+        /* NEW: Autocomplete Styles */
+        #autocomplete-results {
+            position: absolute;
+            top: 105%;
+            left: 0;
+            right: 0;
+            background: var(--secondary-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-heavy);
+            border: 1px solid rgba(0, 230, 184, 0.2);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1001;
+            display: none; /* Hidden by default */
+        }
+
+        .autocomplete-item {
+            padding: 0.8rem 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--background-color);
+        }
+
+        .autocomplete-item:last-child {
+            border-bottom: none;
+        }
+
+        .autocomplete-item:hover, .autocomplete-item.active {
+            background-color: rgba(0, 230, 184, 0.1);
+            color: var(--primary-color);
+        }
+
+        .autocomplete-item strong {
+            color: var(--primary-color);
+            font-weight: 600;
         }
         
-        .menu-button { 
-            font-size: 1.6rem; 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .menu-button, .user-button { 
+            font-size: 1.5rem; 
             cursor: pointer; 
             transition: var(--transition);
             padding: 0.5rem;
             border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
         }
         
-        .menu-button:hover {
+        .menu-button:hover, .user-button:hover {
             color: var(--primary-color);
             background: rgba(0, 230, 184, 0.1);
+            transform: scale(1.1);
         }
 
-        /* Banner - Enhanced */
-        .banner { 
-            width: 100%; 
-            border-radius: 15px; 
-            margin-bottom: 2rem; 
-            box-shadow: var(--shadow-heavy);
-            overflow: hidden;
+        /* Banner - Enhanced with gradient overlay */
+        .banner-container {
+            margin-top: calc(var(--header-height) + 20px);
             position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-heavy);
+            margin-bottom: 2.5rem;
         }
         
-        .banner::after {
-            content: '';
+        .banner { 
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .banner-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(0, 230, 184, 0.1) 0%, transparent 100%);
-            pointer-events: none;
+            background: linear-gradient(135deg, rgba(0, 230, 184, 0.2) 0%, transparent 70%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            color: white;
         }
         
-        /* Action Buttons - Enhanced */
+        .banner-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            max-width: 60%;
+        }
+        
+        .banner-subtitle {
+            font-size: 1.2rem;
+            max-width: 50%;
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Action Buttons - Enhanced with icons */
         .action-buttons { 
             display: flex; 
             justify-content: center; 
             gap: 1.5rem; 
-            margin-bottom: 3rem; 
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
         
         .button { 
@@ -235,6 +389,7 @@
             box-shadow: var(--shadow-light);
             position: relative;
             overflow: hidden;
+            min-width: 200px;
         }
         
         .button::before {
@@ -257,7 +412,7 @@
         
         .explore-btn { 
             background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
-            color: black; 
+            color: #0d1419; 
         }
         
         .explore-btn:hover {
@@ -275,21 +430,21 @@
             box-shadow: 0 10px 30px rgba(250, 110, 89, 0.3);
         }
 
-        /* Filter Bar - New Feature */
+        /* FIXED: Filter Bar is no longer sticky */
         .filter-bar {
             display: flex;
             gap: 1rem;
             margin-bottom: 2rem;
             padding: 1rem;
             background: var(--secondary-bg);
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow-light);
             flex-wrap: wrap;
             justify-content: center;
         }
         
         .filter-btn {
-            padding: 0.5rem 1.2rem;
+            padding: 0.6rem 1.5rem;
             border: 2px solid transparent;
             background: transparent;
             color: var(--text-secondary);
@@ -297,22 +452,45 @@
             cursor: pointer;
             transition: var(--transition);
             font-weight: 600;
+            font-size: 0.95rem;
         }
-        
-        .filter-btn.active,
+
         .filter-btn:hover {
             border-color: var(--primary-color);
             color: var(--primary-color);
             background: rgba(0, 230, 184, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Better filter button active state */
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: #0d1419;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
-        /* Titles - Enhanced */
+        /* Section Titles - Enhanced with decorative elements */
         .section-title { 
             color: var(--primary-color); 
-            font-size: 2.2rem; 
-            margin-bottom: 1.5rem; 
+            font-size: 2.5rem; 
+            margin: 2rem 0 1.5rem; 
             text-shadow: 0 2px 8px rgba(0, 230, 184, 0.3);
             font-weight: 700;
+            position: relative;
+            display: inline-block;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
         }
         
         .view-all { 
@@ -323,6 +501,7 @@
             margin: -1rem 0 1.5rem 0; 
             font-weight: 600; 
             transition: var(--transition);
+            font-size: 1.1rem;
         }
         
         .view-all:hover {
@@ -330,16 +509,16 @@
             transform: translateX(-5px);
         }
 
-        /* Game Grid & Cards - Enhanced */
+        /* Game Grid & Cards - Enhanced with better animations */
         .games-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
             gap: 2rem; 
         }
         
         .game-card { 
             background: var(--card-bg); 
-            border-radius: 15px; 
+            border-radius: var(--border-radius); 
             overflow: hidden; 
             cursor: pointer; 
             border: 1px solid rgba(42, 59, 76, 0.3); 
@@ -355,9 +534,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 230, 184, 0.05) 0%, transparent 100%);
+            background: linear-gradient(135deg, rgba(0, 230, 184, 0.1) 0%, transparent 100%);
             opacity: 0;
             transition: var(--transition);
+            z-index: 1;
         }
         
         .game-card:hover::before {
@@ -371,33 +551,43 @@
         }
         
         .game-card-image { 
-            height: 260px; 
+            height: 280px; 
             position: relative;
             overflow: hidden;
         }
         
+        /* Smoother image loading */
         .game-card-image img { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            transition: var(--transition);
+            transition: transform 0.5s ease, opacity 0.3s ease;
+            opacity: 0.9;
         }
         
         .game-card:hover .game-card-image img {
             transform: scale(1.1);
+            opacity: 1;
         }
         
         .game-card-info { 
-            padding: 1.2rem; 
+            padding: 1.5rem; 
+            position: relative;
+            z-index: 2;
         }
         
+        /* Better game card title handling */
         .game-card-title { 
-            font-size: 1.15rem; 
+            font-size: 1.2rem; 
             margin-bottom: 0.7rem; 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
             font-weight: 600;
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.8em; /* Approx 2 lines */
+            line-height: 1.4;
         }
         
         .game-card-tags { 
@@ -422,26 +612,27 @@
             font-weight: 500;
         }
 
-        /* Rating Stars - New Feature */
+        /* Rating Stars - Enhanced with tooltip */
         .game-card-rating {
             display: flex;
             align-items: center;
             gap: 0.3rem;
             margin-top: 0.5rem;
+            position: relative;
         }
         
         .stars {
             color: #FFC107;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
         
         .rating-text {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             margin-left: 0.3rem;
         }
 
-        /* Trending Badge - New Feature */
+        /* Trending Badge - Enhanced with animation */
         .trending-badge {
             position: absolute;
             top: 10px;
@@ -454,49 +645,69 @@
             font-weight: 600;
             z-index: 2;
             animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
         }
 
-        /* How It Works Section - Enhanced */
+        /* How It Works Section - Enhanced with icons */
         .how-it-works { 
-            padding: 3rem 0; 
-            background: linear-gradient(135deg, var(--secondary-bg) 0%, rgba(26, 37, 48, 0.5) 100%);
-            border-radius: 20px;
-            margin: 3rem 0;
+            padding: 4rem 0; 
+            background: linear-gradient(135deg, var(--secondary-bg) 0%, rgba(26, 37, 48, 0.7) 100%);
+            border-radius: var(--border-radius);
+            margin: 4rem 0;
             box-shadow: var(--shadow-light);
+            position: relative;
+            overflow: hidden;
         }
         
-        .how-it-works-title { 
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 230, 184, 0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .how-it-works-title {
             display: flex; 
             align-items: center; 
             gap: 15px; 
-            margin-bottom: 2rem; 
+            margin-bottom: 3rem; 
             justify-content: center;
+            position: relative;
+            z-index: 1;
         }
         
         .how-it-works-title span { 
-            font-size: 2.5rem; 
+            font-size: 3rem; 
             color: var(--primary-color); 
         }
         
         .steps-container { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 2rem; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2.5rem; 
+            position: relative;
+            z-index: 1;
         }
         
         .step-card { 
-            background: rgba(13, 20, 25, 0.5); 
-            border-radius: 15px; 
-            padding: 2rem; 
+            background: rgba(13, 20, 25, 0.7); 
+            border-radius: var(--border-radius); 
+            padding: 2.5rem; 
             transition: var(--transition);
             border: 1px solid rgba(0, 230, 184, 0.1);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(5px);
         }
         
         .step-card::before {
@@ -507,7 +718,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 230, 184, 0.1), transparent);
-            transition: left 0.6s;
+            transition: left 0.8s;
         }
         
         .step-card:hover::before {
@@ -515,30 +726,30 @@
         }
         
         .step-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-heavy);
             border-color: var(--primary-color);
         }
         
         .step-icon { 
-            font-size: 2.5rem; 
+            font-size: 3rem; 
             color: var(--primary-color); 
-            margin-bottom: 1.2rem; 
+            margin-bottom: 1.5rem; 
         }
         
         .step-title { 
-            font-size: 1.3rem; 
+            font-size: 1.5rem; 
             font-weight: 700; 
-            margin-bottom: 0.7rem; 
+            margin-bottom: 1rem; 
         }
         
         .step-desc { 
             color: var(--text-secondary); 
-            font-size: 1rem; 
-            line-height: 1.6; 
+            font-size: 1.05rem; 
+            line-height: 1.7; 
         }
-        
-        /* Modals - Enhanced */
+
+        /* Modals - Enhanced with better transitions */
         .modal-overlay, .about-container { 
             display: none; 
             position: fixed; 
@@ -550,33 +761,46 @@
             backdrop-filter: blur(10px);
             z-index: 1000; 
             overflow-y: auto; 
-            padding: 1rem; 
+            padding: 2rem; 
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .modal-content { 
             background: var(--secondary-bg); 
-            border-radius: 20px; 
-            max-width: 900px; 
+            border-radius: var(--border-radius); 
+            max-width: 1000px; 
             margin: 2rem auto; 
-            padding: 2.5rem; 
+            padding: 3rem; 
             position: relative; 
             box-shadow: var(--shadow-heavy);
             border: 1px solid rgba(0, 230, 184, 0.2);
+            animation: slideUp 0.4s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
         .modal-header { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            margin-bottom: 2rem; 
+            margin-bottom: 2.5rem; 
             border-bottom: 2px solid rgba(0, 230, 184, 0.2); 
             padding-bottom: 1.5rem; 
         }
         
         .modal-title { 
-            font-size: 2rem; 
+            font-size: 2.5rem; 
             color: var(--primary-color); 
             font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
         }
         
         .modal-close { 
@@ -588,6 +812,11 @@
             transition: var(--transition);
             padding: 0.5rem;
             border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .modal-close:hover {
@@ -596,62 +825,117 @@
             transform: rotate(90deg);
         }
 
-        /* Game Details Modal - Enhanced */
+        /* Game Details Modal - Enhanced with tabs */
+        #game-details-content {
+            position: relative;
+        }
+        
         #game-details-content .details-header-image { 
             width: 100%; 
-            height: 350px; 
+            height: 400px; 
             object-fit: cover; 
-            border-radius: 15px; 
-            margin-bottom: 2rem; 
-            box-shadow: var(--shadow-light);
+            border-radius: var(--border-radius); 
+            margin-bottom: 2.5rem; 
+            box-shadow: var(--shadow-heavy);
         }
         
         #game-details-content .details-main-title { 
-            font-size: 2.5rem; 
-            margin-bottom: 1.2rem; 
+            font-size: 2.8rem; 
+            margin-bottom: 1.5rem; 
             font-weight: 700;
+            color: var(--primary-color);
         }
         
         #game-details-content .details-description { 
             color: var(--text-secondary); 
             line-height: 1.8; 
-            margin-bottom: 2rem; 
-            font-size: 1.1rem;
+            margin-bottom: 2.5rem; 
+            font-size: 1.15rem;
+        }
+        
+        .details-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(0, 230, 184, 0.2);
+        }
+        
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .tab-button.active {
+            color: var(--primary-color);
+        }
+        
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .tab-button:hover {
+            color: var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
         }
         
         .details-info-box { 
             background: var(--background-color); 
-            padding: 2rem; 
-            border-radius: 20px; 
-            margin-bottom: 2rem; 
+            padding: 2.5rem; 
+            border-radius: var(--border-radius); 
+            margin-bottom: 2.5rem; 
             border: 1px solid rgba(0, 230, 184, 0.1);
         }
         
         .info-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
             gap: 1.5rem; 
         }
         
         .info-item { 
-            font-size: 1.05rem; 
+            font-size: 1.1rem; 
+            display: flex;
+            align-items: center;
         }
         
         .info-item i { 
             color: var(--primary-color); 
-            margin-right: 0.7rem; 
+            margin-right: 0.8rem; 
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
         }
         
         /* Enhanced Button Styles */
         .details-buttons-container {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
         }
         
         .game-button {
-            padding: 1rem;
+            padding: 1.2rem;
             border-radius: 50px;
             font-weight: 700;
             cursor: pointer;
@@ -659,9 +943,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.8rem;
+            gap: 1rem;
             transition: var(--transition);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             position: relative;
             overflow: hidden;
         }
@@ -727,6 +1011,25 @@
             box-shadow: 0 8px 30px rgba(0, 230, 184, 0.4);
         }
 
+        /* Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            border-radius: var(--border-radius);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .comments-section { 
             margin-top: 3rem; 
             padding-top: 2rem; 
@@ -735,8 +1038,8 @@
         
         .comment { 
             background: var(--background-color); 
-            border-radius: 15px; 
-            padding: 1.5rem; 
+            border-radius: var(--border-radius); 
+            padding: 1.8rem; 
             margin-bottom: 1.5rem; 
             border-left: 4px solid var(--primary-color); 
             transition: var(--transition);
@@ -751,11 +1054,12 @@
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
-            margin-bottom: 0.7rem; 
+            margin-bottom: 1rem; 
         }
         
         .comment-user { 
             font-weight: 700; 
+            color: var(--primary-color);
         }
         
         .comment-rating .fa-star { 
@@ -764,10 +1068,10 @@
         
         .comment-body { 
             color: var(--text-secondary); 
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* Nav Menu - Enhanced */
+        /* Nav Menu - Enhanced with profile section */
         .nav-menu-overlay { 
             display: none; 
             position: fixed; 
@@ -778,19 +1082,21 @@
             background-color: rgba(0,0,0,0.7); 
             backdrop-filter: blur(5px);
             z-index: 1001; 
+            animation: fadeIn 0.3s ease;
         }
         
         .nav-menu { 
             position: fixed; 
             top: 0; 
-            right: -350px; 
-            width: 350px; 
+            right: -400px; 
+            width: 400px; 
             height: 100%; 
             background: var(--secondary-bg); 
             z-index: 1002; 
             transition: right 0.4s ease; 
             box-shadow: -10px 0 30px rgba(0,0,0,0.3); 
             border-left: 1px solid rgba(0, 230, 184, 0.2);
+            overflow-y: auto;
         }
         
         .nav-menu.open { 
@@ -828,6 +1134,32 @@
             color: var(--primary-color);
             background: rgba(0, 230, 184, 0.1);
             transform: rotate(90deg);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(0, 230, 184, 0.1);
+        }
+        
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .user-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .user-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
         
         .nav-items { 
@@ -868,183 +1200,683 @@
             transform: scaleY(1);
         }
 
-        /* About Container */
-        .about-content { line-height: 1.8; font-size: 1.1rem; }
-        .about-content h2 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.8rem; }
-        .about-content p { margin-bottom: 1.5rem; color: var(--text-secondary); }
-        .about-team { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; margin-top: 2.5rem; }
-        .team-member { text-align: center; transition: var(--transition); }
-        .team-member:hover { transform: translateY(-5px); }
-        .team-member img { width: 120px; height: 120px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; border: 3px solid var(--primary-color); box-shadow: var(--shadow-heavy); }
-        .team-member h3 { color: #fff; margin-bottom: 0.5rem; font-size: 1.2rem; }
-        .team-member p { color: var(--primary-color); font-size: 1rem; font-weight: 600; }
+        /* About Container - Enhanced */
+        .about-content { 
+            line-height: 1.8; 
+            font-size: 1.15rem; 
+        }
         
-        /* Footer */
+        .about-content h2 { 
+            color: var(--primary-color); 
+            margin: 2rem 0 1rem; 
+            font-size: 2rem; 
+            position: relative;
+        }
+        
+        .about-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+        
+        .about-content p { 
+            margin-bottom: 1.5rem; 
+            color: var(--text-secondary); 
+        }
+        
+        .about-team { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 2.5rem; 
+            margin: 3rem 0; 
+        }
+        
+        .team-member { 
+            text-align: center; 
+            transition: var(--transition); 
+            background: rgba(13, 20, 25, 0.5);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(0, 230, 184, 0.1);
+        }
+        
+        .team-member:hover { 
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-heavy);
+            border-color: var(--primary-color);
+        }
+        
+        .team-member img { 
+            width: 140px; 
+            height: 140px; 
+            border-radius: 50%; 
+            margin-bottom: 1.5rem; 
+            object-fit: cover; 
+            border: 3px solid var(--primary-color); 
+            box-shadow: var(--shadow-heavy); 
+        }
+        
+        .team-member h3 { 
+            color: #fff; 
+            margin-bottom: 0.5rem; 
+            font-size: 1.3rem; 
+        }
+        
+        .team-member p { 
+            color: var(--primary-color); 
+            font-size: 1rem; 
+            font-weight: 600; 
+        }
+        
+        /* Footer - Enhanced with newsletter */
         .footer { 
             background: var(--secondary-bg); 
-            padding: 4rem 1rem 2rem; 
-            margin-top: 4rem; 
+            padding: 5rem 1rem 3rem; 
+            margin-top: 5rem; 
             border-top: 3px solid var(--primary-color);
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), #00b3ff);
         }
         
         .footer-content { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-            gap: 2.5rem; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 3rem; 
         }
         
         .footer-section h3 { 
             color: var(--primary-color); 
-            margin-bottom: 1.5rem; 
-            font-size: 1.4rem;
+            margin-bottom: 1.8rem; 
+            font-size: 1.5rem;
+            position: relative;
+            display: inline-block;
         }
         
-        .footer-links { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: 1rem; }
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+        
+        .footer-links { 
+            list-style: none; 
+            padding: 0; 
+        }
+        
+        .footer-links li { 
+            margin-bottom: 1.2rem; 
+        }
+        
         .footer-links a { 
             color: var(--text-secondary); 
             transition: color 0.2s, padding-left 0.2s;
             position: relative;
+            display: inline-block;
         }
+        
         .footer-links a:hover { 
             color: var(--primary-color); 
-            padding-left: 10px;
+            padding-left: 15px;
         }
+        
         .footer-links a:hover::before {
-            content: '>';
+            content: '→';
             position: absolute;
             left: 0;
             color: var(--primary-color);
         }
         
+        .newsletter-form {
+            margin-top: 1.5rem;
+        }
+        
+        .newsletter-input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            background: var(--background-color);
+            border: 1px solid rgba(0, 230, 184, 0.2);
+            border-radius: 30px;
+            color: white;
+            margin-bottom: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        
+        .newsletter-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 230, 184, 0.1);
+        }
+        
+        .newsletter-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary-color);
+            color: #0d1419;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--background-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: var(--primary-color);
+            color: #0d1419;
+            transform: translateY(-3px);
+        }
+        
         .footer-bottom { 
             text-align: center; 
-            margin-top: 3rem; 
+            margin-top: 4rem; 
             padding-top: 2rem; 
             border-top: 1px solid #2a3b4c; 
             font-size: 1rem; 
             color: var(--text-secondary); 
         }
+        
+        .disclaimer {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
 
-        /* Scroll To Top Button - New Feature */
+        /* Scroll To Top Button - Enhanced */
         #scroll-to-top {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
             color: black;
             border: none;
             border-radius: 50%;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
-            display: none; /* Hidden by default */
+            display: none;
             align-items: center;
             justify-content: center;
             z-index: 100;
             box-shadow: var(--shadow-heavy);
             transition: var(--transition);
+            opacity: 0.9;
         }
 
         #scroll-to-top:hover {
-            transform: scale(1.1) translateY(-3px);
+            transform: scale(1.1) translateY(-5px);
             box-shadow: 0 15px 35px rgba(0, 230, 184, 0.5);
+            opacity: 1;
+        }
+
+        /* Download Progress - New Feature */
+        .download-progress {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--secondary-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-heavy);
+            z-index: 100;
+            display: none;
+            width: 300px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .download-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: var(--background-color);
+            border-radius: 4px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), #00b3ff);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        .progress-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: right;
+        }
+        
+        .download-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .download-close:hover {
+            color: var(--primary-color);
+        }
+
+        /* Theme Toggle - New Feature */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-light);
+            z-index: 100;
+            transition: var(--transition);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 230, 184, 0.3);
         }
 
         /* Responsive Design Adjustments */
-        @media (max-width: 992px) {
-            .header { padding: 1rem; }
-            .search-container { margin: 0 1rem; }
-        }
-        
-        /* ✅ MODIFIED: L-Code dyal telephone */
-        @media (max-width: 768px) {
-            .header { gap: 1rem; }
-            .search-container { 
-                order: 3; 
-                flex: 0 0 100%; /* L-Fix dyal l-search bar */
-                margin: 0; 
-                max-width: none; 
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 100%;
+                padding: 1.5rem;
             }
-            .games-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
-            .steps-container { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: repeat(2, 1fr); }
-            .info-grid { grid-template-columns: 1fr; }
-            #game-details-content .details-header-image { height: 250px; }
-            .nav-menu { width: 300px; right: -300px; }
+            
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
         }
         
-        @media (max-width: 480px) {
-            .container { padding: 0.5rem; }
-            .action-buttons { flex-direction: column; align-items: stretch; gap: 1rem; }
-            .button { width: 100%; }
-            .view-all { margin-right: 0.5rem; margin-left: 0.5rem; }
-            .footer-content { grid-template-columns: 1fr; }
+        @media (max-width: 992px) {
+            .header { 
+                padding: 1rem; 
+                min-height: 70px;
+            }
             
-            /* ✅ MODIFIED: 2-column grid on phones */
-            .games-grid {
-                grid-template-columns: 1fr 1fr; /* Two equal columns */
+            .search-container { 
+                margin: 0 1rem; 
+            }
+            
+            .banner-title {
+                font-size: 2rem;
+                max-width: 70%;
+            }
+            
+            .banner-subtitle {
+                font-size: 1rem;
+                max-width: 70%;
+            }
+            
+            .steps-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        
+        /* Improved Mobile Layout */
+        @media (max-width: 768px) {
+            :root {
+                --header-height: auto; /* Allow header to grow */
+            }
+            
+            .header { 
                 gap: 1rem; 
+                padding: 0.8rem 1rem;
+                align-content: center; /* Vertically center wrapped items */
+            }
+            
+            /* This container holds the logo and buttons on the top row */
+            .header-top-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                flex: 1 0 100%;
+                order: 1; /* Ensure it's the first item */
             }
 
-            .game-card-image { height: 200px; }
-            .game-card-title { font-size: 1rem; }
-            .modal-content { padding: 1.5rem 1rem; margin: 1rem auto; }
-            #game-details-content .details-main-title { font-size: 1.8rem; }
-            #game-details-content .details-header-image { height: 200px; }
-            .nav-menu { width: 100%; right: -100%; }
+            .search-container { 
+                order: 2; /* Search bar comes after */
+                flex: 1 0 100%; 
+                margin: 0.5rem 0 0 0; 
+                max-width: none; 
+            }
+            
+            .logo-text-group .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .banner-container {
+                margin-top: 130px; /* Adjusted fixed margin for mobile header */
+            }
+            
+            .banner-title {
+                font-size: 1.8rem;
+                max-width: 80%;
+            }
+            
+            .banner-subtitle {
+                font-size: 0.9rem;
+                max-width: 80%;
+            }
+            
+            .games-grid { 
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1.2rem;
+            }
+            
+            .game-card-image {
+                height: 180px;
+            }
+            
+            .game-card-title {
+                font-size: 1rem;
+                white-space: normal;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            
+            .game-card-info {
+                padding: 1rem;
+            }
+            
+            .steps-container { 
+                grid-template-columns: 1fr; 
+            }
+            
+            .footer-content { 
+                grid-template-columns: repeat(2, 1fr); 
+            }
+            
+            .info-grid { 
+                grid-template-columns: 1fr; 
+            }
+            
+            #game-details-content .details-header-image { 
+                height: 250px; 
+            }
+            
+            .modal-content {
+                padding: 2rem;
+            }
+            
+            .nav-menu { 
+                width: 320px; 
+                right: -320px; 
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Further adjustments for very small screens */
+        @media (max-width: 420px) {
+            .logo-text-group .logo-text {
+                font-size: 1.3rem; /* Reduce logo font size */
+            }
+            .logo-icon svg {
+                width: 35px; /* Reduce logo icon size */
+                height: 35px;
+            }
+            .logo-text-group .logo-tagline {
+                display: none; /* Hide tagline on very small screens */
+            }
+            .header-actions {
+                gap: 5px; /* Reduce gap between buttons */
+            }
+            .banner-container {
+                margin-top: 120px; /* Fine-tune margin */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container { 
+                padding: 1rem; 
+            }
+            
+            .action-buttons { 
+                flex-direction: column; 
+                align-items: stretch; 
+                gap: 1rem; 
+            }
+            
+            .button { 
+                width: 100%; 
+            }
+            
+            .view-all { 
+                margin-right: 0.5rem; 
+                margin-left: 0.5rem; 
+            }
+            
+            .footer-content { 
+                grid-template-columns: 1fr; 
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+
+            .game-card-image { 
+                height: 150px; 
+            }
+            
+            .game-card-info {
+                padding: 0.8rem;
+            }
+
+            .game-card-title { 
+                font-size: 0.9rem;
+                -webkit-line-clamp: 2;
+            }
+            
+            .game-card-category, 
+            .game-card-size {
+                font-size: 0.75rem;
+            }
+            
+            .game-card-rating {
+                margin-top: 0.3rem;
+            }
+            
+            .stars {
+                font-size: 0.7rem;
+            }
+            
+            .rating-text {
+                font-size: 0.7rem;
+            }
+            
+            .game-card:hover {
+                transform: translateY(-3px) scale(1.01);
+                box-shadow: 0 5px 15px rgba(0, 230, 184, 0.2);
+            }
+            
+            .game-card:hover .game-card-image img {
+                transform: scale(1.03);
+            }
+
+            .modal-content { 
+                padding: 1.5rem 1rem; 
+                margin: 1rem auto; 
+            }
+            
+            #game-details-content .details-main-title { 
+                font-size: 1.8rem; 
+            }
+            
+            #game-details-content .details-header-image { 
+                height: 200px; 
+            }
+            
+            .nav-menu { 
+                width: 100%; 
+                right: -100%; 
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .step-card {
+                padding: 1.5rem;
+            }
+            
+            .step-title {
+                font-size: 1.3rem;
+            }
+            
+            .step-desc {
+                font-size: 1rem;
+            }
+            
+            .theme-toggle {
+                bottom: 20px;
+                left: 20px;
+                width: 45px;
+                height: 45px;
+            }
+            
+            #scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
-<body oncontextmenu="return false;"> <div class="loading-spinner" id="loading-spinner"><div class="spinner"></div></div>
+<body oncontextmenu="return false;">
+    <div class="loading-spinner" id="loading-spinner">
+        <div class="spinner"></div>
+        <div class="loading-text">Loading Premium Games...</div>
+    </div>
 
     <header class="header" id="header">
-        <div class="logo-container">
-            <div class="logo-icon">
-                <svg viewBox="0 0 40 40">
-                    <defs>
-                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:rgb(204,204,204);stop-opacity:1" />
-                        </linearGradient>
-                         <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:var(--primary-color);stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:var(--primary-hover);stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <circle cx="15" cy="20" r="15" fill="url(#grad1)"/>
-                    <circle cx="25" cy="20" r="15" fill="url(#grad2)"/>
-                </svg>
+        <!-- This new div helps group the top-row elements for better mobile layout -->
+        <div class="header-top-row">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:rgb(204,204,204);stop-opacity:1" />
+                            </linearGradient>
+                             <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:var(--primary-color);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:var(--primary-hover);stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="15" cy="20" r="15" fill="url(#grad1)"/>
+                        <circle cx="25" cy="20" r="15" fill="url(#grad2)"/>
+                    </svg>
+                </div>
+                <div class="logo-text-group">
+                    <div class="logo-text">Zaddo.online</div>
+                    <div class="logo-tagline">Premium Games Unlocked</div>
+                </div>
             </div>
-            <div class="logo-text-group">
-                <div class="logo-text">Zaddo.online</div>
-                <div class="logo-tagline">Unlock Premium Games</div>
+            <div class="header-actions">
+                <div class="user-button" id="user-btn"><i class="fas fa-user"></i></div>
+                <div class="menu-button" id="menu-btn"><i class="fas fa-bars"></i></div>
             </div>
         </div>
         <div class="search-container">
-            <form id="search-form">
+            <form id="search-form" autocomplete="off">
                 <input type="text" id="search-input" placeholder="Search for games...">
                 <button type="submit"><i class="fas fa-search"></i></button>
+                <!-- NEW: Autocomplete results container -->
+                <div id="autocomplete-results"></div>
             </form>
         </div>
-        <div class="menu-button" id="menu-btn"><i class="fas fa-bars"></i></div>
     </header>
 
     <div class="container">
         <main>
-            <img src="https://i.ibb.co/LBKP4bC/nbanner1.jpg" alt="Game Banner" class="banner" onerror="this.onerror=null;this.src='https://placehold.co/1200x300/0d1419/fff?text=Banner';">
+            <div class="banner-container">
+                <img src="https://i.ibb.co/LBKP4bC/nbanner1.jpg" alt="Game Banner" class="banner" onerror="this.onerror=null;this.src='https://placehold.co/1200x400/0d1419/fff?text=Premium+Mobile+Games';">
+                <div class="banner-overlay">
+                    <h1 class="banner-title">Unlock Premium Mobile Games</h1>
+                    <p class="banner-subtitle">Experience the best games with all features unlocked</p>
+                </div>
+            </div>
 
             <div class="action-buttons">
-                <a href="#" class="button explore-btn" id="explore-btn">🎮 Explore All Games</a>
-                <a href="#how-it-works-section" class="button how-it-works-btn">ⓘ How It Works</a>
+                <a href="#" class="button explore-btn" id="explore-btn">
+                    <i class="fas fa-gamepad"></i> Explore All Games
+                </a>
+                <a href="#how-it-works-section" class="button how-it-works-btn">
+                    <i class="fas fa-info-circle"></i> How It Works
+                </a>
             </div>
 
             <h2 class="section-title">Featured Games</h2>
             
             <div class="filter-bar" id="filter-bar"></div>
 
-            <a href="#" class="view-all" id="view-all-btn">View All →</a>
+            <a href="#" class="view-all" id="view-all-btn">View All <i class="fas fa-arrow-right"></i></a>
             <div class="games-grid" id="featured-games-grid"></div>
             
             <section class="how-it-works" id="how-it-works-section">
@@ -1054,43 +1886,65 @@
                 </div>
                 <div class="steps-container">
                     <div class="step-card">
-                        <div class="step-icon">🔍</div>
+                        <div class="step-icon"><i class="fas fa-search"></i></div>
                         <div class="step-title">Find Your Game</div>
-                        <div class="step-desc">Browse our collection of modded games or search for what you want.</div>
+                        <div class="step-desc">Browse our extensive collection of premium games or use our powerful search to find exactly what you're looking for.</div>
                     </div>
                     <div class="step-card">
-                        <div class="step-icon">☁️</div>
+                        <div class="step-icon"><i class="fas fa-tasks"></i></div>
                         <div class="step-title">Complete Offer</div>
-                        <div class="step-desc">Complete a quick offer (less than 1 minute) to unlock the download.</div>
+                        <div class="step-desc">Complete a quick offer (usually less than 1 minute) to verify your request and unlock the download.</div>
                     </div>
                     <div class="step-card">
-                        <div class="step-icon">📱</div>
+                        <div class="step-icon"><i class="fas fa-download"></i></div>
                         <div class="step-title">Download & Install</div>
-                        <div class="step-desc">Get your download link and install the game with our instructions.</div>
+                        <div class="step-desc">Get your secure download link and follow our simple installation instructions to get started.</div>
                     </div>
                     <div class="step-card">
-                        <div class="step-icon">🎮</div>
+                        <div class="step-icon"><i class="fas fa-gamepad"></i></div>
                         <div class="step-title">Enjoy Premium</div>
-                        <div class="step-desc">Play with all premium features unlocked - unlimited money, no ads!</div>
+                        <div class="step-desc">Play with all premium features unlocked - unlimited resources, no ads, and exclusive content!</div>
                     </div>
                 </div>
             </section>
         </main>
     </div>
 
-    <nav class="nav-menu-overlay" id="nav-overlay"></nav>
+    <div class="download-progress" id="download-progress">
+        <button class="download-close" id="download-close"><i class="fas fa-times"></i></button>
+        <div class="download-title" id="download-title">Downloading Game...</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-text" id="progress-text">0%</div>
+    </div>
+
+    <div class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </div>
+
+    <div class="nav-menu-overlay" id="nav-overlay"></div>
     <nav class="nav-menu" id="nav-menu">
         <div class="nav-header">
             <h3>Menu</h3>
             <button class="nav-close" id="nav-close">×</button>
         </div>
+        <div class="user-profile">
+            <img src="https://i.ibb.co/0QBD4MD/team1.jpg" alt="User Avatar" class="user-avatar" onerror="this.onerror=null;this.src='https://placehold.co/100x100/1a2530/fff?text=User';">
+            <div class="user-info">
+                <h4>Guest User</h4>
+                <p>Free Account</p>
+            </div>
+        </div>
         <ul class="nav-items">
-            <li class="nav-item"><a href="#" id="home-link">Home</a></li>
-            <li class="nav-item"><a href="#" id="about-link">About Us</a></li>
-            <li class="nav-item"><a href="#" id="all-games-link">All Games</a></li>
-            <li class="nav-item"><a href="#">Contact</a></li>
-            <li class="nav-item"><a href="#">Privacy Policy</a></li>
-            <li class="nav-item"><a href="#">Terms of Service</a></li>
+            <li class="nav-item"><a href="#" id="home-link"><i class="fas fa-home"></i> Home</a></li>
+            <li class="nav-item"><a href="#" id="about-link"><i class="fas fa-info-circle"></i> About Us</a></li>
+            <li class="nav-item"><a href="#" id="all-games-link"><i class="fas fa-gamepad"></i> All Games</a></li>
+            <li class="nav-item"><a href="#"><i class="fas fa-bookmark"></i> My Library</a></li>
+            <li class="nav-item"><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li class="nav-item"><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+            <li class="nav-item"><a href="#"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+            <li class="nav-item"><a href="#"><i class="fas fa-sign-in-alt"></i> Login / Register</a></li>
         </ul>
     </nav>
     
@@ -1099,14 +1953,22 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>About Zaddo</h3>
-                    <p>Your gateway to premium gaming experiences without the premium price.</p>
+                    <p>Your gateway to premium gaming experiences without the premium price. We provide access to modified versions of popular games for educational purposes.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#">Home</a></li>
                         <li><a href="#" id="about-footer-link">About Us</a></li>
+                        <li><a href="#">All Games</a></li>
                         <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -1114,15 +1976,17 @@
                     <ul class="footer-links" id="footer-categories"></ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Legal</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new games and special offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address">
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>© 2025 Zaddo.online. All rights reserved.</p>
+                <p class="disclaimer">Disclaimer: All games are property of their respective owners. This website does not host or distribute any game files. We only provide information about game modifications for educational purposes.</p>
             </div>
         </div>
     </footer>
@@ -1149,13 +2013,34 @@
             </div>
             <div class="about-content">
                 <h2>Welcome to Zaddo.online</h2>
-                <p>At Zaddo.online, we are passionate about bringing premium gaming experiences to everyone. Our platform was founded with a simple mission: to provide easy access to high-quality games.</p>
+                <p>At Zaddo.online, we are passionate about bringing premium gaming experiences to everyone. Our platform was founded with a simple mission: to provide easy access to high-quality games while respecting intellectual property rights for educational purposes.</p>
+                
+                <h2>Our Mission</h2>
+                <p>We believe that everyone should have the opportunity to experience premium games. Our team works tirelessly to provide information about game modifications that enhance your gaming experience while maintaining respect for game developers.</p>
+                
                 <h2>Our Team</h2>
+                <p>Behind Zaddo.online is a dedicated team of gaming enthusiasts, developers, and designers committed to delivering the best gaming information platform.</p>
+                
                 <div class="about-team">
-                    <div class="team-member"> <img src="https://i.ibb.co/0QBD4MD/team1.jpg" alt="Team Member" onerror="this.onerror=null;this.src='https://placehold.co/100x100/1a2530/fff?text=Team';"> <h3>Alex Johnson</h3> <p>Founder & CEO</p> </div>
-                    <div class="team-member"> <img src="https://i.ibb.co/svWjY7K/team2.jpg" alt="Team Member" onerror="this.onerror=null;this.src='https://placehold.co/100x100/1a2530/fff?text=Team';"> <h3>Sophia Chen</h3> <p>Lead Developer</p> </div>
-                    <div class="team-member"> <img src="https://i.ibb.co/5xpFMhY/team3.jpg" alt="Team Member" onerror="this.onerror=null;this.src='https://placehold.co/100x100/1a2530/fff?text=Team';"> <h3>Michael Rodriguez</h3> <p>Game Curator</p> </div>
+                    <div class="team-member"> 
+                        <img src="https://i.ibb.co/0QBD4MD/team1.jpg" alt="Team Member" onerror="this.onerror=null;this.src='https://placehold.co/200x200/1a2530/fff?text=Team';"> 
+                        <h3>Alex Johnson</h3> 
+                        <p>Founder & CEO</p> 
+                    </div>
+                    <div class="team-member"> 
+                        <img src="https://i.ibb.co/svWjY7K/team2.jpg" alt="Team Member" onerror="this.onerror=null;this.src='https://placehold.co/200x200/1a2530/fff?text=Team';"> 
+                        <h3>Sophia Chen</h3> 
+                        <p>Lead Developer</p> 
+                    </div>
+                    <div class="team-member"> 
+                        <img src="https://i.ibb.co/5xpFMhY/team3.jpg" alt="Team Member" onerror="this.onerror=null;this.src='https://placehold.co/200x200/1a2530/fff?text=Team';"> 
+                        <h3>Michael Rodriguez</h3> 
+                        <p>Game Curator</p> 
+                    </div>
                 </div>
+                
+                <h2>Contact Us</h2>
+                <p>Have questions or suggestions? We'd love to hear from you! Reach out to our team at <a href="mailto:contact@zaddo.online" style="color: var(--primary-color);">contact@zaddo.online</a>.</p>
             </div>
         </div>
     </div>
@@ -1163,80 +2048,1331 @@
     <button id="scroll-to-top" style="display: none;"><i class="fas fa-arrow-up"></i></button>
 
     <script>
-    // ✅ JavaScript - Hماية ضد النسخ و فحص الموقع
+    // Enhanced Security Measures
     document.addEventListener('keydown', function (e) {
         if (e.key === 'F12' || 
            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
            (e.ctrlKey && (e.key === 'U' || e.key === 'S'))) {
             e.preventDefault();
+            console.log('%cDeveloper tools are disabled for security reasons.', 'background: #ff0000; color: #ffffff; font-size: 24px; font-weight: bold;');
         }
     });
 
+    // Disable right-click
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // Protect against iframe embedding
+    if (window.location !== window.parent.location) {
+        window.top.location = window.location;
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
-        
-        // ✅ L-CODE L-SḤIḤ DYAL L-GAMES HNA
+        // --- Mobile Header Logic ---
+        function setupMobileHeader() {
+            const header = document.getElementById('header');
+            const logoContainer = header.querySelector('.logo-container');
+            const headerActions = header.querySelector('.header-actions');
+            
+            if (window.innerWidth <= 768 && !header.querySelector('.header-top-row')) {
+                const topRow = document.createElement('div');
+                topRow.className = 'header-top-row';
+                topRow.appendChild(logoContainer);
+                topRow.appendChild(headerActions);
+                header.prepend(topRow);
+            } 
+            else if (window.innerWidth > 768 && header.querySelector('.header-top-row')) {
+                const topRow = header.querySelector('.header-top-row');
+                const searchContainer = header.querySelector('.search-container');
+                header.insertBefore(logoContainer, searchContainer);
+                header.appendChild(headerActions);
+                header.removeChild(topRow);
+            }
+        }
+
+        setupMobileHeader();
+        window.addEventListener('resize', setupMobileHeader);
+
+
+        // Enhanced Game Data
         const allGames = [
-            { title: "Grand Theft Auto V Mobile (Beta)", trending: true, image: "https://i.ibb.co/FzQ7s9s/gta5.jpg", category: "Action", rating: 4.9, size: "2.1 GB", downloads: "5.7M", multiplayer: true, description: "Experience the acclaimed open-world action game on your mobile device. This beta version brings the complete GTA V experience with enhanced graphics, all missions unlocked, and unlimited money.", trailerId: "QkkoHAzjnUs", reviews: [{ user: "GamerX123", rating: 5, text: "Absolutely stunning port! Runs surprisingly well on my phone." },{ user: "MobileMaverick", rating: 4, text: "The controls are a bit tricky at first, but you get used to them. It's the full GTA V experience!" }, { user: "CashKing", rating: 5, text: "Unlimited money makes this the most fun version of GTA V. No grinding, just pure chaos!"}] },
-            { title: "Spider-Man 2 Mobile (Beta)", trending: true, image: "https://i.ibb.co/McjvCfj/spiderman2.png", category: "Action", rating: 4.7, size: "1.8 GB", downloads: "8.2M", multiplayer: false, description: "Swing through the streets of New York City as Spider-Man in this incredible mobile adaptation. Take on iconic villains, complete thrilling missions, and master Spider-Man's abilities.", trailerId: "nq1M_Wc4FIc", reviews: [{ user: "WebHead", rating: 5, text: "Swinging through the city feels incredible. A must-have for any Spider-Man fan." }, { user: "ActionJunkie", rating: 5, text: "The combat is fluid and the graphics are top-notch for a mobile game. 10/10"}, { user: "GraphicsGuru", rating: 5, text: "I can't believe how good this looks on my phone. It's like a console game in my hands."}] },
-            { title: "Counter Strike Mobile (Beta)", image: "https://i.postimg.cc/mrqCkcJb/wp7881077-csgo-logo-wallpapers.jpg", category: "Action", rating: 4.9, size: "1.9 GB", downloads: "3.1M", multiplayer: true, description: "Experience the intense tactical FPS action of Counter Strike on your mobile device. This beta brings the classic gameplay to a new platform.", trailerId: "a9d7ksou_44", reviews: [{ user: "ProGamer", rating: 5, text: "Best mobile FPS out there. The classic gameplay is perfectly translated."}, { user: "Tacticool", rating: 5, text: "The definitive tactical shooter experience, now portable. A must for any CS fan."}, { user: "Headshot", rating: 5, text: "The controls are surprisingly tight for a mobile shooter. Very impressive." }] },
-            { title: "The Last of Us Mobile (Beta)", image: "https://i.ibb.co/tLx5P3D/tlou-1.jpg", category: "Adventure", rating: 4.9, size: "2.5 GB", downloads: "2.9M", multiplayer: false, description: "Survive in a post-apocalyptic world overrun by infected creatures. Play as Joel and Ellie as they journey across a devastated America in this ambitious mobile beta.", trailerId: "W01L70IGBgE", reviews: [{ user: "StoryLover", rating: 5, text: "The emotional story hits just as hard on mobile. A masterpiece."}, { user: "Survivalist", rating: 5, text: "It runs so well on my device. The tension and atmosphere are perfectly preserved."}] },
-            { title: "Horizon Zero Dawn Mobile (Beta)", image: "https://i.ibb.co/n0tBVMs/horizon.jpg", category: "Adventure", rating: 4.6, size: "2.2 GB", downloads: "3.1M", multiplayer: false, description: "Explore a lush, post-apocalyptic world inhabited by mysterious mechanized creatures. This mobile beta lets you hunt machines on the go.", trailerId: "wzx96gYA8ek", reviews: [{ user: "Explorer", rating: 5, text: "The world is beautiful and hunting machines is so much fun."}, { user: "AloyFan", rating: 5, text: "Aloy's adventure is amazing on mobile. The controls are intuitive and the world is breathtaking."}] },
-            { title: "Red Dead Redemption 2 Mobile (Beta)", image: "https://i.ibb.co/kDmVtwv/rdr2-1.jpg", category: "Action", rating: 5.0, size: "2.8 GB", downloads: "2.8M", multiplayer: true, description: "An epic tale of honor and loyalty at the dawn of the modern age. Live the life of an outlaw in a vast, atmospheric open world, now in an experimental mobile beta.", trailerId: "eaW0tYpxyp0", reviews: [{ user: "Cowboy", rating: 5, text: "Incredible detail and an amazing story. Can't believe it's on mobile." }, { user: "Wanderer", rating: 5, text: "The world feels so alive. I spend hours just exploring. This is a technical marvel!" }] },
-            { title: "Fortnite Mobile MOD", trending: true, image: "https://i.ibb.co/W5j9ZXx/fortnite.jpg", category: "Action", rating: 4.5, size: "1.9 GB", downloads: "15M+", multiplayer: true, description: "The ultimate battle royale experience, now with premium mods for mobile. Includes unlocked skins, unlimited V-Bucks, and enhanced aim assist.", trailerId: "2gUtfBmw86Y", reviews: [{ user: "VBucksKing", rating: 5, text: "The mod works perfectly! I have all the skins I ever wanted."}, { user: "VictoryRoyale", rating: 5, text: "Finally got the Victory Royale thanks to the enhanced features. This is awesome!"}] },
-            { title: "Roblox Premium MOD", image: "https://i.ibb.co/k92hJwF/roblox.png", category: "Adventure", rating: 4.7, size: "980 MB", downloads: "20M+", multiplayer: true, description: "The ultimate virtual universe that lets you create, share experiences, and be anything you can imagine. This MOD unlocks premium features for free.", trailerId: "eAvX1_A2PNU", reviews: [{ user: "Creator", rating: 5, text: "So many games to play, and I can create my own. Endless fun!" }, { user: "RobuxRich", rating: 5, text: "The premium benefits make the experience so much better. Highly recommend!" }] },
-            { title: "GTA 4 Mobile (Beta)", image: "https://i.ibb.co/Mcfhc3g/gta4-1.jpg", category: "Action", rating: 4.8, size: "1.7 GB", downloads: "3.5M", multiplayer: false, description: "For Niko Bellic, fresh off the boat from Europe, it is the hope he can escape from his past. Explore the gritty and realistic world of Liberty City in this mobile beta.", trailerId: "f_43z-I_d0s", reviews: [{ user: "NikoFan", rating: 5, text: "The story is amazing. A true classic." }, { user: "LibertyCityLover", rating: 5, text: "The dark, gritty atmosphere of Liberty City is perfectly captured. This port is a dream come true."}] },
-            { title: "FIFA 24 Mobile (Beta)", image: "https://i.postimg.cc/bN6TKCJZ/FC-24-Mobile.jpg", category: "Sports", rating: 4.9, size: "1.8 GB", downloads: "15M+", multiplayer: true, description: "Experience the beautiful game with this beta version of FIFA 24 for mobile. This version includes all the latest teams, players, and stadiums.", trailerId: "XhP3Xh4LMAo", reviews: [{ user: "FootballFan", rating: 5, text: "The gameplay feels so realistic. Best soccer game on mobile." }, { user: "UltimateTeamer", rating: 5, text: "All the players I want for my Ultimate Team. It's a game changer!"}] },
-            { title: "PUBG Mobile MOD", image: "https://i.postimg.cc/TwPBXLxx/PUBG.jpg", category: "Action", rating: 4.8, size: "1.5 GB", downloads: "25M+", multiplayer: true, description: "Dive into intense battle royale action with this enhanced version of PUBG Mobile. This mod features advanced aiming assistance and unlimited UC.", trailerId: "uCd6tbUAy6o", reviews: [{ user: "WinnerWinner", rating: 5, text: "The aim assist is a game changer. Chicken dinners every night!" }, { user: "UCCollector", rating: 5, text: "Got all the rare skins with the unlimited UC. My character looks amazing!"}] },
-            { title: "Call of Duty Mobile MOD", image: "https://i.postimg.cc/ZnGQ3wdY/cod.jpg", category: "Action", rating: 4.9, size: "2.0 GB", downloads: "30M+", multiplayer: true, description: "Experience the ultimate FPS action on mobile with Call of Duty Mobile. This version includes unlimited CP and all weapons unlocked.", trailerId: "_7hDcWv_81s", reviews: [{ user: "SniperGod", rating: 5, text: "Fast-paced action and great maps. The mod makes it even better." }, { user: "CPMaster", rating: 5, text: "Unlimited CP means I can get every battle pass and lucky draw. This is the best CoD Mobile experience." }] },
-            { title: "Genshin Impact MOD", image: "https://i.postimg.cc/kM2XQDbL/Genshin-Impact-Mobile.jpg", category: "Adventure", rating: 4.7, size: "2.2 GB", downloads: "18M+", multiplayer: true, description: "Embark on a magical adventure in the world of Teyvat with this enhanced version of Genshin Impact. This mod gives you unlimited Primogems.", trailerId: "HLUY1nICASI", reviews: [{ user: "WaifuCollector", rating: 5, text: "Unlimited primogems mean I can get all the characters I want. This is amazing!" }, { user: "TeyvatExplorer", rating: 5, text: "Exploring the world without worrying about resin is so freeing. The mod makes the game pure fun."}] },
-            { title: "Asphalt 9 Legends MOD", image: "https://i.postimg.cc/j2cXqv4k/Asphalt-Legends-Unite.jpg", category: "Racing", rating: 4.6, size: "2.3 GB", downloads: "12M+", multiplayer: true, description: "Race through breathtaking locations with the most prestigious cars in this arcade racing game. This modified version includes unlimited tokens and credits.", trailerId: "Y2i3P-O5_0c", reviews: [{ user: "SpeedDemon", rating: 5, text: "The graphics are insane! And all the cars are unlocked!" }, { user: "ArcadeRacer", rating: 5, text: "Pure adrenaline! The best-looking racing game on mobile."}] },
-            { title: "Need for Speed Unbound Mobile (Beta)", image: "https://i.postimg.cc/tJQKQGQ9/nfsu.jpg", category: "Racing", rating: 4.8, size: "2.4 GB", downloads: "4.5M", multiplayer: true, description: "Experience the ultimate street racing in this Need for Speed Unbound beta, with stunning cel-shaded visual effects on mobile.", trailerId: "H2Y8XCe7F1E", reviews: [{ user: "StreetRacer", rating: 5, text: "The art style is so cool and the racing is intense." }, { user: "Customizer", rating: 5, text: "The car customization is next level. My ride looks sick!" }] },
-            { title: "Real Racing 3 MOD", image: "https://i.postimg.cc/7ZfVD3Gm/Real-Racing-3-v3-3-0-mod-apk.jpg", category: "Racing", rating: 4.7, size: "1.1 GB", downloads: "10M+", multiplayer: true, description: "Real Racing 3 MOD brings true-to-life racing simulation to your mobile device with everything unlocked.", trailerId: "2_1T8-3S-sU", reviews: [{ user: "SimRacer", rating: 5, text: "The physics are so realistic. A true simulation experience." }, { user: "TrackDayHero", rating: 5, text: "A huge selection of cars and real-world tracks. The best racing sim on mobile."}] },
-            { title: "CSR Racing 2 MOD", image: "https://i.postimg.cc/SQfVGNb7/CSR-Racing-2.jpg", category: "Racing", rating: 4.9, size: "2.6 GB", downloads: "8M+", multiplayer: true, description: "Dominate the drag racing scene with CSR Racing 2 MOD. This hyper-realistic racing game features meticulously detailed supercars and unlimited resources.", trailerId: "O9cAwv_Lq_w", reviews: [{ user: "DragKing", rating: 5, text: "The graphics are unbelievable. The mod makes it easy to get the best cars." }, {user: "Tuner", rating: 5, text: "Finally I can afford the best upgrades and tune my car to perfection. This mod is essential."}] },
-            { title: "CarX Street MOD", image: "https://i.postimg.cc/d3tMcYgf/carx.jpg", category: "Racing", rating: 4.8, size: "1.2 GB", downloads: "6.3M", multiplayer: true, description: "Embrace the freedom of being a street racer in the dynamic open world of CarX Street with this unlimited cash MOD.", trailerId: "gSgotU1-pL4", reviews: [{ user: "DriftMaster", rating: 5, text: "The best drifting physics on mobile. The open world is huge!" }, {user: "StreetKing", rating: 5, text: "Cruising with friends online is the best part. The community is awesome."}] },
-            { title: "Rematch MOD", image: "https://i.postimg.cc/pXrN0Pfh/52610a-baa294771ed14ac9bd9c8bba8ac8dfb6-mv2.avif", category: "Action", rating: 4.5, size: "850 MB", downloads: "1.5M", multiplayer: true, description: "Challenge your rivals in Rematch, an intense fighting game with a unique cast of characters. This MOD unlocks all fighters from the start.", trailerId: null, reviews: [{ user: "Fighter", rating: 4, text: "Fun fighting game with cool characters. A bit grindy without the mod." }, {user: "ComboKing", rating: 5, text: "Having all characters unlocked lets me find my main without the grind. Great mod!"}] },
-            { title: "GTA Vice City MOD", image: "http://t0.gstatic.com/images?q=tbn:ANd9GcS3Ft-oM67UR15mSle49VHnUqLeq1kodsEQeiNQiO_hY-tIyDkoz6U7QvoWy6dBNTGj7IV8EQ", category: "Action", rating: 4.8, size: "1.4 GB", downloads: "6.8M", multiplayer: false, description: "Return to the 1980s in this classic open-world game. Explore Vice City, a huge urban sprawl ranging from the beach to the swamps and the glitz to the ghetto.", trailerId: "f_43z-I_d0s", reviews: [{ user: "80sKid", rating: 5, text: "All the nostalgia in my pocket! The mod runs smoothly and the vibe is perfect." }, { user: "CityCruiser", rating: 4, text: "Amazing to have this classic on the go. Controls take a little getting used to but it's worth it." }] },
-            { title: "BeamNG.drive Mobile (Beta)", image: "https://images.sftcdn.net/images/t_app-icon-m/p/7d0609b1-0194-4eb2-9307-12f91266dc7b/3469311303/beamng-drive-mobile-logo", category: "Simulation", rating: 4.9, size: "1.9 GB", downloads: "2.1M", multiplayer: false, description: "A realistic, immersive driving game offering near-limitless possibilities. Our soft-body physics engine simulates every component of a vehicle in real time, resulting in realistic, dynamic behavior.", trailerId: "m_sEsgNcA54", reviews: [{ user: "CrashTest", rating: 5, text: "The soft-body physics are incredible! Never seen anything like it on mobile." }, { user: "SimulatorFan", rating: 5, text: "Endless fun just crashing cars. The realism is mind-blowing." }] },
-            { title: "Spider-Man Unlimited MOD", image: "https://upload.wikimedia.org/wikipedia/en/a/aa/Spider-Man_Unlimited.png", category: "Action", rating: 4.7, size: "950 MB", downloads: "9.1M", multiplayer: true, description: "Swing into a hand-drawn, action-packed arcade adventure game that feels like it came straight from the Marvel comics. Unite every hero in the Spider-Verse against the ultimate threat!", trailerId: "GIIsM924Uus", reviews: [{ user: "SpiderFan", rating: 5, text: "Collecting all the different Spider-Men is so cool! The art style is amazing."}, { user: "HeroCollector", rating: 5, text: "The mod makes it easy to get all the rare spiders. Finally, my collection is complete!"}] },
-            { title: "Hitman Sniper MOD", image: "https://lh3.googleusercontent.com/PYlSCwbwrv6JFzp0-KtITrrN2VK4iCdEYK_9yBiADhV_vR5V-cAzrQcdDJu_rUz8BgMxU0aQpgEaypMneKXp", category: "Action", rating: 4.7, size: "800 MB", downloads: "11M", multiplayer: false, description: "Step into the shoes of Agent 47 in Hitman: Sniper and discover the most compelling sniper experience on mobile, now with all rifles unlocked.", trailerId: "c8E1wY8-c5M", reviews: [{ user: "Agent47", rating: 5, text: "Perfectly executed sniper game. The puzzles and objectives are very creative."}] },
-            { title: "God Of War 3 Mobile (Beta)", image: "https://i.postimg.cc/qRdgbrH2/god-of-war-3-wallpaper-kg2nhyxsdeicjjyp.webp", category: "Action", rating: 4.8, size: "2.7 GB", downloads: "3.3M", multiplayer: false, description: "In the end, there will be only chaos. The mobile beta adaptation of the critically acclaimed God of War 3.", trailerId: "p_mICl_1c2c", reviews: [{ user: "KratosIsKing", rating: 5, text: "The epic scale of the boss battles is here! So brutal and satisfying." }, { user: "GodSlayer", rating: 5, text: "Unbelievable that this runs on a phone. The combat is just as good as the original."}] },
-            { title: "Efootball 2024 MOD", image: "https://i.postimg.cc/Kv9kZCty/images-3.jpg", category: "Sports", rating: 4.6, size: "2.1 GB", downloads: "16M", multiplayer: true, description: "The latest installment of the popular football simulation game. Experience the most realistic soccer gameplay on mobile with this MOD for unlimited currency.", trailerId: "c8E1wY8-c5M", reviews: [{ user: "SoccerStar", rating: 5, text: "The player animations and ball physics are the best they've ever been." }, { user: "Manager", rating: 5, text: "Building my dream team has never been easier. Great mod!"}] },
-            { title: "Watch Dogs 2 Mobile (Beta)", image: "https://image.api.playstation.com/cdn/EP0001/CUSA06328_00/0oRMkLrk8IoCyGQfYpdIzVF5dzPP6cM4.png", category: "Action", rating: 4.6, size: "2.6 GB", downloads: "4.1M", multiplayer: true, description: "Play as Marcus Holloway, a brilliant young hacker living in the birthplace of the tech revolution, the San Francisco Bay Area. Experience it now in this mobile beta.", trailerId: "hh9x4NqW0Dw", reviews: [{ user: "DedSecAgent", rating: 5, text: "Hacking everything in San Francisco from my phone is awesome. The world is so much fun to play with." }, { user: "Techie", rating: 5, text: "Runs better than I expected. It's the full Watch Dogs 2 experience." }] },
-            { title: "Forza Horizon 5 Mobile (Beta)", image: "https://sm.ign.com/ign_nordic/cover/f/forza-hori/forza-horizon-5_5jjv.jpg", category: "Racing", rating: 4.9, size: "2.9 GB", downloads: "5.5M", multiplayer: true, description: "Your ultimate Horizon adventure awaits! Explore the vibrant and ever-evolving open world landscapes of Mexico with limitless, fun driving action in this ambitious mobile beta.", trailerId: "FYH9n37B7Yw", reviews: [{ user: "HorizonFan", rating: 5, text: "Mexico looks stunning on my device. The sense of speed is incredible." }, { user: "CarCollector", rating: 5, text: "So many cars to choose from and the world is huge. The best open-world racer." }] },
-            { title: "GTA San Andreas MOD", image: "http://t0.gstatic.com/images?q=tbn:ANd9GcQKFrwPJcaQVe6qNoplr5y4BR3CGOjZmGpwiRNka1oVz1ci9Y12r4YfPTjC2v6TgUF0iQbh_g", category: "Action", rating: 4.9, size: "1.8 GB", downloads: "22M", multiplayer: false, description: "Five years ago, Carl Johnson escaped from the pressures of life in Los Santos, San Andreas, a city tearing itself apart with gang trouble, drugs and corruption. This MOD includes Cleo scripts.", trailerId: "f_43z-I_d0s", reviews: [{ user: "CJ", rating: 5, text: "Ah shit, here we go again. The best GTA, now in my pocket." }, { user: "Grove4Life", rating: 5, text: "The story, the world, the radio stations... it's all perfect. 10/10 classic." }] },
-            { title: "Dream League Soccer MOD", image: "https://m.media-amazon.com/images/I/41GZrXhv0BL.jpg", category: "Sports", rating: 4.8, size: "400 MB", downloads: "19M", multiplayer: true, description: "Dream League Soccer is here, and it’s better than ever! Soccer as we know it has changed, and this is YOUR chance to build THE best team on the planet with unlimited coins.", trailerId: "89OY_Xg_7pI", reviews: [{ user: "DreamManager", rating: 5, text: "Building my dream team with this mod is so easy and fun!"}] },
-            { title: "Dragon Ball Z Dokkan Battle MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/dragon-ball-z-dokkan-battle-150x150.jpg", category: "Action", rating: 4.7, size: "450 MB", downloads: "7M", multiplayer: true, description: "A brand-new chapter in the Dragon Ball Z saga has arrived! This MOD gives you high attack and god mode to dominate the battlefield.", trailerId: "kIDOv_6-p2I", reviews: [{ user: "Z-Fighter", rating: 5, text: "The mod makes getting the best characters a breeze. My teams are unstoppable!"}] },
-            { title: "NBA 2K23 MOD", image: "https://assets.2k.com/1a6ngf98576c/4oCqsi6G8MfDjHKhjhBtrP/d43164117e00d78c0cf85dfafeb3b906/NBA23-WEBSITE-ATHLETE_HUB-MODULE1-STD_THUMBNAIL-828x828.jpg", category: "Sports", rating: 4.8, size: "1.6 GB", downloads: "6.5M", multiplayer: true, description: "NBA 2K23 continues to push the limits of what's possible in a basketball game, with best-in-class graphics and gameplay and an immersive open-world 'Neighborhood'.", trailerId: "hf21TpyF_Wc", reviews: [{user: "Baller", rating: 5, text: "Graphics are insane for a mobile game. Plays just like the console version."}] },
-            { title: "Car Parking Multiplayer MOD", image: "https://i.git99.com/upload/android/icon/2024/05/22/abccb969549318afaea4e78fb72cad3a.jpg", category: "Simulation", rating: 4.9, size: "750 MB", downloads: "28M", multiplayer: true, description: "More than just parking: open-world multiplayer mode, car tuning, free walking! This MOD unlocks all cars and gives you unlimited money.", trailerId: "uA424Kz0-CU", reviews: [{ user: "ProParker", rating: 5, text: "So much more than just parking. The online mode is hilarious fun." }, { user: "TunerGod", rating: 5, text: "All cars unlocked! I can finally build my dream garage."}] },
-            { title: "Minecraft MOD", trending: true, image: "https://preview.redd.it/avjal33hpqo61.png?width=512&format=png&auto=webp&s=b652d83347448df74c8ba61c17b322e686ee32a4", category: "Adventure", rating: 5.0, size: "950 MB", downloads: "50M+", multiplayer: true, description: "Explore infinite worlds and build everything from the simplest of homes to the grandest of castles. This MOD unlocks all texture packs and skins.", trailerId: "MmB9b5njVbA", reviews: [{ user: "Steve", rating: 5, text: "The ultimate sandbox game. The freedom is incredible." }, { user: "Builder", rating: 5, text: "I've built entire cities. The only limit is your imagination. Works perfectly on mobile." }] },
-            { title: "Farming Simulator 23 MOD", image: "https://assets-prd.ignimgs.com/2023/05/01/farmingsim23-1682967114647.jpg", category: "Simulation", rating: 4.7, size: "1.1 GB", downloads: "3.8M", multiplayer: true, description: "Step into the exciting world of farming with Farming Simulator 23! This MOD gives you a head start with unlimited money.", trailerId: "ycoVq_s_kR8", reviews: [{ user: "FarmLife", rating: 5, text: "So relaxing and addictive. The new machinery is amazing."}, { user: "RichFarmer", rating: 5, text: "I can finally afford the biggest tractor! This mod makes farming way more fun."}] },
-            { title: "Euro Truck Simulator Mobile (Beta)", image: "https://portsized.fun/etsicon.png", category: "Simulation", rating: 4.8, size: "1.3 GB", downloads: "4.2M", multiplayer: false, description: "The king of the road is back! Travel across Europe as king of the road, a trucker who delivers important cargo across impressive distances! Experience the beta on mobile.", trailerId: "xlP4w-59oF4", reviews: [{ user: "Trucker", rating: 5, text: "The open road on my phone. Incredibly relaxing and detailed. A must-have for sim fans." }] },
-            { title: "Assetto Corsa Mobile (Beta)", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlAVOfsF2cxZAxOEMlBN8FxG8xZW8aO5IVsA&s", category: "Racing", rating: 4.9, size: "2.5 GB", downloads: "3.9M", multiplayer: true, description: "Assetto Corsa features an advanced DirectX 11 graphics engine that recreates an immersive environment and realistic physics. Experience the acclaimed racing simulator in this mobile beta.", trailerId: "zRNCz_1s4yA", reviews: [{ user: "SimDrifter", rating: 5, text: "The best physics on any mobile racing game, period. Unlocks all the best cars for drifting." }] },
-            { title: "CG Moto Online MOD", image: "https://image.winudf.com/v2/image1/Y29tLlB0cm9uUGxheURpZ2l0YWwuQ0dNb3RvT25saW5lX2ljb25fMTcyMzMyNTk3NV8wMjM/icon.webp?w=280&fakeurl=1&type=.webp", category: "Racing", rating: 4.5, size: "600 MB", downloads: "2.5M", multiplayer: true, description: "The best motorcycle racing game! Race with your friends in this amazing online multiplayer game. This MOD unlocks all bikes.", trailerId: null, reviews: [{user: "Rider", rating: 5, text: "So much fun racing with friends. The bike selection is great with the mod."}] },
-            { title: "Subway Surfers MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/subway-surfers-150x150.jpg", category: "Arcade", rating: 4.8, size: "350 MB", downloads: "100M+", multiplayer: false, description: "DASH as fast as you can! DODGE the oncoming trains! This MOD provides unlimited coins and keys so you can unlock everything.", trailerId: "f_43z-I_d0s", reviews: [{user: "HighScorer", rating: 5, text: "Unlimited keys and hoverboards! My high score is unbeatable now."}] },
-            { title: "Monopoly MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/monopoly-board-game-classic-about-real-estate-150x150.jpg", category: "Board", rating: 4.7, size: "480 MB", downloads: "8.5M", multiplayer: true, description: "Roll the dice and buy, sell, build, and scheme your way to riches in MONOPOLY. This MOD unlocks all the premium boards and tokens.", trailerId: "uuhY_1abg3A", reviews: [{user: "MrMonopoly", rating: 5, text: "Playing with all the cool boards is awesome. Fun to play with friends."}] },
-            { title: "PPSSPP Gold (Emulator)", image: "https://an1.com/uploads/posts/2023-04/1682881529_ppsspp-gold.png", category: "Emulator", rating: 4.9, size: "50 MB", downloads: "15M", multiplayer: false, description: "Play PSP games on your Android device, at high definition with extra features! PPSSPP is the original and best PSP emulator for Android.", trailerId: "uuhY_1abg3A", reviews: [{user: "RetroGamer", rating: 5, text: "The best way to play my favorite PSP games on the go. Works flawlessly."}] },
-            { title: "8 Ball Pool MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/8-ball-pool-150x150.jpg", category: "Sports", rating: 4.8, size: "120 MB", downloads: "40M+", multiplayer: true, description: "The World's #1 Pool game! This MOD features an unlimited guideline, so you'll never miss a shot.", trailerId: "H-SjEtI4E5s", reviews: [{user: "PoolShark", rating: 5, text: "The extended guideline is a game-changer. I'm winning every match!"}] },
-            { title: "Coin Master MOD", image: "https://modyolo.com/wp-content/uploads/2021/10/coin-master-apk-150x150.png", category: "Casual", rating: 4.6, size: "150 MB", downloads: "35M+", multiplayer: true, description: "Join your Facebook friends and millions of players around the world in attacks, spins and raids to build your viking village to the top! This MOD provides unlimited spins.", trailerId: "c-pG_pZt-aU", reviews: [{user: "VikingKing", rating: 5, text: "Unlimited spins means I can build my village so fast. Raiding has never been more fun."}] },
-            { title: "OuO Game MOD", image: "https://image.winudf.com/v2/image1/Y29tLmVscGF0cml4Zi5PdU9faWNvbl8xNTY2OTk5Mjg1XzAxMg/icon.webp?w=280&fakeurl=1&type=.webp", category: "Casual", rating: 4.9, size: "25 MB", downloads: "5M", multiplayer: false, description: "OuO is a kawaii face application that you can interact with by touching the screen (you can poke its eye to make him wink, tap him in the forehead, squeeze its cheeks, and a lot more!)", trailerId: null, reviews: [{user: "KawaiiFan", rating: 5, text: "So cute and fun to poke at. A great way to pass the time."}] },
-            { title: "College Brawl MOD", image: "https://i.ibb.co/XL2Fj7Y/collegebrawl.png", category: "Action", rating: 4.5, size: "200 MB", downloads: "4.8M", multiplayer: false, description: "An action-packed beat 'em up game set in a college campus. Fight your way through various rivals and bosses. All levels are unlocked in this MOD.", trailerId: null, reviews: [{user: "Brawler", rating: 5, text: "Classic beat 'em up action. Fun and challenging."}] },
-            { title: "Hailey's Adventure MOD", image: "https://mobdroplus.com/wp-content/uploads/2022/12/Haileys-Treasure-Adventure-apk.png", category: "Adventure", rating: 4.6, size: "310 MB", downloads: "3.1M", multiplayer: false, description: "Join Hailey on an epic treasure hunting adventure. Solve puzzles, explore mysterious locations, and uncover hidden secrets. This MOD unlocks hints.", trailerId: null, reviews: [{user: "Puzzler", rating: 5, text: "A great little adventure game with a charming story."}] },
-            { title: "Learn The Heart MOD", image: "https://images.sftcdn.net/images/t_app-icon-m/p/3b18a092-6db6-47f7-bd8d-e8ade3e3575e/1591711617/learn-the-heart-logo", category: "Simulation", rating: 4.5, size: "250 MB", downloads: "2.9M", multiplayer: false, description: "A unique simulation game about life, relationships, and emotions. Make choices that will shape your character's destiny.", trailerId: null, reviews: [{user: "Storyteller", rating: 5, text: "A very unique and emotional game. The choices really matter."}] },
-            { title: "Syahata A Bad Day MOD", image: "https://techloky.com/public/uploads/images/Syahata_A_Bad_Day.jpg", category: "Action", rating: 4.5, size: "180 MB", downloads: "3.4M", multiplayer: false, description: "It's a bad day, and you have to fight your way out. An intense action game with a unique art style and god mode enabled.", trailerId: null, reviews: [{user: "ActionHero", rating: 5, text: "Fast-paced and stylish. The art is amazing."}] },
-            { title: "Survive MOD", image: "https://techloky.com/public/uploads/images/Survive.jpg", category: "Survival", rating: 5.0, size: "400 MB", downloads: "4.0M", multiplayer: false, description: "Stranded and alone, you must use your skills to survive in a harsh wilderness. Gather resources, craft tools, and build shelter. This MOD unlocks all crafting recipes.", trailerId: null, reviews: [{user: "Survivor", rating: 5, text: "A challenging and rewarding survival game. Very immersive."}] },
-            { title: "One Piece: Fighting Path MOD", image: "https://img.utdstc.com/icon/79a/7a3/79a7a35b0f8d775d97b6d89761bcdb478c6c2ef7941cae0de952cde8207bf355:200", category: "Action", rating: 4.8, size: "1.7 GB", downloads: "8.2M", multiplayer: true, description: "An officially licensed One Piece 3D action-adventure game. Relive the story of the Straw Hat pirates and battle against formidable foes. All characters unlocked.", trailerId: "U3OQ1Q_4-cE", reviews: [{user: "StrawHat", rating: 5, text: "This is the One Piece game I've been waiting for! The combat is amazing."}] },
-            { title: "Ben 10: Battle for the Omnitrix MOD", image: "https://modgila.com/uploads/2024/1/ben10-battle-for-the-omnitrix-1.jpg", category: "Action", rating: 4.5, size: "550 MB", downloads: "6.1M", multiplayer: false, description: "Help Ben 10 fight off aliens and protect the Earth in this exciting action game. Transform into different alien heroes and use their unique powers. All aliens unlocked.", trailerId: "u_Y5oXbiG_s", reviews: [{user: "OmnitrixWielder", rating: 5, text: "It's hero time! So fun transforming into all the different aliens."}] },
-            { title: "Drift Max Pro MOD", image: "https://i.postimg.cc/G29g5WPh/9aaca89247c74854774d67da1c0154b91d116de64e4bb96d91aca7fdac61268d-200.jpg", category: "Racing", rating: 4.8, size: "650 MB", downloads: "13M", multiplayer: true, description: "The ultimate drifting game, with realistic physics and a wide variety of cars and tracks to choose from. This MOD provides unlimited money for upgrades.", trailerId: "y1z-BwAnQ5M", reviews: [{user: "DriftKing", rating: 5, text: "The best drifting physics on mobile. So satisfying to get a perfect drift."}] },
-            { title: "Forza Motorsport Mobile (Beta)", image: "https://i.postimg.cc/9FXbg5W3/Forza-Motorsport-Mobile.jpg", category: "Racing", rating: 4.9, size: "2.8 GB", downloads: "4.9M", multiplayer: true, description: "Experience the thrill of professional motorsport with this stunning mobile beta. Compete in a variety of events with a huge selection of cars.", trailerId: "k94K_pd1DBc", reviews: [{user: "ProRacer", rating: 5, text: "The graphics and physics are console quality. A true racing simulator."}] },
-            { title: "WRC 10 Mobile (Beta)", image: "https://i.postimg.cc/4N59MmWw/WRC-TGR.jpg", category: "Racing", rating: 4.6, size: "1.9 GB", downloads: "3.2M", multiplayer: false, description: "The official game of the FIA World Rally Championship. Race on challenging rally stages from around the world in this mobile beta.", trailerId: "q5Pqon3ZgBw", reviews: [{user: "RallyDriver", rating: 5, text: "Incredibly challenging and rewarding. The stages are brutal but fun."}] },
-            { title: "Need for Speed Hot Pursuit Mobile (Beta)", image: "https://i.postimg.cc/3wy0d9Yb/Need-For-Speed-Key-Art-Brendan-Mc-Caffrey.jpg", category: "Racing", rating: 4.8, size: "2.0 GB", downloads: "7.1M", multiplayer: true, description: "Experience the thrill of the chase and the rush of escape in this Need for Speed™ Hot Pursuit beta.", trailerId: "AfsR_z3p03Q", reviews: [{user: "RacerX", rating: 5, text: "The thrill of the chase is real! Playing as a cop or a racer is a blast."}] },
-            { title: "GRID Autosport Mobile (Beta)", image: "https://i.postimg.cc/RZpnS25H/GRID.jpg", category: "Racing", rating: 4.8, size: "2.7 GB", downloads: "4.3M", multiplayer: true, description: "Ignite your high-speed career as a pro-racer in this GRID Autosport beta, engineered to deliver an irresistible mix of simulation handling and arcade thrills.", trailerId: "P4e6fA-hA28", reviews: [{user: "GRIDMaster", rating: 5, text: "A great mix of sim and arcade racing. The variety of disciplines is fantastic."}] },
-            { title: "CarX Drift Racing Online MOD", image: "https://i.postimg.cc/0yywqP3v/Car-X-Drift-Racing-2.jpg", category: "Racing", rating: 4.6, size: "1.5 GB", downloads: "9.8M", multiplayer: true, description: "CarX Drift Racing is a racing simulator dedicated to the motorsport of drifting. This MOD unlocks all cars and tracks.", trailerId: "y1z-BwAnQ5M", reviews: [{user: "Drifter", rating: 5, text: "Endless hours of fun tuning cars and hitting the track. The online lobbies are great."}] }
+            { 
+                title: "Grand Theft Auto V Mobile (Beta)", 
+                trending: true, 
+                image: "https://i.ibb.co/FzQ7s9s/gta5.jpg", 
+                category: "Action", 
+                rating: 4.9, 
+                size: "2.1 GB", 
+                downloads: "5.7M", 
+                multiplayer: true, 
+                version: "1.2.3",
+                updated: "2025-05-15",
+                description: "Experience the acclaimed open-world action game on your mobile device. This beta version brings the complete GTA V experience with enhanced graphics, all missions unlocked, and unlimited money. Explore the vast world of Los Santos and Blaine County with improved mobile controls and optimized performance.", 
+                features: [
+                    "Complete story mode with all missions unlocked",
+                    "Unlimited money and resources",
+                    "All vehicles and weapons available",
+                    "Optimized for mobile devices",
+                    "Enhanced graphics settings"
+                ],
+                trailerId: "QkkoHAzjnUs", 
+                reviews: [
+                    { user: "GamerX123", rating: 5, text: "Absolutely stunning port! Runs surprisingly well on my phone." },
+                    { user: "MobileMaverick", rating: 4, text: "The controls are a bit tricky at first, but you get used to them. It's the full GTA V experience!" }, 
+                    { user: "CashKing", rating: 5, text: "Unlimited money makes this the most fun version of GTA V. No grinding, just pure chaos!"}
+                ] 
+            },
+            { 
+                title: "Spider-Man 2 Mobile (Beta)", 
+                trending: true, 
+                image: "https://i.ibb.co/McjvCfj/spiderman2.png", 
+                category: "Action", 
+                rating: 4.7, 
+                size: "1.8 GB", 
+                downloads: "8.2M", 
+                multiplayer: false, 
+                version: "1.1.5",
+                updated: "2025-04-22",
+                description: "Swing through the streets of New York City as Spider-Man in this incredible mobile adaptation. Take on iconic villains, complete thrilling missions, and master Spider-Man's abilities with enhanced mobile controls and graphics.", 
+                features: [
+                    "Open-world New York City to explore",
+                    "All suits and abilities unlocked",
+                    "Enhanced combat system for mobile",
+                    "High-quality graphics optimized for mobile"
+                ],
+                trailerId: "nq1M_Wc4FIc", 
+                reviews: [
+                    { user: "WebHead", rating: 5, text: "Swinging through the city feels incredible. A must-have for any Spider-Man fan." }, 
+                    { user: "ActionJunkie", rating: 5, text: "The combat is fluid and the graphics are top-notch for a mobile game. 10/10"}, 
+                    { user: "GraphicsGuru", rating: 5, text: "I can't believe how good this looks on my phone. It's like a console game in my hands."}
+                ] 
+            },
+            { 
+                title: "Counter Strike Mobile (Beta)", 
+                image: "https://i.postimg.cc/mrqCkcJb/wp7881077-csgo-logo-wallpapers.jpg", 
+                category: "Action", 
+                rating: 4.9, 
+                size: "1.9 GB", 
+                downloads: "3.1M", 
+                multiplayer: true, 
+                version: "1.0.8",
+                updated: "2025-03-18",
+                description: "Experience the intense tactical FPS action of Counter Strike on your mobile device. This beta brings the classic gameplay to a new platform with optimized controls and graphics.", 
+                features: [
+                    "Classic CS gameplay on mobile",
+                    "All weapons and maps unlocked",
+                    "Competitive matchmaking system",
+                    "Optimized controls for touchscreens"
+                ],
+                trailerId: "a9d7ksou_44", 
+                reviews: [
+                    { user: "ProGamer", rating: 5, text: "Best mobile FPS out there. The classic gameplay is perfectly translated."}, 
+                    { user: "Tacticool", rating: 5, text: "The definitive tactical shooter experience, now portable. A must for any CS fan."}, 
+                    { user: "Headshot", rating: 5, text: "The controls are surprisingly tight for a mobile shooter. Very impressive." }
+                ] 
+            },
+            { 
+                title: "The Last of Us Mobile (Beta)", 
+                image: "https://i.ibb.co/tLx5P3D/tlou-1.jpg", 
+                category: "Adventure", 
+                rating: 4.9, 
+                size: "2.5 GB", 
+                downloads: "2.9M", 
+                multiplayer: false, 
+                version: "1.3.0",
+                updated: "2025-06-10",
+                description: "Survive in a post-apocalyptic world overrun by infected creatures. Play as Joel and Ellie as they journey across a devastated America in this ambitious mobile beta with enhanced graphics and controls.", 
+                features: [
+                    "Complete story campaign",
+                    "Enhanced graphics for mobile",
+                    "All weapons and upgrades unlocked",
+                    "Optimized touch controls"
+                ],
+                trailerId: "W01L70IGBgE", 
+                reviews: [
+                    { user: "StoryLover", rating: 5, text: "The emotional story hits just as hard on mobile. A masterpiece."}, 
+                    { user: "Survivalist", rating: 5, text: "It runs so well on my device. The tension and atmosphere are perfectly preserved."}
+                ] 
+            },
+            { 
+                title: "Horizon Zero Dawn Mobile (Beta)", 
+                image: "https://i.ibb.co/n0tBVMs/horizon.jpg", 
+                category: "Adventure", 
+                rating: 4.6, 
+                size: "2.2 GB", 
+                downloads: "3.1M", 
+                multiplayer: false, 
+                version: "1.2.1",
+                updated: "2025-05-28",
+                description: "Explore a lush, post-apocalyptic world inhabited by mysterious mechanized creatures. This mobile beta lets you hunt machines on the go with enhanced controls and graphics.", 
+                features: [
+                    "Open-world exploration",
+                    "All weapons and outfits unlocked",
+                    "Machine hunting gameplay",
+                    "Optimized for mobile performance"
+                ],
+                trailerId: "wzx96gYA8ek", 
+                reviews: [
+                    { user: "Explorer", rating: 5, text: "The world is beautiful and hunting machines is so much fun."}, 
+                    { user: "AloyFan", rating: 5, text: "Aloy's adventure is amazing on mobile. The controls are intuitive and the world is breathtaking."}
+                ] 
+            },
+            { 
+                title: "Red Dead Redemption 2 Mobile (Beta)", 
+                image: "https://i.ibb.co/kDmVtwv/rdr2-1.jpg", 
+                category: "Action", 
+                rating: 5.0, 
+                size: "2.8 GB", 
+                downloads: "2.8M", 
+                multiplayer: true, 
+                version: "1.4.2",
+                updated: "2025-06-15",
+                description: "An epic tale of honor and loyalty at the dawn of the modern age. Live the life of an outlaw in a vast, atmospheric open world, now in an experimental mobile beta with all content unlocked.", 
+                features: [
+                    "Complete story mode",
+                    "All weapons and horses unlocked",
+                    "Open-world exploration",
+                    "Multiplayer mode included"
+                ],
+                trailerId: "eaW0tYpxyp0", 
+                reviews: [
+                    { user: "Cowboy", rating: 5, text: "Incredible detail and an amazing story. Can't believe it's on mobile." }, 
+                    { user: "Wanderer", rating: 5, text: "The world feels so alive. I spend hours just exploring. This is a technical marvel!" }
+                ] 
+            },
+            { 
+                title: "Fortnite Mobile MOD", 
+                trending: true, 
+                image: "https://i.ibb.co/W5j9ZXx/fortnite.jpg", 
+                category: "Action", 
+                rating: 4.5, 
+                size: "1.9 GB", 
+                downloads: "15M+", 
+                multiplayer: true, 
+                version: "2.0.3",
+                updated: "2025-06-20",
+                description: "The ultimate battle royale experience, now with premium mods for mobile. Includes unlocked skins, unlimited V-Bucks, and enhanced aim assist for the best Fortnite experience on mobile.", 
+                features: [
+                    "All skins and cosmetics unlocked",
+                    "Unlimited V-Bucks",
+                    "Enhanced aim assist",
+                    "Optimized performance"
+                ],
+                trailerId: "2gUtfBmw86Y", 
+                reviews: [
+                    { user: "VBucksKing", rating: 5, text: "The mod works perfectly! I have all the skins I ever wanted."}, 
+                    { user: "VictoryRoyale", rating: 5, text: "Finally got the Victory Royale thanks to the enhanced features. This is awesome!"}
+                ] 
+            },
+            { 
+                title: "Roblox Premium MOD", 
+                image: "https://i.ibb.co/k92hJwF/roblox.png", 
+                category: "Adventure", 
+                rating: 4.7, 
+                size: "980 MB", 
+                downloads: "20M+", 
+                multiplayer: true, 
+                version: "2.5.1",
+                updated: "2025-05-10",
+                description: "The ultimate virtual universe that lets you create, share experiences, and be anything you can imagine. This MOD unlocks premium features for free including Robux and exclusive items.", 
+                features: [
+                    "Unlimited Robux",
+                    "All premium items unlocked",
+                    "Access to exclusive games",
+                    "No ads"
+                ],
+                trailerId: "eAvX1_A2PNU", 
+                reviews: [
+                    { user: "Creator", rating: 5, text: "So many games to play, and I can create my own. Endless fun!" }, 
+                    { user: "RobuxRich", rating: 5, text: "The premium benefits make the experience so much better. Highly recommend!" }
+                ] 
+            },
+            { 
+                title: "GTA 4 Mobile (Beta)", 
+                image: "https://i.ibb.co/Mcfhc3g/gta4-1.jpg", 
+                category: "Action", 
+                rating: 4.8, 
+                size: "1.7 GB", 
+                downloads: "3.5M", 
+                multiplayer: false, 
+                version: "1.1.9",
+                updated: "2025-04-15",
+                description: "For Niko Bellic, fresh off the boat from Europe, it is the hope he can escape from his past. Explore the gritty and realistic world of Liberty City in this mobile beta with all missions unlocked.", 
+                features: [
+                    "Complete story mode",
+                    "All weapons and vehicles unlocked",
+                    "Liberty City to explore",
+                    "Optimized controls"
+                ],
+                trailerId: "f_43z-I_d0s", 
+                reviews: [
+                    { user: "NikoFan", rating: 5, text: "The story is amazing. A true classic." }, 
+                    { user: "LibertyCityLover", rating: 5, text: "The dark, gritty atmosphere of Liberty City is perfectly captured. This port is a dream come true."}
+                ] 
+            },
+            { 
+                title: "FIFA 24 Mobile (Beta)", 
+                image: "https://i.postimg.cc/bN6TKCJZ/FC-24-Mobile.jpg", 
+                category: "Sports", 
+                rating: 4.9, 
+                size: "1.8 GB", 
+                downloads: "15M+", 
+                multiplayer: true, 
+                version: "1.0.4",
+                updated: "2025-06-01",
+                description: "Experience the beautiful game with this beta version of FIFA 24 for mobile. This version includes all the latest teams, players, and stadiums with enhanced graphics and gameplay.", 
+                features: [
+                    "All teams and players unlocked",
+                    "Ultimate Team mode with unlimited coins",
+                    "Enhanced graphics and animations",
+                    "Career mode included"
+                ],
+                trailerId: "XhP3Xh4LMAo", 
+                reviews: [
+                    { user: "FootballFan", rating: 5, text: "The gameplay feels so realistic. Best soccer game on mobile." }, 
+                    { user: "UltimateTeamer", rating: 5, text: "All the players I want for my Ultimate Team. It's a game changer!"}
+                ] 
+            },
+            { 
+                title: "PUBG Mobile MOD", 
+                image: "https://i.postimg.cc/TwPBXLxx/PUBG.jpg", 
+                category: "Action", 
+                rating: 4.8, 
+                size: "1.5 GB", 
+                downloads: "25M+", 
+                multiplayer: true, 
+                version: "2.3.0",
+                updated: "2025-06-18",
+                description: "Dive into intense battle royale action with this enhanced version of PUBG Mobile. This mod features advanced aiming assistance and unlimited UC for the ultimate PUBG experience.", 
+                features: [
+                    "Unlimited UC",
+                    "Enhanced aim assist",
+                    "All skins unlocked",
+                    "Optimized performance"
+                ],
+                trailerId: "uCd6tbUAy6o", 
+                reviews: [
+                    { user: "WinnerWinner", rating: 5, text: "The aim assist is a game changer. Chicken dinners every night!" }, 
+                    { user: "UCCollector", rating: 5, text: "Got all the rare skins with the unlimited UC. My character looks amazing!"}
+                ] 
+            },
+            { 
+                title: "Call of Duty Mobile MOD", 
+                image: "https://i.postimg.cc/ZnGQ3wdY/cod.jpg", 
+                category: "Action", 
+                rating: 4.9, 
+                size: "2.0 GB", 
+                downloads: "30M+", 
+                multiplayer: true, 
+                version: "1.0.7",
+                updated: "2025-06-12",
+                description: "Experience the ultimate FPS action on mobile with Call of Duty Mobile. This version includes unlimited CP and all weapons unlocked for the complete COD experience.", 
+                features: [
+                    "Unlimited CP",
+                    "All weapons and operators unlocked",
+                    "Battle Royale and Multiplayer modes",
+                    "Enhanced graphics"
+                ],
+                trailerId: "_7hDcWv_81s", 
+                reviews: [
+                    { user: "SniperGod", rating: 5, text: "Fast-paced action and great maps. The mod makes it even better." }, 
+                    { user: "CPMaster", rating: 5, text: "Unlimited CP means I can get every battle pass and lucky draw. This is the best CoD Mobile experience." }
+                ] 
+            },
+            { 
+                title: "Genshin Impact MOD", 
+                image: "https://i.postimg.cc/kM2XQDbL/Genshin-Impact-Mobile.jpg", 
+                category: "Adventure", 
+                rating: 4.7, 
+                size: "2.2 GB", 
+                downloads: "18M+", 
+                multiplayer: true, 
+                version: "3.5.1",
+                updated: "2025-06-05",
+                description: "Embark on a magical adventure in the world of Teyvat with this enhanced version of Genshin Impact. This mod gives you unlimited Primogems and all characters unlocked.", 
+                features: [
+                    "Unlimited Primogems",
+                    "All characters unlocked",
+                    "No resin system limitations",
+                    "Enhanced graphics"
+                ],
+                trailerId: "HLUY1nICASI", 
+                reviews: [
+                    { user: "WaifuCollector", rating: 5, text: "Unlimited primogems mean I can get all the characters I want. This is amazing!" }, 
+                    { user: "TeyvatExplorer", rating: 5, text: "Exploring the world without worrying about resin is so freeing. The mod makes the game pure fun."}
+                ] 
+            },
+            { 
+                title: "Asphalt 9 Legends MOD", 
+                image: "https://i.postimg.cc/j2cXqv4k/Asphalt-Legends-Unite.jpg", 
+                category: "Racing", 
+                rating: 4.6, 
+                size: "2.3 GB", 
+                downloads: "12M+", 
+                multiplayer: true, 
+                version: "3.2.5",
+                updated: "2025-05-20",
+                description: "Race through breathtaking locations with the most prestigious cars in this arcade racing game. This modified version includes unlimited tokens and credits for the ultimate racing experience.", 
+                features: [
+                    "All cars unlocked",
+                    "Unlimited tokens and credits",
+                    "All tracks available",
+                    "Enhanced graphics"
+                ],
+                trailerId: "Y2i3P-O5_0c", 
+                reviews: [
+                    { user: "SpeedDemon", rating: 5, text: "The graphics are insane! And all the cars are unlocked!" }, 
+                    { user: "ArcadeRacer", rating: 5, text: "Pure adrenaline! The best-looking racing game on mobile."}
+                ] 
+            },
+            { 
+                title: "Need for Speed Unbound Mobile (Beta)", 
+                image: "https://i.postimg.cc/tJQKQGQ9/nfsu.jpg", 
+                category: "Racing", 
+                rating: 4.8, 
+                size: "2.4 GB", 
+                downloads: "4.5M", 
+                multiplayer: true, 
+                version: "1.2.0",
+                updated: "2025-06-08",
+                description: "Experience the ultimate street racing in this Need for Speed Unbound beta, with stunning cel-shaded visual effects on mobile and all cars unlocked.", 
+                features: [
+                    "All cars unlocked",
+                    "Customization options",
+                    "Open-world racing",
+                    "Unique visual style"
+                ],
+                trailerId: "H2Y8XCe7F1E", 
+                reviews: [
+                    { user: "StreetRacer", rating: 5, text: "The art style is so cool and the racing is intense." }, 
+                    { user: "Customizer", rating: 5, text: "The car customization is next level. My ride looks sick!" }
+                ] 
+            },
+            { 
+                title: "Real Racing 3 MOD", 
+                image: "https://i.postimg.cc/7ZfVD3Gm/Real-Racing-3-v3-3-0-mod-apk.jpg", 
+                category: "Racing", 
+                rating: 4.7, 
+                size: "1.1 GB", 
+                downloads: "10M+", 
+                multiplayer: true, 
+                version: "3.3.0",
+                updated: "2025-05-15",
+                description: "Real Racing 3 MOD brings true-to-life racing simulation to your mobile device with everything unlocked including all cars and tracks.", 
+                features: [
+                    "All cars unlocked",
+                    "Unlimited gold and R$",
+                    "Real-world tracks",
+                    "Realistic physics"
+                ],
+                trailerId: "2_1T8-3S-sU", 
+                reviews: [
+                    { user: "SimRacer", rating: 5, text: "The physics are so realistic. A true simulation experience." }, 
+                    { user: "TrackDayHero", rating: 5, text: "A huge selection of cars and real-world tracks. The best racing sim on mobile."}
+                ] 
+            },
+            { 
+                title: "CSR Racing 2 MOD", 
+                image: "https://i.postimg.cc/SQfVGNb7/CSR-Racing-2.jpg", 
+                category: "Racing", 
+                rating: 4.9, 
+                size: "2.6 GB", 
+                downloads: "8M+", 
+                multiplayer: true, 
+                version: "3.8.0",
+                updated: "2025-06-25",
+                description: "Dominate the drag racing scene with CSR Racing 2 MOD. This hyper-realistic racing game features meticulously detailed supercars and unlimited resources.", 
+                features: [
+                    "All cars unlocked",
+                    "Unlimited cash and gold",
+                    "All customization options available",
+                    "Hyper-realistic graphics"
+                ],
+                trailerId: "O9cAwv_Lq_w", 
+                reviews: [
+                    { user: "DragKing", rating: 5, text: "The graphics are unbelievable. The mod makes it easy to get the best cars." }, 
+                    { user: "Tuner", rating: 5, text: "Finally I can afford the best upgrades and tune my car to perfection. This mod is essential."}
+                ] 
+            },
+            { 
+                title: "CarX Street MOD", 
+                image: "https://i.postimg.cc/d3tMcYgf/carx.jpg", 
+                category: "Racing", 
+                rating: 4.8, 
+                size: "1.2 GB", 
+                downloads: "6.3M", 
+                multiplayer: true, 
+                version: "1.5.2",
+                updated: "2025-06-14",
+                description: "Embrace the freedom of being a street racer in the dynamic open world of CarX Street with this unlimited cash MOD.", 
+                features: [
+                    "Unlimited cash",
+                    "All cars and parts unlocked",
+                    "Dynamic open world",
+                    "Advanced car tuning"
+                ],
+                trailerId: "gSgotU1-pL4", 
+                reviews: [
+                    { user: "DriftMaster", rating: 5, text: "The best drifting physics on mobile. The open world is huge!" }, 
+                    { user: "StreetKing", rating: 5, text: "Cruising with friends online is the best part. The community is awesome."}
+                ] 
+            },
+            { 
+                title: "Rematch MOD", 
+                image: "https://i.postimg.cc/pXrN0Pfh/52610a-baa294771ed14ac9bd9c8bba8ac8dfb6-mv2.avif", 
+                category: "Action", 
+                rating: 4.5, 
+                size: "850 MB", 
+                downloads: "1.5M", 
+                multiplayer: true, 
+                version: "1.2.0",
+                updated: "2025-02-11",
+                description: "Challenge your rivals in Rematch, an intense fighting game with a unique cast of characters. This MOD unlocks all fighters from the start.", 
+                features: [
+                    "All fighters unlocked",
+                    "Unlimited in-game currency",
+                    "No ads",
+                    "Access to all stages"
+                ],
+                trailerId: null, 
+                reviews: [
+                    { user: "Fighter", rating: 4, text: "Fun fighting game with cool characters. A bit grindy without the mod." }, 
+                    { user: "ComboKing", rating: 5, text: "Having all characters unlocked lets me find my main without the grind. Great mod!"}
+                ] 
+            },
+            { 
+                title: "GTA Vice City MOD", 
+                image: "http://t0.gstatic.com/images?q=tbn:ANd9GcS3Ft-oM67UR15mSle49VHnUqLeq1kodsEQeiNQiO_hY-tIyDkoz6U7QvoWy6dBNTGj7IV8EQ", 
+                category: "Action", 
+                rating: 4.8, 
+                size: "1.4 GB", 
+                downloads: "6.8M", 
+                multiplayer: false, 
+                version: "1.12",
+                updated: "2025-04-30",
+                description: "Return to the 1980s in this classic open-world game. Explore Vice City, a huge urban sprawl ranging from the beach to the swamps and the glitz to the ghetto.", 
+                features: [
+                    "Complete story and missions",
+                    "Unlimited money and health",
+                    "All weapons available",
+                    "Enhanced high-resolution graphics"
+                ],
+                trailerId: "f_43z-I_d0s", 
+                reviews: [
+                    { user: "80sKid", rating: 5, text: "All the nostalgia in my pocket! The mod runs smoothly and the vibe is perfect." }, 
+                    { user: "CityCruiser", rating: 4, text: "Amazing to have this classic on the go. Controls take a little getting used to but it's worth it." }
+                ] 
+            },
+            { 
+                title: "BeamNG.drive Mobile (Beta)", 
+                image: "https://images.sftcdn.net/images/t_app-icon-m/p/7d0609b1-0194-4eb2-9307-12f91266dc7b/3469311303/beamng-drive-mobile-logo", 
+                category: "Simulation", 
+                rating: 4.9, 
+                size: "1.9 GB", 
+                downloads: "2.1M", 
+                multiplayer: false, 
+                version: "0.28.1",
+                updated: "2025-07-01",
+                description: "A realistic, immersive driving game offering near-limitless possibilities. Our soft-body physics engine simulates every component of a vehicle in real time, resulting in realistic, dynamic behavior.", 
+                features: [
+                    "Soft-body physics engine",
+                    "All vehicles and maps unlocked",
+                    "Realistic crash deformation",
+                    "High level of customization"
+                ],
+                trailerId: "m_sEsgNcA54", 
+                reviews: [
+                    { user: "CrashTest", rating: 5, text: "The soft-body physics are incredible! Never seen anything like it on mobile." }, 
+                    { user: "SimulatorFan", rating: 5, text: "Endless fun just crashing cars. The realism is mind-blowing." }
+                ] 
+            },
+            { 
+                title: "Spider-Man Unlimited MOD", 
+                image: "https://upload.wikimedia.org/wikipedia/en/a/aa/Spider-Man_Unlimited.png", 
+                category: "Action", 
+                rating: 4.7, 
+                size: "950 MB", 
+                downloads: "9.1M", 
+                multiplayer: true, 
+                version: "5.1.0",
+                updated: "2025-03-22",
+                description: "Swing into a hand-drawn, action-packed arcade adventure game that feels like it came straight from the Marvel comics. Unite every hero in the Spider-Verse against the ultimate threat!", 
+                features: [
+                    "All Spider-Men unlocked",
+                    "Unlimited ISO-8 and Vials",
+                    "Free energy refills",
+                    "Story mode fully accessible"
+                ],
+                trailerId: "GIIsM924Uus", 
+                reviews: [
+                    { user: "SpiderFan", rating: 5, text: "Collecting all the different Spider-Men is so cool! The art style is amazing."}, 
+                    { user: "HeroCollector", rating: 5, text: "The mod makes it easy to get all the rare spiders. Finally, my collection is complete!"}
+                ] 
+            },
+            { 
+                title: "Hitman Sniper MOD", 
+                image: "https://lh3.googleusercontent.com/PYlSCwbwrv6JFzp0-KtITrrN2VK4iCdEYK_9yBiADhV_vR5V-cAzrQcdDJu_rUz8BgMxU0aQpgEaypMneKXp", 
+                category: "Action", 
+                rating: 4.7, 
+                size: "800 MB", 
+                downloads: "11M", 
+                multiplayer: false, 
+                version: "1.7.1",
+                updated: "2025-05-18",
+                description: "Step into the shoes of Agent 47 in Hitman: Sniper and discover the most compelling sniper experience on mobile, now with all rifles unlocked.", 
+                features: [
+                    "All sniper rifles unlocked",
+                    "Unlimited money for upgrades",
+                    "All missions and contracts available",
+                    "Tactical and strategic gameplay"
+                ],
+                trailerId: "c8E1wY8-c5M", 
+                reviews: [
+                    { user: "Agent47", rating: 5, text: "Perfectly executed sniper game. The puzzles and objectives are very creative."}
+                ] 
+            },
+            { 
+                title: "God Of War 3 Mobile (Beta)", 
+                image: "https://i.postimg.cc/qRdgbrH2/god-of-war-3-wallpaper-kg2nhyxsdeicjjyp.webp", 
+                category: "Action", 
+                rating: 4.8, 
+                size: "2.7 GB", 
+                downloads: "3.3M", 
+                multiplayer: false, 
+                version: "1.1.0",
+                updated: "2025-06-28",
+                description: "In the end, there will be only chaos. The mobile beta adaptation of the critically acclaimed God of War 3.", 
+                features: [
+                    "Full story campaign port",
+                    "Epic boss battles",
+                    "All weapons of Chaos unlocked",
+                    "Console-quality graphics on mobile"
+                ],
+                trailerId: "p_mICl_1c2c", 
+                reviews: [
+                    { user: "KratosIsKing", rating: 5, text: "The epic scale of the boss battles is here! So brutal and satisfying." }, 
+                    { user: "GodSlayer", rating: 5, text: "Unbelievable that this runs on a phone. The combat is just as good as the original."}
+                ] 
+            },
+            { 
+                title: "Efootball 2024 MOD", 
+                image: "https://i.postimg.cc/Kv9kZCty/images-3.jpg", 
+                category: "Sports", 
+                rating: 4.6, 
+                size: "2.1 GB", 
+                downloads: "16M", 
+                multiplayer: true, 
+                version: "8.0.1",
+                updated: "2025-07-05",
+                description: "The latest installment of the popular football simulation game. Experience the most realistic soccer gameplay on mobile with this MOD for unlimited currency.", 
+                features: [
+                    "Unlimited GP and Coins",
+                    "All legendary players unlocked",
+                    "Build your dream team instantly",
+                    "Realistic player movements and physics"
+                ],
+                trailerId: "c8E1wY8-c5M", 
+                reviews: [
+                    { user: "SoccerStar", rating: 5, text: "The player animations and ball physics are the best they've ever been." }, 
+                    { user: "Manager", rating: 5, text: "Building my dream team has never been easier. Great mod!"}
+                ] 
+            },
+            { 
+                title: "Watch Dogs 2 Mobile (Beta)", 
+                image: "https://image.api.playstation.com/cdn/EP0001/CUSA06328_00/0oRMkLrk8IoCyGQfYpdIzVF5dzPP6cM4.png", 
+                category: "Action", 
+                rating: 4.6, 
+                size: "2.6 GB", 
+                downloads: "4.1M", 
+                multiplayer: true, 
+                version: "1.0.5",
+                updated: "2025-05-25",
+                description: "Play as Marcus Holloway, a brilliant young hacker living in the birthplace of the tech revolution, the San Francisco Bay Area. Experience it now in this mobile beta.", 
+                features: [
+                    "Open-world San Francisco",
+                    "All hacking abilities unlocked",
+                    "Full story and side missions",
+                    "Seamless online multiplayer"
+                ],
+                trailerId: "hh9x4NqW0Dw", 
+                reviews: [
+                    { user: "DedSecAgent", rating: 5, text: "Hacking everything in San Francisco from my phone is awesome. The world is so much fun to play with." }, 
+                    { user: "Techie", rating: 5, text: "Runs better than I expected. It's the full Watch Dogs 2 experience." }
+                ] 
+            },
+            { 
+                title: "Forza Horizon 5 Mobile (Beta)", 
+                image: "https://sm.ign.com/ign_nordic/cover/f/forza-hori/forza-horizon-5_5jjv.jpg", 
+                category: "Racing", 
+                rating: 4.9, 
+                size: "2.9 GB", 
+                downloads: "5.5M", 
+                multiplayer: true, 
+                version: "1.3.2",
+                updated: "2025-07-10",
+                description: "Your ultimate Horizon adventure awaits! Explore the vibrant and ever-evolving open world landscapes of Mexico with limitless, fun driving action in this ambitious mobile beta.", 
+                features: [
+                    "Explore the full map of Mexico",
+                    "All cars unlocked",
+                    "Unlimited credits",
+                    "Stunning graphics on mobile"
+                ],
+                trailerId: "FYH9n37B7Yw", 
+                reviews: [
+                    { user: "HorizonFan", rating: 5, text: "Mexico looks stunning on my device. The sense of speed is incredible." }, 
+                    { user: "CarCollector", rating: 5, text: "So many cars to choose from and the world is huge. The best open-world racer." }
+                ] 
+            },
+            { 
+                title: "GTA San Andreas MOD", 
+                image: "http://t0.gstatic.com/images?q=tbn:ANd9GcQKFrwPJcaQVe6qNoplr5y4BR3CGOjZmGpwiRNka1oVz1ci9Y12r4YfPTjC2v6TgUF0iQbh_g", 
+                category: "Action", 
+                rating: 4.9, 
+                size: "1.8 GB", 
+                downloads: "22M", 
+                multiplayer: false, 
+                version: "2.10",
+                updated: "2025-05-01",
+                description: "Five years ago, Carl Johnson escaped from the pressures of life in Los Santos, San Andreas, a city tearing itself apart with gang trouble, drugs and corruption. This MOD includes Cleo scripts.", 
+                features: [
+                    "Full story and side missions",
+                    "Unlimited money and respect",
+                    "All territories unlocked",
+                    "Cleo script support for extra mods"
+                ],
+                trailerId: "f_43z-I_d0s", 
+                reviews: [
+                    { user: "CJ", rating: 5, text: "Ah shit, here we go again. The best GTA, now in my pocket." }, 
+                    { user: "Grove4Life", rating: 5, text: "The story, the world, the radio stations... it's all perfect. 10/10 classic." }
+                ] 
+            },
+            { 
+                title: "Dream League Soccer MOD", 
+                image: "https://m.media-amazon.com/images/I/41GZrXhv0BL.jpg", 
+                category: "Sports", 
+                rating: 4.8, 
+                size: "400 MB", 
+                downloads: "19M", 
+                multiplayer: true, 
+                version: "11.20",
+                updated: "2025-06-03",
+                description: "Dream League Soccer is here, and it’s better than ever! Soccer as we know it has changed, and this is YOUR chance to build THE best team on the planet with unlimited coins.", 
+                features: [
+                    "Unlimited coins",
+                    "Build your dream team with any player",
+                    "Fully customizable stadiums",
+                    "Online and offline modes"
+                ],
+                trailerId: "89OY_Xg_7pI", 
+                reviews: [
+                    { user: "DreamManager", rating: 5, text: "Building my dream team with this mod is so easy and fun!"}
+                ] 
+            },
+            { 
+                title: "Dragon Ball Z Dokkan Battle MOD", 
+                image: "https://modyolo.com/wp-content/uploads/2021/09/dragon-ball-z-dokkan-battle-150x150.jpg", 
+                category: "Action", 
+                rating: 4.7, 
+                size: "450 MB", 
+                downloads: "7M", 
+                multiplayer: true, 
+                version: "5.9.1",
+                updated: "2025-06-22",
+                description: "A brand-new chapter in the Dragon Ball Z saga has arrived! This MOD gives you high attack and god mode to dominate the battlefield.", 
+                features: [
+                    "High attack damage",
+                    "God Mode (invincibility)",
+                    "Unlimited Dragon Stones",
+                    "All characters unlocked"
+                ],
+                trailerId: "kIDOv_6-p2I", 
+                reviews: [
+                    { user: "Z-Fighter", rating: 5, text: "The mod makes getting the best characters a breeze. My teams are unstoppable!"}
+                ] 
+            },
+            { 
+                title: "NBA 2K23 MOD", 
+                image: "https://assets.2k.com/1a6ngf98576c/4oCqsi6G8MfDjHKhjhBtrP/d43164117e00d78c0cf85dfafeb3b906/NBA23-WEBSITE-ATHLETE_HUB-MODULE1-STD_THUMBNAIL-828x828.jpg", 
+                category: "Sports", 
+                rating: 4.8, 
+                size: "1.6 GB", 
+                downloads: "6.5M", 
+                multiplayer: true, 
+                version: "1.5.0",
+                updated: "2025-04-10",
+                description: "NBA 2K23 continues to push the limits of what's possible in a basketball game, with best-in-class graphics and gameplay and an immersive open-world 'Neighborhood'.", 
+                features: [
+                    "Unlimited VC (Virtual Currency)",
+                    "All players unlocked in MyTeam",
+                    "Maxed out player stats in MyCareer",
+                    "Immersive open-world Neighborhood"
+                ],
+                trailerId: "hf21TpyF_Wc", 
+                reviews: [
+                    {user: "Baller", rating: 5, text: "Graphics are insane for a mobile game. Plays just like the console version."}
+                ] 
+            },
+            { 
+                title: "Car Parking Multiplayer MOD", 
+                image: "https://i.git99.com/upload/android/icon/2024/05/22/abccb969549318afaea4e78fb72cad3a.jpg", 
+                category: "Simulation", 
+                rating: 4.9, 
+                size: "750 MB", 
+                downloads: "28M", 
+                multiplayer: true, 
+                version: "4.8.9",
+                updated: "2025-07-02",
+                description: "More than just parking: open-world multiplayer mode, car tuning, free walking! This MOD unlocks all cars and gives you unlimited money.", 
+                features: [
+                    "Unlimited money",
+                    "All cars unlocked",
+                    "Open-world multiplayer",
+                    "Detailed car tuning"
+                ],
+                trailerId: "uA424Kz0-CU", 
+                reviews: [
+                    { user: "ProParker", rating: 5, text: "So much more than just parking. The online mode is hilarious fun." }, 
+                    { user: "TunerGod", rating: 5, text: "All cars unlocked! I can finally build my dream garage."}
+                ] 
+            },
+            { 
+                title: "Minecraft MOD", 
+                trending: true, 
+                image: "https://preview.redd.it/avjal33hpqo61.png?width=512&format=png&auto=webp&s=b652d83347448df74c8ba61c17b322e686ee32a4", 
+                category: "Adventure", 
+                rating: 5.0, 
+                size: "950 MB", 
+                downloads: "50M+", 
+                multiplayer: true, 
+                version: "1.20.1",
+                updated: "2025-06-30",
+                description: "Explore infinite worlds and build everything from the simplest of homes to the grandest of castles. This MOD unlocks all texture packs and skins.", 
+                features: [
+                    "All texture packs and skins unlocked",
+                    "God Mode (invincibility)",
+                    "One-hit kill",
+                    "Infinite inventory items"
+                ],
+                trailerId: "MmB9b5njVbA", 
+                reviews: [
+                    { user: "Steve", rating: 5, text: "The ultimate sandbox game. The freedom is incredible." }, 
+                    { user: "Builder", rating: 5, text: "I've built entire cities. The only limit is your imagination. Works perfectly on mobile." }
+                ] 
+            },
+            { 
+                title: "Farming Simulator 23 MOD", 
+                image: "https://assets-prd.ignimgs.com/2023/05/01/farmingsim23-1682967114647.jpg", 
+                category: "Simulation", 
+                rating: 4.7, 
+                size: "1.1 GB", 
+                downloads: "3.8M", 
+                multiplayer: true, 
+                version: "1.4.0",
+                updated: "2025-06-07",
+                description: "Step into the exciting world of farming with Farming Simulator 23! This MOD gives you a head start with unlimited money.", 
+                features: [
+                    "Unlimited money",
+                    "All vehicles and equipment unlocked",
+                    "Faster crop growth",
+                    "Realistic farming experience"
+                ],
+                trailerId: "ycoVq_s_kR8", 
+                reviews: [
+                    { user: "FarmLife", rating: 5, text: "So relaxing and addictive. The new machinery is amazing."}, 
+                    { user: "RichFarmer", rating: 5, text: "I can finally afford the biggest tractor! This mod makes farming way more fun."}
+                ] 
+            },
+            { 
+                title: "Euro Truck Simulator Mobile (Beta)", 
+                image: "https://portsized.fun/etsicon.png", 
+                category: "Simulation", 
+                rating: 4.8, 
+                size: "1.3 GB", 
+                downloads: "4.2M", 
+                multiplayer: false, 
+                version: "1.2.5",
+                updated: "2025-05-19",
+                description: "The king of the road is back! Travel across Europe as king of the road, a trucker who delivers important cargo across impressive distances! Experience the beta on mobile.", 
+                features: [
+                    "Full European map",
+                    "All trucks unlocked",
+                    "Unlimited money",
+                    "Realistic driving physics"
+                ],
+                trailerId: "xlP4w-59oF4", 
+                reviews: [
+                    { user: "Trucker", rating: 5, text: "The open road on my phone. Incredibly relaxing and detailed. A must-have for sim fans." }
+                ] 
+            },
+            { 
+                title: "Assetto Corsa Mobile (Beta)", 
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlAVOfsF2cxZAxOEMlBN8FxG8xZW8aO5IVsA&s", 
+                category: "Racing", 
+                rating: 4.9, 
+                size: "2.5 GB", 
+                downloads: "3.9M", 
+                multiplayer: true, 
+                version: "1.1.0",
+                updated: "2025-06-21",
+                description: "Assetto Corsa features an advanced DirectX 11 graphics engine that recreates an immersive environment and realistic physics. Experience the acclaimed racing simulator in this mobile beta.", 
+                features: [
+                    "All cars and tracks unlocked",
+                    "Realistic physics engine",
+                    "Online multiplayer",
+                    "Advanced graphics settings"
+                ],
+                trailerId: "zRNCz_1s4yA", 
+                reviews: [
+                    { user: "SimDrifter", rating: 5, text: "The best physics on any mobile racing game, period. Unlocks all the best cars for drifting." }
+                ] 
+            },
+            { 
+                title: "CG Moto Online MOD", 
+                image: "https://image.winudf.com/v2/image1/Y29tLlB0cm9uUGxheURpZ2l0YWwuQ0dNb3RvT25saW5lX2ljb25fMTcyMzMyNTk3NV8wMjM/icon.webp?w=280&fakeurl=1&type=.webp", 
+                category: "Racing", 
+                rating: 4.5, 
+                size: "600 MB", 
+                downloads: "2.5M", 
+                multiplayer: true, 
+                version: "2.3.1",
+                updated: "2025-04-04",
+                description: "The best motorcycle racing game! Race with your friends in this amazing online multiplayer game. This MOD unlocks all bikes.", 
+                features: [
+                    "All motorcycles unlocked",
+                    "Unlimited money",
+                    "Customization options",
+                    "Online multiplayer racing"
+                ],
+                trailerId: null, 
+                reviews: [
+                    {user: "Rider", rating: 5, text: "So much fun racing with friends. The bike selection is great with the mod."}
+                ] 
+            },
+            { 
+                title: "Subway Surfers MOD", 
+                image: "https://modyolo.com/wp-content/uploads/2021/09/subway-surfers-150x150.jpg", 
+                category: "Arcade", 
+                rating: 4.8, 
+                size: "350 MB", 
+                downloads: "100M+", 
+                multiplayer: false, 
+                version: "3.15.0",
+                updated: "2025-07-04",
+                description: "DASH as fast as you can! DODGE the oncoming trains! This MOD provides unlimited coins and keys so you can unlock everything.", 
+                features: [
+                    "Unlimited coins and keys",
+                    "All characters and boards unlocked",
+                    "Infinite score boosters",
+                    "No ads"
+                ],
+                trailerId: "f_43z-I_d0s", 
+                reviews: [
+                    {user: "HighScorer", rating: 5, text: "Unlimited keys and hoverboards! My high score is unbeatable now."}
+                ] 
+            },
+            { 
+                title: "Monopoly MOD", 
+                image: "https://modyolo.com/wp-content/uploads/2021/09/monopoly-board-game-classic-about-real-estate-150x150.jpg", 
+                category: "Board", 
+                rating: 4.7, 
+                size: "480 MB", 
+                downloads: "8.5M", 
+                multiplayer: true, 
+                version: "1.8.0",
+                updated: "2025-05-11",
+                description: "Roll the dice and buy, sell, build, and scheme your way to riches in MONOPOLY. This MOD unlocks all the premium boards and tokens.", 
+                features: [
+                    "All boards and tokens unlocked",
+                    "Online multiplayer with friends",
+                    "Quick mode for faster games",
+                    "No ads"
+                ],
+                trailerId: "uuhY_1abg3A", 
+                reviews: [
+                    {user: "MrMonopoly", rating: 5, text: "Playing with all the cool boards is awesome. Fun to play with friends."}
+                ] 
+            },
+            { 
+                title: "PPSSPP Gold (Emulator)", 
+                image: "https://an1.com/uploads/posts/2023-04/1682881529_ppsspp-gold.png", 
+                category: "Emulator", 
+                rating: 4.9, 
+                size: "50 MB", 
+                downloads: "15M", 
+                multiplayer: false, 
+                version: "1.17.1",
+                updated: "2025-06-26",
+                description: "Play PSP games on your Android device, at high definition with extra features! PPSSPP is the original and best PSP emulator for Android.", 
+                features: [
+                    "Play PSP games in HD",
+                    "Save and restore game state",
+                    "Support for external controllers",
+                    "Customizable on-screen controls"
+                ],
+                trailerId: "uuhY_1abg3A", 
+                reviews: [
+                    {user: "RetroGamer", rating: 5, text: "The best way to play my favorite PSP games on the go. Works flawlessly."}
+                ] 
+            },
+            { 
+                title: "8 Ball Pool MOD", 
+                image: "https://modyolo.com/wp-content/uploads/2021/09/8-ball-pool-150x150.jpg", 
+                category: "Sports", 
+                rating: 4.8, 
+                size: "120 MB", 
+                downloads: "40M+", 
+                multiplayer: true, 
+                version: "5.14.0",
+                updated: "2025-06-19",
+                description: "The World's #1 Pool game! This MOD features an unlimited guideline, so you'll never miss a shot.", 
+                features: [
+                    "Unlimited guideline for aiming",
+                    "All cues unlocked",
+                    "Play against players worldwide",
+                    "Win tournaments and exclusive cues"
+                ],
+                trailerId: "H-SjEtI4E5s", 
+                reviews: [
+                    {user: "PoolShark", rating: 5, text: "The extended guideline is a game-changer. I'm winning every match!"}
+                ] 
+            },
+            { 
+                title: "Coin Master MOD", 
+                image: "https://modyolo.com/wp-content/uploads/2021/10/coin-master-apk-150x150.png", 
+                category: "Casual", 
+                rating: 4.6, 
+                size: "150 MB", 
+                downloads: "35M+", 
+                multiplayer: true, 
+                version: "3.5.10",
+                updated: "2025-07-03",
+                description: "Join your Facebook friends and millions of players around the world in attacks, spins and raids to build your viking village to the top! This MOD provides unlimited spins.", 
+                features: [
+                    "Unlimited spins",
+                    "Unlimited coins",
+                    "Build and upgrade your village faster",
+                    "Raid friends and other players"
+                ],
+                trailerId: "c-pG_pZt-aU", 
+                reviews: [
+                    {user: "VikingKing", rating: 5, text: "Unlimited spins means I can build my village so fast. Raiding has never been more fun."}
+                ] 
+            },
+            { 
+                title: "OuO Game MOD", 
+                image: "https://image.winudf.com/v2/image1/Y29tLmVscGF0cml4Zi5PdU9faWNvbl8xNTY2OTk5Mjg1XzAxMg/icon.webp?w=280&fakeurl=1&type=.webp", 
+                category: "Casual", 
+                rating: 4.9, 
+                size: "25 MB", 
+                downloads: "5M", 
+                multiplayer: false, 
+                version: "1.3.0",
+                updated: "2025-01-15",
+                description: "OuO is a kawaii face application that you can interact with by touching the screen (you can poke its eye to make him wink, tap him in the forehead, squeeze its cheeks, and a lot more!)", 
+                features: [
+                    "Interactive kawaii face",
+                    "Multiple expressions and reactions",
+                    "Customizable background colors",
+                    "Relaxing and cute experience"
+                ],
+                trailerId: null, 
+                reviews: [
+                    {user: "KawaiiFan", rating: 5, text: "So cute and fun to poke at. A great way to pass the time."}
+                ] 
+            },
+            { 
+                title: "College Brawl MOD", 
+                image: "https://i.ibb.co/XL2Fj7Y/collegebrawl.png", 
+                category: "Action", 
+                rating: 4.5, 
+                size: "200 MB", 
+                downloads: "4.8M", 
+                multiplayer: false, 
+                version: "1.4.1",
+                updated: "2025-03-20",
+                description: "An action-packed beat 'em up game set in a college campus. Fight your way through various rivals and bosses. All levels are unlocked in this MOD.", 
+                features: [
+                    "All levels unlocked",
+                    "God Mode (invincibility)",
+                    "Unlimited skill points",
+                    "Classic beat 'em up action"
+                ],
+                trailerId: null, 
+                reviews: [
+                    {user: "Brawler", rating: 5, text: "Classic beat 'em up action. Fun and challenging."}
+                ] 
+            },
+            { 
+                title: "Hailey's Adventure MOD", 
+                image: "https://mobdroplus.com/wp-content/uploads/2022/12/Haileys-Treasure-Adventure-apk.png", 
+                category: "Adventure", 
+                rating: 4.6, 
+                size: "310 MB", 
+                downloads: "3.1M", 
+                multiplayer: false, 
+                version: "1.2.0",
+                updated: "2025-04-18",
+                description: "Join Hailey on an epic treasure hunting adventure. Solve puzzles, explore mysterious locations, and uncover hidden secrets. This MOD unlocks hints.", 
+                features: [
+                    "Unlimited hints",
+                    "All chapters unlocked",
+                    "Engaging storyline",
+                    "Challenging puzzles"
+                ],
+                trailerId: null, 
+                reviews: [
+                    {user: "Puzzler", rating: 5, text: "A great little adventure game with a charming story."}
+                ] 
+            },
+            { 
+                title: "Learn The Heart MOD", 
+                image: "https://images.sftcdn.net/images/t_app-icon-m/p/3b18a092-6db6-47f7-bd8d-e8ade3e3575e/1591711617/learn-the-heart-logo", 
+                category: "Simulation", 
+                rating: 4.5, 
+                size: "250 MB", 
+                downloads: "2.9M", 
+                multiplayer: false, 
+                version: "1.5.0",
+                updated: "2025-05-14",
+                description: "A unique simulation game about life, relationships, and emotions. Make choices that will shape your character's destiny.", 
+                features: [
+                    "All choices unlocked",
+                    "Fast-forward time",
+                    "Multiple endings",
+                    "Unique story-driven gameplay"
+                ],
+                trailerId: null, 
+                reviews: [
+                    {user: "Storyteller", rating: 5, text: "A very unique and emotional game. The choices really matter."}
+                ] 
+            },
+            { 
+                title: "Syahata A Bad Day MOD", 
+                image: "https://techloky.com/public/uploads/images/Syahata_A_Bad_Day.jpg", 
+                category: "Action", 
+                rating: 4.5, 
+                size: "180 MB", 
+                downloads: "3.4M", 
+                multiplayer: false, 
+                version: "1.1.2",
+                updated: "2025-02-28",
+                description: "It's a bad day, and you have to fight your way out. An intense action game with a unique art style and god mode enabled.", 
+                features: [
+                    "God Mode (invincibility)",
+                    "Unlimited ammo",
+                    "Unique pixel art style",
+                    "Fast-paced action"
+                ],
+                trailerId: null, 
+                reviews: [
+                    {user: "ActionHero", rating: 5, text: "Fast-paced and stylish. The art is amazing."}
+                ] 
+            },
+            { 
+                title: "Survive MOD", 
+                image: "https://techloky.com/public/uploads/images/Survive.jpg", 
+                category: "Survival", 
+                rating: 5.0, 
+                size: "400 MB", 
+                downloads: "4.0M", 
+                multiplayer: false, 
+                version: "2.0.1",
+                updated: "2025-05-30",
+                description: "Stranded and alone, you must use your skills to survive in a harsh wilderness. Gather resources, craft tools, and build shelter. This MOD unlocks all crafting recipes.", 
+                features: [
+                    "All crafting recipes unlocked",
+                    "Unlimited resources",
+                    "No hunger or thirst",
+                    "Immersive survival experience"
+                ],
+                trailerId: null, 
+                reviews: [
+                    {user: "Survivor", rating: 5, text: "A challenging and rewarding survival game. Very immersive."}
+                ] 
+            },
+            { 
+                title: "One Piece: Fighting Path MOD", 
+                image: "https://img.utdstc.com/icon/79a/7a3/79a7a35b0f8d775d97b6d89761bcdb478c6c2ef7941cae0de952cde8207bf355:200", 
+                category: "Action", 
+                rating: 4.8, 
+                size: "1.7 GB", 
+                downloads: "8.2M", 
+                multiplayer: true, 
+                version: "2.1.0",
+                updated: "2025-06-24",
+                description: "An officially licensed One Piece 3D action-adventure game. Relive the story of the Straw Hat pirates and battle against formidable foes. All characters unlocked.", 
+                features: [
+                    "All characters unlocked",
+                    "Unlimited currency",
+                    "High damage output",
+                    "Full story mode"
+                ],
+                trailerId: "U3OQ1Q_4-cE", 
+                reviews: [
+                    {user: "StrawHat", rating: 5, text: "This is the One Piece game I've been waiting for! The combat is amazing."}
+                ] 
+            },
+            { 
+                title: "Ben 10: Battle for the Omnitrix MOD", 
+                image: "https://modgila.com/uploads/2024/1/ben10-battle-for-the-omnitrix-1.jpg", 
+                category: "Action", 
+                rating: 4.5, 
+                size: "550 MB", 
+                downloads: "6.1M", 
+                multiplayer: false, 
+                version: "1.3.0",
+                updated: "2025-04-12",
+                description: "Help Ben 10 fight off aliens and protect the Earth in this exciting action game. Transform into different alien heroes and use their unique powers. All aliens unlocked.", 
+                features: [
+                    "All alien forms unlocked",
+                    "Unlimited energy",
+                    "God Mode (invincibility)",
+                    "Fight against classic villains"
+                ],
+                trailerId: "u_Y5oXbiG_s", 
+                reviews: [
+                    {user: "OmnitrixWielder", rating: 5, text: "It's hero time! So fun transforming into all the different aliens."}
+                ] 
+            },
+            { 
+                title: "Drift Max Pro MOD", 
+                image: "https://i.postimg.cc/G29g5WPh/9aaca89247c74854774d67da1c0154b91d116de64e4bb96d91aca7fdac61268d-200.jpg", 
+                category: "Racing", 
+                rating: 4.8, 
+                size: "650 MB", 
+                downloads: "13M", 
+                multiplayer: true, 
+                version: "2.5.11",
+                updated: "2025-06-11",
+                description: "The ultimate drifting game, with realistic physics and a wide variety of cars and tracks to choose from. This MOD provides unlimited money for upgrades.", 
+                features: [
+                    "Unlimited money",
+                    "All cars and customization parts unlocked",
+                    "Realistic drifting physics",
+                    "Multiple game modes"
+                ],
+                trailerId: "y1z-BwAnQ5M", 
+                reviews: [
+                    {user: "DriftKing", rating: 5, text: "The best drifting physics on mobile. So satisfying to get a perfect drift."}
+                ] 
+            },
+            { 
+                title: "Forza Motorsport Mobile (Beta)", 
+                image: "https://i.postimg.cc/9FXbg5W3/Forza-Motorsport-Mobile.jpg", 
+                category: "Racing", 
+                rating: 4.9, 
+                size: "2.8 GB", 
+                downloads: "4.9M", 
+                multiplayer: true, 
+                version: "1.0.8",
+                updated: "2025-07-08",
+                description: "Experience the thrill of professional motorsport with this stunning mobile beta. Compete in a variety of events with a huge selection of cars.", 
+                features: [
+                    "All cars and tracks unlocked",
+                    "Realistic racing simulation",
+                    "Stunning graphics",
+                    "Career and online multiplayer modes"
+                ],
+                trailerId: "k94K_pd1DBc", 
+                reviews: [
+                    {user: "ProRacer", rating: 5, text: "The graphics and physics are console quality. A true racing simulator."}
+                ] 
+            },
+            { 
+                title: "WRC 10 Mobile (Beta)", 
+                image: "https://i.postimg.cc/4N59MmWw/WRC-TGR.jpg", 
+                category: "Racing", 
+                rating: 4.6, 
+                size: "1.9 GB", 
+                downloads: "3.2M", 
+                multiplayer: false, 
+                version: "1.1.3",
+                updated: "2025-05-22",
+                description: "The official game of the FIA World Rally Championship. Race on challenging rally stages from around the world in this mobile beta.", 
+                features: [
+                    "All official cars and rallies",
+                    "Realistic rally physics",
+                    "Career mode",
+                    "Challenging stages"
+                ],
+                trailerId: "q5Pqon3ZgBw", 
+                reviews: [
+                    {user: "RallyDriver", rating: 5, text: "Incredibly challenging and rewarding. The stages are brutal but fun."}
+                ] 
+            },
+            { 
+                title: "Need for Speed Hot Pursuit Mobile (Beta)", 
+                image: "https://i.postimg.cc/3wy0d9Yb/Need-For-Speed-Key-Art-Brendan-Mc-Caffrey.jpg", 
+                category: "Racing", 
+                rating: 4.8, 
+                size: "2.0 GB", 
+                downloads: "7.1M", 
+                multiplayer: true, 
+                version: "1.2.4",
+                updated: "2025-06-16",
+                description: "Experience the thrill of the chase and the rush of escape in this Need for Speed™ Hot Pursuit beta.", 
+                features: [
+                    "Play as a racer or a cop",
+                    "All cars unlocked",
+                    "Online multiplayer with Autolog",
+                    "Exotic cars and intense pursuits"
+                ],
+                trailerId: "AfsR_z3p03Q", 
+                reviews: [
+                    {user: "RacerX", rating: 5, text: "The thrill of the chase is real! Playing as a cop or a racer is a blast."}
+                ] 
+            },
+            { 
+                title: "GRID Autosport Mobile (Beta)", 
+                image: "https://i.postimg.cc/RZpnS25H/GRID.jpg", 
+                category: "Racing", 
+                rating: 4.8, 
+                size: "2.7 GB", 
+                downloads: "4.3M", 
+                multiplayer: true, 
+                version: "1.3.1",
+                updated: "2025-07-07",
+                description: "Ignite your high-speed career as a pro-racer in this GRID Autosport beta, engineered to deliver an irresistible mix of simulation handling and arcade thrills.", 
+                features: [
+                    "All cars and disciplines unlocked",
+                    "Console-quality graphics",
+                    "Mix of simulation and arcade handling",
+                    "Extensive career mode"
+                ],
+                trailerId: "P4e6fA-hA28", 
+                reviews: [
+                    {user: "GRIDMaster", rating: 5, text: "A great mix of sim and arcade racing. The variety of disciplines is fantastic."}
+                ] 
+            },
+            { 
+                title: "CarX Drift Racing Online MOD", 
+                image: "https://i.postimg.cc/0yywqP3v/Car-X-Drift-Racing-2.jpg", 
+                category: "Racing", 
+                rating: 4.6, 
+                size: "1.5 GB", 
+                downloads: "9.8M", 
+                multiplayer: true, 
+                version: "2.12.0",
+                updated: "2025-06-13",
+                description: "CarX Drift Racing is a racing simulator dedicated to the motorsport of drifting. This MOD unlocks all cars and tracks.", 
+                features: [
+                    "All cars and tracks unlocked",
+                    "Unlimited money for tuning",
+                    "Realistic drift physics",
+                    "Online multiplayer rooms"
+                ],
+                trailerId: "y1z-BwAnQ5M", 
+                reviews: [
+                    {user: "Drifter", rating: 5, text: "Endless hours of fun tuning cars and hitting the track. The online lobbies are great."}
+                ] 
+            }
         ];
+
 
         // --- DOM Elements ---
         const body = document.body;
-        const header = document.getElementById('header');
         const featuredGamesGrid = document.getElementById('featured-games-grid');
         const modalGamesGrid = document.getElementById('modal-games-grid');
         const gamesModal = document.getElementById('games-modal');
@@ -1245,11 +3381,14 @@
         const gameDetailsContent = document.getElementById('game-details-content');
         const modalTitle = document.getElementById('modal-title');
         const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input'); // New
+        const autocompleteResults = document.getElementById('autocomplete-results'); // New
         const exploreBtn = document.getElementById('explore-btn');
         const viewAllBtn = document.getElementById('view-all-btn');
         const modalCloseBtn = document.getElementById('modal-close-btn');
         const aboutCloseBtn = document.getElementById('about-close-btn');
         const menuBtn = document.getElementById('menu-btn');
+        const userBtn = document.getElementById('user-btn');
         const navMenu = document.getElementById('nav-menu');
         const navOverlay = document.getElementById('nav-overlay');
         const navClose = document.getElementById('nav-close');
@@ -1260,6 +3399,13 @@
         const filterBar = document.getElementById('filter-bar');
         const scrollToTopBtn = document.getElementById('scroll-to-top');
         const loadingSpinner = document.getElementById('loading-spinner');
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const downloadProgress = document.getElementById('download-progress');
+        const downloadTitle = document.getElementById('download-title');
+        const progressFill = document.getElementById('progress-fill');
+        const progressText = document.getElementById('progress-text');
+        const downloadClose = document.getElementById('download-close');
 
         // --- Enhanced Functions ---
         const generateStars = (rating) => {
@@ -1281,6 +3427,18 @@
 
         const populateGrid = (gridElement, gamesList) => {
             gridElement.innerHTML = '';
+            
+            if (gamesList.length === 0) {
+                gridElement.innerHTML = `
+                    <div class="no-results" style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                        <i class="fas fa-gamepad" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                        <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">No Games Found</h3>
+                        <p style="color: var(--text-secondary);">Try adjusting your search or filter criteria</p>
+                    </div>
+                `;
+                return;
+            }
+            
             gamesList.forEach(game => {
                 const gameCard = document.createElement('div');
                 gameCard.className = 'game-card';
@@ -1291,10 +3449,10 @@
                 gameCard.innerHTML = `
                     ${trendingBadge}
                     <div class="game-card-image">
-                        <img src="${game.image}" alt="${game.title}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/200x260/0d1419/fff?text=Error';">
+                        <img src="${game.image}" alt="${game.title}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/300x400/1a2530/fff?text=Game+Image';">
                     </div>
                     <div class="game-card-info">
-                        <h3 class="game-card-title">${game.title}</h3>
+                        <h3 class="game-card-title" title="${game.title}">${game.title}</h3>
                         <div class="game-card-rating">
                             <div class="stars">${stars}</div>
                             <span class="rating-text">${game.rating}/5</span>
@@ -1311,6 +3469,7 @@
         };
 
         const showGameDetails = (game) => {
+            // Generate reviews HTML
             let reviewsHtml = '';
             if (game.reviews && game.reviews.length > 0) {
                 reviewsHtml = game.reviews.map(review => {
@@ -1325,38 +3484,98 @@
                         </div>`;
                 }).join('');
             }
+            
+            // Generate features HTML
+            let featuresHtml = '';
+            if (game.features && game.features.length > 0) {
+                featuresHtml = game.features.map(feature => 
+                    `<li><i class="fas fa-check" style="color: var(--primary-color);"></i> ${feature}</li>`
+                ).join('');
+            }
 
             const stars = generateStars(game.rating);
+            const trailerHtml = game.trailerId ? `
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/${game.trailerId}?autoplay=0&controls=1" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+            ` : '<p>No trailer available for this game.</p>';
 
             gameDetailsContent.innerHTML = `
                 <button class="modal-close" id="details-close-btn">×</button>
-                <img src="${game.image}" alt="${game.title}" class="details-header-image" onerror="this.onerror=null;this.src='https://placehold.co/800x350/0d1419/fff?text=Image+Not+Found';">
+                <img src="${game.image}" alt="${game.title}" class="details-header-image" onerror="this.onerror=null;this.src='https://placehold.co/800x350/1a2530/fff?text=Game+Image';">
                 <h2 class="details-main-title">${game.title}</h2>
                 <p class="details-description">${game.description}</p>
-                <div class="details-info-box">
-                    <div class="info-grid">
-                        <div class="info-item"><i class="fas fa-star"></i> Rating: <strong>${game.rating}/5.0</strong> <div class="stars" style="display: inline; margin-left: 10px;">${stars}</div></div>
-                        <div class="info-item"><i class="fas fa-download"></i> Downloads: <strong>${game.downloads}</strong></div>
-                        <div class="info-item"><i class="fas fa-users"></i> Mode: <strong>${game.multiplayer ? 'Multiplayer' : 'Single Player'}</strong></div>
-                        <div class="info-item"><i class="fas fa-tag"></i> Category: <strong>${game.category}</strong></div>
-                    </div>
-                    <div class="details-buttons-container">
-                        <a href="https://contentlocked.net/cl/i/wovqx1" class="game-button solid">
-                            <i class="fas fa-play-circle"></i> Play on Browser
-                        </a>
-                        <a href="https://appslocked.com/cl/i/6dxkge" class="game-button outline android">
-                            <i class="fab fa-android"></i> Download for Android
-                        </a>
-                        <a href="https://appinstallcheck.com/cl/i/e6g77m" class="game-button outline ios">
-                            <i class="fab fa-apple"></i> Download for iOS
-                        </a>
+                
+                <div class="details-tabs">
+                    <button class="tab-button active" data-tab="info">Info</button>
+                    <button class="tab-button" data-tab="features">Features</button>
+                    <button class="tab-button" data-tab="trailer">Trailer</button>
+                    <button class="tab-button" data-tab="reviews">Reviews</button>
+                </div>
+                
+                <div class="tab-content active" id="info-tab">
+                    <div class="details-info-box">
+                        <div class="info-grid">
+                            <div class="info-item"><i class="fas fa-star"></i> Rating: <strong>${game.rating}/5.0</strong> <div class="stars" style="display: inline; margin-left: 10px;">${stars}</div></div>
+                            <div class="info-item"><i class="fas fa-download"></i> Downloads: <strong>${game.downloads}</strong></div>
+                            <div class="info-item"><i class="fas fa-users"></i> Mode: <strong>${game.multiplayer ? 'Multiplayer' : 'Single Player'}</strong></div>
+                            <div class="info-item"><i class="fas fa-tag"></i> Category: <strong>${game.category}</strong></div>
+                            <div class="info-item"><i class="fas fa-database"></i> Size: <strong>${game.size}</strong></div>
+                            <div class="info-item"><i class="fas fa-code-branch"></i> Version: <strong>${game.version || '1.0.0'}</strong></div>
+                            <div class="info-item"><i class="fas fa-calendar-alt"></i> Updated: <strong>${game.updated || '2025-01-01'}</strong></div>
+                        </div>
                     </div>
                 </div>
-                <div class="comments-section">
-                    <h3>User Reviews</h3>
-                    ${reviewsHtml || '<p>No reviews yet. Be the first to share your experience!</p>'}
+                
+                <div class="tab-content" id="features-tab">
+                    <div class="details-info-box">
+                        <h3 style="margin-bottom: 1rem; color: var(--primary-color);">Key Features</h3>
+                        <ul style="list-style-type: none; line-height: 2;">
+                            ${featuresHtml || '<p>No feature information available.</p>'}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="trailer-tab">
+                    ${trailerHtml}
+                </div>
+                
+                <div class="tab-content" id="reviews-tab">
+                    <div class="comments-section">
+                        <h3>User Reviews</h3>
+                        ${reviewsHtml || '<p>No reviews yet. Be the first to share your experience!</p>'}
+                    </div>
+                </div>
+                
+                <div class="details-buttons-container">
+                    <a href="https://contentlocked.net/cl/i/wovqx1" class="game-button solid">
+                        <i class="fas fa-play-circle"></i> Play on Browser
+                    </a>
+                    <a href="https://appslocked.com/cl/i/6dxkge" class="game-button outline android">
+                        <i class="fab fa-android"></i> Download for Android
+                    </a>
+                    <a href="https://appinstallcheck.com/cl/i/e6g77m" class="game-button outline ios">
+                        <i class="fab fa-apple"></i> Download for iOS
+                    </a>
                 </div>
             `;
+            
+            // Set up tab functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    button.classList.add('active');
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
             
             closeAllModals();
             gameDetailsModal.style.display = 'block';
@@ -1395,8 +3614,22 @@
             body.classList.remove('modal-open');
         };
 
+        let lastScrollPosition = 0;
         const handleScroll = () => {
-            // Scroll to Top Button
+            const headerToHide = document.getElementById('header');
+            const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScrollPosition < 50) {
+                headerToHide.classList.remove('hide-on-scroll');
+            } else {
+                if (currentScrollPosition > lastScrollPosition) {
+                    headerToHide.classList.add('hide-on-scroll');
+                } else {
+                    headerToHide.classList.remove('hide-on-scroll');
+                }
+            }
+            lastScrollPosition = currentScrollPosition <= 0 ? 0 : currentScrollPosition;
+            
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 scrollToTopBtn.style.display = "flex";
             } else {
@@ -1408,47 +3641,125 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
         
+        const toggleTheme = () => {
+            body.classList.toggle('light-theme');
+            if (body.classList.contains('light-theme')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        };
+        
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-theme');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
         // --- Event Listeners ---
         window.addEventListener('scroll', handleScroll);
         scrollToTopBtn.addEventListener('click', handleScrollToTop);
+        themeToggle.addEventListener('click', toggleTheme);
+        downloadClose.addEventListener('click', () => {
+            if(downloadProgress) {
+                downloadProgress.style.display = 'none';
+            }
+        });
 
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const query = document.getElementById('search-input').value.toLowerCase();
+            const query = searchInput.value.toLowerCase().trim();
             if (!query) return;
-            loadingSpinner.style.display = 'block';
+            
+            loadingSpinner.style.display = 'flex';
+            
             setTimeout(() => {
-                const results = allGames.filter(game => game.title.toLowerCase().includes(query));
+                const results = allGames.filter(game => 
+                    game.title.toLowerCase().includes(query) || 
+                    (game.category && game.category.toLowerCase().includes(query))
+                );
+                
                 openGamesModal(`Search Results for "${query}"`, results);
                 loadingSpinner.style.display = 'none';
-            }, 500); // Simulate network delay
+                autocompleteResults.style.display = 'none'; // Hide autocomplete on submit
+            }, 800);
         });
 
+        // --- NEW: Autocomplete Logic ---
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase().trim();
+            autocompleteResults.innerHTML = '';
+
+            if (query.length < 2) { // Only search if query is 2+ chars
+                autocompleteResults.style.display = 'none';
+                return;
+            }
+
+            const results = allGames.filter(game => 
+                game.title.toLowerCase().includes(query)
+            ).slice(0, 6); // Limit to 6 results
+
+            if (results.length > 0) {
+                results.forEach(game => {
+                    const item = document.createElement('div');
+                    item.className = 'autocomplete-item';
+                    // Highlight the matching part of the title
+                    const title = game.title.replace(new RegExp(query, 'gi'), (match) => `<strong>${match}</strong>`);
+                    item.innerHTML = title;
+                    item.addEventListener('click', () => {
+                        searchInput.value = game.title; // Set input value
+                        autocompleteResults.style.display = 'none'; // Hide results
+                        showGameDetails(game); // Directly show the game details
+                    });
+                    autocompleteResults.appendChild(item);
+                });
+                autocompleteResults.style.display = 'block';
+            } else {
+                autocompleteResults.style.display = 'none';
+            }
+        });
+
+        // Hide autocomplete when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchForm.contains(e.target)) {
+                autocompleteResults.style.display = 'none';
+            }
+        });
+
+
         const allGamesTriggers = [exploreBtn, viewAllBtn, allGamesLink];
-        allGamesTriggers.forEach(btn => btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeNavMenu();
-            openGamesModal('All Games', allGames);
-        }));
+        allGamesTriggers.forEach(btn => {
+            if(btn) btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeNavMenu();
+                openGamesModal('All Games', allGames);
+            });
+        });
         
         const aboutTriggers = [aboutLink, aboutFooterLink];
-        aboutTriggers.forEach(btn => btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeNavMenu();
-            openAboutModal();
-        }));
+        aboutTriggers.forEach(btn => {
+            if(btn) btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeNavMenu();
+                openAboutModal();
+            });
+        });
         
-        modalCloseBtn.addEventListener('click', closeAllModals);
-        aboutCloseBtn.addEventListener('click', closeAllModals);
+        if(modalCloseBtn) modalCloseBtn.addEventListener('click', closeAllModals);
+        if(aboutCloseBtn) aboutCloseBtn.addEventListener('click', closeAllModals);
         
-        menuBtn.addEventListener('click', openNavMenu);
-        navClose.addEventListener('click', closeNavMenu);
-        navOverlay.addEventListener('click', closeNavMenu);
+        if(menuBtn) menuBtn.addEventListener('click', openNavMenu);
+        if(userBtn) userBtn.addEventListener('click', openNavMenu);
+        if(navClose) navClose.addEventListener('click', closeNavMenu);
+        if(navOverlay) navOverlay.addEventListener('click', closeNavMenu);
 
         // --- Initial Load ---
         const categories = ['All', ...new Set(allGames.map(g => g.category))];
         
-        // Populate Filter Bar
         if (filterBar && allGames.length > 0) {
             filterBar.innerHTML = '';
             categories.forEach(cat => {
@@ -1471,9 +3782,10 @@
         if (featuredGamesGrid && allGames.length > 0) {
             populateGrid(featuredGamesGrid, allGames.slice(0, 12));
         }
+        
         if (footerCategories && allGames.length > 0) {
             footerCategories.innerHTML = '';
-            categories.slice(1, 5).forEach(cat => {
+            categories.slice(1, 6).forEach(cat => {
                 const li = document.createElement('li');
                 const a = document.createElement('a');
                 a.href = '#';
@@ -1487,30 +3799,12 @@
             });
         }
 
-        // ✅ ADDED: L-CODE L-JDID BACH N-KHEBBIW L-HEADER M3A SCROLL
-        const headerToHide = document.getElementById('header');
-        let lastScrollPosition = 0;
-
-        window.addEventListener('scroll', function() {
-            const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (currentScrollPosition < 50) {
-                // Ila konna qrab l-foq, dima n-biyyno l-header
-                headerToHide.classList.remove('hide-on-scroll');
-                lastScrollPosition = currentScrollPosition;
-                return;
-            }
-
-            if (currentScrollPosition > lastScrollPosition) {
-                // Hna kanhəbṭo -> Khebbi l-header
-                headerToHide.classList.add('hide-on-scroll');
-            } else {
-                // Hna kanṭəlʿo -> Biyyən l-header
-                headerToHide.classList.remove('hide-on-scroll');
-            }
-            lastScrollPosition = currentScrollPosition <= 0 ? 0 : currentScrollPosition; 
+        window.addEventListener('load', () => {
+            allGames.slice(0, 6).forEach(game => {
+                const img = new Image();
+                img.src = game.image;
+            });
         });
-
     });
     </script>
 </body>
