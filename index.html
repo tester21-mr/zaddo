@@ -35,6 +35,7 @@
             overflow-x: hidden;
             background-image: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%), 
                               radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.05), transparent 25%);
+            min-height: 100vh;
         }
 
         a { text-decoration: none; color: inherit; }
@@ -147,14 +148,19 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 25px;
-            padding: 0 5% 80px;
+            padding: 0 5% 40px;
         }
         
         .game-card {
             background: var(--card-bg); border-radius: 20px; overflow: hidden;
             border: 1px solid var(--border); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             cursor: pointer; position: relative;
+            /* Placeholder color while loading */
+            background-color: #1e293b;
+            animation: fadeIn 0.5s ease forwards;
         }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         .game-card:hover { 
             transform: translateY(-10px) scale(1.02); 
             border-color: var(--brand); 
@@ -182,6 +188,18 @@
         .game-meta { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
         .rating { color: #fbbf24; display: flex; align-items: center; gap: 4px; }
         
+        /* LOAD MORE BUTTON */
+        .load-more-container {
+            display: flex; justify-content: center; padding: 0 0 80px;
+        }
+        .load-more-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            color: white; padding: 12px 30px; border-radius: 50px; cursor: pointer;
+            font-weight: 600; transition: 0.3s; display: none; /* Hidden by default */
+            align-items: center; gap: 10px;
+        }
+        .load-more-btn:hover { background: var(--brand); border-color: var(--brand); transform: translateY(-3px); }
+
         /* =========================================
            GAME DETAILS MODAL
            ========================================= */
@@ -322,6 +340,12 @@
     <div class="games-grid" id="games-grid">
         </div>
 
+    <div class="load-more-container">
+        <button id="load-more-btn" class="load-more-btn" onclick="showMoreGames()">
+            <i class="fas fa-plus"></i> Load More Games
+        </button>
+    </div>
+
     <div id="game-modal" class="modal">
         <div class="modal-content">
             <button class="modal-close-btn" id="close-modal">×</button>
@@ -375,7 +399,7 @@
 
     <script>
         // =========================================
-        // FULL GAME DATABASE (Extracted from index 5)
+        // FULL GAME DATABASE
         // =========================================
         const allGames = [
             { title: "Grand Theft Auto V Mobile (Beta)", trending: true, image: "https://i.ibb.co/FzQ7s9s/gta5.jpg", category: "Action", rating: 4.9, downloads: "5.7M", platforms: ["android", "ios"], description: "Experience the acclaimed open-world action game on your mobile device via cloud.", reviews: [{ user: "GamerX123", text: "Absolutely stunning port! Runs surprisingly well." }, { user: "CashKing", text: "Unlimited money makes this the most fun version."}] },
@@ -447,29 +471,44 @@
         const searchInput = document.getElementById('search-input');
         const lockerOverlay = document.getElementById('locker-overlay');
         const lockerFrame = document.getElementById('locker-frame');
+        const loadMoreBtn = document.getElementById('load-more-btn');
         
         // Favorite Logic
         let favorites = JSON.parse(localStorage.getItem('seamax_favs')) || [];
         document.getElementById('fav-count').innerText = favorites.length;
 
         document.getElementById('fav-btn').addEventListener('click', () => {
-             // Simple alert for now, or filter grid
              alert("Favorites feature coming in v2.0!");
         });
 
         // =========================================
-        // RENDERING
+        // OPTIMIZED RENDERING (PAGINATION)
         // =========================================
-        function renderGames(list) {
-            grid.innerHTML = '';
-            list.forEach(game => {
+        let currentList = [];
+        let displayedCount = 0;
+        const BATCH_SIZE = 12; // Load 12 games at a time
+
+        // 1. Initialize the rendering process
+        function initializeGameList(list) {
+            currentList = list;
+            displayedCount = 0;
+            grid.innerHTML = ''; // Clear existing
+            showMoreGames(); // Load first batch
+        }
+
+        // 2. Load the next batch
+        function showMoreGames() {
+            const nextBatch = currentList.slice(displayedCount, displayedCount + BATCH_SIZE);
+            
+            nextBatch.forEach(game => {
                 const card = document.createElement('div');
                 card.className = 'game-card';
                 card.onclick = () => openGame(game);
                 
+                // Added decoding="async" for smoother scrolling
                 card.innerHTML = `
                     <div class="game-image-container">
-                        <img src="${game.image}" class="game-image" loading="lazy" onerror="this.src='https://placehold.co/300x400/1a2530/fff?text=Game'">
+                        <img src="${game.image}" class="game-image" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/300x400/1a2530/fff?text=Game'">
                         <div class="game-badges">
                             ${game.trending ? '<span class="badge hot">HOT</span>' : ''}
                             <span class="badge cloud">CLOUD</span>
@@ -485,9 +524,19 @@
                 `;
                 grid.appendChild(card);
             });
+
+            displayedCount += nextBatch.length;
+
+            // Toggle Button Visibility
+            if (displayedCount < currentList.length) {
+                loadMoreBtn.style.display = 'flex';
+            } else {
+                loadMoreBtn.style.display = 'none';
+            }
         }
 
-        renderGames(allGames);
+        // Start the app with all games
+        initializeGameList(allGames);
 
         // =========================================
         // FILTER & SEARCH
@@ -495,7 +544,7 @@
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             const filtered = allGames.filter(g => g.title.toLowerCase().includes(term));
-            renderGames(filtered);
+            initializeGameList(filtered);
         });
 
         function filterGrid(category, element) {
@@ -505,10 +554,10 @@
 
             // Logic
             if (category === 'All') {
-                renderGames(allGames);
+                initializeGameList(allGames);
             } else {
                 const filtered = allGames.filter(g => g.category === category);
-                renderGames(filtered);
+                initializeGameList(filtered);
             }
         }
 
@@ -527,7 +576,6 @@
             const btnContainer = document.getElementById('action-buttons');
             btnContainer.innerHTML = '';
 
-            // Logic to determine buttons based on "platforms" or "category"
             if (game.category === 'Script') {
                  btnContainer.innerHTML = `
                     <button class="download-btn" onclick="openLocker('script')">
@@ -535,7 +583,6 @@
                     </button>
                  `;
             } else {
-                // Default Gaming Buttons
                 btnContainer.innerHTML = `
                     <button class="download-btn" onclick="openLocker('browser')">
                         <i class="fas fa-globe"></i> Play on Cloud (Browser)
@@ -575,7 +622,7 @@
         window.onclick = (e) => { if(e.target == modal) modal.style.display = 'none'; };
 
         // =========================================
-        // LOCKER FUNCTIONS (IFRAME OVERLAY)
+        // LOCKER FUNCTIONS
         // =========================================
         function openLocker(type) {
             let url = "";
@@ -593,7 +640,7 @@
 
         function closeLocker() {
             lockerOverlay.classList.remove('active');
-            lockerFrame.src = ""; // Clear src to stop video/audio
+            lockerFrame.src = "";
         }
 
     </script>
