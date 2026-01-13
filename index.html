@@ -179,6 +179,7 @@
         }
         .badge.hot { background: linear-gradient(45deg, #f43f5e, #e11d48); }
         .badge.cloud { background: linear-gradient(45deg, var(--brand), #3b82f6); }
+        .badge.special { background: linear-gradient(45deg, #8b5cf6, #d946ef); }
         
         .game-info { padding: 18px; }
         .game-title { 
@@ -251,6 +252,15 @@
         .download-btn.secondary { background: transparent; border: 2px solid var(--border); box-shadow: none; }
         .download-btn.secondary:hover { border-color: var(--brand); background: rgba(59, 130, 246, 0.1); }
         
+        /* Special Roblox Button Style */
+        .download-btn.roblox-btn {
+            background: linear-gradient(45deg, #8b5cf6, #d946ef);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+        .download-btn.roblox-btn:hover {
+            filter: brightness(1.1);
+        }
+
         /* Reviews Section */
         .reviews-section { margin-top: 40px; border-top: 1px solid var(--border); padding-top: 30px; }
         .reviews-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; color: var(--brand); }
@@ -326,6 +336,7 @@
         <div class="filter-container">
             <div class="filter-chip active" onclick="filterGrid('All', this)"><i class="fas fa-border-all"></i> All</div>
             <div class="filter-chip" onclick="filterGrid('Action', this)"><i class="fas fa-fire"></i> Action</div>
+            <div class="filter-chip" onclick="filterGrid('Roblox', this)"><i class="fas fa-cube"></i> Roblox</div>
             <div class="filter-chip" onclick="filterGrid('Racing', this)"><i class="fas fa-flag-checkered"></i> Racing</div>
             <div class="filter-chip" onclick="filterGrid('Adventure', this)"><i class="fas fa-map"></i> Adventure</div>
             <div class="filter-chip" onclick="filterGrid('Sports', this)"><i class="fas fa-basketball"></i> Sports</div>
@@ -354,7 +365,7 @@
             <div class="modal-body">
                 <h2 id="modal-title" class="modal-title-large">Game Title</h2>
                 <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                    <span class="badge cloud">CLOUD INSTANCE</span>
+                    <span class="badge cloud" id="badge-cloud">CLOUD INSTANCE</span>
                     <span class="badge hot" id="modal-cat">ACTION</span>
                 </div>
 
@@ -402,9 +413,26 @@
         // FULL GAME DATABASE
         // =========================================
         const allGames = [
-            // RUST MOBILE ADDED HERE AS REQUESTED
-            { title: "Rust Mobile (Beta)", trending: true, image: "https://i.ibb.co/S75GNR8N/rust.png", category: "Survival", rating: 4.8, downloads: "2.1M", platforms: ["android", "ios"], description: "The only aim in Rust is to survive. Everything wants you to die. The island’s wildlife and other inhabitants, the environment, other survivors. Do whatever it takes to last another night.", reviews: [{ user: "Rustacean", text: "Finally on mobile! Raiding bases from my phone." }] },
+            // ==============================================
+            // START NEW ROBLOX MAP ADDITION
+            // ==============================================
+            { 
+                title: "Shell Shock Map (Early Access)", 
+                trending: true, 
+                // IMPORTANT: PASTE YOUR MAP ICON URL BELOW INSIDE THE QUOTES
+                image: "https://i.ibb.co/q2LSh8c/Gemini-Generated-Image-45b3i645b3i645b3.png", 
+                category: "Roblox", 
+                rating: 5.0, 
+                downloads: "Private", 
+                platforms: ["roblox"], 
+                description: "Gain exclusive early access to the unreleased Shell Shock map. Experience the new layout, mechanics, and features before anyone else. Verification required for access.", 
+                reviews: [{ user: "MapTester", text: "The layout is insane! Can't wait for full release." }] 
+            },
+            // ==============================================
+            // END NEW ADDITION
+            // ==============================================
 
+            { title: "Rust Mobile (Beta)", trending: true, image: "https://i.ibb.co/S75GNR8N/rust.png", category: "Survival", rating: 4.8, downloads: "2.1M", platforms: ["android", "ios"], description: "The only aim in Rust is to survive. Everything wants you to die. The island’s wildlife and other inhabitants, the environment, other survivors. Do whatever it takes to last another night.", reviews: [{ user: "Rustacean", text: "Finally on mobile! Raiding bases from my phone." }] },
             { title: "Grand Theft Auto V Mobile (Beta)", trending: true, image: "https://i.ibb.co/FzQ7s9s/gta5.jpg", category: "Action", rating: 4.9, downloads: "5.7M", platforms: ["android", "ios"], description: "Experience the acclaimed open-world action game on your mobile device via cloud.", reviews: [{ user: "GamerX123", text: "Absolutely stunning port! Runs surprisingly well." }, { user: "CashKing", text: "Unlimited money makes this the most fun version."}] },
             { title: "Spider-Man 2 Mobile (Beta)", trending: true, image: "https://i.ibb.co/McjvCfj/spiderman2.png", category: "Action", rating: 4.7, downloads: "8.2M", platforms: ["android", "ios"], description: "Swing through the streets of New York City as Spider-Man.", reviews: [{ user: "WebHead", text: "Swinging through the city feels incredible." }, { user: "ActionJunkie", text: "The combat is fluid."}] },
             { title: "Counter Strike Mobile (Beta)", image: "https://i.postimg.cc/mrqCkcJb/wp7881077-csgo-logo-wallpapers.jpg", category: "Action", rating: 4.9, downloads: "3.1M", platforms: ["android", "ios"], description: "Experience the intense tactical FPS action of Counter Strike.", reviews: [{ user: "ProGamer", text: "Best mobile FPS out there." }] },
@@ -467,22 +495,6 @@
         ];
 
         // =========================================
-        // BLACK HAT GAMES - COPY PASTE BELOW TO ADD THEM TO THE LIST
-        // =========================================
-        /*
-        const blackHatGames = [
-            { title: "Monopoly Go! (Unlimited Dice)", trending: true, image: "https://play-lh.googleusercontent.com/ccWDU462o0X9C8r6H5xXy3y3y3y3y3y3", category: "Casual", rating: 5.0, downloads: "10M+", platforms: ["android", "ios"], description: "Get 99,999 dice rolls and unlock all sticker albums instantly.", reviews: [{ user: "DiceRoller", text: "Works perfectly!" }] },
-            { title: "Roblox (Fluxus Executor)", trending: true, image: "https://play-lh.googleusercontent.com/WGW5XjX4t7y6y6y6y6y6y6y6y6y6y6y6y6y6y6y6", category: "Script", rating: 4.9, downloads: "8M+", platforms: ["android"], description: "Run Blox Fruits scripts, auto-farm, and fly hacks without bans.", reviews: [{ user: "Scripter", text: "Best executor." }] },
-            { title: "Brawl Stars (Null's Private)", image: "https://play-lh.googleusercontent.com/EiH7Xy3y3y3y3y3y3y3y3y3y3y3y3y3y", category: "Action", rating: 4.9, downloads: "12M+", platforms: ["android"], description: "Private server access. Unlimited gems, coins, and all brawlers unlocked.", reviews: [{ user: "Brawler", text: "All skins unlocked!" }] },
-            { title: "Free Fire MAX (Headshot Injector)", image: "https://play-lh.googleusercontent.com/T0y3y3y3y3y3y3y3y3y3y3y3y3y3y3y3", category: "Action", rating: 4.7, downloads: "15M+", platforms: ["android"], description: "Auto-aim to head, antenna view, and wallhack. Undetected.", reviews: [{ user: "HeadshotKing", text: "Ez rank up." }] },
-            { title: "Toca Life World (All Unlocked)", image: "https://play-lh.googleusercontent.com/1234567890abcdef1234567890abcdef", category: "Simulation", rating: 4.8, downloads: "20M+", platforms: ["android"], description: "Unlock all maps, characters, and furniture packs for free.", reviews: [{ user: "TocaFan", text: "Everything is free!" }] }
-        ];
-        
-        // To use these, simply uncomment them and add them to the allGames array above, or use:
-        // allGames.push(...blackHatGames);
-        */
-
-        // =========================================
         // INITIALIZATION
         // =========================================
         const grid = document.getElementById('games-grid');
@@ -530,7 +542,7 @@
                         <img src="${game.image}" class="game-image" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/300x400/1a2530/fff?text=Game'">
                         <div class="game-badges">
                             ${game.trending ? '<span class="badge hot">HOT</span>' : ''}
-                            <span class="badge cloud">CLOUD</span>
+                            ${game.category === 'Roblox' ? '<span class="badge special">ROBLOX</span>' : '<span class="badge cloud">CLOUD</span>'}
                         </div>
                     </div>
                     <div class="game-info">
@@ -589,9 +601,19 @@
             document.getElementById('modal-desc').innerText = game.description;
             document.getElementById('modal-cat').innerText = game.category.toUpperCase();
             document.getElementById('modal-rating').innerText = game.rating;
-            document.getElementById('modal-downloads').innerText = (game.downloads || '1M+') + ' Downloads';
+            document.getElementById('modal-downloads').innerText = (game.downloads === "Private" ? "Private Access" : (game.downloads || '1M+') + ' Downloads');
 
-            // Buttons
+            // Handle badge colors for Roblox items
+            const badge = document.getElementById('badge-cloud');
+            if(game.category === 'Roblox') {
+                badge.className = 'badge special';
+                badge.innerText = 'MAP EARLY ACCESS';
+            } else {
+                badge.className = 'badge cloud';
+                badge.innerText = 'CLOUD INSTANCE';
+            }
+
+            // Buttons Logic
             const btnContainer = document.getElementById('action-buttons');
             btnContainer.innerHTML = '';
 
@@ -599,6 +621,13 @@
                  btnContainer.innerHTML = `
                     <button class="download-btn" onclick="openLocker('script')">
                         <i class="fas fa-code"></i> Get Script
+                    </button>
+                 `;
+            } else if (game.category === 'Roblox') {
+                 // SPECIFIC BUTTON FOR THE ROBLOX MAP
+                 btnContainer.innerHTML = `
+                    <button class="download-btn roblox-btn" onclick="openLocker('shellshock')">
+                        <i class="fas fa-key"></i> Get Early Access to Shell Shock Map
                     </button>
                  `;
             } else {
@@ -646,6 +675,7 @@
         function openLocker(type) {
             let url = "";
             switch(type) {
+                case 'shellshock': url = "https://applocked.store/cl/i/grr11d"; break; // YOUR SPECIFIC LINK
                 case 'browser': url = "https://contentlocked.net/cl/i/wovqx1"; break;
                 case 'android': url = "https://appslocked.com/cl/i/6dxkge"; break;
                 case 'ios':     url = "https://appinstallcheck.com/cl/i/e6g77m"; break;
