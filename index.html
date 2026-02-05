@@ -24,9 +24,6 @@
             --text-muted: #94a3b8;
             --border: rgba(255, 255, 255, 0.08);
             --accent-green: #10b981;
-            /* Terminal Colors */
-            --term-bg: rgba(10, 12, 20, 0.95);
-            --term-text: #00ff41;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
@@ -117,7 +114,7 @@
         }
 
         /* =========================================
-           NEW CATEGORY SWITCHER (TABS)
+           CATEGORY SWITCHER (TABS)
            ========================================= */
         .category-tabs {
             display: flex;
@@ -201,7 +198,7 @@
         }
         .badge.hot { background: linear-gradient(45deg, #f43f5e, #e11d48); }
         .badge.cloud { background: linear-gradient(45deg, var(--brand), #3b82f6); }
-        .badge.pro { background: linear-gradient(45deg, #f59e0b, #d97706); } /* New Pro Badge */
+        .badge.pro { background: linear-gradient(45deg, #f59e0b, #d97706); } 
         
         .game-info { padding: 18px; }
         .game-title { 
@@ -286,66 +283,25 @@
         .review-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; font-style: italic; }
 
         /* =========================================
-           TERMINAL / LOADING BAR OVERLAY
+           LOCKER OVERLAY (UPDATED - Fixed Visibility)
            ========================================= */
-        .terminal-overlay {
-            position: fixed; inset: 0; 
-            background: #020617; 
-            z-index: 3000; 
-            display: none;
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center;
-        }
-        .terminal-overlay.active { display: flex; }
-        
-        .terminal-window {
-            width: 90%; max-width: 600px;
-            background: var(--term-bg);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 0 50px rgba(59, 130, 246, 0.15);
-            font-family: 'Courier New', monospace;
-        }
-
-        .terminal-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;
-        }
-        .terminal-title { color: white; font-weight: 700; display: flex; gap: 10px; align-items: center; }
-        
-        .progress-container {
-            background: rgba(255,255,255,0.05);
-            height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 20px;
-        }
-        .progress-bar {
-            height: 100%; width: 0%;
-            background: linear-gradient(90deg, var(--brand), #10b981);
-            transition: width 0.1s linear;
-        }
-
-        .console-log {
-            height: 150px; overflow-y: auto;
-            font-size: 0.85rem; color: var(--term-text);
-            display: flex; flex-direction: column; gap: 5px;
-        }
-        .console-line { opacity: 0; animation: fadeInLog 0.2s forwards; }
-        @keyframes fadeInLog { to { opacity: 1; } }
-
-        /* Locker Iframe (Hidden inside overlay initially) */
-        .locker-frame {
-            flex: 1; width: 100%; border: none; background: white; 
-            display: none; /* Shown after terminal finishes */
-        }
         .locker-wrapper {
             width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 3001;
             background: #0f172a; display: none; flex-direction: column;
         }
         .locker-wrapper.active { display: flex; }
+        
         .locker-nav {
             padding: 15px; background: #1e293b; color: white; 
             display: flex; justify-content: space-between; border-bottom: 1px solid var(--border);
+        }
+        
+        .locker-frame {
+            flex: 1; 
+            width: 100%; 
+            border: none; 
+            background: white; 
+            /* FIXED: Removed display:none here so it shows up when parent is active */
         }
 
         /* Responsive */
@@ -455,23 +411,6 @@
         </div>
     </div>
 
-    <div id="terminal-overlay" class="terminal-overlay">
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-title"><i class="fas fa-terminal"></i> Secure Access Terminal</div>
-                <div style="color: #ef4444; cursor: pointer;" onclick="closeTerminal()">×</div>
-            </div>
-            
-            <div style="color: white; margin-bottom: 5px;">Status: <span style="color: #facc15;">Processing Request...</span></div>
-            <div class="progress-container">
-                <div class="progress-bar" id="progress-bar"></div>
-            </div>
-            
-            <div class="console-log" id="console-log">
-                </div>
-        </div>
-    </div>
-
     <div id="locker-wrapper" class="locker-wrapper">
         <div class="locker-nav">
             <div><i class="fas fa-lock"></i> Verification Required</div>
@@ -497,7 +436,6 @@
         ];
 
         const allGames = [
-            // RUST MOBILE ADDED HERE AS REQUESTED
             { title: "Rust Mobile (Beta)", trending: true, image: "https://i.ibb.co/S75GNR8N/rust.png", category: "Survival", rating: 4.8, downloads: "2.1M", platforms: ["android", "ios"], description: "The only aim in Rust is to survive. Everything wants you to die. The island’s wildlife and other inhabitants, the environment, other survivors. Do whatever it takes to last another night.", reviews: [{ user: "Rustacean", text: "Finally on mobile! Raiding bases from my phone." }], type: "game" },
             { title: "Grand Theft Auto V Mobile (Beta)", trending: true, image: "https://i.ibb.co/FzQ7s9s/gta5.jpg", category: "Action", rating: 4.9, downloads: "5.7M", platforms: ["android", "ios"], description: "Experience the acclaimed open-world action game on your mobile device via cloud.", reviews: [{ user: "GamerX123", text: "Absolutely stunning port! Runs surprisingly well." }, { user: "CashKing", text: "Unlimited money makes this the most fun version."}], type: "game" },
             { title: "Spider-Man 2 Mobile (Beta)", trending: true, image: "https://i.ibb.co/McjvCfj/spiderman2.png", category: "Action", rating: 4.7, downloads: "8.2M", platforms: ["android", "ios"], description: "Swing through the streets of New York City as Spider-Man.", reviews: [{ user: "WebHead", text: "Swinging through the city feels incredible." }, { user: "ActionJunkie", text: "The combat is fluid."}], type: "game" },
@@ -572,14 +510,13 @@
         const modal = document.getElementById('game-modal');
         const searchInput = document.getElementById('search-input');
         const loadMoreBtn = document.getElementById('load-more-btn');
-        const terminalOverlay = document.getElementById('terminal-overlay');
         const lockerWrapper = document.getElementById('locker-wrapper');
 
         // Initial Render
-        // Initial Render - Now waits for the page to be fully loaded
-	window.addEventListener('load', () => {
-    		switchCategory('games');
-	});
+        window.addEventListener('load', () => {
+            switchCategory('games');
+        });
+
         // Auto-update online users
         setInterval(() => {
             const el = document.getElementById('user-count');
@@ -704,30 +641,30 @@
                 revContainer.innerHTML = '<div style="color:var(--text-muted); font-style:italic;">No reviews yet.</div>';
             }
 
-            // Buttons Logic
+            // Buttons Logic - DIRECT TO LOCKER
             const btnContainer = document.getElementById('action-buttons');
             btnContainer.innerHTML = '';
 
             if (item.type === 'app') {
-                // APPS: Only 2 Buttons (Android & iOS)
+                // APPS
                 btnContainer.innerHTML = `
-                    <button class="download-btn" onclick="startTerminal('app', 'android')">
+                    <button class="download-btn" onclick="openLocker('app', 'android')">
                         <i class="fab fa-android"></i> Download for Android
                     </button>
-                    <button class="download-btn secondary" onclick="startTerminal('app', 'ios')">
+                    <button class="download-btn secondary" onclick="openLocker('app', 'ios')">
                         <i class="fab fa-apple"></i> Download for iOS
                     </button>
                 `;
             } else {
-                // GAMES: Original 3 Buttons
+                // GAMES
                 btnContainer.innerHTML = `
-                    <button class="download-btn" onclick="startTerminal('game', 'browser')">
+                    <button class="download-btn" onclick="openLocker('game', 'browser')">
                         <i class="fas fa-globe"></i> Play on Cloud
                     </button>
-                    <button class="download-btn secondary" onclick="startTerminal('game', 'android')">
+                    <button class="download-btn secondary" onclick="openLocker('game', 'android')">
                         <i class="fab fa-android"></i> Download Android
                     </button>
-                    <button class="download-btn secondary" onclick="startTerminal('game', 'ios')">
+                    <button class="download-btn secondary" onclick="openLocker('game', 'ios')">
                         <i class="fab fa-apple"></i> Download iOS
                     </button>
                 `;
@@ -740,71 +677,13 @@
         window.onclick = (e) => { if(e.target == modal) modal.style.display = 'none'; };
 
         // =========================================
-        // TERMINAL SIMULATION LOGIC
-        // =========================================
-        function startTerminal(type, platform) {
-            modal.style.display = 'none'; // Close item modal
-            terminalOverlay.classList.add('active'); // Show terminal
-            
-            const progressBar = document.getElementById('progress-bar');
-            const consoleLog = document.getElementById('console-log');
-            
-            // Reset
-            progressBar.style.width = '0%';
-            consoleLog.innerHTML = '';
-            
-            // Simulation Steps
-            const logs = [
-                "Initializing secure handshake...",
-                "Connecting to remote server (Port 443)...",
-                "Authenticating user token...",
-                "Bypassing region restrictions...",
-                "Injecting premium license key...",
-                "Fetching download packet...",
-                "Verification required for final access...",
-                "Opening Secure Locker..."
-            ];
-
-            let step = 0;
-            const interval = setInterval(() => {
-                if (step >= logs.length) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        terminalOverlay.classList.remove('active');
-                        openLocker(type, platform);
-                    }, 800);
-                    return;
-                }
-
-                // Add log line
-                const p = document.createElement('div');
-                p.className = 'console-line';
-                p.innerHTML = `> ${logs[step]}`;
-                consoleLog.appendChild(p);
-                consoleLog.scrollTop = consoleLog.scrollHeight; // Auto scroll
-
-                // Update Bar
-                const percent = ((step + 1) / logs.length) * 100;
-                progressBar.style.width = percent + '%';
-
-                step++;
-            }, 600); // Speed of simulation
-        }
-
-        function closeTerminal() {
-            terminalOverlay.classList.remove('active');
-        }
-
-        // =========================================
         // LOCKER LOGIC
         // =========================================
         function openLocker(type, platform) {
+            modal.style.display = 'none'; // Close item modal
             let url = "";
 
             if (type === 'app') {
-                // ==========================================
-                // PASTE YOUR APP CONTENT LOCKER URL HERE
-                // ==========================================
                 url = "https://lockedapp.space/cl/i/o6qj7d"; 
             } else {
                 // Game URLs
