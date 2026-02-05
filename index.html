@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeaMax Cloud | Premium Virtual Gaming</title>
+    <title>SeaMax Cloud | Premium Virtual Gaming & Tools</title>
     
     <meta name="robots" content="noindex, nofollow, noarchive">
-    <meta name="description" content="Play premium games instantly via cloud streaming.">
+    <meta name="description" content="Play premium games and access pro tools instantly via cloud streaming.">
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -24,6 +24,9 @@
             --text-muted: #94a3b8;
             --border: rgba(255, 255, 255, 0.08);
             --accent-green: #10b981;
+            /* Terminal Colors */
+            --term-bg: rgba(10, 12, 20, 0.95);
+            --term-text: #00ff41;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
@@ -75,16 +78,12 @@
             padding: 6px 14px; border-radius: 50px; border: 1px solid rgba(16, 185, 129, 0.2);
             display: flex; align-items: center; gap: 6px; font-weight: 700; letter-spacing: 0.5px;
         }
-        .fav-btn-nav { 
-            font-size: 1.2rem; color: var(--text-muted); cursor: pointer; transition: 0.3s; position: relative; 
-        }
-        .fav-btn-nav:hover { color: #f43f5e; transform: scale(1.1); }
 
         /* =========================================
            HEADER & SEARCH
            ========================================= */
         header { 
-            padding: 180px 5% 50px; 
+            padding: 160px 5% 40px; 
             text-align: center; 
             position: relative; 
         }
@@ -117,19 +116,43 @@
             font-size: 1rem; padding: 16px 0; outline: none;
         }
 
-        .filter-container { 
-            display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; 
-            margin: 50px auto 0; max-width: 1000px; 
+        /* =========================================
+           NEW CATEGORY SWITCHER (TABS)
+           ========================================= */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px auto 20px;
         }
-        .filter-chip {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-            color: var(--text-muted); padding: 10px 20px; border-radius: 50px;
-            cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: 0.3s;
-            display: flex; align-items: center; gap: 8px;
+
+        .tab-btn {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .filter-chip:hover, .filter-chip.active { 
-            background: rgba(59, 130, 246, 0.15); color: var(--brand); border-color: var(--brand); 
+
+        .tab-btn i { font-size: 1.1rem; }
+
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.08);
             transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, var(--brand), #2563eb);
+            color: white;
+            border-color: var(--brand);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
         }
 
         /* =========================================
@@ -155,7 +178,6 @@
             background: var(--card-bg); border-radius: 20px; overflow: hidden;
             border: 1px solid var(--border); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             cursor: pointer; position: relative;
-            /* Placeholder color while loading */
             background-color: #1e293b;
             animation: fadeIn 0.5s ease forwards;
         }
@@ -179,7 +201,7 @@
         }
         .badge.hot { background: linear-gradient(45deg, #f43f5e, #e11d48); }
         .badge.cloud { background: linear-gradient(45deg, var(--brand), #3b82f6); }
-        .badge.special { background: linear-gradient(45deg, #8b5cf6, #d946ef); }
+        .badge.pro { background: linear-gradient(45deg, #f59e0b, #d97706); } /* New Pro Badge */
         
         .game-info { padding: 18px; }
         .game-title { 
@@ -202,7 +224,7 @@
         .load-more-btn:hover { background: var(--brand); border-color: var(--brand); transform: translateY(-3px); }
 
         /* =========================================
-           GAME DETAILS MODAL
+           DETAILS MODAL
            ========================================= */
         .modal { 
             display: none; position: fixed; inset: 0; z-index: 2000; 
@@ -252,15 +274,6 @@
         .download-btn.secondary { background: transparent; border: 2px solid var(--border); box-shadow: none; }
         .download-btn.secondary:hover { border-color: var(--brand); background: rgba(59, 130, 246, 0.1); }
         
-        /* Special Roblox Button Style */
-        .download-btn.roblox-btn {
-            background: linear-gradient(45deg, #8b5cf6, #d946ef);
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
-        }
-        .download-btn.roblox-btn:hover {
-            filter: brightness(1.1);
-        }
-
         /* Reviews Section */
         .reviews-section { margin-top: 40px; border-top: 1px solid var(--border); padding-top: 30px; }
         .reviews-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; color: var(--brand); }
@@ -273,25 +286,68 @@
         .review-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; font-style: italic; }
 
         /* =========================================
-           LOCKER OVERLAY (IFRAME)
+           TERMINAL / LOADING BAR OVERLAY
            ========================================= */
-        .locker-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #020617; z-index: 3000; display: none;
-            flex-direction: column; animation: fadeIn 0.3s;
+        .terminal-overlay {
+            position: fixed; inset: 0; 
+            background: #020617; 
+            z-index: 3000; 
+            display: none;
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
         }
-        .locker-overlay.active { display: flex; }
-        .locker-header {
-            padding: 15px 20px; background: #0f172a; border-bottom: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .locker-title { font-weight: 700; color: var(--text-main); }
-        .locker-close { 
-            background: #ef4444; color: white; border: none; width: 30px; height: 30px; 
-            border-radius: 50%; cursor: pointer; font-weight: bold;
-        }
-        .locker-frame { flex: 1; width: 100%; border: none; background: white; }
+        .terminal-overlay.active { display: flex; }
         
+        .terminal-window {
+            width: 90%; max-width: 600px;
+            background: var(--term-bg);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 50px rgba(59, 130, 246, 0.15);
+            font-family: 'Courier New', monospace;
+        }
+
+        .terminal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;
+        }
+        .terminal-title { color: white; font-weight: 700; display: flex; gap: 10px; align-items: center; }
+        
+        .progress-container {
+            background: rgba(255,255,255,0.05);
+            height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 20px;
+        }
+        .progress-bar {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, var(--brand), #10b981);
+            transition: width 0.1s linear;
+        }
+
+        .console-log {
+            height: 150px; overflow-y: auto;
+            font-size: 0.85rem; color: var(--term-text);
+            display: flex; flex-direction: column; gap: 5px;
+        }
+        .console-line { opacity: 0; animation: fadeInLog 0.2s forwards; }
+        @keyframes fadeInLog { to { opacity: 1; } }
+
+        /* Locker Iframe (Hidden inside overlay initially) */
+        .locker-frame {
+            flex: 1; width: 100%; border: none; background: white; 
+            display: none; /* Shown after terminal finishes */
+        }
+        .locker-wrapper {
+            width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 3001;
+            background: #0f172a; display: none; flex-direction: column;
+        }
+        .locker-wrapper.active { display: flex; }
+        .locker-nav {
+            padding: 15px; background: #1e293b; color: white; 
+            display: flex; justify-content: space-between; border-bottom: 1px solid var(--border);
+        }
+
         /* Responsive */
         @media(max-width: 900px) {
             header h1 { font-size: 2.5rem; }
@@ -313,47 +369,42 @@
         </a>
         <div class="nav-stats">
             <div class="server-status">
-                <i class="fas fa-circle" style="font-size: 0.5rem;"></i> NODES ACTIVE
-            </div>
-            <div class="fav-btn-nav" id="fav-btn">
-                <i class="far fa-heart"></i>
-                <span id="fav-count" style="position: absolute; top: -5px; right: -8px; background: var(--brand); font-size: 0.6rem; padding: 2px 5px; border-radius: 10px; color: white;">0</span>
+                <i class="fas fa-circle" style="font-size: 0.5rem;"></i> <span id="user-count">8,942</span> ONLINE
             </div>
         </div>
     </nav>
 
     <header>
-        <h1>Next-Gen <span>Cloud</span> Gaming</h1>
-        <p class="subtitle">Access 1000+ premium titles instantly via our high-performance virtual clusters. No downloads, just play.</p>
+        <h1>Next-Gen <span>Cloud</span> Resource Hub</h1>
+        <p class="subtitle">Access premium titles, cracked apps, and high-performance exploits instantly.</p>
         
         <div class="search-wrapper">
             <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" id="search-input" placeholder="Search games (e.g. GTA V, Spider-Man)..." autocomplete="off">
+                <input type="text" id="search-input" placeholder="Search resources..." autocomplete="off">
             </div>
         </div>
 
-        <div class="filter-container">
-            <div class="filter-chip active" onclick="filterGrid('All', this)"><i class="fas fa-border-all"></i> All</div>
-            <div class="filter-chip" onclick="filterGrid('Action', this)"><i class="fas fa-fire"></i> Action</div>
-            <div class="filter-chip" onclick="filterGrid('Roblox', this)"><i class="fas fa-cube"></i> Roblox</div>
-            <div class="filter-chip" onclick="filterGrid('Racing', this)"><i class="fas fa-flag-checkered"></i> Racing</div>
-            <div class="filter-chip" onclick="filterGrid('Adventure', this)"><i class="fas fa-map"></i> Adventure</div>
-            <div class="filter-chip" onclick="filterGrid('Sports', this)"><i class="fas fa-basketball"></i> Sports</div>
-            <div class="filter-chip" onclick="filterGrid('Script', this)"><i class="fas fa-code"></i> Scripts</div>
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="switchCategory('games')">
+                <i class="fas fa-gamepad"></i> Games
+            </button>
+            <button class="tab-btn" onclick="switchCategory('apps')">
+                <i class="fas fa-bolt"></i> Premium Apps
+            </button>
         </div>
     </header>
 
     <div class="section-header">
-        <div class="section-title"><i class="fas fa-gamepad"></i> Available Instances</div>
+        <div class="section-title"><i class="fas fa-layer-group"></i> <span id="section-label">Available Games</span></div>
     </div>
 
     <div class="games-grid" id="games-grid">
         </div>
 
     <div class="load-more-container">
-        <button id="load-more-btn" class="load-more-btn" onclick="showMoreGames()">
-            <i class="fas fa-plus"></i> Load More Games
+        <button id="load-more-btn" class="load-more-btn" onclick="showMoreItems()">
+            <i class="fas fa-plus"></i> Load More
         </button>
     </div>
 
@@ -363,9 +414,9 @@
             <img id="modal-img" src="" class="modal-header-img">
             
             <div class="modal-body">
-                <h2 id="modal-title" class="modal-title-large">Game Title</h2>
+                <h2 id="modal-title" class="modal-title-large">Title</h2>
                 <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                    <span class="badge cloud" id="badge-cloud">CLOUD INSTANCE</span>
+                    <span class="badge cloud" id="modal-badge-1">CLOUD INSTANCE</span>
                     <span class="badge hot" id="modal-cat">ACTION</span>
                 </div>
 
@@ -378,6 +429,10 @@
                             <div class="reviews-title"><i class="fas fa-comments"></i> User Reviews</div>
                             <div id="reviews-container">
                                 </div>
+                        </div>
+
+                        <div style="margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">
+                            <i class="fas fa-shield-alt" style="color: var(--accent-green);"></i> Verified Safe & Secure
                         </div>
                     </div>
 
@@ -400,156 +455,198 @@
         </div>
     </div>
 
-    <div id="locker-overlay" class="locker-overlay">
-        <div class="locker-header">
-            <div class="locker-title"> <i class="fas fa-lock"></i> Verification Required</div>
-            <button class="locker-close" onclick="closeLocker()">×</button>
+    <div id="terminal-overlay" class="terminal-overlay">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-title"><i class="fas fa-terminal"></i> Secure Access Terminal</div>
+                <div style="color: #ef4444; cursor: pointer;" onclick="closeTerminal()">×</div>
+            </div>
+            
+            <div style="color: white; margin-bottom: 5px;">Status: <span style="color: #facc15;">Processing Request...</span></div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="console-log" id="console-log">
+                </div>
+        </div>
+    </div>
+
+    <div id="locker-wrapper" class="locker-wrapper">
+        <div class="locker-nav">
+            <div><i class="fas fa-lock"></i> Verification Required</div>
+            <div style="cursor: pointer;" onclick="closeLocker()">Close <b>×</b></div>
         </div>
         <iframe id="locker-frame" class="locker-frame" src=""></iframe>
     </div>
 
     <script>
         // =========================================
-        // FULL GAME DATABASE
+        // DATA: APPS & GAMES
         // =========================================
-        const allGames = [
-            // ==============================================
-            // START NEW ROBLOX MAP ADDITION
-            // ==============================================
-            { 
-                title: "Shell Shock Map (Early Access)", 
-                trending: true, 
-                // IMPORTANT: PASTE YOUR MAP ICON URL BELOW INSIDE THE QUOTES
-                image: "https://i.ibb.co/q2LSh8c/Gemini-Generated-Image-45b3i645b3i645b3.png", 
-                category: "Roblox", 
-                rating: 5.0, 
-                downloads: "Private", 
-                platforms: ["roblox"], 
-                description: "Gain exclusive early access to the unreleased Shell Shock map. Experience the new layout, mechanics, and features before anyone else. Verification required for access.", 
-                reviews: [{ user: "MapTester", text: "The layout is insane! Can't wait for full release." }] 
-            },
-            // ==============================================
-            // END NEW ADDITION
-            // ==============================================
+        
+        const allApps = [
+            { title: "ChatGPT 4 Plus", trending: true, image: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", category: "AI Tool", rating: 4.9, downloads: "10M+", description: "Unlock generic GPT-4 Plus access. Features priority response times, plugin access, and advanced data analysis capabilities.", type: "app", reviews: [{user: "AI_Fan", text: "Saves me $20 a month!"}] },
+            { title: "Canva Pro Team", trending: true, image: "https://static.cdnlogo.com/logos/c/36/canva.png", category: "Design", rating: 4.8, downloads: "8M+", description: "Join a Pro Team instantly. Unlocks millions of premium assets, background remover, and magic resize tools.", type: "app", reviews: [{user: "Designer101", text: "All premium assets unlocked."}] },
+            { title: "CapCut Pro", trending: true, image: "https://static.cdnlogo.com/logos/c/89/capcut_800.png", category: "Video", rating: 4.7, downloads: "15M+", description: "Full PC Edition cracked. No watermarks, 4K export, and premium transitions unlocked.", type: "app", reviews: [{user: "Vlogger", text: "Exporting in 4k works perfectly."}] },
+            { title: "Midjourney V6", trending: true, image: "https://static.cdnlogo.com/logos/m/1/midjourney.svg", category: "AI Art", rating: 4.9, downloads: "5M+", description: "Unlimited fast-hours credits script. Generate photorealistic images with the latest V6 algorithm.", type: "app", reviews: [{user: "ArtGen", text: "Infinite generations."}] },
+            { title: "ElevenLabs Premium", image: "https://i.ibb.co/tpxYskQr/elevenlabs.jpg", alt: "elevenlabs-seeklogo", category: "Voice AI", rating: 4.8, downloads: "2M+", description: "Premium voice cloning unlocked. Access high-fidelity text-to-speech with extended character limits.", type: "app", reviews: [{user: "VoiceActor", text: "Cloning is scary good."}] },
+            { title: "Adobe CC 2025", image: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Adobe_Creative_Cloud_rainbow_icon.svg", category: "Design", rating: 4.9, downloads: "20M+", description: "Master Collection pre-activated. Includes Photoshop, Premiere Pro, After Effects, and Illustrator.", type: "app", reviews: [{user: "CreativePro", text: "Full suite works offline."}] },
+            { title: "Duolingo Super", image: "https://static.cdnlogo.com/logos/d/4/duolingo_800.png", category: "Education", rating: 4.7, downloads: "50M+", description: "Super features enabled: Unlimited hearts, no ads, and offline courses.", type: "app", reviews: [{user: "Student", text: "No more ads!"}] },
+            { title: "Crunchyroll Premium", image: "https://static.cdnlogo.com/logos/c/58/crunchyroll.svg", category: "Entertainment", rating: 4.8, downloads: "12M+", description: "Mega Fan tier unlocked. Ad-free streaming, offline viewing, and access to the full library.", type: "app", reviews: [{user: "AnimeLover", text: "Watching mostly offline now."}] }
+        ];
 
-            { title: "Rust Mobile (Beta)", trending: true, image: "https://i.ibb.co/S75GNR8N/rust.png", category: "Survival", rating: 4.8, downloads: "2.1M", platforms: ["android", "ios"], description: "The only aim in Rust is to survive. Everything wants you to die. The island’s wildlife and other inhabitants, the environment, other survivors. Do whatever it takes to last another night.", reviews: [{ user: "Rustacean", text: "Finally on mobile! Raiding bases from my phone." }] },
-            { title: "Grand Theft Auto V Mobile (Beta)", trending: true, image: "https://i.ibb.co/FzQ7s9s/gta5.jpg", category: "Action", rating: 4.9, downloads: "5.7M", platforms: ["android", "ios"], description: "Experience the acclaimed open-world action game on your mobile device via cloud.", reviews: [{ user: "GamerX123", text: "Absolutely stunning port! Runs surprisingly well." }, { user: "CashKing", text: "Unlimited money makes this the most fun version."}] },
-            { title: "Spider-Man 2 Mobile (Beta)", trending: true, image: "https://i.ibb.co/McjvCfj/spiderman2.png", category: "Action", rating: 4.7, downloads: "8.2M", platforms: ["android", "ios"], description: "Swing through the streets of New York City as Spider-Man.", reviews: [{ user: "WebHead", text: "Swinging through the city feels incredible." }, { user: "ActionJunkie", text: "The combat is fluid."}] },
-            { title: "Counter Strike Mobile (Beta)", image: "https://i.postimg.cc/mrqCkcJb/wp7881077-csgo-logo-wallpapers.jpg", category: "Action", rating: 4.9, downloads: "3.1M", platforms: ["android", "ios"], description: "Experience the intense tactical FPS action of Counter Strike.", reviews: [{ user: "ProGamer", text: "Best mobile FPS out there." }] },
-            { title: "The Last of Us Mobile (Beta)", image: "https://i.ibb.co/tLx5P3D/tlou-1.jpg", category: "Adventure", rating: 4.9, downloads: "2.9M", platforms: ["android"], description: "Survive in a post-apocalyptic world overrun by infected creatures.", reviews: [{ user: "StoryLover", text: "The emotional story hits just as hard on mobile." }] },
-            { title: "Horizon Zero Dawn Mobile (Beta)", image: "https://i.ibb.co/n0tBVMs/horizon.jpg", category: "Adventure", rating: 4.6, downloads: "3.1M", platforms: ["android"], description: "Explore a lush, post-apocalyptic world inhabited by machines.", reviews: [{ user: "Explorer", text: "The world is beautiful." }] },
-            { title: "Red Dead Redemption 2 Mobile (Beta)", image: "https://i.ibb.co/kDmVtwv/rdr2-1.jpg", category: "Action", rating: 5.0, downloads: "2.8M", platforms: ["android", "ios"], description: "An epic tale of honor and loyalty at the dawn of the modern age.", reviews: [{ user: "Cowboy", text: "Incredible detail and an amazing story." }] },
-            { title: "Fortnite Mobile MOD", trending: true, image: "https://i.ibb.co/W5j9ZXx/fortnite.jpg", category: "Action", rating: 4.5, downloads: "15M+", platforms: ["android"], description: "The ultimate battle royale experience, now with premium mods.", reviews: [{ user: "VBucksKing", text: "The mod works perfectly!" }] },
-            { title: "Stick War MOD", image: "https://i.ibb.co/TDb6Xz4Q/Gemini-Generated-Image-d0k10jd0k10jd0k1.png", category: "Strategy", rating: 4.8, downloads: "15M+", platforms: ["android"], description: "Lead your stickman army to victory in this classic strategy game.", reviews: [{ user: "ArmyBuilder", text: "Unlimited gems makes this so much more fun!" }] },
-            { title: "Roblox Premium MOD", image: "https://i.ibb.co/k92hJwF/roblox.png", category: "Adventure", rating: 4.7, downloads: "20M+", platforms: ["android", "ios"], description: "The ultimate virtual universe. MOD unlocks premium features.", reviews: [{ user: "Creator", text: "So many games to play!" }] },
-            { title: "GTA 4 Mobile (Beta)", image: "https://i.ibb.co/Mcfhc3g/gta4-1.jpg", category: "Action", rating: 4.8, downloads: "3.5M", platforms: ["android"], description: "Explore the gritty and realistic world of Liberty City.", reviews: [{ user: "NikoFan", text: "A true classic." }] },
-            { title: "FIFA 24 Mobile (Beta)", image: "https://i.postimg.cc/bN6TKCJZ/FC-24-Mobile.jpg", category: "Sports", rating: 4.9, downloads: "15M+", platforms: ["android", "ios"], description: "Experience the beautiful game with this beta version.", reviews: [{ user: "FootballFan", text: "The gameplay feels so realistic." }] },
-            { title: "PUBG Mobile MOD", image: "https://i.postimg.cc/TwPBXLxx/PUBG.jpg", category: "Action", rating: 4.8, downloads: "25M+", platforms: ["android"], description: "Intense battle royale action with advanced aiming assistance.", reviews: [{ user: "WinnerWinner", text: "Chicken dinners every night!" }] },
-            { title: "Call of Duty Mobile MOD", image: "https://i.postimg.cc/ZnGQ3wdY/cod.jpg", category: "Action", rating: 4.9, downloads: "30M+", platforms: ["android"], description: "Ultimate FPS action with unlimited CP.", reviews: [{ user: "SniperGod", text: "Fast-paced action and great maps." }] },
-            { title: "Genshin Impact MOD", image: "https://i.postimg.cc/kM2XQDbL/Genshin-Impact-Mobile.jpg", category: "Adventure", rating: 4.7, downloads: "18M+", platforms: ["android"], description: "Embark on a magical adventure in Teyvat with unlimited Primogems.", reviews: [{ user: "WaifuCollector", text: "Unlimited primogems!" }] },
-            { title: "Asphalt 9 Legends MOD", image: "https://i.postimg.cc/j2cXqv4k/Asphalt-Legends-Unite.jpg", category: "Racing", rating: 4.6, downloads: "12M+", platforms: ["android"], description: "Arcade racing with unlimited tokens.", reviews: [{ user: "SpeedDemon", text: "The graphics are insane!" }] },
-            { title: "Need for Speed Unbound Mobile (Beta)", image: "https://i.postimg.cc/tJQKQGQ9/nfsu.jpg", category: "Racing", rating: 4.8, downloads: "4.5M", platforms: ["android"], description: "Ultimate street racing with stunning visual effects.", reviews: [{ user: "StreetRacer", text: "The art style is so cool." }] },
-            { title: "Real Racing 3 MOD", image: "https://i.postimg.cc/7ZfVD3Gm/Real-Racing-3-v3-3-0-mod-apk.jpg", category: "Racing", rating: 4.7, downloads: "10M+", platforms: ["android"], description: "True-to-life racing simulation with everything unlocked.", reviews: [{ user: "SimRacer", text: "The physics are so realistic." }] },
-            { title: "CSR Racing 2 MOD", image: "https://i.postimg.cc/SQfVGNb7/CSR-Racing-2.jpg", category: "Racing", rating: 4.9, downloads: "8M+", platforms: ["android"], description: "Dominate the drag racing scene with unlimited resources.", reviews: [{ user: "DragKing", text: "Unbelievable graphics." }] },
-            { title: "CarX Street MOD", image: "https://i.postimg.cc/d3tMcYgf/carx.jpg", category: "Racing", rating: 4.8, downloads: "6.3M", platforms: ["android"], description: "Open world street racing with unlimited cash.", reviews: [{ user: "DriftMaster", text: "Best drifting physics." }] },
-            { title: "Rematch MOD", image: "https://i.ibb.co/rRRfjjnH/Gemini-Generated-Image-t29wf5t29wf5t29w.png", category: "Action", rating: 4.5, downloads: "1.5M", platforms: ["android"], description: "Intense fighting game with all fighters unlocked.", reviews: [{ user: "ComboKing", text: "Great mod!" }] },
-            { title: "GTA Vice City MOD", image: "http://t0.gstatic.com/images?q=tbn:ANd9GcS3Ft-oM67UR15mSle49VHnUqLeq1kodsEQeiNQiO_hY-tIyDkoz6U7QvoWy6dBNTGj7IV8EQ", category: "Action", rating: 4.8, downloads: "6.8M", platforms: ["android"], description: "Return to the 1980s in this classic open-world game.", reviews: [{ user: "80sKid", text: "Nostalgia in my pocket!" }] },
-            { title: "BeamNG.drive Mobile (Beta)", image: "https://i.ibb.co/W4cQSdL7/Gemini-Generated-Image-dah033dah033dah0.png", category: "Simulation", rating: 4.9, downloads: "2.1M", platforms: ["android"], description: "Realistic soft-body physics driving game.", reviews: [{ user: "CrashTest", text: "Incredible physics." }] },
-            { title: "Spider-Man Unlimited MOD", image: "https://upload.wikimedia.org/wikipedia/en/a/aa/Spider-Man_Unlimited.png", category: "Action", rating: 4.7, downloads: "9.1M", platforms: ["android"], description: "Arcade adventure with every hero unlocked.", reviews: [{ user: "SpiderFan", text: "Art style is amazing." }] },
-            { title: "Hitman Sniper MOD", image: "https://lh3.googleusercontent.com/PYlSCwbwrv6JFzp0-KtITrrN2VK4iCdEYK_9yBiADhV_vR5V-cAzrQcdDJu_rUz8BgMxU0aQpgEaypMneKXp", category: "Action", rating: 4.7, downloads: "11M", platforms: ["android"], description: "Compelling sniper experience with all rifles unlocked.", reviews: [{ user: "Agent47", text: "Perfectly executed." }] },
-            { title: "God Of War 3 Mobile (Beta)", image: "https://i.postimg.cc/qRdgbrH2/god-of-war-3-wallpaper-kg2nhyxsdeicjjyp.webp", category: "Action", rating: 4.8, downloads: "3.3M", platforms: ["android"], description: "Epic boss battles in this mobile beta adaptation.", reviews: [{ user: "KratosIsKing", text: "Brutal and satisfying." }] },
-            { title: "Efootball 2024 MOD", image: "https://i.postimg.cc/Kv9kZCty/images-3.jpg", category: "Sports", rating: 4.6, downloads: "16M", platforms: ["android"], description: "Realistic soccer gameplay with unlimited currency.", reviews: [{ user: "SoccerStar", text: "Best ball physics." }] },
-            { title: "Watch Dogs 2 Mobile (Beta)", image: "https://image.api.playstation.com/cdn/EP0001/CUSA06328_00/0oRMkLrk8IoCyGQfYpdIzVF5dzPP6cM4.png", category: "Action", rating: 4.6, downloads: "4.1M", platforms: ["android"], description: "Hack everything in San Francisco from your phone.", reviews: [{ user: "DedSecAgent", text: "Hacking is awesome." }] },
-            { title: "Forza Horizon 5 Mobile (Beta)", image: "https://sm.ign.com/ign_nordic/cover/f/forza-hori/forza-horizon-5_5jjv.jpg", category: "Racing", rating: 4.9, downloads: "5.5M", platforms: ["android"], description: "Limitless driving action in Mexico.", reviews: [{ user: "HorizonFan", text: "Mexico looks stunning." }] },
-            { title: "GTA San Andreas MOD", image: "http://t0.gstatic.com/images?q=tbn:ANd9GcQKFrwPJcaQVe6qNoplr5y4BR3CGOjZmGpwiRNka1oVz1ci9Y12r4YfPTjC2v6TgUF0iQbh_g", category: "Action", rating: 4.9, downloads: "22M", platforms: ["android"], description: "The best GTA with Cleo scripts included.", reviews: [{ user: "CJ", text: "Ah shit, here we go again." }] },
-            { title: "Dream League Soccer MOD", image: "https://m.media-amazon.com/images/I/41GZrXhv0BL.jpg", category: "Sports", rating: 4.8, downloads: "19M", platforms: ["android"], description: "Build the best team with unlimited coins.", reviews: [{ user: "DreamManager", text: "Building my dream team is easy." }] },
-            { title: "Dragon Ball Z Dokkan Battle MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/dragon-ball-z-dokkan-battle-150x150.jpg", category: "Action", rating: 4.7, downloads: "7M", platforms: ["android"], description: "High attack and god mode enabled.", reviews: [{ user: "Z-Fighter", text: "Unstoppable teams!" }] },
-            { title: "NBA 2K23 MOD", image: "https://assets.2k.com/1a6ngf98576c/4oCqsi6G8MfDjHKhjhBtrP/d43164117e00d78c0cf85dfafeb3b906/NBA23-WEBSITE-ATHLETE_HUB-MODULE1-STD_THUMBNAIL-828x828.jpg", category: "Sports", rating: 4.8, downloads: "6.5M", platforms: ["android"], description: "Best-in-class graphics and gameplay.", reviews: [{ user: "Baller", text: "Graphics are insane." }] },
-            { title: "Car Parking Multiplayer MOD", image: "https://i.ibb.co/8Lz9Znnv/Gemini-Generated-Image-e5zmgze5zmgze5zm.png", category: "Simulation", rating: 4.9, downloads: "28M", platforms: ["android"], description: "Open-world multiplayer with all cars unlocked.", reviews: [{ user: "ProParker", text: "Online mode is hilarious." }] },
-            { title: "Minecraft MOD", image: "https://preview.redd.it/avjal33hpqo61.png?width=512&format=png&auto=webp&s=b652d83347448df74c8ba61c17b322e686ee32a4", category: "Adventure", rating: 5.0, downloads: "50M+", platforms: ["android"], description: "Explore infinite worlds. Unlocks all skins.", reviews: [{ user: "Steve", text: "Ultimate sandbox game." }] },
-            { title: "Farming Simulator 23 MOD", image: "https://assets-prd.ignimgs.com/2023/05/01/farmingsim23-1682967114647.jpg", category: "Simulation", rating: 4.7, downloads: "3.8M", platforms: ["android"], description: "Unlimited money for your farm.", reviews: [{ user: "FarmLife", text: "So relaxing." }] },
-            { title: "Euro Truck Simulator Mobile (Beta)", image: "https://portsized.fun/etsicon.png", category: "Simulation", rating: 4.8, downloads: "4.2M", platforms: ["android"], description: "Travel across Europe as king of the road.", reviews: [{ user: "Trucker", text: "Must-have for sim fans." }] },
-            { title: "Assetto Corsa Mobile (Beta)", image: "https://i.ibb.co/YF5GMVPJ/Gemini-Generated-Image-xw6egpxw6egpxw6e.png", category: "Racing", rating: 4.9, downloads: "3.9M", platforms: ["android"], description: "Advanced graphics and realistic physics.", reviews: [{ user: "SimDrifter", text: "Best physics on mobile." }] },
-            { title: "CG Moto Online MOD", image: "https://image.winudf.com/v2/image1/Y29tLlB0cm9uUGxheURpZ2l0YWwuQ0dNb3RvT25saW5lX2ljb25fMTcyMzMyNTk3NV8wMjM/icon.webp?w=280&fakeurl=1&type=.webp", category: "Racing", rating: 4.5, downloads: "2.5M", platforms: ["android"], description: "Motorcycle racing with all bikes unlocked.", reviews: [{ user: "Rider", text: "Fun racing with friends." }] },
-            { title: "Subway Surfers MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/subway-surfers-150x150.jpg", category: "Arcade", rating: 4.8, downloads: "100M+", platforms: ["android"], description: "Unlimited coins and keys.", reviews: [{ user: "HighScorer", text: "My score is unbeatable." }] },
-            { title: "Monopoly MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/monopoly-board-game-classic-about-real-estate-150x150.jpg", category: "Board", rating: 4.7, downloads: "8.5M", platforms: ["android"], description: "Unlocks all premium boards and tokens.", reviews: [{ user: "MrMonopoly", text: "Fun to play with friends." }] },
-            { title: "PPSSPP Gold (Emulator)", image: "https://an1.com/uploads/posts/2023-04/1682881529_ppsspp-gold.png", category: "Emulator", rating: 4.9, downloads: "15M", platforms: ["android"], description: "Play PSP games in HD.", reviews: [{ user: "RetroGamer", text: "Works flawlessly." }] },
-            { title: "8 Ball Pool MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/8-ball-pool-150x150.jpg", category: "Sports", rating: 4.8, downloads: "40M+", platforms: ["android"], description: "Unlimited guideline for perfect shots.", reviews: [{ user: "PoolShark", text: "I'm winning every match!" }] },
-            { title: "Coin Master MOD", image: "https://modyolo.com/wp-content/uploads/2021/10/coin-master-apk-150x150.png", category: "Casual", rating: 4.6, downloads: "35M+", platforms: ["android"], description: "Unlimited spins.", reviews: [{ user: "VikingKing", text: "Building my village fast." }] },
-            { title: "OuO Game MOD", image: "https://image.winudf.com/v2/image1/Y29tLmVscGF0cml4Zi5PdU9faWNvbl8xNTY2OTk5Mjg1XzAxMg/icon.webp?w=280&fakeurl=1&type=.webp", category: "Casual", rating: 4.9, downloads: "5M", platforms: ["android"], description: "Kawaii face application interaction.", reviews: [{ user: "KawaiiFan", text: "So cute." }] },
-            { title: "College Brawl MOD", image: "https://i.ibb.co/XL2Fj7Y/collegebrawl.png", category: "Action", rating: 4.5, downloads: "4.8M", platforms: ["android"], description: "Action-packed beat 'em up. All levels unlocked.", reviews: [{ user: "Brawler", text: "Fun and challenging." }] },
-            { title: "Hailey's Adventure MOD", image: "https://mobdroplus.com/wp-content/uploads/2022/12/Haileys-Treasure-Adventure-apk.png", category: "Adventure", rating: 4.6, downloads: "3.1M", platforms: ["android"], description: "Epic treasure hunting. Unlocks hints.", reviews: [{ user: "Puzzler", text: "Charming story." }] },
-            { title: "Learn The Heart MOD", image: "https://images.sftcdn.net/images/t_app-icon-m/p/3b18a092-6db6-47f7-bd8d-e8ade3e3575e/1591711617/learn-the-heart-logo", category: "Simulation", rating: 4.5, downloads: "2.9M", platforms: ["android"], description: "Simulation game about relationships.", reviews: [{ user: "Storyteller", text: "Choices really matter." }] },
-            { title: "Syahata A Bad Day MOD", image: "https://techloky.com/public/uploads/images/Syahata_A_Bad_Day.jpg", category: "Action", rating: 4.5, downloads: "3.4M", platforms: ["android"], description: "Intense action with god mode.", reviews: [{ user: "ActionHero", text: "Fast-paced and stylish." }] },
-            { title: "Survive MOD", image: "https://techloky.com/public/uploads/images/Survive.jpg", category: "Survival", rating: 5.0, downloads: "4.0M", platforms: ["android"], description: "Wilderness survival with all recipes unlocked.", reviews: [{ user: "Survivor", text: "Very immersive." }] },
-            { title: "One Piece: Fighting Path MOD", image: "https://img.utdstc.com/icon/79a/7a3/79a7a35b0f8d775d97b6d89761bcdb478c6c2ef7941cae0de952cde8207bf355:200", category: "Action", rating: 4.8, downloads: "8.2M", platforms: ["android"], description: "3D action-adventure. All characters unlocked.", reviews: [{ user: "StrawHat", text: "Combat is amazing." }] },
-            { title: "Ben 10: Battle for the Omnitrix MOD", image: "https://modgila.com/uploads/2024/1/ben10-battle-for-the-omnitrix-1.jpg", category: "Action", rating: 4.5, downloads: "6.1M", platforms: ["android"], description: "Fight off aliens. All forms unlocked.", reviews: [{ user: "OmnitrixWielder", text: "It's hero time!" }] },
-            { title: "Drift Max Pro MOD", image: "https://i.postimg.cc/G29g5WPh/9aaca89247c74854774d67da1c0154b91d116de64e4bb96d91aca7fdac61268d-200.jpg", category: "Racing", rating: 4.8, downloads: "13M", platforms: ["android"], description: "Ultimate drifting with unlimited money.", reviews: [{ user: "DriftKing", text: "So satisfying." }] },
-            { title: "Forza Motorsport Mobile (Beta)", image: "https://i.postimg.cc/9FXbg5W3/Forza-Motorsport-Mobile.jpg", category: "Racing", rating: 4.9, downloads: "4.9M", platforms: ["android"], description: "Professional motorsport simulation.", reviews: [{ user: "ProRacer", text: "Console quality." }] },
-            { title: "WRC 10 Mobile (Beta)", image: "https://i.postimg.cc/4N59MmWw/WRC-TGR.jpg", category: "Racing", rating: 4.6, downloads: "3.2M", platforms: ["android"], description: "Official WRC game.", reviews: [{ user: "RallyDriver", text: "Brutal but fun." }] },
-            { title: "Need for Speed Hot Pursuit Mobile (Beta)", image: "https://i.postimg.cc/3wy0d9Yb/Need-For-Speed-Key-Art-Brendan-Mc-Caffrey.jpg", category: "Racing", rating: 4.8, downloads: "7.1M", platforms: ["android"], description: "Thrill of the chase.", reviews: [{ user: "RacerX", text: "A blast." }] },
-            { title: "GRID Autosport Mobile (Beta)", image: "https://i.postimg.cc/RZpnS25H/GRID.jpg", category: "Racing", rating: 4.8, downloads: "4.3M", platforms: ["android"], description: "Pro-racer career simulation.", reviews: [{ user: "GRIDMaster", text: "Fantastic variety." }] },
-            { title: "CarX Drift Racing Online MOD", image: "https://i.postimg.cc/0yywqP3v/Car-X-Drift-Racing-2.jpg", category: "Racing", rating: 4.6, downloads: "9.8M", platforms: ["android"], description: "Racing simulator dedicated to drifting.", reviews: [{ user: "Drifter", text: "Endless fun." }] },
-            { title: "99 nights in the forest script", image: "https://i.ibb.co/W4K1C0pF/Gemini-Generated-Image-v3xx4xv3xx4xv3xx.png", category: "Script", rating: 4.8, downloads: "2.1M", platforms: ["script"], description: "Powerful script for automation.", reviews: [{ user: "ScriptMaster", text: "Saves so much time." }] },
-            { title: "steal a brainrot script", image: "https://i.ibb.co/Kp2tcFtk/Gemini-Generated-Image-1i7y2h1i7y2h1i7y.png", category: "Script", rating: 4.7, downloads: "1.8M", platforms: ["script"], description: "Gameplay modifications and enhancements.", reviews: [{ user: "BrainrotHunter", text: "Game changer!" }] }
+        const allGames = [
+            // RUST MOBILE ADDED HERE AS REQUESTED
+            { title: "Rust Mobile (Beta)", trending: true, image: "https://i.ibb.co/S75GNR8N/rust.png", category: "Survival", rating: 4.8, downloads: "2.1M", platforms: ["android", "ios"], description: "The only aim in Rust is to survive. Everything wants you to die. The island’s wildlife and other inhabitants, the environment, other survivors. Do whatever it takes to last another night.", reviews: [{ user: "Rustacean", text: "Finally on mobile! Raiding bases from my phone." }], type: "game" },
+            { title: "Grand Theft Auto V Mobile (Beta)", trending: true, image: "https://i.ibb.co/FzQ7s9s/gta5.jpg", category: "Action", rating: 4.9, downloads: "5.7M", platforms: ["android", "ios"], description: "Experience the acclaimed open-world action game on your mobile device via cloud.", reviews: [{ user: "GamerX123", text: "Absolutely stunning port! Runs surprisingly well." }, { user: "CashKing", text: "Unlimited money makes this the most fun version."}], type: "game" },
+            { title: "Spider-Man 2 Mobile (Beta)", trending: true, image: "https://i.ibb.co/McjvCfj/spiderman2.png", category: "Action", rating: 4.7, downloads: "8.2M", platforms: ["android", "ios"], description: "Swing through the streets of New York City as Spider-Man.", reviews: [{ user: "WebHead", text: "Swinging through the city feels incredible." }, { user: "ActionJunkie", text: "The combat is fluid."}], type: "game" },
+            { title: "Counter Strike Mobile (Beta)", image: "https://i.postimg.cc/mrqCkcJb/wp7881077-csgo-logo-wallpapers.jpg", category: "Action", rating: 4.9, downloads: "3.1M", platforms: ["android", "ios"], description: "Experience the intense tactical FPS action of Counter Strike.", reviews: [{ user: "ProGamer", text: "Best mobile FPS out there." }], type: "game" },
+            { title: "The Last of Us Mobile (Beta)", image: "https://i.ibb.co/tLx5P3D/tlou-1.jpg", category: "Adventure", rating: 4.9, downloads: "2.9M", platforms: ["android"], description: "Survive in a post-apocalyptic world overrun by infected creatures.", reviews: [{ user: "StoryLover", text: "The emotional story hits just as hard on mobile." }], type: "game" },
+            { title: "Horizon Zero Dawn Mobile (Beta)", image: "https://i.ibb.co/n0tBVMs/horizon.jpg", category: "Adventure", rating: 4.6, downloads: "3.1M", platforms: ["android"], description: "Explore a lush, post-apocalyptic world inhabited by machines.", reviews: [{ user: "Explorer", text: "The world is beautiful." }], type: "game" },
+            { title: "Red Dead Redemption 2 Mobile (Beta)", image: "https://i.ibb.co/kDmVtwv/rdr2-1.jpg", category: "Action", rating: 5.0, downloads: "2.8M", platforms: ["android", "ios"], description: "An epic tale of honor and loyalty at the dawn of the modern age.", reviews: [{ user: "Cowboy", text: "Incredible detail and an amazing story." }], type: "game" },
+            { title: "Fortnite Mobile MOD", trending: true, image: "https://i.ibb.co/W5j9ZXx/fortnite.jpg", category: "Action", rating: 4.5, downloads: "15M+", platforms: ["android"], description: "The ultimate battle royale experience, now with premium mods.", reviews: [{ user: "VBucksKing", text: "The mod works perfectly!" }], type: "game" },
+            { title: "Stick War MOD", image: "https://i.ibb.co/TDb6Xz4Q/Gemini-Generated-Image-d0k10jd0k10jd0k1.png", category: "Strategy", rating: 4.8, downloads: "15M+", platforms: ["android"], description: "Lead your stickman army to victory in this classic strategy game.", reviews: [{ user: "ArmyBuilder", text: "Unlimited gems makes this so much more fun!" }], type: "game" },
+            { title: "Roblox Premium MOD", image: "https://i.ibb.co/k92hJwF/roblox.png", category: "Adventure", rating: 4.7, downloads: "20M+", platforms: ["android", "ios"], description: "The ultimate virtual universe. MOD unlocks premium features.", reviews: [{ user: "Creator", text: "So many games to play!" }], type: "game" },
+            { title: "GTA 4 Mobile (Beta)", image: "https://i.ibb.co/Mcfhc3g/gta4-1.jpg", category: "Action", rating: 4.8, downloads: "3.5M", platforms: ["android"], description: "Explore the gritty and realistic world of Liberty City.", reviews: [{ user: "NikoFan", text: "A true classic." }], type: "game" },
+            { title: "FIFA 24 Mobile (Beta)", image: "https://i.postimg.cc/bN6TKCJZ/FC-24-Mobile.jpg", category: "Sports", rating: 4.9, downloads: "15M+", platforms: ["android", "ios"], description: "Experience the beautiful game with this beta version.", reviews: [{ user: "FootballFan", text: "The gameplay feels so realistic." }], type: "game" },
+            { title: "PUBG Mobile MOD", image: "https://i.postimg.cc/TwPBXLxx/PUBG.jpg", category: "Action", rating: 4.8, downloads: "25M+", platforms: ["android"], description: "Intense battle royale action with advanced aiming assistance.", reviews: [{ user: "WinnerWinner", text: "Chicken dinners every night!" }], type: "game" },
+            { title: "Call of Duty Mobile MOD", image: "https://i.postimg.cc/ZnGQ3wdY/cod.jpg", category: "Action", rating: 4.9, downloads: "30M+", platforms: ["android"], description: "Ultimate FPS action with unlimited CP.", reviews: [{ user: "SniperGod", text: "Fast-paced action and great maps." }], type: "game" },
+            { title: "Genshin Impact MOD", image: "https://i.postimg.cc/kM2XQDbL/Genshin-Impact-Mobile.jpg", category: "Adventure", rating: 4.7, downloads: "18M+", platforms: ["android"], description: "Embark on a magical adventure in Teyvat with unlimited Primogems.", reviews: [{ user: "WaifuCollector", text: "Unlimited primogems!" }], type: "game" },
+            { title: "Asphalt 9 Legends MOD", image: "https://i.postimg.cc/j2cXqv4k/Asphalt-Legends-Unite.jpg", category: "Racing", rating: 4.6, downloads: "12M+", platforms: ["android"], description: "Arcade racing with unlimited tokens.", reviews: [{ user: "SpeedDemon", text: "The graphics are insane!" }], type: "game" },
+            { title: "Need for Speed Unbound Mobile (Beta)", image: "https://i.postimg.cc/tJQKQGQ9/nfsu.jpg", category: "Racing", rating: 4.8, downloads: "4.5M", platforms: ["android"], description: "Ultimate street racing with stunning visual effects.", reviews: [{ user: "StreetRacer", text: "The art style is so cool." }], type: "game" },
+            { title: "Real Racing 3 MOD", image: "https://i.postimg.cc/7ZfVD3Gm/Real-Racing-3-v3-3-0-mod-apk.jpg", category: "Racing", rating: 4.7, downloads: "10M+", platforms: ["android"], description: "True-to-life racing simulation with everything unlocked.", reviews: [{ user: "SimRacer", text: "The physics are so realistic." }], type: "game" },
+            { title: "CSR Racing 2 MOD", image: "https://i.postimg.cc/SQfVGNb7/CSR-Racing-2.jpg", category: "Racing", rating: 4.9, downloads: "8M+", platforms: ["android"], description: "Dominate the drag racing scene with unlimited resources.", reviews: [{ user: "DragKing", text: "Unbelievable graphics." }], type: "game" },
+            { title: "CarX Street MOD", image: "https://i.postimg.cc/d3tMcYgf/carx.jpg", category: "Racing", rating: 4.8, downloads: "6.3M", platforms: ["android"], description: "Open world street racing with unlimited cash.", reviews: [{ user: "DriftMaster", text: "Best drifting physics." }], type: "game" },
+            { title: "Rematch MOD", image: "https://i.ibb.co/rRRfjjnH/Gemini-Generated-Image-t29wf5t29wf5t29w.png", category: "Action", rating: 4.5, downloads: "1.5M", platforms: ["android"], description: "Intense fighting game with all fighters unlocked.", reviews: [{ user: "ComboKing", text: "Great mod!" }], type: "game" },
+            { title: "GTA Vice City MOD", image: "http://t0.gstatic.com/images?q=tbn:ANd9GcS3Ft-oM67UR15mSle49VHnUqLeq1kodsEQeiNQiO_hY-tIyDkoz6U7QvoWy6dBNTGj7IV8EQ", category: "Action", rating: 4.8, downloads: "6.8M", platforms: ["android"], description: "Return to the 1980s in this classic open-world game.", reviews: [{ user: "80sKid", text: "Nostalgia in my pocket!" }], type: "game" },
+            { title: "BeamNG.drive Mobile (Beta)", image: "https://i.ibb.co/W4cQSdL7/Gemini-Generated-Image-dah033dah033dah0.png", category: "Simulation", rating: 4.9, downloads: "2.1M", platforms: ["android"], description: "Realistic soft-body physics driving game.", reviews: [{ user: "CrashTest", text: "Incredible physics." }], type: "game" },
+            { title: "Spider-Man Unlimited MOD", image: "https://upload.wikimedia.org/wikipedia/en/a/aa/Spider-Man_Unlimited.png", category: "Action", rating: 4.7, downloads: "9.1M", platforms: ["android"], description: "Arcade adventure with every hero unlocked.", reviews: [{ user: "SpiderFan", text: "Art style is amazing." }], type: "game" },
+            { title: "Hitman Sniper MOD", image: "https://lh3.googleusercontent.com/PYlSCwbwrv6JFzp0-KtITrrN2VK4iCdEYK_9yBiADhV_vR5V-cAzrQcdDJu_rUz8BgMxU0aQpgEaypMneKXp", category: "Action", rating: 4.7, downloads: "11M", platforms: ["android"], description: "Compelling sniper experience with all rifles unlocked.", reviews: [{ user: "Agent47", text: "Perfectly executed." }], type: "game" },
+            { title: "God Of War 3 Mobile (Beta)", image: "https://i.postimg.cc/qRdgbrH2/god-of-war-3-wallpaper-kg2nhyxsdeicjjyp.webp", category: "Action", rating: 4.8, downloads: "3.3M", platforms: ["android"], description: "Epic boss battles in this mobile beta adaptation.", reviews: [{ user: "KratosIsKing", text: "Brutal and satisfying." }], type: "game" },
+            { title: "Efootball 2024 MOD", image: "https://i.postimg.cc/Kv9kZCty/images-3.jpg", category: "Sports", rating: 4.6, downloads: "16M", platforms: ["android"], description: "Realistic soccer gameplay with unlimited currency.", reviews: [{ user: "SoccerStar", text: "Best ball physics." }], type: "game" },
+            { title: "Watch Dogs 2 Mobile (Beta)", image: "https://image.api.playstation.com/cdn/EP0001/CUSA06328_00/0oRMkLrk8IoCyGQfYpdIzVF5dzPP6cM4.png", category: "Action", rating: 4.6, downloads: "4.1M", platforms: ["android"], description: "Hack everything in San Francisco from your phone.", reviews: [{ user: "DedSecAgent", text: "Hacking is awesome." }], type: "game" },
+            { title: "Forza Horizon 5 Mobile (Beta)", image: "https://sm.ign.com/ign_nordic/cover/f/forza-hori/forza-horizon-5_5jjv.jpg", category: "Racing", rating: 4.9, downloads: "5.5M", platforms: ["android"], description: "Limitless driving action in Mexico.", reviews: [{ user: "HorizonFan", text: "Mexico looks stunning." }], type: "game" },
+            { title: "GTA San Andreas MOD", image: "http://t0.gstatic.com/images?q=tbn:ANd9GcQKFrwPJcaQVe6qNoplr5y4BR3CGOjZmGpwiRNka1oVz1ci9Y12r4YfPTjC2v6TgUF0iQbh_g", category: "Action", rating: 4.9, downloads: "22M", platforms: ["android"], description: "The best GTA with Cleo scripts included.", reviews: [{ user: "CJ", text: "Ah shit, here we go again." }], type: "game" },
+            { title: "Dream League Soccer MOD", image: "https://m.media-amazon.com/images/I/41GZrXhv0BL.jpg", category: "Sports", rating: 4.8, downloads: "19M", platforms: ["android"], description: "Build the best team with unlimited coins.", reviews: [{ user: "DreamManager", text: "Building my dream team is easy." }], type: "game" },
+            { title: "Dragon Ball Z Dokkan Battle MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/dragon-ball-z-dokkan-battle-150x150.jpg", category: "Action", rating: 4.7, downloads: "7M", platforms: ["android"], description: "High attack and god mode enabled.", reviews: [{ user: "Z-Fighter", text: "Unstoppable teams!" }], type: "game" },
+            { title: "NBA 2K23 MOD", image: "https://assets.2k.com/1a6ngf98576c/4oCqsi6G8MfDjHKhjhBtrP/d43164117e00d78c0cf85dfafeb3b906/NBA23-WEBSITE-ATHLETE_HUB-MODULE1-STD_THUMBNAIL-828x828.jpg", category: "Sports", rating: 4.8, downloads: "6.5M", platforms: ["android"], description: "Best-in-class graphics and gameplay.", reviews: [{ user: "Baller", text: "Graphics are insane." }], type: "game" },
+            { title: "Car Parking Multiplayer MOD", image: "https://i.ibb.co/8Lz9Znnv/Gemini-Generated-Image-e5zmgze5zmgze5zm.png", category: "Simulation", rating: 4.9, downloads: "28M", platforms: ["android"], description: "Open-world multiplayer with all cars unlocked.", reviews: [{ user: "ProParker", text: "Online mode is hilarious." }], type: "game" },
+            { title: "Minecraft MOD", image: "https://preview.redd.it/avjal33hpqo61.png?width=512&format=png&auto=webp&s=b652d83347448df74c8ba61c17b322e686ee32a4", category: "Adventure", rating: 5.0, downloads: "50M+", platforms: ["android"], description: "Explore infinite worlds. Unlocks all skins.", reviews: [{ user: "Steve", text: "Ultimate sandbox game." }], type: "game" },
+            { title: "Farming Simulator 23 MOD", image: "https://assets-prd.ignimgs.com/2023/05/01/farmingsim23-1682967114647.jpg", category: "Simulation", rating: 4.7, downloads: "3.8M", platforms: ["android"], description: "Unlimited money for your farm.", reviews: [{ user: "FarmLife", text: "So relaxing." }], type: "game" },
+            { title: "Euro Truck Simulator Mobile (Beta)", image: "https://portsized.fun/etsicon.png", category: "Simulation", rating: 4.8, downloads: "4.2M", platforms: ["android"], description: "Travel across Europe as king of the road.", reviews: [{ user: "Trucker", text: "Must-have for sim fans." }], type: "game" },
+            { title: "Assetto Corsa Mobile (Beta)", image: "https://i.ibb.co/YF5GMVPJ/Gemini-Generated-Image-xw6egpxw6egpxw6e.png", category: "Racing", rating: 4.9, downloads: "3.9M", platforms: ["android"], description: "Advanced graphics and realistic physics.", reviews: [{ user: "SimDrifter", text: "Best physics on mobile." }], type: "game" },
+            { title: "CG Moto Online MOD", image: "https://image.winudf.com/v2/image1/Y29tLlB0cm9uUGxheURpZ2l0YWwuQ0dNb3RvT25saW5lX2ljb25fMTcyMzMyNTk3NV8wMjM/icon.webp?w=280&fakeurl=1&type=.webp", category: "Racing", rating: 4.5, downloads: "2.5M", platforms: ["android"], description: "Motorcycle racing with all bikes unlocked.", reviews: [{ user: "Rider", text: "Fun racing with friends." }], type: "game" },
+            { title: "Subway Surfers MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/subway-surfers-150x150.jpg", category: "Arcade", rating: 4.8, downloads: "100M+", platforms: ["android"], description: "Unlimited coins and keys.", reviews: [{ user: "HighScorer", text: "My score is unbeatable." }], type: "game" },
+            { title: "Monopoly MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/monopoly-board-game-classic-about-real-estate-150x150.jpg", category: "Board", rating: 4.7, downloads: "8.5M", platforms: ["android"], description: "Unlocks all premium boards and tokens.", reviews: [{ user: "MrMonopoly", text: "Fun to play with friends." }], type: "game" },
+            { title: "PPSSPP Gold (Emulator)", image: "https://an1.com/uploads/posts/2023-04/1682881529_ppsspp-gold.png", category: "Emulator", rating: 4.9, downloads: "15M", platforms: ["android"], description: "Play PSP games in HD.", reviews: [{ user: "RetroGamer", text: "Works flawlessly." }], type: "game" },
+            { title: "8 Ball Pool MOD", image: "https://modyolo.com/wp-content/uploads/2021/09/8-ball-pool-150x150.jpg", category: "Sports", rating: 4.8, downloads: "40M+", platforms: ["android"], description: "Unlimited guideline for perfect shots.", reviews: [{ user: "PoolShark", text: "I'm winning every match!" }], type: "game" },
+            { title: "Coin Master MOD", image: "https://modyolo.com/wp-content/uploads/2021/10/coin-master-apk-150x150.png", category: "Casual", rating: 4.6, downloads: "35M+", platforms: ["android"], description: "Unlimited spins.", reviews: [{ user: "VikingKing", text: "Building my village fast." }], type: "game" },
+            { title: "OuO Game MOD", image: "https://image.winudf.com/v2/image1/Y29tLmVscGF0cml4Zi5PdU9faWNvbl8xNTY2OTk5Mjg1XzAxMg/icon.webp?w=280&fakeurl=1&type=.webp", category: "Casual", rating: 4.9, downloads: "5M", platforms: ["android"], description: "Kawaii face application interaction.", reviews: [{ user: "KawaiiFan", text: "So cute." }], type: "game" },
+            { title: "College Brawl MOD", image: "https://i.ibb.co/XL2Fj7Y/collegebrawl.png", category: "Action", rating: 4.5, downloads: "4.8M", platforms: ["android"], description: "Action-packed beat 'em up. All levels unlocked.", reviews: [{ user: "Brawler", text: "Fun and challenging." }], type: "game" },
+            { title: "Hailey's Adventure MOD", image: "https://mobdroplus.com/wp-content/uploads/2022/12/Haileys-Treasure-Adventure-apk.png", category: "Adventure", rating: 4.6, downloads: "3.1M", platforms: ["android"], description: "Epic treasure hunting. Unlocks hints.", reviews: [{ user: "Puzzler", text: "Charming story." }], type: "game" },
+            { title: "Learn The Heart MOD", image: "https://images.sftcdn.net/images/t_app-icon-m/p/3b18a092-6db6-47f7-bd8d-e8ade3e3575e/1591711617/learn-the-heart-logo", category: "Simulation", rating: 4.5, downloads: "2.9M", platforms: ["android"], description: "Simulation game about relationships.", reviews: [{ user: "Storyteller", text: "Choices really matter." }], type: "game" },
+            { title: "Syahata A Bad Day MOD", image: "https://techloky.com/public/uploads/images/Syahata_A_Bad_Day.jpg", category: "Action", rating: 4.5, downloads: "3.4M", platforms: ["android"], description: "Intense action with god mode.", reviews: [{ user: "ActionHero", text: "Fast-paced and stylish." }], type: "game" },
+            { title: "Survive MOD", image: "https://techloky.com/public/uploads/images/Survive.jpg", category: "Survival", rating: 5.0, downloads: "4.0M", platforms: ["android"], description: "Wilderness survival with all recipes unlocked.", reviews: [{ user: "Survivor", text: "Very immersive." }], type: "game" },
+            { title: "One Piece: Fighting Path MOD", image: "https://img.utdstc.com/icon/79a/7a3/79a7a35b0f8d775d97b6d89761bcdb478c6c2ef7941cae0de952cde8207bf355:200", category: "Action", rating: 4.8, downloads: "8.2M", platforms: ["android"], description: "3D action-adventure. All characters unlocked.", reviews: [{ user: "StrawHat", text: "Combat is amazing." }], type: "game" },
+            { title: "Ben 10: Battle for the Omnitrix MOD", image: "https://modgila.com/uploads/2024/1/ben10-battle-for-the-omnitrix-1.jpg", category: "Action", rating: 4.5, downloads: "6.1M", platforms: ["android"], description: "Fight off aliens. All forms unlocked.", reviews: [{ user: "OmnitrixWielder", text: "It's hero time!" }], type: "game" },
+            { title: "Drift Max Pro MOD", image: "https://i.postimg.cc/G29g5WPh/9aaca89247c74854774d67da1c0154b91d116de64e4bb96d91aca7fdac61268d-200.jpg", category: "Racing", rating: 4.8, downloads: "13M", platforms: ["android"], description: "Ultimate drifting with unlimited money.", reviews: [{ user: "DriftKing", text: "So satisfying." }], type: "game" },
+            { title: "Forza Motorsport Mobile (Beta)", image: "https://i.postimg.cc/9FXbg5W3/Forza-Motorsport-Mobile.jpg", category: "Racing", rating: 4.9, downloads: "4.9M", platforms: ["android"], description: "Professional motorsport simulation.", reviews: [{ user: "ProRacer", text: "Console quality." }], type: "game" },
+            { title: "WRC 10 Mobile (Beta)", image: "https://i.postimg.cc/4N59MmWw/WRC-TGR.jpg", category: "Racing", rating: 4.6, downloads: "3.2M", platforms: ["android"], description: "Official WRC game.", reviews: [{ user: "RallyDriver", text: "Brutal but fun." }], type: "game" },
+            { title: "Need for Speed Hot Pursuit Mobile (Beta)", image: "https://i.postimg.cc/3wy0d9Yb/Need-For-Speed-Key-Art-Brendan-Mc-Caffrey.jpg", category: "Racing", rating: 4.8, downloads: "7.1M", platforms: ["android"], description: "Thrill of the chase.", reviews: [{ user: "RacerX", text: "A blast." }], type: "game" },
+            { title: "GRID Autosport Mobile (Beta)", image: "https://i.postimg.cc/RZpnS25H/GRID.jpg", category: "Racing", rating: 4.8, downloads: "4.3M", platforms: ["android"], description: "Pro-racer career simulation.", reviews: [{ user: "GRIDMaster", text: "Fantastic variety." }], type: "game" },
+            { title: "CarX Drift Racing Online MOD", image: "https://i.postimg.cc/0yywqP3v/Car-X-Drift-Racing-2.jpg", category: "Racing", rating: 4.6, downloads: "9.8M", platforms: ["android"], description: "Racing simulator dedicated to drifting.", reviews: [{ user: "Drifter", text: "Endless fun." }], type: "game" },
+            { title: "99 nights in the forest script", image: "https://i.ibb.co/W4K1C0pF/Gemini-Generated-Image-v3xx4xv3xx4xv3xx.png", category: "Script", rating: 4.8, downloads: "2.1M", platforms: ["script"], description: "Powerful script for automation.", reviews: [{ user: "ScriptMaster", text: "Saves so much time." }], type: "game" },
+            { title: "steal a brainrot script", image: "https://i.ibb.co/Kp2tcFtk/Gemini-Generated-Image-1i7y2h1i7y2h1i7y.png", category: "Script", rating: 4.7, downloads: "1.8M", platforms: ["script"], description: "Gameplay modifications and enhancements.", reviews: [{ user: "BrainrotHunter", text: "Game changer!" }], type: "game" }
         ];
 
         // =========================================
-        // INITIALIZATION
+        // STATE & INITIALIZATION
         // =========================================
+        let currentCategory = 'games'; // 'games' or 'apps'
+        let currentData = allGames;
+        let displayedCount = 0;
+        const BATCH_SIZE = 12;
+
         const grid = document.getElementById('games-grid');
         const modal = document.getElementById('game-modal');
         const searchInput = document.getElementById('search-input');
-        const lockerOverlay = document.getElementById('locker-overlay');
-        const lockerFrame = document.getElementById('locker-frame');
         const loadMoreBtn = document.getElementById('load-more-btn');
-        
-        // Favorite Logic
-        let favorites = JSON.parse(localStorage.getItem('seamax_favs')) || [];
-        document.getElementById('fav-count').innerText = favorites.length;
+        const terminalOverlay = document.getElementById('terminal-overlay');
+        const lockerWrapper = document.getElementById('locker-wrapper');
 
-        document.getElementById('fav-btn').addEventListener('click', () => {
-             alert("Favorites feature coming in v2.0!");
-        });
+        // Initial Render
+        // Initial Render - Now waits for the page to be fully loaded
+	window.addEventListener('load', () => {
+    		switchCategory('games');
+	});
+        // Auto-update online users
+        setInterval(() => {
+            const el = document.getElementById('user-count');
+            let count = parseInt(el.innerText.replace(/,/g, ''));
+            count += Math.floor(Math.random() * 20) - 10;
+            el.innerText = count.toLocaleString();
+        }, 3000);
 
         // =========================================
-        // OPTIMIZED RENDERING (PAGINATION)
+        // CORE FUNCTIONS
         // =========================================
-        let currentList = [];
-        let displayedCount = 0;
-        const BATCH_SIZE = 12; // Load 12 games at a time
 
-        // 1. Initialize the rendering process
-        function initializeGameList(list) {
-            currentList = list;
+        function switchCategory(cat) {
+            currentCategory = cat;
+            
+            // Update Tabs UI
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if(cat === 'games') {
+                document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
+                currentData = allGames;
+                document.getElementById('section-label').innerText = "Available Games";
+            } else {
+                document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+                currentData = allApps;
+                document.getElementById('section-label').innerText = "Premium Apps";
+            }
+
+            // Reset Search
+            searchInput.value = '';
+            
+            // Re-render
             displayedCount = 0;
-            grid.innerHTML = ''; // Clear existing
-            showMoreGames(); // Load first batch
+            grid.innerHTML = '';
+            showMoreItems();
         }
 
-        // 2. Load the next batch
-        function showMoreGames() {
-            const nextBatch = currentList.slice(displayedCount, displayedCount + BATCH_SIZE);
+        function showMoreItems() {
+            // Filter by search if exists
+            let dataToRender = currentData;
+            const searchTerm = searchInput.value.toLowerCase();
+            if(searchTerm) {
+                dataToRender = currentData.filter(i => i.title.toLowerCase().includes(searchTerm));
+            }
+
+            const nextBatch = dataToRender.slice(displayedCount, displayedCount + BATCH_SIZE);
             
-            nextBatch.forEach(game => {
+            nextBatch.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'game-card';
-                card.onclick = () => openGame(game);
+                card.onclick = () => openItemModal(item);
                 
-                // Added decoding="async" for smoother scrolling
+                // Fallback image logic
+                const imgUrl = item.image.startsWith('http') ? item.image : 'https://placehold.co/300x400/1a2530/fff?text=No+Image';
+
                 card.innerHTML = `
                     <div class="game-image-container">
-                        <img src="${game.image}" class="game-image" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/300x400/1a2530/fff?text=Game'">
+                        <img src="${imgUrl}" class="game-image" loading="lazy" decoding="async">
                         <div class="game-badges">
-                            ${game.trending ? '<span class="badge hot">HOT</span>' : ''}
-                            ${game.category === 'Roblox' ? '<span class="badge special">ROBLOX</span>' : '<span class="badge cloud">CLOUD</span>'}
+                            ${item.trending ? '<span class="badge hot">HOT</span>' : ''}
+                            <span class="badge ${item.type === 'app' ? 'pro' : 'cloud'}">${item.type === 'app' ? 'PRO' : 'CLOUD'}</span>
                         </div>
                     </div>
                     <div class="game-info">
-                        <div class="game-title">${game.title}</div>
+                        <div class="game-title">${item.title}</div>
                         <div class="game-meta">
-                            <span>${game.category}</span>
-                            <span class="rating"><i class="fas fa-star"></i> ${game.rating}</span>
+                            <span>${item.category}</span>
+                            <span class="rating"><i class="fas fa-star"></i> ${item.rating}</span>
                         </div>
                     </div>
                 `;
@@ -557,98 +654,42 @@
             });
 
             displayedCount += nextBatch.length;
-
-            // Toggle Button Visibility
-            if (displayedCount < currentList.length) {
-                loadMoreBtn.style.display = 'flex';
-            } else {
-                loadMoreBtn.style.display = 'none';
-            }
+            loadMoreBtn.style.display = (displayedCount < dataToRender.length) ? 'flex' : 'none';
         }
 
-        // Start the app with all games
-        initializeGameList(allGames);
-
-        // =========================================
-        // FILTER & SEARCH
-        // =========================================
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = allGames.filter(g => g.title.toLowerCase().includes(term));
-            initializeGameList(filtered);
+        // Search Listener
+        searchInput.addEventListener('input', () => {
+            displayedCount = 0;
+            grid.innerHTML = '';
+            showMoreItems();
         });
 
-        function filterGrid(category, element) {
-            // UI
-            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-            element.classList.add('active');
-
-            // Logic
-            if (category === 'All') {
-                initializeGameList(allGames);
-            } else {
-                const filtered = allGames.filter(g => g.category === category);
-                initializeGameList(filtered);
-            }
-        }
-
         // =========================================
-        // MODAL & LOCKER LOGIC
+        // MODAL LOGIC
         // =========================================
-        function openGame(game) {
-            document.getElementById('modal-img').src = game.image;
-            document.getElementById('modal-title').innerText = game.title;
-            document.getElementById('modal-desc').innerText = game.description;
-            document.getElementById('modal-cat').innerText = game.category.toUpperCase();
-            document.getElementById('modal-rating').innerText = game.rating;
-            document.getElementById('modal-downloads').innerText = (game.downloads === "Private" ? "Private Access" : (game.downloads || '1M+') + ' Downloads');
+        function openItemModal(item) {
+            document.getElementById('modal-img').src = item.image;
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-desc').innerText = item.description;
+            document.getElementById('modal-cat').innerText = item.category.toUpperCase();
+            document.getElementById('modal-rating').innerText = item.rating;
+            document.getElementById('modal-downloads').innerText = item.downloads + ' Downloads';
 
-            // Handle badge colors for Roblox items
-            const badge = document.getElementById('badge-cloud');
-            if(game.category === 'Roblox') {
-                badge.className = 'badge special';
-                badge.innerText = 'MAP EARLY ACCESS';
+            // Badge Logic
+            const badge1 = document.getElementById('modal-badge-1');
+            if(item.type === 'app') {
+                badge1.className = 'badge pro';
+                badge1.innerText = "PREMIUM APP";
             } else {
-                badge.className = 'badge cloud';
-                badge.innerText = 'CLOUD INSTANCE';
-            }
-
-            // Buttons Logic
-            const btnContainer = document.getElementById('action-buttons');
-            btnContainer.innerHTML = '';
-
-            if (game.category === 'Script') {
-                 btnContainer.innerHTML = `
-                    <button class="download-btn" onclick="openLocker('script')">
-                        <i class="fas fa-code"></i> Get Script
-                    </button>
-                 `;
-            } else if (game.category === 'Roblox') {
-                 // SPECIFIC BUTTON FOR THE ROBLOX MAP
-                 btnContainer.innerHTML = `
-                    <button class="download-btn roblox-btn" onclick="openLocker('shellshock')">
-                        <i class="fas fa-key"></i> Get Early Access to Shell Shock Map
-                    </button>
-                 `;
-            } else {
-                btnContainer.innerHTML = `
-                    <button class="download-btn" onclick="openLocker('browser')">
-                        <i class="fas fa-globe"></i> Play on Cloud (Browser)
-                    </button>
-                    <button class="download-btn secondary" onclick="openLocker('android')">
-                        <i class="fab fa-android"></i> Download Android App
-                    </button>
-                    <button class="download-btn secondary" onclick="openLocker('ios')">
-                        <i class="fab fa-apple"></i> Download iOS App
-                    </button>
-                `;
+                badge1.className = 'badge cloud';
+                badge1.innerText = "CLOUD INSTANCE";
             }
 
             // Populate Reviews
             const revContainer = document.getElementById('reviews-container');
             revContainer.innerHTML = '';
-            if (game.reviews && game.reviews.length > 0) {
-                game.reviews.forEach(r => {
+            if (item.reviews && item.reviews.length > 0) {
+                item.reviews.forEach(r => {
                     revContainer.innerHTML += `
                         <div class="review-card">
                             <div class="review-header">
@@ -660,7 +701,36 @@
                     `;
                 });
             } else {
-                revContainer.innerHTML = '<div style="color:var(--text-muted); font-style:italic;">No reviews yet. Be the first!</div>';
+                revContainer.innerHTML = '<div style="color:var(--text-muted); font-style:italic;">No reviews yet.</div>';
+            }
+
+            // Buttons Logic
+            const btnContainer = document.getElementById('action-buttons');
+            btnContainer.innerHTML = '';
+
+            if (item.type === 'app') {
+                // APPS: Only 2 Buttons (Android & iOS)
+                btnContainer.innerHTML = `
+                    <button class="download-btn" onclick="startTerminal('app', 'android')">
+                        <i class="fab fa-android"></i> Download for Android
+                    </button>
+                    <button class="download-btn secondary" onclick="startTerminal('app', 'ios')">
+                        <i class="fab fa-apple"></i> Download for iOS
+                    </button>
+                `;
+            } else {
+                // GAMES: Original 3 Buttons
+                btnContainer.innerHTML = `
+                    <button class="download-btn" onclick="startTerminal('game', 'browser')">
+                        <i class="fas fa-globe"></i> Play on Cloud
+                    </button>
+                    <button class="download-btn secondary" onclick="startTerminal('game', 'android')">
+                        <i class="fab fa-android"></i> Download Android
+                    </button>
+                    <button class="download-btn secondary" onclick="startTerminal('game', 'ios')">
+                        <i class="fab fa-apple"></i> Download iOS
+                    </button>
+                `;
             }
 
             modal.style.display = 'flex';
@@ -670,26 +740,89 @@
         window.onclick = (e) => { if(e.target == modal) modal.style.display = 'none'; };
 
         // =========================================
-        // LOCKER FUNCTIONS
+        // TERMINAL SIMULATION LOGIC
         // =========================================
-        function openLocker(type) {
+        function startTerminal(type, platform) {
+            modal.style.display = 'none'; // Close item modal
+            terminalOverlay.classList.add('active'); // Show terminal
+            
+            const progressBar = document.getElementById('progress-bar');
+            const consoleLog = document.getElementById('console-log');
+            
+            // Reset
+            progressBar.style.width = '0%';
+            consoleLog.innerHTML = '';
+            
+            // Simulation Steps
+            const logs = [
+                "Initializing secure handshake...",
+                "Connecting to remote server (Port 443)...",
+                "Authenticating user token...",
+                "Bypassing region restrictions...",
+                "Injecting premium license key...",
+                "Fetching download packet...",
+                "Verification required for final access...",
+                "Opening Secure Locker..."
+            ];
+
+            let step = 0;
+            const interval = setInterval(() => {
+                if (step >= logs.length) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        terminalOverlay.classList.remove('active');
+                        openLocker(type, platform);
+                    }, 800);
+                    return;
+                }
+
+                // Add log line
+                const p = document.createElement('div');
+                p.className = 'console-line';
+                p.innerHTML = `> ${logs[step]}`;
+                consoleLog.appendChild(p);
+                consoleLog.scrollTop = consoleLog.scrollHeight; // Auto scroll
+
+                // Update Bar
+                const percent = ((step + 1) / logs.length) * 100;
+                progressBar.style.width = percent + '%';
+
+                step++;
+            }, 600); // Speed of simulation
+        }
+
+        function closeTerminal() {
+            terminalOverlay.classList.remove('active');
+        }
+
+        // =========================================
+        // LOCKER LOGIC
+        // =========================================
+        function openLocker(type, platform) {
             let url = "";
-            switch(type) {
-                case 'shellshock': url = "https://applocked.store/cl/i/grr11d"; break; // YOUR SPECIFIC LINK
-                case 'browser': url = "https://contentlocked.net/cl/i/wovqx1"; break;
-                case 'android': url = "https://appslocked.com/cl/i/6dxkge"; break;
-                case 'ios':     url = "https://appinstallcheck.com/cl/i/e6g77m"; break;
-                case 'script':  url = "https://pagelocked.org/cl/i/rndqwv"; break;
-                default:        url = "https://contentlocked.net/cl/i/wovqx1";
+
+            if (type === 'app') {
+                // ==========================================
+                // PASTE YOUR APP CONTENT LOCKER URL HERE
+                // ==========================================
+                url = "https://lockedapp.space/cl/i/o6qj7d"; 
+            } else {
+                // Game URLs
+                switch(platform) {
+                    case 'browser': url = "https://contentlocked.net/cl/i/wovqx1"; break;
+                    case 'android': url = "https://appslocked.com/cl/i/6dxkge"; break;
+                    case 'ios':     url = "https://appinstallcheck.com/cl/i/e6g77m"; break;
+                    default:        url = "https://contentlocked.net/cl/i/wovqx1";
+                }
             }
             
-            lockerFrame.src = url;
-            lockerOverlay.classList.add('active');
+            document.getElementById('locker-frame').src = url;
+            lockerWrapper.classList.add('active');
         }
 
         function closeLocker() {
-            lockerOverlay.classList.remove('active');
-            lockerFrame.src = "";
+            lockerWrapper.classList.remove('active');
+            document.getElementById('locker-frame').src = "";
         }
 
     </script>
