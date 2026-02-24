@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResumeAI Pro | ATS Optimization Tool</title>
     
+    <!-- SEO Meta Tags -->
+    <title>ResumeAI Pro | ATS Resume Optimization Tool</title>
+    <meta name="description" content="Optimize your resume for ATS (Applicant Tracking Systems) with ResumeAI Pro. Bypass AI screening bots and get hired at top companies like Google, Amazon, and Meta.">
+    <meta name="keywords" content="ATS resume optimizer, resume AI, bypass ATS, resume formatting, CV optimization, get hired, AI resume builder">
+    <meta name="author" content="ResumeAI Pro">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ResumeAI Pro | ATS Resume Optimization Tool">
+    <meta property="og:description" content="Optimize your resume for ATS (Applicant Tracking Systems) with ResumeAI Pro. Bypass AI screening bots and get hired at top companies.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1200&auto=format&fit=crop">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -19,30 +36,12 @@
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                         mono: ['"JetBrains Mono"', 'monospace'],
                     },
-                    colors: {
-                        slate: {
-                            850: '#151F32', // Custom slightly lighter dark
-                            900: '#0F172A',
-                            950: '#020617',
-                        },
-                        brand: {
-                            500: '#3B82F6',
-                            600: '#2563EB',
-                            glow: 'rgba(59, 130, 246, 0.5)'
-                        }
-                    },
                     animation: {
-                        'glow-pulse': 'glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'shimmer': 'shimmer 2s infinite',
                     },
                     keyframes: {
-                        glow: {
-                            '0%, 100%': { boxShadow: '0 0 15px rgba(59, 130, 246, 0.2)' },
-                            '50%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.6)' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(10px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        shimmer: {
+                            '100%': { transform: 'translateX(100%)' }
                         }
                     }
                 }
@@ -51,298 +50,372 @@
     </script>
 
     <style>
-        /* Custom Scrollbar for Textarea */
-        textarea::-webkit-scrollbar {
-            width: 8px;
+        /* Custom Scrollbar for Terminal */
+        .terminal-scroll::-webkit-scrollbar {
+            width: 6px;
         }
-        textarea::-webkit-scrollbar-track {
-            background: #1e293b; 
+        .terminal-scroll::-webkit-scrollbar-track {
+            background: transparent; 
         }
-        textarea::-webkit-scrollbar-thumb {
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 3px;
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb:hover {
             background: #475569; 
-            border-radius: 4px;
-        }
-        textarea::-webkit-scrollbar-thumb:hover {
-            background: #64748b; 
         }
         
-        /* Gradient Text */
-        .text-gradient {
-            background: linear-gradient(to right, #60a5fa, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Glassmorphism Background */
-        .glass-panel {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* File upload styling */
-        .file-upload-box {
-            border: 2px dashed #475569;
-            transition: all 0.3s ease;
-        }
-        .file-upload-box:hover {
-            border-color: #3B82F6;
-            background: rgba(59, 130, 246, 0.05);
-        }
-        .file-upload-box.dragover {
-            border-color: #3B82F6;
-            background: rgba(59, 130, 246, 0.1);
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-200 font-sans min-h-screen flex flex-col relative overflow-x-hidden">
+<body class="bg-slate-950 text-slate-200 font-sans relative overflow-x-hidden selection:bg-blue-500/30 min-h-screen flex flex-col">
 
-    <div class="fixed top-0 left-0 w-96 h-96 bg-brand-600 rounded-full blur-[128px] opacity-20 pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
-    <div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-purple-600 rounded-full blur-[128px] opacity-10 pointer-events-none translate-x-1/2 translate-y-1/2"></div>
+    <!-- Background Effects -->
+    <div class="fixed top-0 left-0 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="fixed bottom-0 right-0 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none translate-x-1/3 translate-y-1/3"></div>
 
-    <header class="w-full py-6 px-6 md:px-12 flex justify-between items-center relative z-20">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center shadow-lg shadow-brand-500/30">
-                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+    <!-- Header -->
+    <header class="w-full py-6 px-6 md:px-12 flex justify-between items-center relative z-20 max-w-7xl mx-auto">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 border border-blue-400/20">
+                <i data-lucide="file-check-2" class="w-5 h-5 text-white"></i>
             </div>
-            <span class="font-bold text-xl tracking-tight text-white">ResumeAI <span class="text-slate-400 font-normal">Pro</span></span>
+            <span class="font-bold text-2xl tracking-tight text-white">
+                ResumeAI <span class="text-slate-400 font-normal">Pro</span>
+            </span>
         </div>
         
         <div class="flex items-center gap-4">
-            <span class="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg shadow-orange-500/20">Premium</span>
+            <span class="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full flex items-center gap-1.5">
+                <i data-lucide="star" class="w-3 h-3 fill-amber-400"></i> Premium
+            </span>
         </div>
     </header>
 
-    <main class="flex-grow flex flex-col items-center justify-center px-4 py-8 relative z-10 w-full max-w-6xl mx-auto">
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col items-center justify-center px-4 py-12 relative z-10 w-full max-w-5xl mx-auto">
         
-        <div class="text-center max-w-3xl mx-auto mb-10 space-y-4">
-            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
-                Stop getting ghosted by AI bots. <br />
-                <span class="text-gradient">Bypass ATS filters</span> with 99.8% accuracy.
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-6">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-4 fade-in">
+                <i data-lucide="zap" class="w-4 h-4"></i> V3.1 Neural Engine Now Active
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1] fade-in" style="animation-delay: 0.1s">
+                Stop getting ghosted by <br class="hidden md:block" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+                    AI screening bots.
+                </span>
             </h1>
-            <p class="text-lg md:text-xl text-slate-400 font-light max-w-2xl mx-auto">
-                Format your resume with our neural engine trusted by recruiters at <strong class="text-slate-200">Google</strong>, <strong class="text-slate-200">Amazon</strong>, and <strong class="text-slate-200">Meta</strong>.
+            <p class="text-lg md:text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed fade-in" style="animation-delay: 0.2s">
+                Format your resume with our neural engine trusted by recruiters at <strong class="text-slate-200 font-medium">Google</strong>, <strong class="text-slate-200 font-medium">Amazon</strong>, and <strong class="text-slate-200 font-medium">Meta</strong>. Bypass ATS filters with 99.8% accuracy.
             </p>
         </div>
 
-        <div class="w-full max-w-2xl mx-auto relative group">
-            <div class="absolute -inset-0.5 bg-gradient-to-r from-brand-500 to-purple-600 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+        <div class="w-full max-w-2xl mx-auto relative group fade-in" style="animation-delay: 0.3s">
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-500/30 to-purple-600/30 rounded-3xl blur-xl opacity-50 group-hover:opacity-70 transition duration-1000"></div>
             
-            <div class="relative glass-panel rounded-2xl p-6 md:p-8 shadow-2xl">
+            <div class="relative bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-6 md:p-10 shadow-2xl overflow-hidden min-h-[400px]">
                 
-                <div id="form-view" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="space-y-2">
-                            <label class="text-xs font-semibold uppercase tracking-wider text-slate-400">Full Name</label>
-                            <input type="text" id="input-name" placeholder="Alex Chen" class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                <!-- FORM VIEW -->
+                <div id="view-form" class="space-y-8 transition-all duration-300">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2.5">
+                            <label class="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">Full Name</label>
+                            <input type="text" id="input-name" placeholder="Alex Chen" class="w-full bg-slate-950/50 border border-slate-700/50 rounded-xl px-4 py-3.5 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner">
                         </div>
-                        <div class="space-y-2">
-                            <label class="text-xs font-semibold uppercase tracking-wider text-slate-400">Target Job Title</label>
-                            <input type="text" id="input-job" placeholder="Senior Product Manager" class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all">
+                        <div class="space-y-2.5">
+                            <label class="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">Target Job Title</label>
+                            <input type="text" id="input-job" placeholder="Senior Product Manager" class="w-full bg-slate-950/50 border border-slate-700/50 rounded-xl px-4 py-3.5 text-white placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-inner">
                         </div>
                     </div>
 
-                    <div class="space-y-2">
-                        <label class="text-xs font-semibold uppercase tracking-wider text-slate-400">Upload Your CV/Resume</label>
-                        <input type="file" id="file-input" accept=".pdf,.doc,.docx,.txt" class="hidden" onchange="handleFileUpload(event)">
+                    <div class="space-y-2.5">
+                        <label class="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">Upload Your CV/Resume</label>
+                        <input type="file" id="file-input" accept=".pdf,.doc,.docx,.txt" class="hidden">
                         
-                        <div id="drop-zone-main" class="file-upload-box rounded-xl p-8 text-center cursor-pointer bg-slate-800/30" onclick="document.getElementById('file-input').click()">
-                            <div id="upload-placeholder-main">
-                                <svg class="w-12 h-12 mx-auto mb-3 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                <p class="text-slate-300 font-semibold mb-1">Click to upload or drag and drop</p>
+                        <div id="drop-zone" class="border-2 dashed border-slate-700 hover:border-blue-500/50 hover:bg-slate-800/50 bg-slate-950/50 rounded-2xl p-10 text-center cursor-pointer transition-all duration-300">
+                            
+                            <div id="upload-prompt" class="flex flex-col items-center">
+                                <div class="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="upload-cloud" class="w-8 h-8 text-blue-400"></i>
+                                </div>
+                                <p class="text-slate-200 font-semibold mb-2 text-lg">Click to upload or drag and drop</p>
                                 <p class="text-slate-500 text-sm">PDF, DOC, DOCX, TXT (Max 10MB)</p>
                             </div>
-                            <div id="file-info-main" class="hidden">
-                                <div class="flex items-center justify-center gap-3">
-                                    <svg class="w-10 h-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    <div class="text-left">
-                                        <p class="font-semibold text-white" id="uploaded-filename-main"></p>
-                                        <p class="text-sm text-slate-400" id="uploaded-filesize-main"></p>
-                                    </div>
+
+                            <div id="upload-success" class="hidden flex flex-col items-center">
+                                <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-4">
+                                    <i data-lucide="file-text" class="w-8 h-8 text-green-400"></i>
                                 </div>
+                                <p id="file-name-display" class="font-semibold text-white text-lg mb-1">resume.pdf</p>
+                                <p id="file-size-display" class="text-sm text-slate-400">0 KB • Ready for optimization</p>
+                                <button id="remove-file-btn" class="mt-4 text-sm text-slate-500 hover:text-red-400 transition-colors">
+                                    Remove file
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button id="start-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold text-lg shadow-lg shadow-blue-600/25 transition-all transform hover:-translate-y-0.5 active:scale-[0.98] flex items-center justify-center gap-2 group">
+                        Generate Optimized Resume
+                        <i data-lucide="chevron-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                    
+                    <div class="flex items-center justify-center gap-2 text-xs text-slate-500 font-medium">
+                        <span class="relative flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                        </span>
+                        2,419 resumes optimized today
+                    </div>
+                </div>
+
+                <!-- PROCESSING VIEW -->
+                <div id="view-processing" class="hidden space-y-8 py-4 fade-in">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-blue-600/20 border border-blue-500/30 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/20">
+                            <i data-lucide="loader-2" class="w-7 h-7 text-blue-400 animate-spin"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-white font-bold text-xl mb-1 flex items-center gap-2">
+                                Optimizing Resume
+                                <span class="flex gap-0.5">
+                                    <span class="animate-bounce" style="animation-delay: 0ms">.</span>
+                                    <span class="animate-bounce" style="animation-delay: 150ms">.</span>
+                                    <span class="animate-bounce" style="animation-delay: 300ms">.</span>
+                                </span>
+                            </div>
+                            <div id="progress-text" class="text-blue-400 text-sm font-medium">
+                                Initializing...
                             </div>
                         </div>
                     </div>
 
-                    <button onclick="startOptimization()" class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-lg shadow-lg shadow-brand-600/40 transition-all transform hover:-translate-y-1 active:scale-95 animate-glow-pulse flex items-center justify-center gap-2">
-                        <svg class="w-6 h-6 animate-spin-slow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
-                        Generate Optimized Resume
-                    </button>
-                    
-                    <p class="text-center text-xs text-slate-500 mt-4">
-                        <span class="inline-block w-2 h-2 rounded-full bg-green-500 mr-1"></span> 2,419 resumes optimized today
-                    </p>
-                </div>
-
-                <!-- Processing View -->
-                <div id="process-view" class="hidden space-y-8">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 bg-brand-600 rounded-xl flex items-center justify-center shadow-lg shadow-brand-600/30 animate-pulse">
-                            <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+                    <div class="bg-slate-950/50 rounded-2xl p-5 border border-slate-800/80 space-y-4 shadow-inner">
+                        <div class="flex items-center justify-between text-sm font-semibold text-slate-300">
+                            <span>Overall Progress</span>
+                            <span id="progress-percent" class="text-blue-400">0%</span>
                         </div>
-                        <div class="flex-1">
-                            <div class="text-white font-semibold text-lg mb-1">Optimizing Resume...</div>
-                            <div class="text-slate-400 text-sm" id="progress-text">Initializing...</div>
+                        <div class="w-full bg-slate-800/80 rounded-full h-3 overflow-hidden p-0.5">
+                            <div id="progress-bar" class="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 h-full rounded-full transition-all duration-500 ease-out relative" style="width: 0%">
+                                <div class="absolute inset-0 bg-white/20 w-full h-full animate-shimmer -skew-x-12"></div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="bg-slate-900 rounded-xl p-4 border border-slate-800 space-y-3">
-                        <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
-                            <span>Progress</span>
-                            <span id="progress-percent">0%</span>
-                        </div>
-                        <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
-                            <div id="progress-bar" class="bg-gradient-to-r from-brand-500 to-purple-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-xs text-green-400 h-48 overflow-y-auto" id="terminal-window">
-                        <div class="text-slate-500"># ResumeAI Neural Engine v3.1.4</div>
+                    <div id="terminal-window" class="bg-[#0a0f1c] border border-slate-800/80 rounded-2xl p-5 font-mono text-[13px] text-green-400/90 h-56 overflow-y-auto terminal-scroll shadow-inner">
+                        <div class="mb-1.5 text-slate-500"># ResumeAI Neural Engine v3.1.4</div>
                     </div>
                 </div>
 
-                <!-- Success View -->
-                <div id="success-view" class="hidden space-y-6">
-                    <div class="text-center space-y-2">
-                        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-green-600/30 mb-4">
-                            <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <!-- SUCCESS VIEW -->
+                <div id="view-success" class="hidden space-y-8 py-2 fade-in">
+                    <div class="text-center space-y-4">
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-green-500/30 border-4 border-slate-900">
+                            <i data-lucide="check-circle-2" class="w-10 h-10 text-white"></i>
                         </div>
-                        <h2 class="text-2xl font-bold text-white">Resume Optimized!</h2>
-                        <p class="text-slate-400 text-sm">Your ATS-optimized resume is ready for download.</p>
-                    </div>
-
-                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 flex items-center gap-4">
-                        <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold">
-                            PDF
-                        </div>
-                        <div class="flex-1">
-                            <div class="font-semibold text-white" id="filename-display">Optimized_Resume.pdf</div>
-                            <div class="text-slate-500 text-xs">142 KB • Ready for Download</div>
+                        <div>
+                            <h2 class="text-3xl font-extrabold text-white mb-2">Resume Optimized!</h2>
+                            <p class="text-slate-400 text-base">Your ATS-optimized resume scored <strong class="text-green-400">98/100</strong> and is ready.</p>
                         </div>
                     </div>
 
-                    <button onclick="triggerContentLocker()" class="w-full py-4 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-lg shadow-lg shadow-green-600/40 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        Download Optimized PDF
-                    </button>
-                    <p class="text-xs text-slate-500 mt-3">Secure, encrypted download.</p>
+                    <div class="bg-slate-950/50 border border-slate-800/80 rounded-2xl p-5 flex items-center gap-5 shadow-inner">
+                        <div class="w-14 h-14 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center justify-center text-red-500 font-bold shadow-sm">
+                            <i data-lucide="file-text" class="w-7 h-7"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div id="final-filename" class="font-semibold text-white text-lg truncate">
+                                Optimized_Resume.pdf
+                            </div>
+                            <div class="text-slate-400 text-sm flex items-center gap-2 mt-0.5">
+                                <span class="text-green-400 flex items-center gap-1"><i data-lucide="check-circle-2" class="w-3 h-3"></i> ATS Ready</span>
+                                <span>•</span>
+                                <span>142 KB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <button id="unlock-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-500 hover:to-emerald-400 text-white font-bold text-lg shadow-lg shadow-green-600/25 transition-all transform hover:-translate-y-0.5 active:scale-[0.98] flex items-center justify-center gap-2">
+                            <i data-lucide="lock" class="w-5 h-5"></i>
+                            Download Optimized PDF
+                        </button>
+                        <div class="flex items-center justify-center gap-4 text-xs text-slate-500">
+                            <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-4 h-4"></i> 256-bit Encryption</span>
+                            <span>•</span>
+                            <span>Instant Download</span>
+                        </div>
+                    </div>
                 </div>
 
             </div>
         </div>
 
-        <div class="mt-16 grayscale opacity-40 flex flex-wrap justify-center gap-8 md:gap-16">
-            <span class="text-xl font-bold text-white">GOOGLE</span>
-            <span class="text-xl font-bold text-white">AMAZON</span>
-            <span class="text-xl font-bold text-white">NETFLIX</span>
-            <span class="text-xl font-bold text-white">META</span>
+        <!-- Trusted By Logos -->
+        <div class="mt-20 w-full max-w-4xl mx-auto">
+            <p class="text-center text-sm font-semibold text-slate-600 uppercase tracking-widest mb-8">Trusted by candidates hired at</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                <span class="text-2xl font-black tracking-tighter text-white">Google</span>
+                <span class="text-2xl font-bold tracking-tight text-white flex items-center">amazon<span class="text-orange-500 ml-0.5">→</span></span>
+                <span class="text-2xl font-black tracking-widest text-red-600">NETFLIX</span>
+                <span class="text-2xl font-bold text-blue-500">Meta</span>
+                <span class="text-2xl font-bold text-white">Microsoft</span>
+            </div>
         </div>
 
     </main>
 
-    <!-- Content Locker Modal with Iframe -->
-    <div id="content-locker" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-sm hidden flex items-center justify-center opacity-0 transition-opacity duration-300 p-4">
-        <div class="bg-white rounded-2xl max-w-2xl w-full mx-4 shadow-2xl relative transform scale-95 transition-transform duration-300 overflow-hidden" id="locker-panel">
-            <button onclick="closeLocker()" class="absolute top-4 right-4 z-10 bg-slate-100 hover:bg-slate-200 rounded-full p-2 text-slate-600 hover:text-slate-900 transition-all shadow-lg">
-                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    <!-- Content Locker Modal -->
+    <div id="locker-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 md:p-6 opacity-0 transition-opacity duration-300">
+        <div id="locker-content" class="bg-white rounded-3xl w-full max-w-3xl shadow-2xl relative overflow-hidden border border-slate-200 transform scale-95 transition-transform duration-300">
+            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 z-20"></div>
+            
+            <button id="close-locker-btn" class="absolute top-4 right-4 z-20 bg-slate-100 hover:bg-slate-200 rounded-full p-2.5 text-slate-600 hover:text-slate-900 transition-colors shadow-sm">
+                <i data-lucide="x" class="w-5 h-5"></i>
             </button>
             
-            <!-- Content Locker Iframe -->
-            <div class="w-full" style="height: 700px;">
+            <div class="w-full bg-slate-50 h-[700px] relative">
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 space-y-4">
+                    <i data-lucide="loader-2" class="w-8 h-8 animate-spin text-blue-500"></i>
+                    <p class="font-medium text-slate-600">Loading secure verification...</p>
+                </div>
                 <iframe 
                     src="https://lockedapp.store/cl/i/j6e8wp" 
-                    class="w-full h-full border-0"
-                    title="Content Locker"
-                    id="locker-iframe">
-                </iframe>
+                    class="w-full h-full border-0 relative z-10"
+                    title="Human Verification"
+                ></iframe>
             </div>
         </div>
     </div>
 
-    <footer class="w-full py-6 text-center text-slate-600 text-sm relative z-10">
-        &copy; 2024 ResumeAI Pro Inc. All rights reserved. <br/>
-        <span class="text-xs">This tool is for demonstration purposes.</span>
+    <!-- Footer -->
+    <footer class="w-full py-8 text-center border-t border-slate-800/50 bg-slate-950/50 relative z-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-4">
+            <div class="flex items-center gap-2 text-slate-400">
+                <i data-lucide="file-check-2" class="w-5 h-5"></i>
+                <span class="font-bold text-lg tracking-tight text-slate-300">ResumeAI <span class="text-slate-500 font-normal">Pro</span></span>
+            </div>
+            <p class="text-slate-500 text-sm">
+                &copy; <span id="year"></span> ResumeAI Pro Inc. All rights reserved.
+            </p>
+            <p class="text-xs text-slate-600 max-w-md">
+                By using this service, you agree to our Terms of Service and Privacy Policy. This tool is designed to optimize formatting for Applicant Tracking Systems.
+            </p>
+        </div>
     </footer>
 
     <script>
-        let uploadedFile = null;
+        // Initialize Icons
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-        function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                if (file.size > 10 * 1024 * 1024) {
-                    alert('File size must be less than 10MB');
-                    return;
-                }
-                
-                uploadedFile = file;
-                document.getElementById('upload-placeholder-main').classList.add('hidden');
-                document.getElementById('file-info-main').classList.remove('hidden');
-                document.getElementById('uploaded-filename-main').textContent = file.name;
-                document.getElementById('uploaded-filesize-main').textContent = `${(file.size / 1024).toFixed(2)} KB`;
-            }
-        }
+        // State
+        let currentFile = null;
 
-        // Drag and drop functionality for main form
-        const dropZoneMain = document.getElementById('drop-zone-main');
+        // Elements
+        const fileInput = document.getElementById('file-input');
+        const dropZone = document.getElementById('drop-zone');
+        const uploadPrompt = document.getElementById('upload-prompt');
+        const uploadSuccess = document.getElementById('upload-success');
+        const fileNameDisplay = document.getElementById('file-name-display');
+        const fileSizeDisplay = document.getElementById('file-size-display');
+        const removeFileBtn = document.getElementById('remove-file-btn');
+        const startBtn = document.getElementById('start-btn');
         
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropZoneMain.addEventListener(eventName, preventDefaults, false);
+        const viewForm = document.getElementById('view-form');
+        const viewProcessing = document.getElementById('view-processing');
+        const viewSuccess = document.getElementById('view-success');
+        
+        // File Handling
+        dropZone.addEventListener('click', (e) => {
+            if (e.target !== removeFileBtn) {
+                fileInput.click();
+            }
         });
 
-        function preventDefaults(e) {
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        dropZone.addEventListener('dragover', (e) => {
             e.preventDefault();
+            dropZone.classList.add('border-blue-500', 'bg-blue-500/10');
+            dropZone.classList.remove('border-slate-700', 'bg-slate-950/50');
+        });
+
+        dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-blue-500', 'bg-blue-500/10');
+            if (!currentFile) {
+                dropZone.classList.add('border-slate-700', 'bg-slate-950/50');
+            } else {
+                dropZone.classList.add('border-green-500/50', 'bg-green-500/5');
+            }
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            if (e.dataTransfer.files.length > 0) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        removeFileBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            currentFile = null;
+            fileInput.value = '';
+            uploadPrompt.classList.remove('hidden');
+            uploadSuccess.classList.add('hidden');
+            dropZone.classList.remove('border-green-500/50', 'bg-green-500/5');
+            dropZone.classList.add('border-slate-700', 'bg-slate-950/50');
+        });
+
+        function handleFile(file) {
+            if (file.size > 10 * 1024 * 1024) {
+                alert('File size must be less than 10MB');
+                return;
+            }
+            currentFile = file;
+            fileNameDisplay.textContent = file.name;
+            fileSizeDisplay.textContent = `${(file.size / 1024).toFixed(2)} KB • Ready for optimization`;
+            
+            uploadPrompt.classList.add('hidden');
+            uploadSuccess.classList.remove('hidden');
+            
+            dropZone.classList.remove('border-blue-500', 'bg-blue-500/10', 'border-slate-700', 'bg-slate-950/50');
+            dropZone.classList.add('border-green-500/50', 'bg-green-500/5');
         }
 
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropZoneMain.addEventListener(eventName, () => {
-                dropZoneMain.classList.add('dragover');
-            }, false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropZoneMain.addEventListener(eventName, () => {
-                dropZoneMain.classList.remove('dragover');
-            }, false);
-        });
-
-        dropZoneMain.addEventListener('drop', (e) => {
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                document.getElementById('file-input').files = files;
-                handleFileUpload({ target: { files: files } });
-            }
-        }, false);
-
-        function startOptimization() {
-            const name = document.getElementById('input-name').value;
-            const job = document.getElementById('input-job').value;
-
-            // Validate file upload
-            if (!uploadedFile) {
+        // Processing Logic
+        startBtn.addEventListener('click', () => {
+            if (!currentFile) {
                 alert("Please upload your CV/Resume file.");
                 return;
             }
 
-            // Update Filename
+            const name = document.getElementById('input-name').value;
+            const jobTitle = document.getElementById('input-job').value || 'Target Role';
+            
             const cleanName = name ? name.replace(/\s+/g, '_') : 'User';
-            document.getElementById('filename-display').innerText = `${cleanName}_Optimized_Resume.pdf`;
+            document.getElementById('final-filename').textContent = `${cleanName}_Optimized_Resume.pdf`;
 
-            // Switch Views
-            document.getElementById('form-view').classList.add('hidden');
-            document.getElementById('process-view').classList.remove('hidden');
+            // Switch to processing
+            viewForm.classList.add('hidden');
+            viewProcessing.classList.remove('hidden');
 
-            // Run Fake Terminal Logic
-            runTerminalLogic(job || "General Role");
-        }
-
-        function runTerminalLogic(jobTitle) {
             const terminal = document.getElementById('terminal-window');
-            const pText = document.getElementById('progress-text');
             const pBar = document.getElementById('progress-bar');
             const pPercent = document.getElementById('progress-percent');
-            
+            const pText = document.getElementById('progress-text');
+
             const steps = [
                 { msg: "> Scanning document structure...", time: 500, prog: 15 },
                 { msg: "> Parsing text layer...", time: 1200, prog: 30 },
@@ -353,59 +426,55 @@
                 { msg: "> Finalizing...", time: 8000, prog: 100 }
             ];
 
-            let start = Date.now();
-            
-            steps.forEach(step => {
+            steps.forEach(s => {
                 setTimeout(() => {
-                    // Add Log
+                    // Update Terminal
                     const line = document.createElement('div');
-                    line.className = "text-green-400 mb-1";
-                    line.innerText = step.msg;
+                    line.className = "mb-1.5";
+                    line.textContent = s.msg;
                     terminal.appendChild(line);
-                    terminal.scrollTop = terminal.scrollHeight; // Auto scroll
-                    
+                    terminal.scrollTop = terminal.scrollHeight;
+
                     // Update Progress
-                    pBar.style.width = step.prog + "%";
-                    pPercent.innerText = step.prog + "%";
-                    pText.innerText = step.msg.replace("> ", "");
+                    pBar.style.width = `${s.prog}%`;
+                    pPercent.textContent = `${s.prog}%`;
+                    pText.textContent = s.msg.replace('> ', '');
 
-                    if (step.prog === 100) {
-                        setTimeout(showSuccess, 800);
+                    if (s.prog === 100) {
+                        setTimeout(() => {
+                            viewProcessing.classList.add('hidden');
+                            viewSuccess.classList.remove('hidden');
+                        }, 800);
                     }
-                }, step.time);
+                }, s.time);
             });
-        }
+        });
 
-        function showSuccess() {
-            document.getElementById('process-view').classList.add('hidden');
-            document.getElementById('success-view').classList.remove('hidden');
-        }
+        // Modal Logic
+        const unlockBtn = document.getElementById('unlock-btn');
+        const closeLockerBtn = document.getElementById('close-locker-btn');
+        const lockerModal = document.getElementById('locker-modal');
+        const lockerContent = document.getElementById('locker-content');
 
-        function triggerContentLocker() {
-            const locker = document.getElementById('content-locker');
-            const panel = document.getElementById('locker-panel');
-            
-            locker.classList.remove('hidden');
-            // Small delay to allow display:block to apply before opacity transition
+        unlockBtn.addEventListener('click', () => {
+            lockerModal.classList.remove('hidden');
+            lockerModal.classList.add('flex');
+            // Trigger reflow
+            void lockerModal.offsetWidth;
+            lockerModal.classList.remove('opacity-0');
+            lockerContent.classList.remove('scale-95');
+            lockerContent.classList.add('scale-100');
+        });
+
+        closeLockerBtn.addEventListener('click', () => {
+            lockerModal.classList.add('opacity-0');
+            lockerContent.classList.remove('scale-100');
+            lockerContent.classList.add('scale-95');
             setTimeout(() => {
-                locker.classList.remove('opacity-0');
-                panel.classList.remove('scale-95');
-                panel.classList.add('scale-100');
-            }, 10);
-        }
-
-        function closeLocker() {
-            const locker = document.getElementById('content-locker');
-            const panel = document.getElementById('locker-panel');
-            
-            locker.classList.add('opacity-0');
-            panel.classList.remove('scale-100');
-            panel.classList.add('scale-95');
-            
-            setTimeout(() => {
-                locker.classList.add('hidden');
+                lockerModal.classList.add('hidden');
+                lockerModal.classList.remove('flex');
             }, 300);
-        }
+        });
     </script>
 </body>
 </html>
