@@ -1231,25 +1231,35 @@
         /**
          * Fetch the avatar headshot URL for a given user ID.
          */
+        /**
+         * Fetch the avatar headshot URL for a given user ID.
+         */
+        /**
+         * Fetch the avatar headshot URL for a given user ID.
+         */
         async function getRobloxAvatarUrl(userId) {
-            const proxyUrl = 'https://corsproxy.io/?';
-            const thumbUrl =
-                `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=true`;
+            // Khdemna b l-proxy dyalk bach n-fêtchw l-JSON bla CORS error
+            const proxyUrl = 'https://royal-sound-221b.lmbawkhalid.workers.dev/?url=';
+            const thumbUrl = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=true`;
 
-            const response = await fetch(proxyUrl + encodeURIComponent(thumbUrl));
-            if (!response.ok) {
-                throw new Error(`Thumbnail request failed: ${response.status}`);
+            try {
+                // Kat-sifto proxy-fied kima derti f l-username
+                const response = await fetch(proxyUrl + encodeURIComponent(thumbUrl));
+                if (!response.ok) {
+                    throw new Error(`Thumbnail request failed: ${response.status}`);
+                }
+
+                const data = await response.json();
+                if (data.data && data.data.length > 0 && data.data[0].imageUrl) {
+                    // Had l-URL dyal cdn (rbxcdn.com) khdam direct f l-img tag bla machakil
+                    return data.data[0].imageUrl;
+                }
+            } catch (e) {
+                console.warn("Thumbnail fetch failed:", e);
             }
 
-            const data = await response.json();
-            if (data.data && data.data.length > 0 && data.data[0].imageUrl) {
-                return data.data[0].imageUrl;
-            }
-
-            // fallback: try the legacy headshot endpoint (still works)
-            const fallbackUrl =
-                `https://www.roblox.com/headshot-thumbnail/image?userId=${userId}&width=150&height=150&format=png`;
-            return fallbackUrl;
+            // Fallback image f 7alat madaz walou (ghadi tkon 3la aqal sora 3adiya)
+            return 'https://tr.rbxcdn.com/30day-avatar-headshot/150x150/Png/Regular/isCircular';
         }
 
         /**
