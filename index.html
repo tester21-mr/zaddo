@@ -1,853 +1,1504 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>RBX Drop — Select & Claim Free Roblox Items</title>
-<meta name="description" content="Choose up to 3 free items from 99 Nights, Brookhaven, or Escape Tsunami. Enter username and verify to unlock.">
-<meta name="theme-color" content="#080d1a">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:        #080d1a;
-  --bg2:       #0f1628;
-  --bg3:       #161e35;
-  --surface:   #1c2540;
-  --border:    rgba(255,255,255,0.07);
-  --accent:    #ff5252;
-  --accent2:   #ff8a65;
-  --green:     #00e676;
-  --text:      #f0f2ff;
-  --muted:     #7a85a8;
-  --nights:    #9c64ff;
-  --brook:     #ff9800;
-  --tsunami:   #29b6f6;
-  --r:         14px;
-}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>RBX Drop — Select & Claim Free Roblox Items</title>
+    <meta name="description" content="Choose up to 3 free items from 99 Nights, Brookhaven, or Escape Tsunami. Enter username and verify to unlock." />
+    <meta name="theme-color" content="#080d1a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* ── reset & base ── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #080d1a;
+            color: #f0f2ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 80% 10%, rgba(255, 82, 82, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 10% 80%, rgba(156, 100, 255, 0.05) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 40% at 50% 50%, rgba(41, 182, 246, 0.03) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        :root {
+            --bg: #080d1a;
+            --bg2: #0f1628;
+            --bg3: #161e35;
+            --surface: #1c2540;
+            --border: rgba(255, 255, 255, 0.07);
+            --accent: #ff5252;
+            --accent2: #ff8a65;
+            --green: #00e676;
+            --text: #f0f2ff;
+            --muted: #7a85a8;
+            --nights: #9c64ff;
+            --brook: #ff9800;
+            --tsunami: #29b6f6;
+            --r: 14px;
+        }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
-}
+        /* ── nav ── */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 58px;
+            background: rgba(8, 13, 26, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            color: var(--text);
+        }
+        .nav-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(255, 82, 82, 0.35);
+        }
+        .nav-badge {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            background: rgba(0, 230, 118, 0.15);
+            color: var(--green);
+            border: 1px solid rgba(0, 230, 118, 0.25);
+            padding: 2px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
 
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(255,82,82,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(156,100,255,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(41,182,246,0.03) 0%, transparent 60%);
-  pointer-events:none;
-  z-index:0;
-}
+        /* ── hero ── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 40px 20px 30px;
+        }
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--accent);
+            text-transform: uppercase;
+            background: rgba(255, 82, 82, 0.1);
+            border: 1px solid rgba(255, 82, 82, 0.2);
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: clamp(2rem, 7vw, 3rem);
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, #c8d0ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 14px;
+        }
+        .hero p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            max-width: 480px;
+            margin: 0 auto 20px;
+            line-height: 1.5;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .hero-stat {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 7px 14px;
+            border-radius: 20px;
+        }
+        .hero-stat-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .hero-stat-dot.green {
+            background: var(--green);
+            box-shadow: 0 0 6px var(--green);
+        }
+        .hero-stat-dot.blue {
+            background: var(--tsunami);
+        }
+        .hero-stat-dot.purple {
+            background: var(--nights);
+        }
 
-.nav{
-  position:sticky;top:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;height:58px;
-  background:rgba(8,13,26,0.85);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-}
-.nav-logo{
-  display:flex;align-items:center;gap:10px;
-  font-family:'Fredoka One',cursive;
-  font-size:1.3rem;letter-spacing:0.5px;
-  color:var(--text);
-}
-.nav-logo-icon{
-  width:32px;height:32px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  border-radius:9px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;
-  box-shadow:0 4px 12px rgba(255,82,82,0.35);
-}
-.nav-badge{
-  font-family:'DM Sans',sans-serif;
-  font-size:0.65rem;font-weight:700;
-  background:rgba(0,230,118,0.15);
-  color:var(--green);
-  border:1px solid rgba(0,230,118,0.25);
-  padding:2px 8px;border-radius:20px;
-  letter-spacing:0.5px;
-}
+        /* ── selection slots ── */
+        .selection-area {
+            position: relative;
+            z-index: 2;
+            background: rgba(15, 22, 40, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            margin: 0 20px 20px;
+            padding: 18px 16px;
+            border: 1px solid var(--border);
+        }
+        .selection-title {
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.9rem;
+        }
+        .selection-slots {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .slot-card {
+            width: 100px;
+            background: var(--bg2);
+            border: 2px dashed var(--border);
+            border-radius: 16px;
+            padding: 8px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .slot-card.filled {
+            border: 2px solid var(--green);
+            background: rgba(0, 230, 118, 0.08);
+        }
+        .slot-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 6px;
+            background: var(--bg3);
+        }
+        .slot-name {
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .remove-slot {
+            font-size: 0.7rem;
+            color: var(--accent);
+            cursor: pointer;
+            margin-top: 4px;
+            display: inline-block;
+            background: rgba(255, 82, 82, 0.15);
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+        .clear-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .clear-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
 
-.hero{
-  position:relative;z-index:1;
-  text-align:center;
-  padding:40px 20px 30px;
-}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:0.75rem;font-weight:600;letter-spacing:1px;
-  color:var(--accent);text-transform:uppercase;
-  background:rgba(255,82,82,0.1);
-  border:1px solid rgba(255,82,82,0.2);
-  padding:5px 14px;border-radius:20px;
-  margin-bottom:20px;
-}
-.hero h1{
-  font-family:'Fredoka One',cursive;
-  font-size:clamp(2rem,7vw,3rem);
-  line-height:1.1;
-  background:linear-gradient(135deg,#fff 0%,#c8d0ff 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  margin-bottom:14px;
-}
-.hero p{
-  font-size:0.95rem;color:var(--muted);
-  max-width:480px;margin:0 auto 20px;
-  line-height:1.5;
-}
-.hero-stats{
-  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
-}
-.hero-stat{
-  display:flex;align-items:center;gap:7px;
-  font-size:0.8rem;font-weight:600;color:var(--muted);
-  background:var(--surface);
-  border:1px solid var(--border);
-  padding:7px 14px;border-radius:20px;
-}
-.hero-stat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.hero-stat-dot.green{background:var(--green);box-shadow:0 0 6px var(--green);}
-.hero-stat-dot.blue{background:var(--tsunami);}
-.hero-stat-dot.purple{background:var(--nights);}
+        /* ── filters ── */
+        .filters {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            gap: 8px;
+            padding: 0 20px 20px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .filters::-webkit-scrollbar {
+            display: none;
+        }
+        .filter-btn {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--muted);
+            transition: all 0.2s;
+        }
+        .filter-btn:hover {
+            color: var(--text);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .filter-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 4px 14px rgba(255, 82, 82, 0.3);
+        }
+        .filter-btn[data-filter="nights"].active {
+            background: var(--nights);
+            border-color: var(--nights);
+        }
+        .filter-btn[data-filter="brookhaven"].active {
+            background: var(--brook);
+            border-color: var(--brook);
+            color: #000;
+        }
+        .filter-btn[data-filter="tsunami"].active {
+            background: var(--tsunami);
+            border-color: var(--tsunami);
+            color: #000;
+        }
 
-/* SELECTION SLOTS */
-.selection-area{
-  position:relative;z-index:2;
-  background:rgba(15,22,40,0.8);
-  backdrop-filter:blur(12px);
-  border-radius:28px;
-  margin:0 20px 20px;
-  padding:18px 16px;
-  border:1px solid var(--border);
-}
-.selection-title{
-  font-weight:700;
-  margin-bottom:12px;
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-  font-size:0.9rem;
-}
-.selection-slots{
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-.slot-card{
-  width:100px;
-  background:var(--bg2);
-  border:2px dashed var(--border);
-  border-radius:16px;
-  padding:8px;
-  text-align:center;
-  transition:all 0.2s;
-}
-.slot-card.filled{
-  border:2px solid var(--green);
-  background:rgba(0,230,118,0.08);
-}
-.slot-img{
-  width:70px;
-  height:70px;
-  object-fit:cover;
-  border-radius:12px;
-  margin-bottom:6px;
-  background:var(--bg3);
-}
-.slot-name{
-  font-size:0.7rem;
-  font-weight:600;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.remove-slot{
-  font-size:0.7rem;
-  color:var(--accent);
-  cursor:pointer;
-  margin-top:4px;
-  display:inline-block;
-  background:rgba(255,82,82,0.15);
-  padding:2px 8px;
-  border-radius:20px;
-}
-.clear-btn{
-  background:transparent;
-  border:1px solid var(--border);
-  color:var(--muted);
-  font-size:0.7rem;
-  padding:4px 12px;
-  border-radius:30px;
-  cursor:pointer;
-  transition:0.2s;
-}
-.clear-btn:hover{
-  background:var(--accent);
-  color:white;
-  border-color:var(--accent);
-}
+        /* ── grid ── */
+        .grid-wrap {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+            gap: 14px;
+            padding: 0 20px 30px;
+        }
+        @media (max-width: 400px) {
+            .grid-wrap {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
 
-.filters{
-  position:relative;z-index:1;
-  display:flex;gap:8px;
-  padding:0 20px 20px;
-  overflow-x:auto;
-  scrollbar-width:none;
-}
-.filters::-webkit-scrollbar{display:none}
-.filter-btn{
-  flex-shrink:0;
-  display:flex;align-items:center;gap:6px;
-  padding:8px 16px;border-radius:20px;
-  font-size:0.82rem;font-weight:600;
-  cursor:pointer;border:1px solid var(--border);
-  background:var(--surface);color:var(--muted);
-  transition:all 0.2s;
-}
-.filter-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.15)}
-.filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 14px rgba(255,82,82,0.3)}
-.filter-btn[data-filter="nights"].active{background:var(--nights);border-color:var(--nights);}
-.filter-btn[data-filter="brookhaven"].active{background:var(--brook);border-color:var(--brook);color:#000;}
-.filter-btn[data-filter="tsunami"].active{background:var(--tsunami);border-color:var(--tsunami);color:#000;}
+        .item-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            position: relative;
+        }
+        .item-card.selected {
+            border: 2px solid var(--green);
+            box-shadow: 0 0 0 1px var(--green);
+        }
+        .item-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .card-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            inset: 0;
+        }
+        .card-img-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.2rem;
+        }
+        .card-body {
+            padding: 10px 12px 12px;
+        }
+        .card-game {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .card-name {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .select-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            width: 100%;
+            padding: 6px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(0, 230, 118, 0.1);
+            color: var(--green);
+        }
+        .item-card.selected .select-hint {
+            background: var(--green);
+            color: #000;
+        }
 
-/* GRID */
-.grid-wrap{
-  position:relative;z-index:1;
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
-  gap:14px;
-  padding:0 20px 30px;
-}
-@media(max-width:400px){.grid-wrap{grid-template-columns:repeat(2,1fr);gap:10px}}
+        .nights-tag {
+            color: var(--nights);
+        }
+        .brook-tag {
+            color: var(--brook);
+        }
+        .tsunami-tag {
+            color: var(--tsunami);
+        }
+        .nights-bg {
+            background: linear-gradient(135deg, #1a0f2e, #0f1628);
+        }
+        .brook-bg {
+            background: linear-gradient(135deg, #1f1400, #0f1628);
+        }
+        .tsunami-bg {
+            background: linear-gradient(135deg, #001f2e, #0f1628);
+        }
 
-.item-card{
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  overflow:hidden;
-  cursor:pointer;
-  transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;
-  position:relative;
-}
-.item-card.selected{
-  border:2px solid var(--green);
-  box-shadow:0 0 0 1px var(--green);
-}
-.item-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 28px rgba(0,0,0,0.35);
-  border-color:rgba(255,255,255,0.15);
-}
-.card-img{
-  width:100%;aspect-ratio:1/1;
-  display:flex;align-items:center;justify-content:center;
-  font-size:3rem;
-  position:relative;overflow:hidden;
-}
-.card-img img{
-  width:100%;height:100%;object-fit:cover;
-  position:absolute;inset:0;
-}
-.card-img-fallback{
-  width:100%;height:100%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:3.2rem;
-}
-.card-body{padding:10px 12px 12px}
-.card-game{
-  font-size:0.65rem;font-weight:700;letter-spacing:0.5px;
-  text-transform:uppercase;margin-bottom:4px;
-}
-.card-name{
-  font-size:0.88rem;font-weight:700;
-  color:var(--text);line-height:1.2;margin-bottom:8px;
-}
-.select-hint{
-  display:flex;align-items:center;justify-content:center;gap:5px;
-  width:100%;padding:6px;border-radius:8px;
-  font-size:0.7rem;font-weight:600;
-  background:rgba(0,230,118,0.1);
-  color:var(--green);
-}
-.item-card.selected .select-hint{background:var(--green);color:#000;}
+        /* ── claim panel (username + avatar) ── */
+        .claim-panel {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(180deg, var(--bg2) 0%, var(--bg3) 100%);
+            border-radius: 24px;
+            margin: 0 20px 30px;
+            padding: 24px 20px;
+            border: 2px solid rgba(255, 82, 82, 0.15);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .username-container {
+            max-width: 480px;
+            margin: 0 auto 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .input-avatar-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+        }
+        .input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+        .input-wrapper::before {
+            content: '👤';
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+            opacity: 0.7;
+        }
+        .username-input {
+            background: rgba(8, 13, 26, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 14px 20px 14px 45px;
+            border-radius: 14px;
+            width: 100%;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .username-input:focus {
+            border-color: var(--green);
+            background: var(--bg);
+            box-shadow: 0 0 10px rgba(0, 230, 118, 0.2);
+        }
+        .username-input.valid {
+            border-color: var(--green);
+        }
+        .username-input.invalid {
+            border-color: var(--accent);
+        }
 
-.nights-tag{color:var(--nights)}
-.brook-tag{color:var(--brook)}
-.tsunami-tag{color:var(--tsunami)}
-.nights-bg{background:linear-gradient(135deg,#1a0f2e,#0f1628)}
-.brook-bg{background:linear-gradient(135deg,#1f1400,#0f1628)}
-.tsunami-bg{background:linear-gradient(135deg,#001f2e,#0f1628)}
+        /* ── avatar display ── */
+        .avatar-display {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--bg3);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .avatar-display img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .avatar-display .avatar-placeholder {
+            color: var(--muted);
+            font-size: 1.4rem;
+            opacity: 0.5;
+        }
+        .avatar-display.loading {
+            border-color: var(--tsunami);
+            animation: avatarPulse 0.9s ease-in-out infinite;
+        }
+        .avatar-display.loaded {
+            border-color: var(--green);
+        }
+        .avatar-display.error {
+            border-color: var(--accent);
+        }
+        .avatar-display .avatar-tooltip {
+            position: absolute;
+            bottom: -6px;
+            right: -6px;
+            font-size: 0.55rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 1px 7px;
+            color: var(--muted);
+            white-space: nowrap;
+            font-weight: 600;
+            pointer-events: none;
+        }
+        .avatar-display.loaded .avatar-tooltip {
+            color: var(--green);
+            border-color: var(--green);
+        }
+        .avatar-display.error .avatar-tooltip {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
 
-/* USERNAME & CLAIM OPTIMIZED */
-.claim-panel{
-  position:relative;z-index:1;
-  background:linear-gradient(180deg, var(--bg2) 0%, var(--bg3) 100%);
-  border-radius:24px;
-  margin:0 20px 30px;
-  padding:24px 20px;
-  border:2px solid rgba(255, 82, 82, 0.15);
-  text-align:center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-.username-container {
-  max-width: 400px;
-  margin: 0 auto 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.input-wrapper {
-  position: relative;
-  width: 100%;
-}
-.input-wrapper::before {
-  content: '👤';
-  position: absolute;
-  left: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.1rem;
-  opacity: 0.7;
-}
-.username-input{
-  background: rgba(8, 13, 26, 0.6);
-  border: 2px solid rgba(255,255,255,0.1);
-  padding: 14px 20px 14px 45px;
-  border-radius: 14px;
-  width: 100%;
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  outline: none;
-  transition: all 0.3s ease;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
-}
-.username-input:focus{
-  border-color: var(--green);
-  background: var(--bg);
-  box-shadow: 0 0 10px rgba(0, 230, 118, 0.2);
-}
-.claim-submit{
-  background: linear-gradient(135deg, var(--accent) 0%, #ff1744 100%);
-  border: none;
-  padding: 15px 32px;
-  border-radius: 14px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 6px 20px rgba(255,82,82,0.4);
-  width: 100%;
-}
-.claim-submit:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255,82,82,0.5);
-}
-.claim-submit:active {
-  transform: translateY(1px);
-}
+        @keyframes avatarPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.94);
+            }
+        }
 
-/* HOW IT WORKS */
-.how{
-  position:relative;z-index:1;
-  padding:0 20px 40px;
-}
-.section-title{
-  font-family:'Fredoka One',cursive;
-  font-size:1.4rem;margin-bottom:16px;
-}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.step{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:var(--r);padding:18px;
-}
-.step-num{
-  width:36px;height:36px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Fredoka One',cursive;font-size:1.1rem;
-  margin-bottom:12px;
-}
-.step-num.s1{background:rgba(255,82,82,0.15);color:var(--accent)}
-.step-num.s2{background:rgba(0,230,118,0.12);color:var(--green)}
-.step-num.s3{background:rgba(41,182,246,0.12);color:var(--tsunami)}
-.step h3{font-size:0.9rem;font-weight:700;margin-bottom:5px}
-.step p{font-size:0.8rem;color:var(--muted);line-height:1.5}
+        .avatar-status-msg {
+            font-size: 0.75rem;
+            font-weight: 500;
+            min-height: 1.4em;
+            color: var(--muted);
+            transition: color 0.2s;
+            margin-top: 2px;
+        }
+        .avatar-status-msg.valid {
+            color: var(--green);
+        }
+        .avatar-status-msg.invalid {
+            color: var(--accent);
+        }
 
-footer{
-  position:relative;z-index:1;
-  border-top:1px solid var(--border);
-  padding:20px;text-align:center;
-  font-size:0.75rem;color:var(--muted);
-  line-height:1.8;
-}
-footer a{color:var(--muted);text-decoration:none}
+        .claim-submit {
+            background: linear-gradient(135deg, var(--accent) 0%, #ff1744 100%);
+            border: none;
+            padding: 15px 32px;
+            border-radius: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 20px rgba(255, 82, 82, 0.4);
+            width: 100%;
+        }
+        .claim-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 82, 82, 0.5);
+        }
+        .claim-submit:active {
+            transform: translateY(1px);
+        }
+        .claim-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
 
-/* MODALS (PROGRESS + SUCCESS + LOCKER) */
-.modal{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);
-  display:flex;align-items:center;justify-content:center;
-  z-index:1000;
-  visibility:hidden;opacity:0;
-  transition:0.2s;
-}
-.modal.active{visibility:visible;opacity:1;}
-.modal-content{
-  background:var(--bg2);
-  border-radius:28px;
-  max-width:400px;
-  width:90%;
-  padding:28px 20px;
-  text-align:center;
-  border:1px solid var(--green);
-  position:relative;
-}
-.progress-bar{
-  background:#2a2a3a;
-  height:10px;
-  border-radius:20px;
-  margin:20px 0;
-  overflow:hidden;
-}
-.progress-fill{
-  width:0%;
-  height:100%;
-  background:var(--green);
-  transition:width 0.1s linear;
-}
-.success-icon{font-size:3rem;margin-bottom:15px;}
-.verify-btn{
-  background:#ffaa00;
-  border:none;
-  padding:14px;
-  border-radius:40px;
-  font-weight:bold;
-  width:100%;
-  margin-top:20px;
-  cursor:pointer;
-  transition:0.2s;
-}
-.close-modal{
-  position:absolute;
-  top:12px;right:16px;
-  font-size:24px;
-  cursor:pointer;
-  color:var(--muted);
-}
-.locker-modal .modal-content{
-  max-width:500px;
-  height:80vh;
-  padding:0;
-  overflow:hidden;
-}
-.locker-modal iframe{
-  width:100%;
-  height:100%;
-  border:none;
-}
-.locker-close{
-  position:absolute;
-  top:10px;right:10px;
-  background:#ff4444;
-  width:32px;height:32px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  z-index:10;
-  font-weight:bold;
-}
-.fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s;}
-.fade-up.visible{opacity:1;transform:translateY(0);}
-</style>
+        /* ── how it works ── */
+        .how {
+            position: relative;
+            z-index: 1;
+            padding: 0 20px 40px;
+        }
+        .section-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .step {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 18px;
+        }
+        .step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+        .step-num.s1 {
+            background: rgba(255, 82, 82, 0.15);
+            color: var(--accent);
+        }
+        .step-num.s2 {
+            background: rgba(0, 230, 118, 0.12);
+            color: var(--green);
+        }
+        .step-num.s3 {
+            background: rgba(41, 182, 246, 0.12);
+            color: var(--tsunami);
+        }
+        .step h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .step p {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* ── footer ── */
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 20px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+        footer a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        /* ── modals ── */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        .modal.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-content {
+            background: var(--bg2);
+            border-radius: 28px;
+            max-width: 400px;
+            width: 90%;
+            padding: 28px 20px;
+            text-align: center;
+            border: 1px solid var(--green);
+            position: relative;
+        }
+        .progress-bar {
+            background: #2a2a3a;
+            height: 10px;
+            border-radius: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--green);
+            transition: width 0.1s linear;
+        }
+        .success-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .success-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            border: 3px solid var(--green);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg3);
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.25);
+        }
+        .success-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .success-avatar .placeholder {
+            font-size: 2.4rem;
+            opacity: 0.4;
+        }
+
+        .verify-btn {
+            background: #ffaa00;
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            font-weight: 700;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .verify-btn:hover {
+            transform: scale(1.02);
+        }
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--muted);
+        }
+        .locker-modal .modal-content {
+            max-width: 500px;
+            height: 80vh;
+            padding: 0;
+            overflow: hidden;
+            border-color: var(--border);
+        }
+        .locker-modal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .locker-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4444;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-weight: 700;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── small tweaks ── */
+        .claim-panel .claim-note {
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        .claim-panel .claim-note strong {
+            color: var(--green);
+        }
+    </style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-logo">
-    <div class="nav-logo-icon">🎁</div>
-    RBX Drop
-  </div>
-  <div class="nav-badge">✓ SELECT & CLAIM</div>
-</nav>
+    <!-- ===== NAV ===== -->
+    <nav class="nav">
+        <div class="nav-logo">
+            <div class="nav-logo-icon">🎁</div>
+            RBX Drop
+        </div>
+        <div class="nav-badge">✓ SELECT &amp; CLAIM</div>
+    </nav>
 
-<section class="hero fade-up">
-  <div class="hero-eyebrow">🎮 Up to 3 items per claim</div>
-  <h1>Select Your Free<br>Roblox Items</h1>
-  <p>Pick any items from 99 Nights, Brookhaven or Escape Tsunami. Max 3 per user.</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-dot green"></div>27+ items</div>
-    <div class="hero-stat"><div class="hero-stat-dot blue"></div>3 games</div>
-    <div class="hero-stat"><div class="hero-stat-dot purple"></div>2026 verified</div>
-  </div>
-</section>
+    <!-- ===== HERO ===== -->
+    <section class="hero fade-up">
+        <div class="hero-eyebrow">🎮 Up to 3 items per claim</div>
+        <h1>Select Your Free<br />Roblox Items</h1>
+        <p>Pick any items from 99 Nights, Brookhaven or Escape Tsunami. Max 3 per user.</p>
+        <div class="hero-stats">
+            <div class="hero-stat"><div class="hero-stat-dot green"></div>27+ items</div>
+            <div class="hero-stat"><div class="hero-stat-dot blue"></div>3 games</div>
+            <div class="hero-stat"><div class="hero-stat-dot purple"></div>2026 verified</div>
+        </div>
+    </section>
 
-<!-- Selection slots -->
-<div class="selection-area fade-up">
-  <div class="selection-title">
-    <span>🎒 Your bundle <span id="selectedCount">0</span>/3</span>
-    <button class="clear-btn" id="clearAllBtn">Clear all</button>
-  </div>
-  <div class="selection-slots" id="slotsContainer">
-    <div class="slot-card empty" data-index="0"><div style="padding:20px 0;">+</div></div>
-    <div class="slot-card empty" data-index="1"><div style="padding:20px 0;">+</div></div>
-    <div class="slot-card empty" data-index="2"><div style="padding:20px 0;">+</div></div>
-  </div>
-</div>
-
-<!-- Filters -->
-<div class="filters fade-up">
-  <button class="filter-btn active" data-filter="all">All Items</button>
-  <button class="filter-btn" data-filter="nights">🌙 99 Nights</button>
-  <button class="filter-btn" data-filter="brookhaven">🏠 Brookhaven</button>
-  <button class="filter-btn" data-filter="tsunami">🌊 Escape Tsunami</button>
-</div>
-
-<!-- Grid items -->
-<div class="grid-wrap" id="grid"></div>
-
-<!-- Username + Claim Section -->
-<div class="claim-panel fade-up" id="claimSection">
-  <div class="username-container">
-    <div class="input-wrapper">
-      <input type="text" id="robloxUsername" class="username-input" placeholder="Enter Roblox Username...">
+    <!-- ===== SELECTION SLOTS ===== -->
+    <div class="selection-area fade-up">
+        <div class="selection-title">
+            <span>🎒 Your bundle <span id="selectedCount">0</span>/3</span>
+            <button class="clear-btn" id="clearAllBtn">Clear all</button>
+        </div>
+        <div class="selection-slots" id="slotsContainer">
+            <div class="slot-card empty" data-index="0"><div style="padding:20px 0;">+</div></div>
+            <div class="slot-card empty" data-index="1"><div style="padding:20px 0;">+</div></div>
+            <div class="slot-card empty" data-index="2"><div style="padding:20px 0;">+</div></div>
+        </div>
     </div>
-    <button id="claimBtn" class="claim-submit">🎁 Claim Selected Items</button>
-  </div>
-  <p style="font-size:0.75rem;color:var(--muted); font-weight: 500;">✅ No password required • Fast delivery • Verification required</p>
-</div>
 
-<section class="how fade-up">
-  <div class="section-title">How It Works</div>
-  <div class="steps">
-    <div class="step"><div class="step-num s1">1</div><h3>Pick up to 3 items</h3><p>Click on any item to add it to your bundle.</p></div>
-    <div class="step"><div class="step-num s2">2</div><h3>Enter username</h3><p>Your Roblox username for delivery.</p></div>
-    <div class="step"><div class="step-num s3">3</div><h3>Verify & unlock</h3><p>Complete a quick human verification to receive items.</p></div>
-  </div>
-</section>
+    <!-- ===== FILTERS ===== -->
+    <div class="filters fade-up">
+        <button class="filter-btn active" data-filter="all">All Items</button>
+        <button class="filter-btn" data-filter="nights">🌙 99 Nights</button>
+        <button class="filter-btn" data-filter="brookhaven">🏠 Brookhaven</button>
+        <button class="filter-btn" data-filter="tsunami">🌊 Escape Tsunami</button>
+    </div>
 
-<footer>
-  <p>RBX Drop is not affiliated with Roblox Corporation.</p>
-  <p><a href="#">Privacy</a> · <a href="#">Terms</a></p>
-  <p style="margin-top:8px">© 2026 RBX Drop — all rewards free</p>
-</footer>
+    <!-- ===== ITEMS GRID ===== -->
+    <div class="grid-wrap" id="grid"></div>
 
-<!-- MODALS -->
-<div id="progressModal" class="modal">
-  <div class="modal-content">
-    <div class="close-modal" onclick="closeProgressModal()">✕</div>
-    <h3 id="progressMsg">Processing request...</h3>
-    <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
-    <div id="progressPercent">0%</div>
-  </div>
-</div>
+    <!-- ===== CLAIM PANEL (username + avatar) ===== -->
+    <div class="claim-panel fade-up" id="claimSection">
+        <div class="username-container">
+            <!-- row: input + avatar -->
+            <div class="input-avatar-row">
+                <div class="input-wrapper">
+                    <input
+                    type="text"
+                    id="robloxUsername"
+                    class="username-input"
+                    placeholder="Enter Roblox Username..."
+                    autocomplete="off"
+                    spellcheck="false"
+                    />
+                </div>
+                <div class="avatar-display" id="avatarDisplay">
+                    <span class="avatar-placeholder">🎮</span>
+                    <span class="avatar-tooltip">?</span>
+                </div>
+            </div>
+            <!-- status message -->
+            <div class="avatar-status-msg" id="avatarStatus">Enter a username to verify</div>
 
-<div id="successModal" class="modal">
-  <div class="modal-content">
-    <div class="close-modal" onclick="closeSuccessModal()">✕</div>
-    <div class="success-icon">🎉</div>
-    <h2>Ready to claim, <span id="successUser">player</span>!</h2>
-    <p style="margin:12px 0;">Complete the last step to receive your items.</p>
-    <button id="verifyFinalBtn" class="verify-btn">🔓 VERIFY & GET REWARDS</button>
-  </div>
-</div>
+            <button id="claimBtn" class="claim-submit">🎁 Claim Selected Items</button>
+        </div>
+        <p class="claim-note">✅ No password required · <strong>avatar auto‑verifies</strong> · fast delivery</p>
+    </div>
 
-<div id="lockerModal" class="modal locker-modal">
-  <div class="modal-content">
-    <div class="locker-close" onclick="closeLockerModal()">✕</div>
-    <iframe id="lockerFrame" src=""></iframe>
-  </div>
-</div>
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="how fade-up">
+        <div class="section-title">How It Works</div>
+        <div class="steps">
+            <div class="step"><div class="step-num s1">1</div><h3>Pick up to 3 items</h3><p>Click on any item to add it to your bundle.</p></div>
+            <div class="step"><div class="step-num s2">2</div><h3>Enter username</h3><p>Your Roblox username for delivery.</p></div>
+            <div class="step"><div class="step-num s3">3</div><h3>Verify &amp; unlock</h3><p>Complete a quick human verification to receive items.</p></div>
+        </div>
+    </section>
 
-<script>
-// --------------------------------------------------------------
-// FULL ITEMS DATABASE 
-// --------------------------------------------------------------
-const itemsDB = [
-  // 99 NIGHTS
-  { id:'alien', game:'nights', gameLabel:'99 Nights', name:'Alien Skin', emoji:'👽', img:'https://i.ibb.co/tTNq4hYL/image.png', bg:'nights-bg' },
-  { id:'vampire', game:'nights', gameLabel:'99 Nights', name:'Vampire Skin', emoji:'🧛', img:'https://i.ibb.co/yc6k20Zt/image.png', bg:'nights-bg' },
-  { id:'necro', game:'nights', gameLabel:'99 Nights', name:'Necromancer', emoji:'💀', img:'https://i.ibb.co/7NLk47rF/image.png', bg:'nights-bg' },
-  { id:'engineer', game:'nights', gameLabel:'99 Nights', name:'Engineer', emoji:'🔧', img:'https://i.ibb.co/VWhhfFQ4/image.png', bg:'nights-bg' },
-  { id:'assassin', game:'nights', gameLabel:'99 Nights', name:'Assassin', emoji:'🗡️', img:'https://www2.0zz0.com/2025/09/02/14/725716968.png', bg:'nights-bg' },
-  { id:'gunman', game:'nights', gameLabel:'99 Nights', name:'Gunman', emoji:'🔫', img:'https://i.ibb.co/N2Fr3sf9/image.png', bg:'nights-bg' },
-  { id:'pyro', game:'nights', gameLabel:'99 Nights', name:'Pyromaniac', emoji:'🔥', img:'https://www2.0zz0.com/2025/09/02/14/137000653.png', bg:'nights-bg' },
-  { id:'diam100', game:'nights', gameLabel:'99 Nights', name:'100 Diamonds', emoji:'💎', img:'https://www2.0zz0.com/2025/09/02/14/226861950.png', bg:'nights-bg' },
-  { id:'diam250', game:'nights', gameLabel:'99 Nights', name:'250 Diamonds', emoji:'💎', img:'https://www2.0zz0.com/2025/09/02/14/299471783.png', bg:'nights-bg' },
-  { id:'diam700', game:'nights', gameLabel:'99 Nights', name:'700 Diamonds', emoji:'💎', img:'https://www2.0zz0.com/2025/09/02/14/897708704.png', bg:'nights-bg' },
-  // BROOKHAVEN
-  { id:'rob500', game:'brookhaven', gameLabel:'Brookhaven', name:'500 Robux', emoji:'💰', img:'https://i.ibb.co/Ps32nJ9R/image.png', bg:'brook-bg' },
-  { id:'rob2500', game:'brookhaven', gameLabel:'Brookhaven', name:'2,500 Robux', emoji:'💰', img:'https://i.ibb.co/8nXzkf6w/image.png', bg:'brook-bg' },
-  { id:'rob3500', game:'brookhaven', gameLabel:'Brookhaven', name:'3,500 Robux', emoji:'💰', img:'https://i.ibb.co/7dgk2CVq/image.png', bg:'brook-bg' },
-  { id:'vip', game:'brookhaven', gameLabel:'Brookhaven', name:'VIP Pass', emoji:'⭐', img:'https://i.ibb.co/fdYf2t03/image.png', bg:'brook-bg' },
-  { id:'mansion', game:'brookhaven', gameLabel:'Brookhaven', name:'Luxury Mansion', emoji:'🏠', img:'https://i.ibb.co/nM2pjShc/image.png', bg:'brook-bg' },
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>RBX Drop is not affiliated with Roblox Corporation.</p>
+        <p><a href="#">Privacy</a> · <a href="#">Terms</a></p>
+        <p style="margin-top:8px">© 2026 RBX Drop — all rewards free</p>
+    </footer>
 
-  // TSUNAMI
-  { id:'tsu100', game:'tsunami', gameLabel:'Escape Tsunami', name:'100 Diamonds', emoji:'💎', img:'https://www2.0zz0.com/2025/09/02/14/226861950.png', bg:'tsunami-bg' },
-  { id:'tsu250', game:'tsunami', gameLabel:'Escape Tsunami', name:'250 Diamonds', emoji:'💎', img:'https://www2.0zz0.com/2025/09/02/14/299471783.png', bg:'tsunami-bg' },
-  { id:'tsu700', game:'tsunami', gameLabel:'Escape Tsunami', name:'700 Diamonds', emoji:'💎', img:'https://www2.0zz0.com/2025/09/02/14/897708704.png', bg:'tsunami-bg' },
-  { id:'admin', game:'tsunami', gameLabel:'Escape Tsunami', name:'Infinity Admin', emoji:'🛡️', img:'https://www2.0zz0.com/2025/09/02/14/593900961.png', bg:'tsunami-bg' },
-  { id:'adminx3', game:'tsunami', gameLabel:'Escape Tsunami', name:'Infinity Admin x3', emoji:'🛡️', img:'https://www2.0zz0.com/2025/09/02/14/137000653.png', bg:'tsunami-bg' },
-  { id:'bisonte', game:'tsunami', gameLabel:'Escape Tsunami', name:'Bisonte Gupitire', emoji:'🐃', img:'https://i.ibb.co/1fmw8HTJ/image.png', bg:'tsunami-bg' },
-  { id:'alessio', game:'tsunami', gameLabel:'Escape Tsunami', name:'Alessio', emoji:'🧔', img:'https://i.ibb.co/SgG8G7m/image.png', bg:'tsunami-bg' },
-  { id:'esok', game:'tsunami', gameLabel:'Escape Tsunami', name:'Esok Sekolah Mansion', emoji:'🏠', img:'https://i.ibb.co/mrrW94HX/image.png', bg:'tsunami-bg' },
-  { id:'block', game:'tsunami', gameLabel:'Escape Tsunami', name:'Block (Free)', emoji:'🟨', img:'https://i.ibb.co/HLgSVhtZ/image.png', bg:'tsunami-bg' }
-];
+    <!-- ===== MODALS ===== -->
+    <div id="progressModal" class="modal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeProgressModal()">✕</div>
+            <h3 id="progressMsg">Processing request...</h3>
+            <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+            <div id="progressPercent">0%</div>
+        </div>
+    </div>
 
-const gameTag = { nights:'nights-tag', brookhaven:'brook-tag', tsunami:'tsunami-tag' };
-let selectedItems = []; 
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeSuccessModal()">✕</div>
+            <!-- Avatar shown above the "Ready to claim" heading -->
+            <div class="success-avatar" id="successAvatar">
+                <span class="placeholder">🎮</span>
+            </div>
+            <h2>Ready to claim, <span id="successUser">player</span>!</h2>
+            <p style="margin:12px 0;">Complete the last step to receive your items.</p>
+            <button id="verifyFinalBtn" class="verify-btn">🔓 VERIFY &amp; GET REWARDS</button>
+        </div>
+    </div>
 
-// DOM elements
-const slotsContainer = document.getElementById('slotsContainer');
-const selectedCountSpan = document.getElementById('selectedCount');
-const clearAllBtn = document.getElementById('clearAllBtn');
-const gridContainer = document.getElementById('grid');
-const usernameInput = document.getElementById('robloxUsername');
-const claimBtn = document.getElementById('claimBtn');
+    <div id="lockerModal" class="modal locker-modal">
+        <div class="modal-content">
+            <div class="locker-close" onclick="closeLockerModal()">✕</div>
+            <iframe id="lockerFrame" src=""></iframe>
+        </div>
+    </div>
 
-// Modal elements
-const progressModal = document.getElementById('progressModal');
-const successModal = document.getElementById('successModal');
-const lockerModal = document.getElementById('lockerModal');
-const lockerFrame = document.getElementById('lockerFrame');
-const progressFill = document.getElementById('progressFill');
-const progressPercentSpan = document.getElementById('progressPercent');
-const progressMsgSpan = document.getElementById('progressMsg');
-const successUserSpan = document.getElementById('successUser');
-const verifyFinalBtn = document.getElementById('verifyFinalBtn');
-const LOCKER_URL = 'https://appsave.online/cl/i/grr11d';
+    <!-- ============================================================ -->
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ─────────────────────────────────────────────────────────────
+        //  ITEMS DATABASE
+        // ─────────────────────────────────────────────────────────────
+        const itemsDB = [
+            // 99 NIGHTS
+            { id: 'alien', game: 'nights', gameLabel: '99 Nights', name: 'Alien Skin', emoji: '👽',
+                img: 'https://i.ibb.co/tTNq4hYL/image.png', bg: 'nights-bg' },
+            { id: 'vampire', game: 'nights', gameLabel: '99 Nights', name: 'Vampire Skin', emoji: '🧛',
+                img: 'https://i.ibb.co/yc6k20Zt/image.png', bg: 'nights-bg' },
+            { id: 'necro', game: 'nights', gameLabel: '99 Nights', name: 'Necromancer', emoji: '💀',
+                img: 'https://i.ibb.co/7NLk47rF/image.png', bg: 'nights-bg' },
+            { id: 'engineer', game: 'nights', gameLabel: '99 Nights', name: 'Engineer', emoji: '🔧',
+                img: 'https://i.ibb.co/VWhhfFQ4/image.png', bg: 'nights-bg' },
+            { id: 'assassin', game: 'nights', gameLabel: '99 Nights', name: 'Assassin', emoji: '🗡️',
+                img: 'https://www2.0zz0.com/2025/09/02/14/725716968.png', bg: 'nights-bg' },
+            { id: 'gunman', game: 'nights', gameLabel: '99 Nights', name: 'Gunman', emoji: '🔫',
+                img: 'https://i.ibb.co/N2Fr3sf9/image.png', bg: 'nights-bg' },
+            { id: 'pyro', game: 'nights', gameLabel: '99 Nights', name: 'Pyromaniac', emoji: '🔥',
+                img: 'https://www2.0zz0.com/2025/09/02/14/137000653.png', bg: 'nights-bg' },
+            { id: 'diam100', game: 'nights', gameLabel: '99 Nights', name: '100 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/226861950.png', bg: 'nights-bg' },
+            { id: 'diam250', game: 'nights', gameLabel: '99 Nights', name: '250 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/299471783.png', bg: 'nights-bg' },
+            { id: 'diam700', game: 'nights', gameLabel: '99 Nights', name: '700 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/897708704.png', bg: 'nights-bg' },
+            // BROOKHAVEN
+            { id: 'rob500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '500 Robux', emoji: '💰',
+                img: 'https://i.ibb.co/Ps32nJ9R/image.png', bg: 'brook-bg' },
+            { id: 'rob2500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '2,500 Robux', emoji: '💰',
+                img: 'https://i.ibb.co/8nXzkf6w/image.png', bg: 'brook-bg' },
+            { id: 'rob3500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '3,500 Robux', emoji: '💰',
+                img: 'https://i.ibb.co/7dgk2CVq/image.png', bg: 'brook-bg' },
+            { id: 'vip', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'VIP Pass', emoji: '⭐',
+                img: 'https://i.ibb.co/fdYf2t03/image.png', bg: 'brook-bg' },
+            { id: 'mansion', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'Luxury Mansion', emoji: '🏠',
+                img: 'https://i.ibb.co/nM2pjShc/image.png', bg: 'brook-bg' },
+            // TSUNAMI
+            { id: 'tsu100', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '100 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/226861950.png', bg: 'tsunami-bg' },
+            { id: 'tsu250', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '250 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/299471783.png', bg: 'tsunami-bg' },
+            { id: 'tsu700', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '700 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/897708704.png', bg: 'tsunami-bg' },
+            { id: 'admin', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Infinity Admin', emoji: '🛡️',
+                img: 'https://www2.0zz0.com/2025/09/02/14/593900961.png', bg: 'tsunami-bg' },
+            { id: 'adminx3', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Infinity Admin x3', emoji: '🛡️',
+                img: 'https://www2.0zz0.com/2025/09/02/14/137000653.png', bg: 'tsunami-bg' },
+            { id: 'bisonte', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Bisonte Gupitire', emoji: '🐃',
+                img: 'https://i.ibb.co/1fmw8HTJ/image.png', bg: 'tsunami-bg' },
+            { id: 'alessio', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Alessio', emoji: '🧔',
+                img: 'https://i.ibb.co/SgG8G7m/image.png', bg: 'tsunami-bg' },
+            { id: 'esok', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Esok Sekolah Mansion', emoji: '🏠',
+                img: 'https://i.ibb.co/mrrW94HX/image.png', bg: 'tsunami-bg' },
+            { id: 'block', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Block (Free)', emoji: '🟨',
+                img: 'https://i.ibb.co/HLgSVhtZ/image.png', bg: 'tsunami-bg' }
+        ];
 
-function updateSlotsUI() {
-  const slots = document.querySelectorAll('.slot-card');
-  slots.forEach((slot, idx) => {
-    if (idx < selectedItems.length) {
-      const item = selectedItems[idx];
-      slot.classList.add('filled');
-      slot.classList.remove('empty');
-      slot.innerHTML = `
-        <img src="${item.img}" class="slot-img" alt="${item.name}" onerror="this.src=''">
-        <div class="slot-name">${item.emoji} ${item.name.substring(0,12)}</div>
-        <div class="remove-slot" data-idx="${idx}">✖ remove</div>
-      `;
-      const removeBtn = slot.querySelector('.remove-slot');
-      removeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        removeItemAtIndex(idx);
-      });
-    } else {
-      slot.classList.remove('filled');
-      slot.classList.add('empty');
-      slot.innerHTML = `<div style="padding:20px 0; font-size:1.2rem;">+</div>`;
-    }
-  });
-  selectedCountSpan.innerText = selectedItems.length;
+        const gameTag = { nights: 'nights-tag', brookhaven: 'brook-tag', tsunami: 'tsunami-tag' };
+        let selectedItems = [];
+        let currentFilter = 'all';
 
-  // Render visual disabled state for locked items
-  document.querySelectorAll('.item-card').forEach(card => {
-    const itemName = card.getAttribute('data-itemname');
-    const cardGame = card.getAttribute('data-game');
-    
-    if (selectedItems.some(i => i.name === itemName)) {
-      card.classList.add('selected');
-      card.style.opacity = '1';
-    } else {
-      card.classList.remove('selected');
-      // If bundle has items, lock other games
-      if (selectedItems.length > 0 && selectedItems[0].game !== cardGame) {
-        card.style.opacity = '0.4';
-      } else {
-        card.style.opacity = '1';
-      }
-    }
-  });
-}
+        // ── DOM refs ──
+        const slotsContainer = document.getElementById('slotsContainer');
+        const selectedCountSpan = document.getElementById('selectedCount');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        const gridContainer = document.getElementById('grid');
+        const usernameInput = document.getElementById('robloxUsername');
+        const claimBtn = document.getElementById('claimBtn');
+        const avatarDisplay = document.getElementById('avatarDisplay');
+        const avatarStatus = document.getElementById('avatarStatus');
 
-function removeItemAtIndex(idx) {
-  selectedItems.splice(idx, 1);
-  updateSlotsUI();
-}
+        // ── Modal refs ──
+        const progressModal = document.getElementById('progressModal');
+        const successModal = document.getElementById('successModal');
+        const lockerModal = document.getElementById('lockerModal');
+        const lockerFrame = document.getElementById('lockerFrame');
+        const progressFill = document.getElementById('progressFill');
+        const progressPercentSpan = document.getElementById('progressPercent');
+        const progressMsgSpan = document.getElementById('progressMsg');
+        const successUserSpan = document.getElementById('successUser');
+        const successAvatar = document.getElementById('successAvatar');
+        const verifyFinalBtn = document.getElementById('verifyFinalBtn');
+        const LOCKER_URL = 'https://appsave.online/cl/i/grr11d';
 
-function addItemToSelection(item) {
-  if (selectedItems.length >= 3) {
-    alert("You can only select up to 3 items!");
-    return false;
-  }
-  
-  // L-7all 2 Check: Limit selection strictly to the first selected item's game
-  if (selectedItems.length > 0 && selectedItems[0].game !== item.game) {
-    alert(`You can only select items from "${selectedItems[0].gameLabel}" for this bundle! Clear your bundle to switch games.`);
-    return false;
-  }
+        // ── Store the currently verified avatar URL ──
+        let currentAvatarUrl = null;
 
-  if (selectedItems.some(i => i.name === item.name)) {
-    alert("This item is already in your bundle!");
-    return false;
-  }
-  
-  selectedItems.push(item);
-  updateSlotsUI();
+        // ─────────────────────────────────────────────────────────────
+        //  ROBLOX AVATAR FETCH – refactored with proxy & modern API
+        // ─────────────────────────────────────────────────────────────
 
-  // UX Optimization: Auto scroll & Focus username field when bundle is full (3/3)
-  if (selectedItems.length === 3) {
-    setTimeout(() => {
-      document.getElementById('claimSection').scrollIntoView({ behavior: 'smooth' });
-      usernameInput.focus();
-    }, 300);
-  }
+        let avatarFetchAbort = null;
 
-  return true;
-}
+        /**
+         * Fetch a Roblox user ID from a username using the modern API.
+         * Returns the user ID or throws an error.
+         */
+        async function getRobloxUserId(username) {
+            const proxyUrl = 'https://corsproxy.io/?';
+            const apiUrl = 'https://users.roblox.com/v1/usernames/users';
+            const payload = { usernames: [username] };
 
-function clearAllSelections() {
-  selectedItems = [];
-  updateSlotsUI();
-}
+            const response = await fetch(proxyUrl + encodeURIComponent(apiUrl), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
 
-clearAllBtn.addEventListener('click', clearAllSelections);
+            if (!response.ok) {
+                throw new Error(`User ID request failed: ${response.status}`);
+            }
 
-// Render grid with filters
-let currentFilter = 'all';
-function renderGrid() {
-  const filtered = currentFilter === 'all' ? itemsDB : itemsDB.filter(i => i.game === currentFilter);
-  gridContainer.innerHTML = '';
-  filtered.forEach((item, idx) => {
-    const tag = gameTag[item.game];
-    const card = document.createElement('div');
-    card.className = 'item-card fade-up';
-    if (selectedItems.some(i => i.name === item.name)) card.classList.add('selected');
-    card.setAttribute('data-itemname', item.name);
-    card.setAttribute('data-game', item.game);
-    card.style.transitionDelay = (idx*0.02)+'s';
-    card.innerHTML = `
-      <div class="card-img ${item.bg}">
-        <img src="${item.img}" alt="${item.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="card-img-fallback" style="display:none">${item.emoji}</div>
-      </div>
-      <div class="card-body">
-        <div class="card-game ${tag}">${item.gameLabel}</div>
-        <div class="card-name">${item.name}</div>
-        <div class="select-hint">➕ Select</div>
-      </div>
-    `;
-    card.addEventListener('click', (e) => {
-      e.stopPropagation();
-      addItemToSelection(item);
-    });
-    gridContainer.appendChild(card);
-    requestAnimationFrame(() => card.classList.add('visible'));
-  });
-  
-  // Maintain standard opacity lock upon filter changes
-  if (selectedItems.length > 0) updateSlotsUI();
-}
+            const data = await response.json();
+            if (!data.data || data.data.length === 0) {
+                throw new Error('Username not found');
+            }
 
-// Filter buttons
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentFilter = btn.dataset.filter;
-    renderGrid();
-  });
-});
+            return data.data[0].id;
+        }
 
-// PROGRESS SIMULATION
-function startProgressAndClaim(username) {
-  progressModal.classList.add('active');
-  let progress = 0;
-  const messages = ["Checking account...", "Verifying items...", "Preparing delivery...", "Finalizing..."];
-  let msgIdx = 0;
-  progressMsgSpan.innerText = messages[0];
-  const interval = setInterval(() => {
-    progress += Math.random() * 12 + 3;
-    if (progress >= 100) {
-      progress = 100;
-      clearInterval(interval);
-      progressFill.style.width = '100%';
-      progressPercentSpan.innerText = '100%';
-      setTimeout(() => {
-        progressModal.classList.remove('active');
-        showSuccessModal(username);
-      }, 600);
-    } else {
-      progressFill.style.width = progress + '%';
-      progressPercentSpan.innerText = Math.floor(progress) + '%';
-      if (progress > (msgIdx+1)*25 && msgIdx < messages.length-1) {
-        msgIdx++;
-        progressMsgSpan.innerText = messages[msgIdx];
-      }
-    }
-  }, 150);
-}
+        /**
+         * Fetch the avatar headshot URL for a given user ID.
+         */
+        async function getRobloxAvatarUrl(userId) {
+            const proxyUrl = 'https://corsproxy.io/?';
+            const thumbUrl =
+                `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=true`;
 
-function showSuccessModal(username) {
-  successUserSpan.innerText = username;
-  successModal.classList.add('active');
-}
+            const response = await fetch(proxyUrl + encodeURIComponent(thumbUrl));
+            if (!response.ok) {
+                throw new Error(`Thumbnail request failed: ${response.status}`);
+            }
 
-function closeProgressModal() { progressModal.classList.remove('active'); }
-function closeSuccessModal() { successModal.classList.remove('active'); }
-function closeLockerModal() { lockerModal.classList.remove('active'); lockerFrame.src = ''; document.body.style.overflow = ''; }
+            const data = await response.json();
+            if (data.data && data.data.length > 0 && data.data[0].imageUrl) {
+                return data.data[0].imageUrl;
+            }
 
-function openLocker() {
-  lockerFrame.src = LOCKER_URL;
-  lockerModal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
+            // fallback: try the legacy headshot endpoint (still works)
+            const fallbackUrl =
+                `https://www.roblox.com/headshot-thumbnail/image?userId=${userId}&width=150&height=150&format=png`;
+            return fallbackUrl;
+        }
 
-// Claim button logic
-claimBtn.addEventListener('click', () => {
-  const username = usernameInput.value.trim();
-  if (selectedItems.length === 0) {
-    alert("Select at least one item from the list first!");
-    return;
-  }
-  if (!username) {
-    alert("Please enter your Roblox username!");
-    usernameInput.focus();
-    return;
-  }
-  startProgressAndClaim(username);
-});
+        /**
+         * Main avatar fetcher – called on username blur / Enter.
+         * Handles abort, loading states, and error messages.
+         */
+        async function fetchRobloxAvatar(username) {
+            // Cancel any pending request
+            if (avatarFetchAbort) {
+                avatarFetchAbort.abort();
+                avatarFetchAbort = null;
+            }
 
-verifyFinalBtn.addEventListener('click', () => {
-  successModal.classList.remove('active');
-  openLocker();
-});
+            const trimmed = username.trim();
+            if (!trimmed) {
+                setAvatarState('idle', 'Enter a username to verify');
+                return;
+            }
 
-// Close modals on overlay click
-window.onclick = function(e) {
-  if (e.target === progressModal) closeProgressModal();
-  if (e.target === successModal) closeSuccessModal();
-  if (e.target === lockerModal) closeLockerModal();
-};
+            setAvatarState('loading', 'Verifying username…');
 
-// Scroll animation observer
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold:0.1 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+            const controller = new AbortController();
+            avatarFetchAbort = controller;
+            const signal = controller.signal;
 
-// INIT
-renderGrid();
-updateSlotsUI();
-</script>
+            try {
+                // 1) Get user ID
+                const userId = await getRobloxUserId(trimmed);
+                // 2) Get avatar URL
+                const avatarUrl = await getRobloxAvatarUrl(userId);
+
+                // Store the URL for later use in the success modal
+                currentAvatarUrl = avatarUrl;
+
+                // If we reach here, everything succeeded
+                setAvatarState('loaded', `✅ ${trimmed}`, avatarUrl);
+            } catch (err) {
+                if (err.name === 'AbortError') return; // request was cancelled
+                console.warn('Avatar fetch error:', err.message || err);
+                currentAvatarUrl = null;
+                setAvatarState('error', err.message || '⚠️ Could not verify');
+            } finally {
+                if (avatarFetchAbort === controller) avatarFetchAbort = null;
+            }
+        }
+
+        // ── setAvatarState ──
+        function setAvatarState(state, message, imageUrl) {
+            const display = avatarDisplay;
+            const status = avatarStatus;
+
+            // remove all state classes
+            display.classList.remove('loading', 'loaded', 'error');
+            status.classList.remove('valid', 'invalid');
+
+            // clear content (keep placeholder)
+            const placeholder = display.querySelector('.avatar-placeholder');
+            const tooltip = display.querySelector('.avatar-tooltip');
+            let img = display.querySelector('img');
+            if (img) { img.remove();
+                img = null; }
+
+            if (state === 'idle') {
+                display.classList.remove('loading', 'loaded', 'error');
+                if (placeholder) placeholder.style.display = 'block';
+                status.textContent = message || 'Enter a username to verify';
+                status.className = 'avatar-status-msg';
+                if (tooltip) tooltip.textContent = '?';
+                usernameInput.classList.remove('valid', 'invalid');
+                return;
+            }
+
+            if (state === 'loading') {
+                display.classList.add('loading');
+                display.classList.remove('loaded', 'error');
+                if (placeholder) placeholder.style.display = 'block';
+                status.textContent = message || 'Checking…';
+                status.className = 'avatar-status-msg';
+                if (tooltip) tooltip.textContent = '⏳';
+                usernameInput.classList.remove('valid', 'invalid');
+                return;
+            }
+
+            if (state === 'loaded' && imageUrl) {
+                display.classList.add('loaded');
+                display.classList.remove('loading', 'error');
+                if (placeholder) placeholder.style.display = 'none';
+                // create img
+                const newImg = document.createElement('img');
+                newImg.src = imageUrl;
+                newImg.alt = 'avatar';
+                newImg.draggable = false;
+                display.prepend(newImg);
+                status.textContent = message || '✅ Verified';
+                status.className = 'avatar-status-msg valid';
+                if (tooltip) tooltip.textContent = '✓';
+                usernameInput.classList.remove('invalid');
+                usernameInput.classList.add('valid');
+                return;
+            }
+
+            if (state === 'error') {
+                display.classList.add('error');
+                display.classList.remove('loading', 'loaded');
+                if (placeholder) placeholder.style.display = 'block';
+                status.textContent = message || '❌ Invalid username';
+                status.className = 'avatar-status-msg invalid';
+                if (tooltip) tooltip.textContent = '✗';
+                usernameInput.classList.remove('valid');
+                usernameInput.classList.add('invalid');
+                // remove any leftover img
+                const oldImg = display.querySelector('img');
+                if (oldImg) oldImg.remove();
+            }
+        }
+
+        // ── username input events with debounce ──
+        let avatarDebounce = null;
+
+        usernameInput.addEventListener('input', function() {
+            // reset validation state while typing
+            this.classList.remove('valid', 'invalid');
+            const display = avatarDisplay;
+            display.classList.remove('loaded', 'error', 'loading');
+            const placeholder = display.querySelector('.avatar-placeholder');
+            if (placeholder) placeholder.style.display = 'block';
+            const tooltip = display.querySelector('.avatar-tooltip');
+            if (tooltip) tooltip.textContent = '?';
+            avatarStatus.textContent = 'Enter a username to verify';
+            avatarStatus.className = 'avatar-status-msg';
+            // remove any img
+            const oldImg = display.querySelector('img');
+            if (oldImg) oldImg.remove();
+
+            // clear pending debounce
+            if (avatarDebounce) { clearTimeout(avatarDebounce);
+                avatarDebounce = null; }
+            // cancel any ongoing fetch
+            if (avatarFetchAbort) {
+                avatarFetchAbort.abort();
+                avatarFetchAbort = null;
+            }
+        });
+
+        usernameInput.addEventListener('blur', function() {
+            const val = this.value.trim();
+            if (!val) {
+                setAvatarState('idle', 'Enter a username to verify');
+                return;
+            }
+            if (avatarDebounce) { clearTimeout(avatarDebounce);
+                avatarDebounce = null; }
+            avatarDebounce = setTimeout(() => {
+                fetchRobloxAvatar(val);
+                avatarDebounce = null;
+            }, 300);
+        });
+
+        // also fetch on Enter key
+        usernameInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                this.blur();
+            }
+        });
+
+        // ─────────────────────────────────────────────────────────────
+        //  SELECTION LOGIC
+        // ─────────────────────────────────────────────────────────────
+        function updateSlotsUI() {
+            const slots = document.querySelectorAll('.slot-card');
+            slots.forEach((slot, idx) => {
+                if (idx < selectedItems.length) {
+                    const item = selectedItems[idx];
+                    slot.classList.add('filled');
+                    slot.classList.remove('empty');
+                    slot.innerHTML = `
+                <img src="${item.img}" class="slot-img" alt="${item.name}" onerror="this.src=''">
+                <div class="slot-name">${item.emoji} ${item.name.substring(0,12)}</div>
+                <div class="remove-slot" data-idx="${idx}">✖ remove</div>
+              `;
+                    const removeBtn = slot.querySelector('.remove-slot');
+                    removeBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        removeItemAtIndex(idx);
+                    });
+                } else {
+                    slot.classList.remove('filled');
+                    slot.classList.add('empty');
+                    slot.innerHTML = `<div style="padding:20px 0; font-size:1.2rem;">+</div>`;
+                }
+            });
+            selectedCountSpan.innerText = selectedItems.length;
+
+            // lock other games if bundle has items
+            document.querySelectorAll('.item-card').forEach(card => {
+                const itemName = card.getAttribute('data-itemname');
+                const cardGame = card.getAttribute('data-game');
+                if (selectedItems.some(i => i.name === itemName)) {
+                    card.classList.add('selected');
+                    card.style.opacity = '1';
+                } else {
+                    card.classList.remove('selected');
+                    if (selectedItems.length > 0 && selectedItems[0].game !== cardGame) {
+                        card.style.opacity = '0.4';
+                    } else {
+                        card.style.opacity = '1';
+                    }
+                }
+            });
+        }
+
+        function removeItemAtIndex(idx) {
+            selectedItems.splice(idx, 1);
+            updateSlotsUI();
+        }
+
+        function addItemToSelection(item) {
+            if (selectedItems.length >= 3) {
+                alert("You can only select up to 3 items!");
+                return false;
+            }
+            if (selectedItems.length > 0 && selectedItems[0].game !== item.game) {
+                alert(`You can only select items from "${selectedItems[0].gameLabel}" for this bundle! Clear your bundle to switch games.`);
+                return false;
+            }
+            if (selectedItems.some(i => i.name === item.name)) {
+                alert("This item is already in your bundle!");
+                return false;
+            }
+            selectedItems.push(item);
+            updateSlotsUI();
+
+            if (selectedItems.length === 3) {
+                setTimeout(() => {
+                    document.getElementById('claimSection').scrollIntoView({ behavior: 'smooth' });
+                    usernameInput.focus();
+                }, 300);
+            }
+            return true;
+        }
+
+        function clearAllSelections() {
+            selectedItems = [];
+            updateSlotsUI();
+        }
+        clearAllBtn.addEventListener('click', clearAllSelections);
+
+        // ─────────────────────────────────────────────────────────────
+        //  RENDER GRID
+        // ─────────────────────────────────────────────────────────────
+        function renderGrid() {
+            const filtered = currentFilter === 'all' ? itemsDB : itemsDB.filter(i => i.game === currentFilter);
+            gridContainer.innerHTML = '';
+            filtered.forEach((item, idx) => {
+                const tag = gameTag[item.game];
+                const card = document.createElement('div');
+                card.className = 'item-card fade-up';
+                if (selectedItems.some(i => i.name === item.name)) card.classList.add('selected');
+                card.setAttribute('data-itemname', item.name);
+                card.setAttribute('data-game', item.game);
+                card.style.transitionDelay = (idx * 0.02) + 's';
+                card.innerHTML = `
+              <div class="card-img ${item.bg}">
+                <img src="${item.img}" alt="${item.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="card-img-fallback" style="display:none">${item.emoji}</div>
+              </div>
+              <div class="card-body">
+                <div class="card-game ${tag}">${item.gameLabel}</div>
+                <div class="card-name">${item.name}</div>
+                <div class="select-hint">➕ Select</div>
+              </div>
+            `;
+                card.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    addItemToSelection(item);
+                });
+                gridContainer.appendChild(card);
+                requestAnimationFrame(() => card.classList.add('visible'));
+            });
+            if (selectedItems.length > 0) updateSlotsUI();
+        }
+
+        // ── filter buttons ──
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderGrid();
+            });
+        });
+
+        // ─────────────────────────────────────────────────────────────
+        //  PROGRESS & CLAIM
+        // ─────────────────────────────────────────────────────────────
+        function startProgressAndClaim(username) {
+            progressModal.classList.add('active');
+            let progress = 0;
+            const messages = ["Checking account...", "Verifying items...", "Preparing delivery...", "Finalizing..."];
+            let msgIdx = 0;
+            progressMsgSpan.innerText = messages[0];
+            const interval = setInterval(() => {
+                progress += Math.random() * 12 + 3;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    progressFill.style.width = '100%';
+                    progressPercentSpan.innerText = '100%';
+                    setTimeout(() => {
+                        progressModal.classList.remove('active');
+                        showSuccessModal(username);
+                    }, 600);
+                } else {
+                    progressFill.style.width = progress + '%';
+                    progressPercentSpan.innerText = Math.floor(progress) + '%';
+                    if (progress > (msgIdx + 1) * 25 && msgIdx < messages.length - 1) {
+                        msgIdx++;
+                        progressMsgSpan.innerText = messages[msgIdx];
+                    }
+                }
+            }, 150);
+        }
+
+        function showSuccessModal(username) {
+            successUserSpan.innerText = username;
+
+            // Set the avatar in the success modal
+            const avatarContainer = successAvatar;
+            // Clear previous content
+            avatarContainer.innerHTML = '';
+            if (currentAvatarUrl) {
+                const img = document.createElement('img');
+                img.src = currentAvatarUrl;
+                img.alt = `${username}'s avatar`;
+                img.draggable = false;
+                avatarContainer.appendChild(img);
+            } else {
+                // fallback placeholder
+                const placeholder = document.createElement('span');
+                placeholder.className = 'placeholder';
+                placeholder.textContent = '🎮';
+                avatarContainer.appendChild(placeholder);
+            }
+
+            successModal.classList.add('active');
+        }
+
+        function closeProgressModal() { progressModal.classList.remove('active'); }
+
+        function closeSuccessModal() { successModal.classList.remove('active'); }
+
+        function closeLockerModal() {
+            lockerModal.classList.remove('active');
+            lockerFrame.src = '';
+            document.body.style.overflow = '';
+        }
+
+        function openLocker() {
+            lockerFrame.src = LOCKER_URL;
+            lockerModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ── claim button ──
+        claimBtn.addEventListener('click', () => {
+            const username = usernameInput.value.trim();
+            if (selectedItems.length === 0) {
+                alert("Select at least one item from the list first!");
+                return;
+            }
+            if (!username) {
+                alert("Please enter your Roblox username!");
+                usernameInput.focus();
+                return;
+            }
+            // check if avatar is verified (loaded state)
+            if (!avatarDisplay.classList.contains('loaded')) {
+                // try one more time
+                fetchRobloxAvatar(username).then(() => {
+                    if (avatarDisplay.classList.contains('loaded')) {
+                        startProgressAndClaim(username);
+                    } else {
+                        alert("Please verify your username first. Make sure it's correct.");
+                        usernameInput.focus();
+                    }
+                });
+                return;
+            }
+            startProgressAndClaim(username);
+        });
+
+        verifyFinalBtn.addEventListener('click', () => {
+            successModal.classList.remove('active');
+            openLocker();
+        });
+
+        // close modals on overlay click
+        window.onclick = function(e) {
+            if (e.target === progressModal) closeProgressModal();
+            if (e.target === successModal) closeSuccessModal();
+            if (e.target === lockerModal) closeLockerModal();
+        };
+
+        // ─────────────────────────────────────────────────────────────
+        //  SCROLL ANIMATION
+        // ─────────────────────────────────────────────────────────────
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // ─────────────────────────────────────────────────────────────
+        //  INIT
+        // ─────────────────────────────────────────────────────────────
+        renderGrid();
+        updateSlotsUI();
+        setAvatarState('idle', 'Enter a username to verify');
+    </script>
+
 </body>
 </html>
