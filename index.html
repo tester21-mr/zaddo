@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <title>RBX Drop — Select & Claim Free Roblox Items</title>
-    <meta name="description" content="Choose up to 3 free items from 99 Nights, Brookhaven, or Escape Tsunami. Enter username and verify to unlock." />
+    <meta name="description"
+        content="Choose up to 3 free items from 99 Nights, Brookhaven, or Escape Tsunami. Enter username and verify to unlock." />
     <meta name="theme-color" content="#080d1a" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
     <style>
         /* ── reset & base ── */
         * {
@@ -15,9 +19,11 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         html {
             scroll-behavior: smooth;
         }
+
         body {
             font-family: 'DM Sans', sans-serif;
             background: #080d1a;
@@ -25,6 +31,7 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
+
         body::before {
             content: '';
             position: fixed;
@@ -36,6 +43,7 @@
             pointer-events: none;
             z-index: 0;
         }
+
         :root {
             --bg: #080d1a;
             --bg2: #0f1628;
@@ -67,6 +75,7 @@
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
         }
+
         .nav-logo {
             display: flex;
             align-items: center;
@@ -76,6 +85,7 @@
             letter-spacing: 0.5px;
             color: var(--text);
         }
+
         .nav-logo-icon {
             width: 32px;
             height: 32px;
@@ -87,6 +97,7 @@
             font-size: 16px;
             box-shadow: 0 4px 12px rgba(255, 82, 82, 0.35);
         }
+
         .nav-badge {
             font-family: 'DM Sans', sans-serif;
             font-size: 0.65rem;
@@ -106,6 +117,7 @@
             text-align: center;
             padding: 40px 20px 30px;
         }
+
         .hero-eyebrow {
             display: inline-flex;
             align-items: center;
@@ -121,6 +133,7 @@
             border-radius: 20px;
             margin-bottom: 20px;
         }
+
         .hero h1 {
             font-family: 'Fredoka One', cursive;
             font-size: clamp(2rem, 7vw, 3rem);
@@ -131,6 +144,7 @@
             color: transparent;
             margin-bottom: 14px;
         }
+
         .hero p {
             font-size: 0.95rem;
             color: var(--muted);
@@ -138,12 +152,14 @@
             margin: 0 auto 20px;
             line-height: 1.5;
         }
+
         .hero-stats {
             display: flex;
             justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
         }
+
         .hero-stat {
             display: flex;
             align-items: center;
@@ -156,19 +172,23 @@
             padding: 7px 14px;
             border-radius: 20px;
         }
+
         .hero-stat-dot {
             width: 7px;
             height: 7px;
             border-radius: 50%;
             flex-shrink: 0;
         }
+
         .hero-stat-dot.green {
             background: var(--green);
             box-shadow: 0 0 6px var(--green);
         }
+
         .hero-stat-dot.blue {
             background: var(--tsunami);
         }
+
         .hero-stat-dot.purple {
             background: var(--nights);
         }
@@ -184,6 +204,7 @@
             padding: 18px 16px;
             border: 1px solid var(--border);
         }
+
         .selection-title {
             font-weight: 700;
             margin-bottom: 12px;
@@ -192,12 +213,14 @@
             align-items: baseline;
             font-size: 0.9rem;
         }
+
         .selection-slots {
             display: flex;
             gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
         }
+
         .slot-card {
             width: 100px;
             background: var(--bg2);
@@ -207,10 +230,12 @@
             text-align: center;
             transition: all 0.2s;
         }
+
         .slot-card.filled {
             border: 2px solid var(--green);
             background: rgba(0, 230, 118, 0.08);
         }
+
         .slot-img {
             width: 70px;
             height: 70px;
@@ -219,6 +244,7 @@
             margin-bottom: 6px;
             background: var(--bg3);
         }
+
         .slot-name {
             font-size: 0.7rem;
             font-weight: 600;
@@ -226,6 +252,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
         .remove-slot {
             font-size: 0.7rem;
             color: var(--accent);
@@ -236,6 +263,7 @@
             padding: 2px 8px;
             border-radius: 20px;
         }
+
         .clear-btn {
             background: transparent;
             border: 1px solid var(--border);
@@ -246,6 +274,7 @@
             cursor: pointer;
             transition: 0.2s;
         }
+
         .clear-btn:hover {
             background: var(--accent);
             color: #fff;
@@ -262,9 +291,11 @@
             overflow-x: auto;
             scrollbar-width: none;
         }
+
         .filters::-webkit-scrollbar {
             display: none;
         }
+
         .filter-btn {
             flex-shrink: 0;
             display: flex;
@@ -280,25 +311,30 @@
             color: var(--muted);
             transition: all 0.2s;
         }
+
         .filter-btn:hover {
             color: var(--text);
             border-color: rgba(255, 255, 255, 0.15);
         }
+
         .filter-btn.active {
             background: var(--accent);
             color: #fff;
             border-color: var(--accent);
             box-shadow: 0 4px 14px rgba(255, 82, 82, 0.3);
         }
+
         .filter-btn[data-filter="nights"].active {
             background: var(--nights);
             border-color: var(--nights);
         }
+
         .filter-btn[data-filter="brookhaven"].active {
             background: var(--brook);
             border-color: var(--brook);
             color: #000;
         }
+
         .filter-btn[data-filter="tsunami"].active {
             background: var(--tsunami);
             border-color: var(--tsunami);
@@ -314,6 +350,7 @@
             gap: 14px;
             padding: 0 20px 30px;
         }
+
         @media (max-width: 400px) {
             .grid-wrap {
                 grid-template-columns: repeat(2, 1fr);
@@ -330,15 +367,18 @@
             transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
             position: relative;
         }
+
         .item-card.selected {
             border: 2px solid var(--green);
             box-shadow: 0 0 0 1px var(--green);
         }
+
         .item-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
             border-color: rgba(255, 255, 255, 0.15);
         }
+
         .card-img {
             width: 100%;
             aspect-ratio: 1/1;
@@ -349,6 +389,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .card-img img {
             width: 100%;
             height: 100%;
@@ -356,6 +397,7 @@
             position: absolute;
             inset: 0;
         }
+
         .card-img-fallback {
             width: 100%;
             height: 100%;
@@ -364,9 +406,11 @@
             justify-content: center;
             font-size: 3.2rem;
         }
+
         .card-body {
             padding: 10px 12px 12px;
         }
+
         .card-game {
             font-size: 0.65rem;
             font-weight: 700;
@@ -374,6 +418,7 @@
             text-transform: uppercase;
             margin-bottom: 4px;
         }
+
         .card-name {
             font-size: 0.88rem;
             font-weight: 700;
@@ -381,6 +426,7 @@
             line-height: 1.2;
             margin-bottom: 8px;
         }
+
         .select-hint {
             display: flex;
             align-items: center;
@@ -394,6 +440,7 @@
             background: rgba(0, 230, 118, 0.1);
             color: var(--green);
         }
+
         .item-card.selected .select-hint {
             background: var(--green);
             color: #000;
@@ -402,18 +449,23 @@
         .nights-tag {
             color: var(--nights);
         }
+
         .brook-tag {
             color: var(--brook);
         }
+
         .tsunami-tag {
             color: var(--tsunami);
         }
+
         .nights-bg {
             background: linear-gradient(135deg, #1a0f2e, #0f1628);
         }
+
         .brook-bg {
             background: linear-gradient(135deg, #1f1400, #0f1628);
         }
+
         .tsunami-bg {
             background: linear-gradient(135deg, #001f2e, #0f1628);
         }
@@ -430,6 +482,7 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
+
         .username-container {
             max-width: 480px;
             margin: 0 auto 15px;
@@ -437,16 +490,19 @@
             flex-direction: column;
             gap: 12px;
         }
+
         .input-avatar-row {
             display: flex;
             align-items: center;
             gap: 14px;
             width: 100%;
         }
+
         .input-wrapper {
             position: relative;
             flex: 1;
         }
+
         .input-wrapper::before {
             content: '👤';
             position: absolute;
@@ -456,6 +512,7 @@
             font-size: 1.1rem;
             opacity: 0.7;
         }
+
         .username-input {
             background: rgba(8, 13, 26, 0.6);
             border: 2px solid rgba(255, 255, 255, 0.1);
@@ -469,14 +526,17 @@
             transition: all 0.3s ease;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
+
         .username-input:focus {
             border-color: var(--green);
             background: var(--bg);
             box-shadow: 0 0 10px rgba(0, 230, 118, 0.2);
         }
+
         .username-input.valid {
             border-color: var(--green);
         }
+
         .username-input.invalid {
             border-color: var(--accent);
         }
@@ -497,26 +557,32 @@
             transition: all 0.3s ease;
             position: relative;
         }
+
         .avatar-display img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
         .avatar-display .avatar-placeholder {
             color: var(--muted);
             font-size: 1.4rem;
             opacity: 0.5;
         }
+
         .avatar-display.loading {
             border-color: var(--tsunami);
             animation: avatarPulse 0.9s ease-in-out infinite;
         }
+
         .avatar-display.loaded {
             border-color: var(--green);
         }
+
         .avatar-display.error {
             border-color: var(--accent);
         }
+
         .avatar-display .avatar-tooltip {
             position: absolute;
             bottom: -6px;
@@ -531,20 +597,24 @@
             font-weight: 600;
             pointer-events: none;
         }
+
         .avatar-display.loaded .avatar-tooltip {
             color: var(--green);
             border-color: var(--green);
         }
+
         .avatar-display.error .avatar-tooltip {
             color: var(--accent);
             border-color: var(--accent);
         }
 
         @keyframes avatarPulse {
+
             0%,
             100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(0.94);
             }
@@ -558,9 +628,11 @@
             transition: color 0.2s;
             margin-top: 2px;
         }
+
         .avatar-status-msg.valid {
             color: var(--green);
         }
+
         .avatar-status-msg.invalid {
             color: var(--accent);
         }
@@ -580,13 +652,16 @@
             box-shadow: 0 6px 20px rgba(255, 82, 82, 0.4);
             width: 100%;
         }
+
         .claim-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(255, 82, 82, 0.5);
         }
+
         .claim-submit:active {
             transform: translateY(1px);
         }
+
         .claim-submit:disabled {
             opacity: 0.5;
             cursor: not-allowed;
@@ -599,22 +674,26 @@
             z-index: 1;
             padding: 0 20px 40px;
         }
+
         .section-title {
             font-family: 'Fredoka One', cursive;
             font-size: 1.4rem;
             margin-bottom: 16px;
         }
+
         .steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 12px;
         }
+
         .step {
             background: var(--bg2);
             border: 1px solid var(--border);
             border-radius: var(--r);
             padding: 18px;
         }
+
         .step-num {
             width: 36px;
             height: 36px;
@@ -626,23 +705,28 @@
             font-size: 1.1rem;
             margin-bottom: 12px;
         }
+
         .step-num.s1 {
             background: rgba(255, 82, 82, 0.15);
             color: var(--accent);
         }
+
         .step-num.s2 {
             background: rgba(0, 230, 118, 0.12);
             color: var(--green);
         }
+
         .step-num.s3 {
             background: rgba(41, 182, 246, 0.12);
             color: var(--tsunami);
         }
+
         .step h3 {
             font-size: 0.9rem;
             font-weight: 700;
             margin-bottom: 5px;
         }
+
         .step p {
             font-size: 0.8rem;
             color: var(--muted);
@@ -660,6 +744,7 @@
             color: var(--muted);
             line-height: 1.8;
         }
+
         footer a {
             color: var(--muted);
             text-decoration: none;
@@ -682,10 +767,12 @@
             opacity: 0;
             transition: 0.2s;
         }
+
         .modal.active {
             visibility: visible;
             opacity: 1;
         }
+
         .modal-content {
             background: var(--bg2);
             border-radius: 28px;
@@ -696,6 +783,7 @@
             border: 1px solid var(--green);
             position: relative;
         }
+
         .progress-bar {
             background: #2a2a3a;
             height: 10px;
@@ -703,16 +791,19 @@
             margin: 20px 0;
             overflow: hidden;
         }
+
         .progress-fill {
             width: 0%;
             height: 100%;
             background: var(--green);
             transition: width 0.1s linear;
         }
+
         .success-icon {
             font-size: 3rem;
             margin-bottom: 15px;
         }
+
         .success-avatar {
             width: 80px;
             height: 80px;
@@ -726,11 +817,13 @@
             background: var(--bg3);
             box-shadow: 0 0 20px rgba(0, 230, 118, 0.25);
         }
+
         .success-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
         .success-avatar .placeholder {
             font-size: 2.4rem;
             opacity: 0.4;
@@ -748,9 +841,11 @@
             transition: 0.2s;
             font-size: 1rem;
         }
+
         .verify-btn:hover {
             transform: scale(1.02);
         }
+
         .close-modal {
             position: absolute;
             top: 12px;
@@ -759,6 +854,7 @@
             cursor: pointer;
             color: var(--muted);
         }
+
         .locker-modal .modal-content {
             max-width: 500px;
             height: 80vh;
@@ -766,11 +862,13 @@
             overflow: hidden;
             border-color: var(--border);
         }
+
         .locker-modal iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
+
         .locker-close {
             position: absolute;
             top: 10px;
@@ -789,11 +887,13 @@
             border: none;
             font-size: 16px;
         }
+
         .fade-up {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.5s, transform 0.5s;
         }
+
         .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
@@ -806,11 +906,13 @@
             font-weight: 500;
             margin-top: 4px;
         }
+
         .claim-panel .claim-note strong {
             color: var(--green);
         }
     </style>
 </head>
+
 <body>
 
     <!-- ===== NAV ===== -->
@@ -828,9 +930,15 @@
         <h1>Select Your Free<br />Roblox Items</h1>
         <p>Pick any items from 99 Nights, Brookhaven or Escape Tsunami. Max 3 per user.</p>
         <div class="hero-stats">
-            <div class="hero-stat"><div class="hero-stat-dot green"></div>27+ items</div>
-            <div class="hero-stat"><div class="hero-stat-dot blue"></div>3 games</div>
-            <div class="hero-stat"><div class="hero-stat-dot purple"></div>2026 verified</div>
+            <div class="hero-stat">
+                <div class="hero-stat-dot green"></div>27+ items
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-dot blue"></div>3 games
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-dot purple"></div>2026 verified
+            </div>
         </div>
     </section>
 
@@ -841,9 +949,15 @@
             <button class="clear-btn" id="clearAllBtn">Clear all</button>
         </div>
         <div class="selection-slots" id="slotsContainer">
-            <div class="slot-card empty" data-index="0"><div style="padding:20px 0;">+</div></div>
-            <div class="slot-card empty" data-index="1"><div style="padding:20px 0;">+</div></div>
-            <div class="slot-card empty" data-index="2"><div style="padding:20px 0;">+</div></div>
+            <div class="slot-card empty" data-index="0">
+                <div style="padding:20px 0;">+</div>
+            </div>
+            <div class="slot-card empty" data-index="1">
+                <div style="padding:20px 0;">+</div>
+            </div>
+            <div class="slot-card empty" data-index="2">
+                <div style="padding:20px 0;">+</div>
+            </div>
         </div>
     </div>
 
@@ -864,14 +978,8 @@
             <!-- row: input + avatar -->
             <div class="input-avatar-row">
                 <div class="input-wrapper">
-                    <input
-                    type="text"
-                    id="robloxUsername"
-                    class="username-input"
-                    placeholder="Enter Roblox Username..."
-                    autocomplete="off"
-                    spellcheck="false"
-                    />
+                    <input type="text" id="robloxUsername" class="username-input" placeholder="Enter Roblox Username..."
+                        autocomplete="off" spellcheck="false" />
                 </div>
                 <div class="avatar-display" id="avatarDisplay">
                     <span class="avatar-placeholder">🎮</span>
@@ -890,9 +998,21 @@
     <section class="how fade-up">
         <div class="section-title">How It Works</div>
         <div class="steps">
-            <div class="step"><div class="step-num s1">1</div><h3>Pick up to 3 items</h3><p>Click on any item to add it to your bundle.</p></div>
-            <div class="step"><div class="step-num s2">2</div><h3>Enter username</h3><p>Your Roblox username for delivery.</p></div>
-            <div class="step"><div class="step-num s3">3</div><h3>Verify &amp; unlock</h3><p>Complete a quick human verification to receive items.</p></div>
+            <div class="step">
+                <div class="step-num s1">1</div>
+                <h3>Pick up to 3 items</h3>
+                <p>Click on any item to add it to your bundle.</p>
+            </div>
+            <div class="step">
+                <div class="step-num s2">2</div>
+                <h3>Enter username</h3>
+                <p>Your Roblox username for delivery.</p>
+            </div>
+            <div class="step">
+                <div class="step-num s3">3</div>
+                <h3>Verify &amp; unlock</h3>
+                <p>Complete a quick human verification to receive items.</p>
+            </div>
         </div>
     </section>
 
@@ -908,7 +1028,9 @@
         <div class="modal-content">
             <div class="close-modal" onclick="closeProgressModal()">✕</div>
             <h3 id="progressMsg">Processing request...</h3>
-            <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
             <div id="progressPercent">0%</div>
         </div>
     </div>
@@ -941,56 +1063,104 @@
         // ─────────────────────────────────────────────────────────────
         const itemsDB = [
             // 99 NIGHTS
-            { id: 'alien', game: 'nights', gameLabel: '99 Nights', name: 'Alien Skin', emoji: '👽',
-                img: 'https://i.ibb.co/tTNq4hYL/image.png', bg: 'nights-bg' },
-            { id: 'vampire', game: 'nights', gameLabel: '99 Nights', name: 'Vampire Skin', emoji: '🧛',
-                img: 'https://i.ibb.co/yc6k20Zt/image.png', bg: 'nights-bg' },
-            { id: 'necro', game: 'nights', gameLabel: '99 Nights', name: 'Necromancer', emoji: '💀',
-                img: 'https://i.ibb.co/7NLk47rF/image.png', bg: 'nights-bg' },
-            { id: 'engineer', game: 'nights', gameLabel: '99 Nights', name: 'Engineer', emoji: '🔧',
-                img: 'https://i.ibb.co/VWhhfFQ4/image.png', bg: 'nights-bg' },
-            { id: 'assassin', game: 'nights', gameLabel: '99 Nights', name: 'Assassin', emoji: '🗡️',
-                img: 'https://www2.0zz0.com/2025/09/02/14/725716968.png', bg: 'nights-bg' },
-            { id: 'gunman', game: 'nights', gameLabel: '99 Nights', name: 'Gunman', emoji: '🔫',
-                img: 'https://i.ibb.co/N2Fr3sf9/image.png', bg: 'nights-bg' },
-            { id: 'pyro', game: 'nights', gameLabel: '99 Nights', name: 'Pyromaniac', emoji: '🔥',
-                img: 'https://www2.0zz0.com/2025/09/02/14/137000653.png', bg: 'nights-bg' },
-            { id: 'diam100', game: 'nights', gameLabel: '99 Nights', name: '100 Diamonds', emoji: '💎',
-                img: 'https://www2.0zz0.com/2025/09/02/14/226861950.png', bg: 'nights-bg' },
-            { id: 'diam250', game: 'nights', gameLabel: '99 Nights', name: '250 Diamonds', emoji: '💎',
-                img: 'https://www2.0zz0.com/2025/09/02/14/299471783.png', bg: 'nights-bg' },
-            { id: 'diam700', game: 'nights', gameLabel: '99 Nights', name: '700 Diamonds', emoji: '💎',
-                img: 'https://www2.0zz0.com/2025/09/02/14/897708704.png', bg: 'nights-bg' },
+            {
+                id: 'alien', game: 'nights', gameLabel: '99 Nights', name: 'Alien Skin', emoji: '👽',
+                img: 'https://i.ibb.co/tTNq4hYL/image.png', bg: 'nights-bg'
+            },
+            {
+                id: 'vampire', game: 'nights', gameLabel: '99 Nights', name: 'Vampire Skin', emoji: '🧛',
+                img: 'https://i.ibb.co/yc6k20Zt/image.png', bg: 'nights-bg'
+            },
+            {
+                id: 'necro', game: 'nights', gameLabel: '99 Nights', name: 'Necromancer', emoji: '💀',
+                img: 'https://i.ibb.co/7NLk47rF/image.png', bg: 'nights-bg'
+            },
+            {
+                id: 'engineer', game: 'nights', gameLabel: '99 Nights', name: 'Engineer', emoji: '🔧',
+                img: 'https://i.ibb.co/VWhhfFQ4/image.png', bg: 'nights-bg'
+            },
+            {
+                id: 'assassin', game: 'nights', gameLabel: '99 Nights', name: 'Assassin', emoji: '🗡️',
+                img: 'https://www2.0zz0.com/2025/09/02/14/725716968.png', bg: 'nights-bg'
+            },
+            {
+                id: 'gunman', game: 'nights', gameLabel: '99 Nights', name: 'Gunman', emoji: '🔫',
+                img: 'https://i.ibb.co/N2Fr3sf9/image.png', bg: 'nights-bg'
+            },
+            {
+                id: 'pyro', game: 'nights', gameLabel: '99 Nights', name: 'Pyromaniac', emoji: '🔥',
+                img: 'https://www2.0zz0.com/2025/09/02/14/137000653.png', bg: 'nights-bg'
+            },
+            {
+                id: 'diam100', game: 'nights', gameLabel: '99 Nights', name: '100 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/226861950.png', bg: 'nights-bg'
+            },
+            {
+                id: 'diam250', game: 'nights', gameLabel: '99 Nights', name: '250 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/299471783.png', bg: 'nights-bg'
+            },
+            {
+                id: 'diam700', game: 'nights', gameLabel: '99 Nights', name: '700 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/897708704.png', bg: 'nights-bg'
+            },
             // BROOKHAVEN
-            { id: 'rob500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '500 Robux', emoji: '💰',
-                img: 'https://i.ibb.co/Ps32nJ9R/image.png', bg: 'brook-bg' },
-            { id: 'rob2500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '2,500 Robux', emoji: '💰',
-                img: 'https://i.ibb.co/8nXzkf6w/image.png', bg: 'brook-bg' },
-            { id: 'rob3500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '3,500 Robux', emoji: '💰',
-                img: 'https://i.ibb.co/7dgk2CVq/image.png', bg: 'brook-bg' },
-            { id: 'vip', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'VIP Pass', emoji: '⭐',
-                img: 'https://i.ibb.co/fdYf2t03/image.png', bg: 'brook-bg' },
-            { id: 'mansion', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'Luxury Mansion', emoji: '🏠',
-                img: 'https://i.ibb.co/nM2pjShc/image.png', bg: 'brook-bg' },
+            {
+                id: 'rob500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '500 Robux', emoji: '💰',
+                img: 'https://i.ibb.co/Ps32nJ9R/image.png', bg: 'brook-bg'
+            },
+            {
+                id: 'rob2500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '2,500 Robux', emoji: '💰',
+                img: 'https://i.ibb.co/8nXzkf6w/image.png', bg: 'brook-bg'
+            },
+            {
+                id: 'rob3500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '3,500 Robux', emoji: '💰',
+                img: 'https://i.ibb.co/7dgk2CVq/image.png', bg: 'brook-bg'
+            },
+            {
+                id: 'vip', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'VIP Pass', emoji: '⭐',
+                img: 'https://i.ibb.co/fdYf2t03/image.png', bg: 'brook-bg'
+            },
+            {
+                id: 'mansion', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'Luxury Mansion', emoji: '🏠',
+                img: 'https://i.ibb.co/nM2pjShc/image.png', bg: 'brook-bg'
+            },
             // TSUNAMI
-            { id: 'tsu100', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '100 Diamonds', emoji: '💎',
-                img: 'https://www2.0zz0.com/2025/09/02/14/226861950.png', bg: 'tsunami-bg' },
-            { id: 'tsu250', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '250 Diamonds', emoji: '💎',
-                img: 'https://www2.0zz0.com/2025/09/02/14/299471783.png', bg: 'tsunami-bg' },
-            { id: 'tsu700', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '700 Diamonds', emoji: '💎',
-                img: 'https://www2.0zz0.com/2025/09/02/14/897708704.png', bg: 'tsunami-bg' },
-            { id: 'admin', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Infinity Admin', emoji: '🛡️',
-                img: 'https://www2.0zz0.com/2025/09/02/14/593900961.png', bg: 'tsunami-bg' },
-            { id: 'adminx3', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Infinity Admin x3', emoji: '🛡️',
-                img: 'https://www2.0zz0.com/2025/09/02/14/137000653.png', bg: 'tsunami-bg' },
-            { id: 'bisonte', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Bisonte Gupitire', emoji: '🐃',
-                img: 'https://i.ibb.co/1fmw8HTJ/image.png', bg: 'tsunami-bg' },
-            { id: 'alessio', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Alessio', emoji: '🧔',
-                img: 'https://i.ibb.co/SgG8G7m/image.png', bg: 'tsunami-bg' },
-            { id: 'esok', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Esok Sekolah Mansion', emoji: '🏠',
-                img: 'https://i.ibb.co/mrrW94HX/image.png', bg: 'tsunami-bg' },
-            { id: 'block', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Block (Free)', emoji: '🟨',
-                img: 'https://i.ibb.co/HLgSVhtZ/image.png', bg: 'tsunami-bg' }
+            {
+                id: 'tsu100', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '100 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/226861950.png', bg: 'tsunami-bg'
+            },
+            {
+                id: 'tsu250', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '250 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/299471783.png', bg: 'tsunami-bg'
+            },
+            {
+                id: 'tsu700', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '700 Diamonds', emoji: '💎',
+                img: 'https://www2.0zz0.com/2025/09/02/14/897708704.png', bg: 'tsunami-bg'
+            },
+            {
+                id: 'admin', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Infinity Admin', emoji: '🛡️',
+                img: 'https://www2.0zz0.com/2025/09/02/14/593900961.png', bg: 'tsunami-bg'
+            },
+            {
+                id: 'adminx3', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Infinity Admin x3', emoji: '🛡️',
+                img: 'https://www2.0zz0.com/2025/09/02/14/137000653.png', bg: 'tsunami-bg'
+            },
+            {
+                id: 'bisonte', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Bisonte Gupitire', emoji: '🐃',
+                img: 'https://i.ibb.co/1fmw8HTJ/image.png', bg: 'tsunami-bg'
+            },
+            {
+                id: 'alessio', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Alessio', emoji: '🧔',
+                img: 'https://i.ibb.co/SgG8G7m/image.png', bg: 'tsunami-bg'
+            },
+            {
+                id: 'esok', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Esok Sekolah Mansion', emoji: '🏠',
+                img: 'https://i.ibb.co/mrrW94HX/image.png', bg: 'tsunami-bg'
+            },
+            {
+                id: 'block', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Block (Free)', emoji: '🟨',
+                img: 'https://i.ibb.co/HLgSVhtZ/image.png', bg: 'tsunami-bg'
+            }
         ];
 
         const gameTag = { nights: 'nights-tag', brookhaven: 'brook-tag', tsunami: 'tsunami-tag' };
@@ -1034,7 +1204,7 @@
          * Returns the user ID or throws an error.
          */
         async function getRobloxUserId(username) {
-            const proxyUrl = 'https://corsproxy.io/?';
+            const proxyUrl = 'https://royal-sound-221b.lmbawkhalid.workers.dev/?url=';
             const apiUrl = 'https://users.roblox.com/v1/usernames/users';
             const payload = { usernames: [username] };
 
@@ -1139,8 +1309,10 @@
             const placeholder = display.querySelector('.avatar-placeholder');
             const tooltip = display.querySelector('.avatar-tooltip');
             let img = display.querySelector('img');
-            if (img) { img.remove();
-                img = null; }
+            if (img) {
+                img.remove();
+                img = null;
+            }
 
             if (state === 'idle') {
                 display.classList.remove('loading', 'loaded', 'error');
@@ -1199,7 +1371,7 @@
         // ── username input events with debounce ──
         let avatarDebounce = null;
 
-        usernameInput.addEventListener('input', function() {
+        usernameInput.addEventListener('input', function () {
             // reset validation state while typing
             this.classList.remove('valid', 'invalid');
             const display = avatarDisplay;
@@ -1215,8 +1387,10 @@
             if (oldImg) oldImg.remove();
 
             // clear pending debounce
-            if (avatarDebounce) { clearTimeout(avatarDebounce);
-                avatarDebounce = null; }
+            if (avatarDebounce) {
+                clearTimeout(avatarDebounce);
+                avatarDebounce = null;
+            }
             // cancel any ongoing fetch
             if (avatarFetchAbort) {
                 avatarFetchAbort.abort();
@@ -1224,14 +1398,16 @@
             }
         });
 
-        usernameInput.addEventListener('blur', function() {
+        usernameInput.addEventListener('blur', function () {
             const val = this.value.trim();
             if (!val) {
                 setAvatarState('idle', 'Enter a username to verify');
                 return;
             }
-            if (avatarDebounce) { clearTimeout(avatarDebounce);
-                avatarDebounce = null; }
+            if (avatarDebounce) {
+                clearTimeout(avatarDebounce);
+                avatarDebounce = null;
+            }
             avatarDebounce = setTimeout(() => {
                 fetchRobloxAvatar(val);
                 avatarDebounce = null;
@@ -1239,7 +1415,7 @@
         });
 
         // also fetch on Enter key
-        usernameInput.addEventListener('keydown', function(e) {
+        usernameInput.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
                 this.blur();
@@ -1258,7 +1434,7 @@
                     slot.classList.remove('empty');
                     slot.innerHTML = `
                 <img src="${item.img}" class="slot-img" alt="${item.name}" onerror="this.src=''">
-                <div class="slot-name">${item.emoji} ${item.name.substring(0,12)}</div>
+                <div class="slot-name">${item.emoji} ${item.name.substring(0, 12)}</div>
                 <div class="remove-slot" data-idx="${idx}">✖ remove</div>
               `;
                     const removeBtn = slot.querySelector('.remove-slot');
@@ -1478,7 +1654,7 @@
         });
 
         // close modals on overlay click
-        window.onclick = function(e) {
+        window.onclick = function (e) {
             if (e.target === progressModal) closeProgressModal();
             if (e.target === successModal) closeSuccessModal();
             if (e.target === lockerModal) closeLockerModal();
@@ -1501,4 +1677,5 @@
     </script>
 
 </body>
+
 </html>
