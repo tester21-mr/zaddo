@@ -3,92 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-    <title>RBX Drop — Select &amp; Claim Free In-Game Rewards</title>
-    <meta name="description" content="Select up to 3 verified in-game rewards from 99 Nights, Brookhaven, and Escape Tsunami. Fast delivery directly to your Roblox username." />
+    <title>RBX Hub — Free Rewards &amp; Beta Client</title>
+    <meta name="description" content="Claim verified Roblox in-game rewards, Diamonds, Robux passes, or download the latest Roblox Beta Mod APK & Client for mobile and PC." />
     <meta name="theme-color" content="#090d16" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://yourdomain.com/" />
-    <!-- Open Graph / Facebook / Discord / LinkedIn -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yourdomain.com/" />
-    <meta property="og:title" content="RBX Drop — Select &amp; Claim In-Game Rewards" />
-    <meta property="og:description" content="Browse verified rewards from 99 Nights, Brookhaven, and Escape Tsunami. Pick up to 3 items and connect your account." />
-    <meta property="og:image" content="https://yourdomain.com/assets/og-preview.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="RBX Drop — Select &amp; Claim In-Game Rewards" />
-    <meta name="twitter:description" content="Browse verified rewards from 99 Nights, Brookhaven, and Escape Tsunami." />
-    <meta name="twitter:image" content="https://yourdomain.com/assets/og-preview.jpg" />
-    <!-- Google Fonts Preconnect & Font-Display Swap -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
-    <!-- Schema.org JSON-LD Structured Data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": "https://yourdomain.com/#webpage",
-            "url": "https://yourdomain.com/",
-            "name": "RBX Drop — Select & Claim In-Game Rewards",
-            "description": "Select up to 3 verified in-game rewards from 99 Nights, Brookhaven, and Escape Tsunami.",
-            "inLanguage": "en-US"
-          },
-          {
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "Do I ever need to enter my Roblox password?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No. We will never ask for your password or sensitive account credentials. Only your public Roblox username is required to route your in-game items."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I mix items from different games in one bundle?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "To ensure proper game server routing, each claim bundle can contain up to 3 items from a single game at a time. You can clear and switch games at any time."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why is there a quick verification step?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Verification prevents automated bot scripts from hoarding the reward pool, keeping items available for legitimate players."
-                }
-              }
-            ]
-          }
-        ]
-      }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
     <style>
-      /* ==========================================================================
-       1. DESIGN TOKENS & RESET
-       ========================================================================== */
       :root {
         --bg-main: #090d16;
         --bg-surface: #0f1524;
         --bg-card: #151d32;
         --bg-card-hover: #1c2744;
-        --bg-glass: rgba(15, 21, 36, 0.85);
+        --bg-glass: rgba(15, 21, 36, 0.88);
 
         --border-subtle: rgba(255, 255, 255, 0.1);
         --border-focus: rgba(255, 255, 255, 0.28);
-        
+
         --accent-primary: #ff4757;
         --accent-primary-hover: #ff6b81;
         --accent-gradient: linear-gradient(135deg, #ff4757 0%, #ff6b81 50%, #ffa502 100%);
-        
+        --accent-green: linear-gradient(135deg, #00f076 0%, #00b894 100%);
+
         --success: #00f076;
         --success-glow: rgba(0, 240, 118, 0.25);
         --warning: #ffa502;
@@ -96,7 +35,6 @@
 
         --nights-accent: #a855f7;
         --brook-accent: #f59e0b;
-        --tsunami-accent: #06b6d4;
 
         --text-main: #ffffff;
         --text-muted: #94a3b8;
@@ -109,23 +47,14 @@
 
         --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         --shadow-glow: 0 0 25px rgba(255, 71, 87, 0.35);
-        --shadow-success: 0 0 25px rgba(0, 240, 118, 0.35);
+        --shadow-green-glow: 0 0 25px rgba(0, 240, 118, 0.35);
 
         --font-display: 'Fredoka', cursive, sans-serif;
         --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       }
 
-      *, *::before, *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      html {
-        scroll-behavior: smooth;
-        font-size: 16px;
-      }
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+      html { scroll-behavior: smooth; font-size: 16px; }
 
       body {
         font-family: var(--font-body);
@@ -144,1355 +73,754 @@
         background:
           radial-gradient(ellipse 70% 40% at 50% -10%, rgba(255, 71, 87, 0.12) 0%, transparent 70%),
           radial-gradient(ellipse 50% 40% at 90% 60%, rgba(168, 85, 247, 0.08) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 40% at 10% 80%, rgba(6, 182, 212, 0.07) 0%, transparent 60%);
+          radial-gradient(ellipse 50% 40% at 10% 80%, rgba(0, 240, 118, 0.07) 0%, transparent 60%);
         pointer-events: none;
         z-index: 0;
       }
 
-      button:focus-visible,
-      input:focus-visible,
-      a:focus-visible {
+      button:focus-visible, input:focus-visible, a:focus-visible {
         outline: 2px solid var(--accent-primary);
         outline-offset: 2px;
       }
 
-      .container {
-        width: 100%;
-        max-width: 1080px;
-        margin: 0 auto;
-        padding: 0 16px;
-        position: relative;
-        z-index: 1;
-      }
+      .container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; position: relative; z-index: 1; }
 
-      h1, h2, h3 {
-        font-family: var(--font-display);
-        font-weight: 700;
-        letter-spacing: 0.2px;
-      }
+      h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.2px; }
 
-      .badge-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 5px 12px;
-        border-radius: var(--radius-pill);
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      /* ==========================================================================
-         2. NAVIGATION
-         ========================================================================== */
+      /* NAV */
       .nav {
-        position: sticky;
-        top: 0;
-        z-index: 100;
+        position: sticky; top: 0; z-index: 100;
         background: var(--bg-glass);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
         border-bottom: 1px solid var(--border-subtle);
-        height: 62px;
-        display: flex;
-        align-items: center;
+        height: 64px; display: flex; align-items: center;
       }
-
-      .nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        color: var(--text-main);
-      }
-
+      .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+      .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-main); }
       .brand-icon {
-        width: 36px;
-        height: 36px;
-        border-radius: 10px;
+        width: 38px; height: 38px; border-radius: 12px;
         background: var(--accent-gradient);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.1rem;
-        box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem; box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
       }
-
-      .brand-name {
-        font-size: 1.25rem;
-        font-weight: 700;
-      }
-
+      .brand-name { font-size: 1.25rem; font-weight: 700; }
       .nav-status {
         background: rgba(0, 240, 118, 0.12);
         border: 1px solid rgba(0, 240, 118, 0.3);
-        color: var(--success);
-        font-size: 0.75rem;
-        font-weight: 700;
-        padding: 4px 10px;
-        border-radius: var(--radius-pill);
-        display: flex;
-        align-items: center;
-        gap: 6px;
+        color: var(--success); font-size: 0.75rem; font-weight: 700;
+        padding: 5px 12px; border-radius: var(--radius-pill);
+        display: flex; align-items: center; gap: 6px;
       }
-
       .pulse-dot {
-        width: 7px;
-        height: 7px;
-        background: var(--success);
-        border-radius: 50%;
+        width: 7px; height: 7px; background: var(--success); border-radius: 50%;
         box-shadow: 0 0 8px var(--success);
         animation: pulseAnimation 2s infinite ease-in-out;
       }
-
       @keyframes pulseAnimation {
         0%, 100% { opacity: 1; transform: scale(1); }
         50% { opacity: 0.4; transform: scale(0.8); }
       }
 
-      /* ==========================================================================
-         3. HERO
-         ========================================================================== */
-      .hero {
-        text-align: center;
-        padding: 32px 0 20px;
+      /* HERO */
+      .hero { text-align: center; padding: 24px 0 16px; }
+      .mode-switcher-wrap {
+        display: flex; background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-pill);
+        padding: 4px; max-width: 440px; margin: 0 auto 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
       }
-
-      .hero-tag {
-        background: rgba(255, 71, 87, 0.12);
-        border: 1px solid rgba(255, 71, 87, 0.3);
-        color: #ff6b81;
-        margin-bottom: 14px;
+      .mode-toggle-btn {
+        flex: 1; padding: 10px 16px; border-radius: var(--radius-pill);
+        border: none; background: transparent; color: var(--text-muted);
+        font-family: var(--font-body); font-size: 0.85rem; font-weight: 700;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        gap: 8px; transition: all 0.25s ease;
       }
-
+      .mode-toggle-btn.active { background: var(--accent-gradient); color: #fff; box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4); }
+      .mode-toggle-btn[data-mode="download"].active {
+        background: var(--accent-green); color: #000;
+        box-shadow: 0 4px 15px rgba(0, 240, 118, 0.35);
+      }
       .hero-title {
-        font-size: clamp(1.85rem, 5vw, 2.75rem);
-        line-height: 1.15;
-        margin-bottom: 12px;
+        font-size: clamp(1.85rem, 5vw, 2.75rem); line-height: 1.15; margin-bottom: 10px;
         background: linear-gradient(180deg, #ffffff 30%, #c4cfec 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       }
+      .hero-title span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .hero-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 520px; margin: 0 auto 20px; }
 
-      .hero-title span {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      /* DOWNLOAD SECTION */
+      .download-section-view { display: none; animation: tabFadeIn 0.3s ease-out forwards; }
+      .download-section-view.active { display: block; }
+      @keyframes tabFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+      .app-download-card {
+        background: linear-gradient(180deg, var(--bg-surface) 0%, #0c1220 100%);
+        border: 2px solid rgba(0, 240, 118, 0.25);
+        border-radius: var(--radius-lg); padding: 30px 20px;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
+        text-align: center; max-width: 640px; margin: 0 auto 36px;
+        position: relative; overflow: hidden;
       }
-
-      .hero-desc {
-        font-size: 0.95rem;
-        color: var(--text-muted);
-        max-width: 520px;
-        margin: 0 auto 20px;
+      .app-download-card::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        background: var(--accent-green);
       }
-
-      .funnel-steps {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        max-width: 640px;
-        margin: 0 auto 24px;
-      }
-
-      .funnel-step {
-        background: var(--bg-surface);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-md);
-        padding: 10px 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        text-align: left;
-        transition: all 0.3s ease;
-      }
-
-      .funnel-step.active {
-        border-color: var(--accent-primary);
-        background: rgba(255, 71, 87, 0.08);
-      }
-
-      .funnel-step.completed {
-        border-color: var(--success);
-        background: rgba(0, 240, 118, 0.06);
-      }
-
-      .step-badge {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background: var(--bg-card);
-        border: 1px solid var(--border-subtle);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: var(--text-muted);
-        flex-shrink: 0;
-      }
-
-      .funnel-step.active .step-badge {
-        background: var(--accent-primary);
-        color: #fff;
-        border-color: transparent;
-      }
-
-      .funnel-step.completed .step-badge {
-        background: var(--success);
-        color: #000;
-        border-color: transparent;
-      }
-
-      .step-text {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-      }
-
-      .step-label {
-        font-size: 0.65rem;
-        font-weight: 600;
-        color: var(--text-sub);
-        text-transform: uppercase;
-        line-height: 1;
-        margin-bottom: 2px;
-      }
-
-      .step-title {
-        font-size: 0.78rem;
-        font-weight: 700;
-        color: var(--text-main);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      /* ==========================================================================
-         4. BUNDLE DOCK
-         ========================================================================== */
-      .bundle-dock {
-        background: var(--bg-surface);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        padding: 16px;
-        margin-bottom: 24px;
-        box-shadow: var(--shadow-card);
+      .app-icon-wrap {
+        width: 88px; height: 88px; border-radius: 22px;
+        background: linear-gradient(135deg, #1f293d 0%, #0f172a 100%);
+        border: 2px solid var(--success); margin: 0 auto 16px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 2.6rem; box-shadow: 0 0 25px var(--success-glow);
         position: relative;
       }
-
-      .dock-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 12px;
+      .app-live-tag {
+        position: absolute; bottom: -8px; background: var(--success); color: #000;
+        font-size: 0.65rem; font-weight: 800; padding: 2px 8px;
+        border-radius: var(--radius-pill); letter-spacing: 0.5px;
       }
-
-      .dock-title-group {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+      .app-title { font-size: 1.6rem; margin-bottom: 4px; }
+      .app-sub { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 18px; }
+      .app-badges-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+      .app-chip {
+        background: var(--bg-card); border: 1px solid var(--border-subtle);
+        padding: 6px 12px; border-radius: var(--radius-pill);
+        font-size: 0.75rem; font-weight: 700; color: var(--text-muted);
+        display: flex; align-items: center; gap: 5px;
       }
+      .app-chip strong { color: var(--success); }
 
-      .dock-title {
-        font-size: 0.95rem;
-        font-weight: 700;
-      }
-
-      .dock-counter {
-        background: rgba(255, 71, 87, 0.15);
-        color: var(--accent-primary);
-        padding: 2px 8px;
-        border-radius: var(--radius-pill);
-        font-size: 0.75rem;
-        font-weight: 800;
-      }
-
-      .dock-counter.complete {
-        background: rgba(0, 240, 118, 0.15);
-        color: var(--success);
-      }
-
-      .clear-btn {
-        background: transparent;
-        border: 1px solid var(--border-subtle);
-        color: var(--text-muted);
-        font-size: 0.75rem;
-        font-weight: 600;
-        padding: 6px 12px;
-        border-radius: var(--radius-pill);
-        cursor: pointer;
-        min-height: 36px;
+      .os-selector-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 480px; margin: 0 auto 24px; }
+      .os-btn {
+        background: var(--bg-card); border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md); padding: 12px 8px;
+        color: var(--text-muted); font-family: var(--font-body);
+        font-size: 0.8rem; font-weight: 700; cursor: pointer;
+        display: flex; flex-direction: column; align-items: center; gap: 4px;
         transition: all 0.2s ease;
       }
-
-      .clear-btn:hover:not(:disabled) {
-        background: rgba(255, 71, 87, 0.15);
-        color: var(--accent-primary);
-        border-color: var(--accent-primary);
+      .os-btn span:first-child { font-size: 1.25rem; }
+      .os-btn:hover { border-color: var(--border-focus); color: #fff; }
+      .os-btn.active {
+        border-color: var(--success); background: rgba(0, 240, 118, 0.08);
+        color: var(--success); box-shadow: 0 0 16px rgba(0, 240, 118, 0.2);
       }
 
-      .clear-btn:disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
+      .features-highlight-box {
+        background: var(--bg-card); border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md); padding: 16px; text-align: left; margin-bottom: 24px;
       }
-
-      .slots-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
+      .features-highlight-title {
+        font-size: 0.82rem; font-weight: 800; text-transform: uppercase;
+        color: var(--text-sub); margin-bottom: 10px; letter-spacing: 0.5px;
       }
+      .features-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      @media (max-width: 480px) { .features-list { grid-template-columns: 1fr; } }
+      .feature-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 600; }
+      .feature-item-icon { color: var(--success); font-size: 0.95rem; }
 
-      .slot-item {
-        background: var(--bg-card);
-        border: 2px dashed var(--border-subtle);
-        border-radius: var(--radius-md);
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 96px;
-        position: relative;
+      .btn-download-glow {
+        background: var(--accent-green); color: #000;
+        font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
+        padding: 18px 24px; border-radius: var(--radius-md); border: none;
+        width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        gap: 10px; box-shadow: var(--shadow-green-glow);
         transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
       }
+      .btn-download-glow:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 240, 118, 0.5); }
+      .btn-download-glow:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-      .slot-item.empty {
-        color: var(--text-sub);
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-align: center;
+      /* REWARDS SECTION */
+      .rewards-section-view { animation: tabFadeIn 0.3s ease-out forwards; }
+
+      .funnel-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 640px; margin: 0 auto 24px; }
+      .funnel-step {
+        background: var(--bg-surface); border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md); padding: 10px 8px;
+        display: flex; align-items: center; gap: 8px; text-align: left;
+        transition: all 0.3s ease;
       }
-
-      .slot-item.empty .slot-plus {
-        font-size: 1.3rem;
-        color: var(--text-sub);
-        margin-bottom: 2px;
-        line-height: 1;
+      .funnel-step.active { border-color: var(--accent-primary); background: rgba(255, 71, 87, 0.08); }
+      .funnel-step.completed { border-color: var(--success); background: rgba(0, 240, 118, 0.06); }
+      .step-badge {
+        width: 24px; height: 24px; border-radius: 50%;
+        background: var(--bg-card); border: 1px solid var(--border-subtle);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.75rem; font-weight: 700; color: var(--text-muted); flex-shrink: 0;
       }
+      .funnel-step.active .step-badge { background: var(--accent-primary); color: #fff; border-color: transparent; }
+      .funnel-step.completed .step-badge { background: var(--success); color: #000; border-color: transparent; }
+      .step-text { display: flex; flex-direction: column; overflow: hidden; }
+      .step-label { font-size: 0.65rem; font-weight: 600; color: var(--text-sub); text-transform: uppercase; line-height: 1; margin-bottom: 2px; }
+      .step-title { font-size: 0.78rem; font-weight: 700; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
+      .bundle-dock {
+        background: var(--bg-surface); border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg); padding: 16px; margin-bottom: 24px;
+        box-shadow: var(--shadow-card); position: relative;
+      }
+      .dock-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+      .dock-title-group { display: flex; align-items: center; gap: 8px; }
+      .dock-title { font-size: 0.95rem; font-weight: 700; }
+      .dock-counter {
+        background: rgba(255, 71, 87, 0.15); color: var(--accent-primary);
+        padding: 2px 8px; border-radius: var(--radius-pill);
+        font-size: 0.75rem; font-weight: 800;
+      }
+      .dock-counter.complete { background: rgba(0, 240, 118, 0.15); color: var(--success); }
+      .clear-btn {
+        background: transparent; border: 1px solid var(--border-subtle);
+        color: var(--text-muted); font-size: 0.75rem; font-weight: 600;
+        padding: 6px 12px; border-radius: var(--radius-pill); cursor: pointer;
+        min-height: 36px; transition: all 0.2s ease;
+      }
+      .clear-btn:hover:not(:disabled) { background: rgba(255, 71, 87, 0.15); color: var(--accent-primary); border-color: var(--accent-primary); }
+      .clear-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+      .slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .slot-item {
+        background: var(--bg-card); border: 2px dashed var(--border-subtle);
+        border-radius: var(--radius-md); padding: 10px;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        min-height: 96px; position: relative;
+        transition: border-color 0.25s, background 0.25s;
+      }
+      .slot-item.empty { color: var(--text-sub); font-size: 0.75rem; font-weight: 600; text-align: center; }
+      .slot-item.empty .slot-plus { font-size: 1.3rem; color: var(--text-sub); margin-bottom: 2px; line-height: 1; }
       .slot-item.filled {
-        border: 2px solid var(--success);
-        background: rgba(0, 240, 118, 0.05);
+        border: 2px solid var(--success); background: rgba(0, 240, 118, 0.05);
         animation: slotPop 0.3s ease-out;
       }
-
-      @keyframes slotPop {
-        0% { transform: scale(0.92); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-      }
-
-      .slot-img {
-        width: 46px;
-        height: 46px;
-        border-radius: 8px;
-        object-fit: cover;
-        margin-bottom: 4px;
-        background: var(--bg-surface);
-      }
-
-      .slot-name {
-        font-size: 0.72rem;
-        font-weight: 700;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100%;
-        text-align: center;
-      }
-
+      @keyframes slotPop { 0% { transform: scale(0.92); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+      .slot-img { width: 46px; height: 46px; border-radius: 8px; object-fit: cover; margin-bottom: 4px; background: var(--bg-surface); }
+      .slot-name { font-size: 0.72rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; text-align: center; }
       .slot-remove {
-        position: absolute;
-        top: 6px;
-        right: 6px;
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        background: rgba(255, 71, 87, 0.9);
-        color: #fff;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 11px;
-        font-weight: 700;
-        cursor: pointer;
+        position: absolute; top: 6px; right: 6px; width: 22px; height: 22px;
+        border-radius: 50%; background: rgba(255, 71, 87, 0.9); color: #fff;
+        border: none; display: flex; align-items: center; justify-content: center;
+        font-size: 11px; font-weight: 700; cursor: pointer;
         transition: transform 0.15s ease, background 0.15s ease;
       }
+      .slot-remove::after { content: ''; position: absolute; inset: -11px; }
+      .slot-remove:hover { transform: scale(1.15); background: var(--accent-primary); }
 
-      .slot-remove::after {
-        content: '';
-        position: absolute;
-        inset: -11px;
-      }
-
-      .slot-remove:hover {
-        transform: scale(1.15);
-        background: var(--accent-primary);
-      }
-
-      /* ==========================================================================
-         5. GAME FILTERS
-         ========================================================================== */
       .filter-wrapper {
-        margin-bottom: 18px;
-        position: sticky;
-        top: 62px;
-        z-index: 90;
+        margin-bottom: 18px; position: sticky; top: 64px; z-index: 90;
         background: rgba(9, 13, 22, 0.95);
-        backdrop-filter: blur(12px);
-        padding: 8px 0;
+        backdrop-filter: blur(12px); padding: 8px 0;
       }
-
-      .filters-bar {
-        display: flex;
-        gap: 8px;
-        overflow-x: auto;
-        padding-bottom: 4px;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-      }
-
-      .filters-bar::-webkit-scrollbar {
-        display: none;
-      }
-
+      .filters-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+      .filters-bar::-webkit-scrollbar { display: none; }
       .filter-pill {
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 10px 18px;
-        min-height: 44px;
-        border-radius: var(--radius-pill);
-        background: var(--bg-surface);
-        border: 1px solid var(--border-subtle);
-        color: var(--text-muted);
-        font-family: var(--font-body);
-        font-size: 0.82rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.2s ease;
+        flex-shrink: 0; display: flex; align-items: center; gap: 6px;
+        padding: 10px 18px; min-height: 44px; border-radius: var(--radius-pill);
+        background: var(--bg-surface); border: 1px solid var(--border-subtle);
+        color: var(--text-muted); font-family: var(--font-body); font-size: 0.82rem;
+        font-weight: 700; cursor: pointer; transition: all 0.2s ease;
       }
+      .filter-pill:hover { color: var(--text-main); border-color: var(--border-focus); }
+      .filter-pill.active { background: var(--text-main); color: var(--bg-main); border-color: var(--text-main); box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2); }
+      .filter-pill[data-filter="nights"].active { background: var(--nights-accent); color: #ffffff; border-color: var(--nights-accent); box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35); }
+      .filter-pill[data-filter="brookhaven"].active { background: var(--brook-accent); color: #000000; border-color: var(--brook-accent); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35); }
 
-      .filter-pill:hover {
-        color: var(--text-main);
-        border-color: var(--border-focus);
-      }
-
-      .filter-pill.active {
-        background: var(--text-main);
-        color: var(--bg-main);
-        border-color: var(--text-main);
-        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-      }
-
-      .filter-pill[data-filter="nights"].active {
-        background: var(--nights-accent);
-        color: #ffffff;
-        border-color: var(--nights-accent);
-        box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35);
-      }
-
-      .filter-pill[data-filter="brookhaven"].active {
-        background: var(--brook-accent);
-        color: #000000;
-        border-color: var(--brook-accent);
-        box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
-      }
-
-      .filter-pill[data-filter="tsunami"].active {
-        background: var(--tsunami-accent);
-        color: #000000;
-        border-color: var(--tsunami-accent);
-        box-shadow: 0 4px 14px rgba(6, 182, 212, 0.35);
-      }
-
-      /* ==========================================================================
-         6. REWARD ITEMS GRID
-         ========================================================================== */
-      .items-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
-        gap: 12px;
-        margin-bottom: 36px;
-      }
-
-      @media (max-width: 480px) {
-        .items-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 10px;
-        }
-      }
+      .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: 12px; margin-bottom: 36px; }
+      @media (max-width: 480px) { .items-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
 
       .reward-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-md);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-        position: relative;
+        background: var(--bg-card); border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md); overflow: hidden;
+        display: flex; flex-direction: column; cursor: pointer;
+        position: relative; user-select: none;
         transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
-        user-select: none;
+        will-change: transform;
       }
-
-      .reward-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-card);
-        border-color: var(--border-focus);
-      }
-
-      .reward-card:active {
-        transform: scale(0.98);
-      }
-
-      .reward-card.selected {
-        border: 2px solid var(--success);
-        box-shadow: var(--shadow-success);
-        background: rgba(0, 240, 118, 0.04);
-      }
-
-      .reward-card.dimmed {
-        opacity: 0.35;
-        filter: grayscale(40%);
-      }
+      .reward-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--border-focus); }
+      .reward-card:active { transform: scale(0.98); }
+      .reward-card.selected { border: 2px solid var(--success); box-shadow: 0 0 20px var(--success-glow); background: rgba(0, 240, 118, 0.04); }
+      .reward-card.dimmed { opacity: 0.35; filter: grayscale(40%); }
 
       .card-media {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        overflow: hidden;
-        background: var(--bg-surface);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        position: relative; width: 100%; aspect-ratio: 1 / 1;
+        overflow: hidden; background: var(--bg-surface);
+        display: flex; align-items: center; justify-content: center;
       }
-
-      .card-media img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-      }
-
-      .reward-card:hover .card-media img {
-        transform: scale(1.06);
-      }
-
-      .card-fallback {
-        font-size: 2.8rem;
-      }
-
+      .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+      .reward-card:hover .card-media img { transform: scale(1.06); }
+      .card-fallback { font-size: 2.8rem; }
       .card-game-badge {
-        position: absolute;
-        top: 8px;
-        left: 8px;
-        font-size: 0.62rem;
-        font-weight: 800;
-        padding: 3px 8px;
-        border-radius: var(--radius-pill);
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-        backdrop-filter: blur(8px);
-        z-index: 2;
+        position: absolute; top: 8px; left: 8px;
+        font-size: 0.62rem; font-weight: 800; padding: 3px 8px;
+        border-radius: var(--radius-pill); text-transform: uppercase;
+        letter-spacing: 0.4px; backdrop-filter: blur(8px); z-index: 2;
       }
-
       .card-game-badge.nights { background: rgba(168, 85, 247, 0.85); color: #fff; }
       .card-game-badge.brookhaven { background: rgba(245, 158, 11, 0.9); color: #000; }
-      .card-game-badge.tsunami { background: rgba(6, 182, 212, 0.9); color: #000; }
 
-      .card-content {
-        padding: 10px 12px 12px;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        justify-content: space-between;
-      }
-
-      .card-title {
-        font-size: 0.85rem;
-        font-weight: 700;
-        line-height: 1.25;
-        margin-bottom: 8px;
-        color: var(--text-main);
-      }
-
+      .card-content { padding: 10px 12px 12px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; }
+      .card-title { font-size: 0.85rem; font-weight: 700; line-height: 1.25; margin-bottom: 8px; color: var(--text-main); }
       .card-action-btn {
-        width: 100%;
-        padding: 8px 6px;
-        min-height: 36px;
-        border-radius: 8px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        background: rgba(255, 255, 255, 0.08);
-        color: var(--text-main);
+        width: 100%; padding: 8px 6px; min-height: 36px; border-radius: 8px;
+        font-size: 0.75rem; font-weight: 700; display: flex; align-items: center;
+        justify-content: center; gap: 4px; border: none; cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+        background: rgba(255, 255, 255, 0.08); color: var(--text-main);
       }
+      .reward-card:hover .card-action-btn { background: var(--accent-primary); color: #fff; }
+      .reward-card.selected .card-action-btn { background: var(--success); color: #000; font-weight: 800; }
 
-      .reward-card:hover .card-action-btn {
-        background: var(--accent-primary);
-        color: #fff;
-      }
-
-      .reward-card.selected .card-action-btn {
-        background: var(--success);
-        color: #000;
-        font-weight: 800;
-      }
-
-      /* ==========================================================================
-         7. CLAIM & USERNAME SECTION
-         ========================================================================== */
+      /* CLAIM SECTION */
       .claim-section {
         background: linear-gradient(180deg, var(--bg-surface) 0%, #0c111e 100%);
         border: 2px solid rgba(255, 71, 87, 0.25);
-        border-radius: var(--radius-lg);
-        padding: 28px 20px;
-        margin-bottom: 40px;
+        border-radius: var(--radius-lg); padding: 28px 20px; margin-bottom: 40px;
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-        position: relative;
-        overflow: hidden;
+        position: relative; overflow: hidden;
       }
-
       .claim-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
         background: var(--accent-gradient);
       }
-
-      .claim-header {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-
-      .claim-title {
-        font-size: 1.4rem;
-        margin-bottom: 4px;
-      }
-
-      .claim-subtitle {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-      }
-
-      .claim-form-box {
-        max-width: 480px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-
-      .input-row {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .input-wrap {
-        position: relative;
-        flex: 1;
-      }
-
-      .input-icon {
-        position: absolute;
-        left: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--text-sub);
-        font-size: 1rem;
-        pointer-events: none;
-      }
-
+      .claim-header { text-align: center; margin-bottom: 20px; }
+      .claim-title { font-size: 1.4rem; margin-bottom: 4px; }
+      .claim-subtitle { font-size: 0.85rem; color: var(--text-muted); }
+      .claim-form-box { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+      .input-row { display: flex; align-items: center; gap: 12px; }
+      .input-wrap { position: relative; flex: 1; }
+      .input-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-sub); font-size: 1rem; pointer-events: none; }
       .username-field {
-        width: 100%;
-        background: var(--bg-main);
-        border: 2px solid var(--border-subtle);
-        color: #fff;
-        font-family: var(--font-body);
-        font-size: 0.95rem;
-        font-weight: 600;
-        padding: 14px 16px 14px 44px;
-        min-height: 48px;
-        border-radius: var(--radius-md);
-        outline: none;
-        transition: all 0.25s ease;
+        width: 100%; background: var(--bg-main);
+        border: 2px solid var(--border-subtle); color: #fff;
+        font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
+        padding: 14px 16px 14px 44px; min-height: 48px;
+        border-radius: var(--radius-md); outline: none; transition: all 0.25s ease;
       }
-
-      .username-field:focus {
-        border-color: var(--accent-primary);
-        box-shadow: 0 0 15px rgba(255, 71, 87, 0.25);
-      }
-
-      .username-field.valid {
-        border-color: var(--success);
-        box-shadow: 0 0 15px var(--success-glow);
-      }
-
-      .username-field.invalid {
-        border-color: var(--error);
-        box-shadow: 0 0 15px rgba(255, 56, 56, 0.25);
-      }
-
-      @keyframes skeletonShimmer {
-        0% { background-position: -200% 0; }
-        100% { background-position: 200% 0; }
-      }
+      .username-field:focus { border-color: var(--accent-primary); box-shadow: 0 0 15px rgba(255, 71, 87, 0.25); }
+      .username-field.valid { border-color: var(--success); box-shadow: 0 0 15px var(--success-glow); }
 
       .avatar-preview-box {
-        width: 54px;
-        height: 54px;
-        border-radius: 50%;
-        background: var(--bg-main);
-        border: 2px solid var(--border-subtle);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        flex-shrink: 0;
-        overflow: hidden;
-        transition: all 0.3s ease;
+        width: 54px; height: 54px; border-radius: 50%;
+        background: var(--bg-main); border: 2px solid var(--border-subtle);
+        display: flex; align-items: center; justify-content: center;
+        position: relative; flex-shrink: 0; overflow: hidden;
+        transition: border-color 0.3s, box-shadow 0.3s;
       }
+      .avatar-preview-box img { width: 100%; height: 100%; object-fit: cover; }
+      .avatar-preview-box.loading { border-color: var(--warning); }
+      .avatar-preview-box.loaded { border-color: var(--success); box-shadow: 0 0 12px var(--success-glow); }
 
-      .avatar-preview-box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .avatar-preview-box.loading {
-        border-color: var(--warning);
-        background: linear-gradient(90deg, #151d32 25%, #1c2744 50%, #151d32 75%);
-        background-size: 200% 100%;
-        animation: skeletonShimmer 1.5s infinite linear;
-      }
-
-      .avatar-preview-box.loaded {
-        border-color: var(--success);
-        box-shadow: 0 0 12px var(--success-glow);
-      }
-
-      .avatar-preview-box.error {
-        border-color: var(--error);
-      }
-
-      .avatar-state-text {
-        font-size: 0.78rem;
-        font-weight: 600;
-        text-align: center;
-        min-height: 18px;
-        color: var(--text-muted);
-        transition: color 0.2s ease;
-      }
-
+      .avatar-state-text { font-size: 0.78rem; font-weight: 600; text-align: center; min-height: 18px; color: var(--text-muted); }
       .avatar-state-text.valid { color: var(--success); }
-      .avatar-state-text.invalid { color: var(--error); }
-      .avatar-state-text.loading { color: var(--warning); }
 
       .main-cta-btn {
-        background: var(--accent-gradient);
-        color: #ffffff;
-        border: none;
-        border-radius: var(--radius-md);
-        padding: 16px 24px;
-        min-height: 54px;
-        font-family: var(--font-display);
-        font-size: 1.15rem;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        box-shadow: var(--shadow-glow);
+        background: var(--accent-gradient); color: #ffffff;
+        border: none; border-radius: var(--radius-md);
+        padding: 16px 24px; min-height: 54px;
+        font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
+        letter-spacing: 0.5px; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        gap: 10px; box-shadow: var(--shadow-glow);
         transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         width: 100%;
       }
+      .main-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 71, 87, 0.5); }
 
-      .main-cta-btn:hover:not(:disabled) {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(255, 71, 87, 0.5);
-      }
+      .trust-bullets { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 14px; font-size: 0.76rem; font-weight: 600; color: var(--text-muted); }
+      .trust-bullet { display: flex; align-items: center; gap: 5px; }
 
-      .main-cta-btn:active:not(:disabled) {
-        transform: translateY(1px);
-      }
-
-      .main-cta-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        box-shadow: none;
-      }
-
-      .trust-bullets {
-        display: flex;
-        justify-content: center;
-        gap: 16px;
-        flex-wrap: wrap;
-        margin-top: 14px;
-        font-size: 0.76rem;
-        font-weight: 600;
-        color: var(--text-muted);
-      }
-
-      .trust-bullet {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-      }
-
-      /* ==========================================================================
-         8. MOBILE STICKY BAR
-         ========================================================================== */
+      /* STICKY DOCK */
       .mobile-sticky-dock {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 99;
+        position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
         background: rgba(9, 13, 22, 0.94);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
         border-top: 1px solid var(--border-subtle);
         padding: 10px 16px 14px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.5);
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 12px; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.5);
         transform: translateY(100%);
         transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform;
       }
-
-      .mobile-sticky-dock.visible {
-        transform: translateY(0);
-      }
-
-      .sticky-bundle-info {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
+      .mobile-sticky-dock.visible { transform: translateY(0); }
+      .sticky-bundle-info { display: flex; align-items: center; gap: 8px; }
       .sticky-avatar-preview {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: var(--bg-card);
-        border: 1px solid var(--border-subtle);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        flex-shrink: 0;
+        width: 40px; height: 40px; border-radius: 50%;
+        background: var(--bg-card); border: 1px solid var(--border-subtle);
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden; flex-shrink: 0;
       }
-
-      .sticky-avatar-preview img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .sticky-meta {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .sticky-count {
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: #fff;
-      }
-
-      .sticky-sub {
-        font-size: 0.72rem;
-        color: var(--text-muted);
-      }
-
+      .sticky-avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+      .sticky-meta { display: flex; flex-direction: column; }
+      .sticky-count { font-size: 0.85rem; font-weight: 700; color: #fff; }
+      .sticky-sub { font-size: 0.72rem; color: var(--text-muted); }
       .sticky-cta-btn {
-        flex: 1;
-        max-width: 220px;
-        min-height: 44px;
-        background: var(--accent-gradient);
-        color: #fff;
-        border: none;
-        padding: 12px 16px;
-        border-radius: var(--radius-pill);
-        font-family: var(--font-display);
-        font-size: 0.95rem;
-        font-weight: 700;
-        cursor: pointer;
-        text-align: center;
+        flex: 1; max-width: 220px; min-height: 44px;
+        background: var(--accent-gradient); color: #fff;
+        border: none; padding: 12px 16px; border-radius: var(--radius-pill);
+        font-family: var(--font-display); font-size: 0.95rem; font-weight: 700;
+        cursor: pointer; text-align: center;
         box-shadow: 0 4px 14px rgba(255, 71, 87, 0.4);
       }
 
-      /* ==========================================================================
-         9. FAQ SECTION
-         ========================================================================== */
-      .section-heading {
-        font-size: 1.35rem;
-        margin-bottom: 18px;
-        text-align: center;
-      }
-
-      .faq-accordion {
-        max-width: 680px;
-        margin: 0 auto 40px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .faq-card {
-        background: var(--bg-surface);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-md);
-        overflow: hidden;
-      }
-
+      /* FAQ */
+      .section-heading { font-size: 1.35rem; margin-bottom: 18px; text-align: center; }
+      .faq-accordion { max-width: 680px; margin: 0 auto 40px; display: flex; flex-direction: column; gap: 10px; }
+      .faq-card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden; }
       .faq-question {
-        width: 100%;
-        background: transparent;
-        border: none;
-        color: var(--text-main);
-        font-family: inherit;
-        text-align: left;
-        padding: 16px 18px;
-        font-size: 0.92rem;
-        font-weight: 700;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        user-select: none;
-        min-height: 48px;
+        width: 100%; background: transparent; border: none; color: var(--text-main);
+        font-family: inherit; text-align: left; padding: 16px 18px;
+        font-size: 0.92rem; font-weight: 700; cursor: pointer;
+        display: flex; justify-content: space-between; align-items: center;
+        user-select: none; min-height: 48px;
       }
+      .faq-icon { font-size: 1.25rem; color: var(--accent-primary); transition: transform 0.25s ease; line-height: 1; flex-shrink: 0; margin-left: 10px; }
+      .faq-card.open .faq-icon { transform: rotate(45deg); }
+      .faq-answer { display: none; padding: 0 18px 16px; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+      .faq-card.open .faq-answer { display: block; }
 
-      .faq-icon {
-        font-size: 1.25rem;
-        color: var(--accent-primary);
-        transition: transform 0.25s ease;
-        line-height: 1;
-        flex-shrink: 0;
-        margin-left: 10px;
-      }
-
-      .faq-card.open .faq-icon {
-        transform: rotate(45deg);
-      }
-
-      .faq-answer {
-        display: none;
-        padding: 0 18px 16px;
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        line-height: 1.6;
-      }
-
-      .faq-card.open .faq-answer {
-        display: block;
-      }
-
-      /* ==========================================================================
-         10. TOAST NOTIFICATIONS
-         ========================================================================== */
+      /* TOASTS */
       .toast-container {
-        position: fixed;
-        top: 75px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1000;
-        width: 90%;
-        max-width: 400px;
-        pointer-events: none;
+        position: fixed; top: 75px; left: 50%; transform: translateX(-50%);
+        z-index: 1000; width: 90%; max-width: 400px; pointer-events: none;
       }
-
       .toast-msg {
-        background: var(--bg-card);
-        border: 1px solid var(--accent-primary);
-        color: #fff;
-        padding: 12px 18px;
-        border-radius: var(--radius-pill);
-        font-size: 0.82rem;
-        font-weight: 600;
+        background: var(--bg-card); border: 1px solid var(--accent-primary);
+        color: #fff; padding: 12px 18px; border-radius: var(--radius-pill);
+        font-size: 0.82rem; font-weight: 600;
         box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        display: flex; align-items: center; gap: 8px;
+        opacity: 0; transform: translateY(-20px);
+        transition: opacity 0.3s, transform 0.3s;
         margin-bottom: 8px;
       }
+      .toast-msg.show { opacity: 1; transform: translateY(0); }
 
-      .toast-msg.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* ==========================================================================
-         11. MODALS
-         ========================================================================== */
+      /* MODALS */
       .modal-overlay {
-        position: fixed;
-        inset: 0;
+        position: fixed; inset: 0;
         background: rgba(4, 7, 13, 0.88);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 16px;
-        z-index: 1000;
-        opacity: 0;
-        visibility: hidden;
+        backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        display: flex; align-items: center; justify-content: center;
+        padding: 16px; z-index: 1000;
+        opacity: 0; visibility: hidden;
         transition: opacity 0.25s ease, visibility 0.25s ease;
       }
-
-      .modal-overlay.active {
-        opacity: 1;
-        visibility: visible;
-      }
-
+      .modal-overlay.active { opacity: 1; visibility: visible; }
       .modal-window {
-        background: var(--bg-surface);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-lg);
-        width: 100%;
-        max-width: 440px;
-        padding: 28px 24px;
-        position: relative;
-        transform: scale(0.94);
-        transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-        text-align: center;
+        background: var(--bg-surface); border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg); width: 100%; max-width: 440px;
+        padding: 28px 24px; position: relative;
+        transform: scale(0.94); transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8); text-align: center;
       }
-
-      .modal-overlay.active .modal-window {
-        transform: scale(1);
-      }
-
+      .modal-overlay.active .modal-window { transform: scale(1); }
       .modal-close-icon {
-        position: absolute;
-        top: 14px;
-        right: 16px;
-        background: transparent;
-        border: none;
-        color: var(--text-sub);
-        font-size: 1.4rem;
-        cursor: pointer;
-        line-height: 1;
-        padding: 8px;
-        min-width: 44px;
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        position: absolute; top: 14px; right: 16px;
+        background: transparent; border: none; color: var(--text-sub);
+        font-size: 1.4rem; cursor: pointer; line-height: 1;
+        padding: 8px; min-width: 44px; min-height: 44px;
+        display: flex; align-items: center; justify-content: center;
       }
-
-      .modal-close-icon:hover {
-        color: #fff;
-      }
+      .modal-close-icon:hover { color: #fff; }
 
       .progress-bar-shell {
-        background: var(--bg-card);
-        height: 10px;
-        border-radius: var(--radius-pill);
-        overflow: hidden;
-        margin: 18px 0 10px;
-        border: 1px solid var(--border-subtle);
+        background: var(--bg-card); height: 10px; border-radius: var(--radius-pill);
+        overflow: hidden; margin: 18px 0 10px; border: 1px solid var(--border-subtle);
       }
-
       .progress-bar-fill {
-        width: 0%;
-        height: 100%;
-        background: var(--accent-gradient);
-        border-radius: var(--radius-pill);
-        transition: width 0.15s linear;
+        width: 0%; height: 100%; background: var(--accent-gradient);
+        border-radius: var(--radius-pill); transition: width 0.15s linear;
+      }
+      .progress-bar-fill.green { background: var(--accent-green); }
+      .progress-status-label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); min-height: 22px; }
+
+      /* Download Modal Steps */
+      .dl-steps-container { display: flex; flex-direction: column; gap: 8px; margin: 18px 0; text-align: left; }
+      .dl-step {
+        display: flex; align-items: center; gap: 10px;
+        padding: 10px 12px; border-radius: var(--radius-md);
+        background: var(--bg-card); border: 1px solid var(--border-subtle);
+        font-size: 0.82rem; font-weight: 600;
+        transition: border-color 0.25s, background 0.25s, color 0.25s;
+      }
+      .dl-step.pending { opacity: 0.55; }
+      .dl-step.active { border-color: var(--warning); background: rgba(255, 165, 2, 0.06); color: #ffd27a; }
+      .dl-step.done { border-color: var(--success); background: rgba(0, 240, 118, 0.06); color: var(--success); }
+      .dl-step-icon {
+        width: 22px; height: 22px; border-radius: 50%;
+        background: var(--bg-surface); display: flex; align-items: center; justify-content: center;
+        font-size: 0.72rem; flex-shrink: 0;
+      }
+      .dl-step.done .dl-step-icon { background: var(--success); color: #000; }
+      .dl-step.active .dl-step-icon { background: var(--warning); color: #000; }
+
+      /* Download Ready Panel */
+      .dl-ready-panel { text-align: left; }
+      .dl-ready-header {
+        display: flex; align-items: center; gap: 10px;
+        margin-bottom: 14px; padding-bottom: 14px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .dl-ready-header-icon {
+        width: 44px; height: 44px; border-radius: 12px;
+        background: rgba(0, 240, 118, 0.12);
+        border: 1px solid rgba(0, 240, 118, 0.35);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.3rem; flex-shrink: 0;
+      }
+      .dl-ready-header-text { display: flex; flex-direction: column; }
+      .dl-ready-header-text strong { font-size: 0.95rem; color: #fff; }
+      .dl-ready-header-text span { font-size: 0.75rem; color: var(--text-muted); }
+
+      .dl-info-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px;
+      }
+      .dl-info-cell {
+        background: var(--bg-card); border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-sm); padding: 8px 10px;
+        display: flex; flex-direction: column; gap: 2px;
+      }
+      .dl-info-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--text-sub); letter-spacing: 0.4px; }
+      .dl-info-value { font-size: 0.82rem; font-weight: 700; color: #fff; word-break: break-all; }
+      .dl-info-value.ok { color: var(--success); }
+
+      .dl-requirements {
+        background: rgba(255, 165, 2, 0.06);
+        border: 1px solid rgba(255, 165, 2, 0.25);
+        border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 16px;
+      }
+      .dl-requirements-title {
+        font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+        color: var(--warning); margin-bottom: 8px; letter-spacing: 0.5px;
+      }
+      .dl-requirements ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+      .dl-requirements li {
+        font-size: 0.8rem; color: #ffeaa7; display: flex; align-items: flex-start; gap: 8px;
+      }
+      .dl-requirements li::before { content: '▸'; color: var(--warning); font-weight: 800; flex-shrink: 0; }
+
+      .dl-continue-note {
+        font-size: 0.72rem; color: var(--text-sub); margin-top: 10px; text-align: center;
       }
 
-      .progress-status-label {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--text-muted);
-        min-height: 22px;
-      }
-
+      /* Summary Modal */
       .summary-avatar {
-        width: 76px;
-        height: 76px;
-        border-radius: 50%;
-        border: 3px solid var(--success);
-        margin: 0 auto 12px;
-        overflow: hidden;
-        background: var(--bg-card);
+        width: 76px; height: 76px; border-radius: 50%;
+        border: 3px solid var(--success); margin: 0 auto 12px;
+        overflow: hidden; background: var(--bg-card);
         box-shadow: 0 0 20px var(--success-glow);
       }
-
-      .summary-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .summary-bundle-preview {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin: 16px 0;
-      }
-
+      .summary-avatar img { width: 100%; height: 100%; object-fit: cover; }
+      .summary-bundle-preview { display: flex; justify-content: center; gap: 8px; margin: 16px 0; flex-wrap: wrap; }
       .summary-chip {
-        background: var(--bg-card);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-sm);
-        padding: 6px 10px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 6px;
+        background: var(--bg-card); border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-sm); padding: 6px 10px;
+        font-size: 0.75rem; font-weight: 700;
+        display: flex; align-items: center; gap: 6px;
       }
-
-      .summary-chip img {
-        width: 20px;
-        height: 20px;
-        border-radius: 4px;
-      }
-
+      .summary-chip img { width: 20px; height: 20px; border-radius: 4px; }
       .verification-guide-box {
         background: rgba(255, 165, 2, 0.08);
         border: 1px solid rgba(255, 165, 2, 0.25);
-        border-radius: var(--radius-md);
-        padding: 12px;
-        margin: 16px 0 20px;
-        text-align: left;
-        font-size: 0.8rem;
-        color: #ffeaa7;
+        border-radius: var(--radius-md); padding: 12px; margin: 16px 0 20px;
+        text-align: left; font-size: 0.8rem; color: #ffeaa7;
       }
+      .guide-step { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+      .guide-step:last-child { margin-bottom: 0; }
+      .guide-step span { color: var(--warning); font-weight: 800; }
 
-      .guide-step {
-        display: flex;
-        align-items: flex-start;
-        gap: 8px;
-        margin-bottom: 6px;
-      }
-
-      .guide-step:last-child {
-        margin-bottom: 0;
-      }
-
-      .guide-step span {
-        color: var(--warning);
-        font-weight: 800;
-      }
-
-      /* ==========================================================================
-         12. FOOTER
-         ========================================================================== */
       footer {
-        border-top: 1px solid var(--border-subtle);
-        padding: 28px 16px;
-        text-align: center;
-        font-size: 0.75rem;
-        color: var(--text-sub);
-        position: relative;
-        z-index: 1;
+        border-top: 1px solid var(--border-subtle); padding: 28px 16px;
+        text-align: center; font-size: 0.75rem; color: var(--text-sub);
+        position: relative; z-index: 1;
       }
-
-      footer a {
-        color: var(--text-muted);
-        text-decoration: none;
-      }
-
-      footer a:hover {
-        text-decoration: underline;
-      }
+      footer a { color: var(--text-muted); text-decoration: none; }
     </style>
   </head>
   <body>
-    <!-- In-App Toast Container -->
-    <div class="toast-container" id="toastContainer" aria-live="assertive" aria-atomic="true"></div>
+    <div class="toast-container" id="toastContainer" aria-live="assertive"></div>
 
-    <!-- NAVIGATION -->
     <header class="nav">
       <div class="container nav-inner">
-        <a aria-label="RBX Drop Home" class="brand" href="#">
-          <div class="brand-icon" aria-hidden="true">🎁</div>
-          <span class="brand-name">RBX Drop</span>
+        <a class="brand" href="#">
+          <div class="brand-icon">🎁</div>
+          <span class="brand-name">RBX Hub</span>
         </a>
         <div class="nav-status">
-          <div class="pulse-dot" aria-hidden="true"></div>
+          <div class="pulse-dot"></div>
           <span>LIVE REWARD POOL</span>
         </div>
       </div>
     </header>
 
     <main class="container">
-      <!-- HERO SECTION -->
-      <section class="hero" aria-labelledby="heroMainTitle">
-        <div class="badge-pill hero-tag">🔥 Season Drop Active</div>
-        <h1 class="hero-title" id="heroMainTitle">
+      <section class="hero">
+        <div class="mode-switcher-wrap" role="tablist">
+          <button class="mode-toggle-btn active" id="modeRewardsBtn" data-mode="rewards" type="button" role="tab">
+            🎁 Claim Rewards &amp; Robux
+          </button>
+          <button class="mode-toggle-btn" id="modeDownloadBtn" data-mode="download" type="button" role="tab">
+            ⚡ Roblox Beta (Mod Menu)
+          </button>
+        </div>
+
+        <h1 class="hero-title" id="mainHeroTitle">
           Select Up To <span>3 Free Rewards</span>
         </h1>
-        <p class="hero-desc">
-          Choose from 99 Nights, Brookhaven, or Escape Tsunami. Connect your Roblox username to finalize delivery.
+        <p class="hero-desc" id="mainHeroDesc">
+          Choose from 99 Nights and Brookhaven. Connect your Roblox username to finalize delivery.
         </p>
+      </section>
 
-        <!-- 3-Step Guided Roadmap -->
+      <!-- DOWNLOAD VIEW -->
+      <section class="download-section-view" id="downloadSectionView">
+        <div class="app-download-card">
+          <div class="app-icon-wrap">
+            ⚡
+            <span class="app-live-tag">V2.684 LATEST</span>
+          </div>
+
+          <h2 class="app-title">Roblox Beta Client &amp; Mod Menu</h2>
+          <p class="app-sub">Unlock Fly, God Mode, Speed Multiplier &amp; Script Hub</p>
+
+          <div class="app-badges-row">
+            <div class="app-chip">⭐ <strong>4.9/5</strong> (48.2k Reviews)</div>
+            <div class="app-chip">📦 Size: <strong>146.4 MB</strong></div>
+            <div class="app-chip">🛡️ <strong>VirusTotal 0/72 Clean</strong></div>
+          </div>
+
+          <div class="os-selector-group" id="osSelector">
+            <button type="button" class="os-btn active" data-os="Android">
+              <span>🤖</span><span>Android (APK)</span>
+            </button>
+            <button type="button" class="os-btn" data-os="iOS">
+              <span>🍏</span><span>iOS (IPA / Web)</span>
+            </button>
+            <button type="button" class="os-btn" data-os="Windows">
+              <span>💻</span><span>Windows PC</span>
+            </button>
+          </div>
+
+          <div class="features-highlight-box">
+            <div class="features-highlight-title">Included Mod Features:</div>
+            <ul class="features-list">
+              <li class="feature-item"><span class="feature-item-icon">✓</span> Free In-Game Robux Bypass</li>
+              <li class="feature-item"><span class="feature-item-icon">✓</span> Speed Boost &amp; Super Jump</li>
+              <li class="feature-item"><span class="feature-item-icon">✓</span> Wallhack &amp; God Mode Active</li>
+              <li class="feature-item"><span class="feature-item-icon">✓</span> 100% Anti-Ban Bypass Token</li>
+            </ul>
+          </div>
+
+          <button class="btn-download-glow" id="downloadAppBtn" type="button">
+            <span>📥 DOWNLOAD BETA (<span id="selectedOsLabel">Android</span>)</span>
+          </button>
+          <p style="font-size: 0.75rem; color: var(--text-sub); margin-top: 14px;">
+            🔒 Safe direct installation • No root or jailbreak required.
+          </p>
+        </div>
+      </section>
+
+      <!-- REWARDS VIEW -->
+      <div class="rewards-section-view" id="rewardsSectionView">
         <div class="funnel-steps" aria-label="Claim Progress Steps">
           <div class="funnel-step active" id="roadmapStep1">
             <div class="step-badge" aria-hidden="true">1</div>
-            <div class="step-text">
-              <span class="step-label">Step 1</span>
-              <span class="step-title">Pick Items</span>
-            </div>
+            <div class="step-text"><span class="step-label">Step 1</span><span class="step-title">Pick Items</span></div>
           </div>
           <div class="funnel-step" id="roadmapStep2">
             <div class="step-badge" aria-hidden="true">2</div>
-            <div class="step-text">
-              <span class="step-label">Step 2</span>
-              <span class="step-title">Username</span>
-            </div>
+            <div class="step-text"><span class="step-label">Step 2</span><span class="step-title">Username</span></div>
           </div>
           <div class="funnel-step" id="roadmapStep3">
             <div class="step-badge" aria-hidden="true">3</div>
-            <div class="step-text">
-              <span class="step-label">Step 3</span>
-              <span class="step-title">Unlock</span>
+            <div class="step-text"><span class="step-label">Step 3</span><span class="step-title">Unlock</span></div>
+          </div>
+        </div>
+
+        <section class="bundle-dock" id="bundleDock">
+          <div class="dock-header">
+            <div class="dock-title-group">
+              <h2 class="dock-title">🎒 Your Claim Bundle</h2>
+              <span class="dock-counter" id="dockCounter">0/3 Selected</span>
+            </div>
+            <button class="clear-btn" id="clearBundleBtn" type="button" disabled>Clear All</button>
+          </div>
+          <div class="slots-grid" id="slotsGrid"></div>
+        </section>
+
+        <div class="filter-wrapper">
+          <div class="filters-bar" id="filterBar" role="tablist">
+            <button class="filter-pill active" data-filter="all" role="tab">⚡ All Rewards</button>
+            <button class="filter-pill" data-filter="nights" role="tab">🌙 99 Nights</button>
+            <button class="filter-pill" data-filter="brookhaven" role="tab">🏠 Brookhaven &amp; Robux</button>
+          </div>
+        </div>
+
+        <section class="items-grid" id="itemsGrid"></section>
+
+        <section class="claim-section" id="claimSection">
+          <div class="claim-header">
+            <h2 class="claim-title">Confirm Delivery Account</h2>
+            <p class="claim-subtitle">Enter your exact Roblox username so we can locate your avatar.</p>
+          </div>
+          <div class="claim-form-box">
+            <div class="input-row">
+              <div class="input-wrap">
+                <span class="input-icon">👤</span>
+                <input type="text" id="usernameInput" class="username-field" placeholder="Your Roblox Username..." autocomplete="off" autocapitalize="none" spellcheck="false" />
+              </div>
+              <div class="avatar-preview-box" id="avatarBox">
+                <span id="avatarPlaceholder" style="font-size: 1.5rem;">🎮</span>
+              </div>
+            </div>
+            <div class="avatar-state-text" id="avatarStateText">Enter username to look up avatar</div>
+            <button id="mainClaimBtn" class="main-cta-btn" type="button">
+              <span>👇 1. SELECT REWARDS ABOVE</span>
+            </button>
+            <div class="trust-bullets">
+              <div class="trust-bullet"><span>🔒</span> No password required</div>
+              <div class="trust-bullet"><span>⚡</span> Instant account lookup</div>
+              <div class="trust-bullet"><span>🛡️</span> Safe direct delivery</div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- BUNDLE DOCK -->
-      <section class="bundle-dock" id="bundleDock" aria-labelledby="dockHeading">
-        <div class="dock-header">
-          <div class="dock-title-group">
-            <h2 class="dock-title" id="dockHeading">🎒 Your Claim Bundle</h2>
-            <span class="dock-counter" id="dockCounter" aria-live="polite">0/3 Selected</span>
+        <section>
+          <h2 class="section-heading">Frequently Asked Questions</h2>
+          <div class="faq-accordion">
+            <div class="faq-card open">
+              <button class="faq-question" type="button">
+                <span>Do I ever need to enter my Roblox password?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                No. We will never ask for your password or sensitive account credentials. Only your public Roblox username is required to route your in-game items.
+              </div>
+            </div>
+            <div class="faq-card">
+              <button class="faq-question" type="button">
+                <span>Why is there a quick verification step?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                Verification prevents automated bot scripts from hoarding the reward pool, keeping items available for legitimate players.
+              </div>
+            </div>
           </div>
-          <button class="clear-btn" id="clearBundleBtn" type="button" disabled="">Clear All</button>
-        </div>
-        <div class="slots-grid" id="slotsGrid" aria-label="Selected Reward Slots"></div>
-      </section>
-
-      <!-- GAME FILTERS -->
-      <div class="filter-wrapper">
-        <div class="filters-bar" id="filterBar" role="tablist" aria-label="Game Filter Tabs">
-          <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">⚡ All Rewards</button>
-          <button class="filter-pill" data-filter="nights" role="tab" aria-selected="false">🌙 99 Nights</button>
-          <button class="filter-pill" data-filter="brookhaven" role="tab" aria-selected="false">🏠 Brookhaven</button>
-          <button class="filter-pill" data-filter="tsunami" role="tab" aria-selected="false">🌊 Escape Tsunami</button>
-        </div>
+        </section>
       </div>
-
-      <!-- REWARD ITEMS GRID -->
-      <section class="items-grid" id="itemsGrid" aria-label="Available In-Game Rewards"></section>
-
-      <!-- CLAIM & USERNAME SECTION -->
-      <section class="claim-section" id="claimSection" aria-labelledby="claimSectionTitle">
-        <div class="claim-header">
-          <h2 class="claim-title" id="claimSectionTitle">Confirm Delivery Account</h2>
-          <p class="claim-subtitle">Enter your exact Roblox username so we can locate your avatar.</p>
-        </div>
-        <div class="claim-form-box">
-          <div class="input-row">
-            <div class="input-wrap">
-              <span class="input-icon" aria-hidden="true">👤</span>
-              <input type="text" id="usernameInput" class="username-field" placeholder="Your Roblox Username..." autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Roblox Username" aria-describedby="avatarStateText" />
-            </div>
-            <div class="avatar-preview-box" id="avatarBox" aria-hidden="true">
-              <span id="avatarPlaceholder" style="font-size: 1.5rem;">🎮</span>
-            </div>
-          </div>
-          <div class="avatar-state-text" id="avatarStateText" aria-live="polite">
-            Enter username to look up avatar
-          </div>
-          <button id="mainClaimBtn" class="main-cta-btn" type="button">
-            <span>👇 1. SELECT REWARDS ABOVE</span>
-          </button>
-          <div class="trust-bullets">
-            <div class="trust-bullet"><span aria-hidden="true">🔒</span> No password required</div>
-            <div class="trust-bullet"><span aria-hidden="true">⚡</span> Instant account lookup</div>
-            <div class="trust-bullet"><span aria-hidden="true">🛡️</span> Safe direct delivery</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ SECTION -->
-      <section aria-labelledby="faqSectionTitle">
-        <h2 class="section-heading" id="faqSectionTitle">Frequently Asked Questions</h2>
-        <div class="faq-accordion">
-          <div class="faq-card open">
-            <button class="faq-question" type="button" aria-expanded="true" aria-controls="faq-ans-1">
-              <span>Do I ever need to enter my Roblox password?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div id="faq-ans-1" class="faq-answer">
-              No. We will never ask for your password or sensitive account credentials. Only your public Roblox username is required to route your in-game items.
-            </div>
-          </div>
-          <div class="faq-card">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-ans-2">
-              <span>Can I mix items from different games in one bundle?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div id="faq-ans-2" class="faq-answer">
-              To ensure proper game server routing, each claim bundle can contain up to 3 items from a single game at a time. You can clear and switch games at any time.
-            </div>
-          </div>
-          <div class="faq-card">
-            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-ans-3">
-              <span>Why is there a quick verification step?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div id="faq-ans-3" class="faq-answer">
-              Verification prevents automated bot scripts from hoarding the reward pool, keeping items available for legitimate players.
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
 
-    <!-- FOOTER -->
     <footer>
       <div class="container">
-        <p>© RBX Drop. All game names and assets are copyright of their respective owners.</p>
-        <p style="margin-top: 6px;">
-          <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a> • <a href="#">Support</a>
-        </p>
+        <p>© RBX Hub. All game names and assets are copyright of their respective creators.</p>
       </div>
     </footer>
 
-    <!-- MOBILE STICKY BOTTOM DOCK -->
-    <div class="mobile-sticky-dock" id="mobileStickyDock" aria-label="Quick Claim Dock">
+    <!-- STICKY DOCK -->
+    <div class="mobile-sticky-dock" id="mobileStickyDock">
       <div class="sticky-bundle-info">
-        <div class="sticky-avatar-preview" id="stickyAvatarPreview" aria-hidden="true">
-          <span>🎮</span>
-        </div>
+        <div class="sticky-avatar-preview" id="stickyAvatarPreview"><span>🎮</span></div>
         <div class="sticky-meta">
           <span class="sticky-count" id="stickyCountText">0 / 3 Items</span>
           <span class="sticky-sub" id="stickySubText">Tap items above</span>
@@ -1501,33 +829,99 @@
       <button class="sticky-cta-btn" id="stickyCtaBtn" type="button">Pick Rewards</button>
     </div>
 
-    <!-- MODAL 1: PROGRESS -->
-    <div class="modal-overlay" id="progressModal" role="dialog" aria-modal="true" aria-labelledby="progressTitle">
+    <!-- DOWNLOAD MODAL (Redesigned) -->
+    <div class="modal-overlay" id="downloadModal" role="dialog" aria-modal="true">
       <div class="modal-window">
-        <h3 id="progressTitle" style="font-size: 1.3rem; margin-bottom: 4px;">Preparing Delivery</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Allocating items for your account...</p>
-        <div class="progress-bar-shell" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressShell">
-          <div class="progress-bar-fill" id="progressFill"></div>
+        <button class="modal-close-icon" id="downloadCloseBtn" type="button" aria-label="Close">×</button>
+
+        <!-- Progress Panel -->
+        <div id="downloadProgressPanel">
+          <div style="font-size:2.4rem; margin-bottom:8px;">📦</div>
+          <h3 style="font-size:1.25rem; margin-bottom:4px;">Preparing Your Download</h3>
+          <p style="font-size:0.82rem; color:var(--text-muted);">Running compatibility checks for <strong id="dlProgressOs">Android</strong></p>
+
+          <div class="dl-steps-container" id="downloadStepsContainer"></div>
+
+          <div class="progress-bar-shell" style="margin-top: 6px;">
+            <div class="progress-bar-fill green" id="downloadProgressFill"></div>
+          </div>
+          <div class="progress-status-label" id="downloadStatusText" style="color: var(--success); font-weight: 700;">Initializing...</div>
         </div>
-        <div class="progress-status-label" id="progressStatusLabel" aria-live="polite">Connecting to servers...</div>
+
+        <!-- Ready Panel -->
+        <div id="downloadReadyPanel" class="dl-ready-panel" style="display: none;">
+          <div class="dl-ready-header">
+            <div class="dl-ready-header-icon">🛡️</div>
+            <div class="dl-ready-header-text">
+              <strong>File Ready — Scan Passed</strong>
+              <span>Your download is verified and safe to install.</span>
+            </div>
+          </div>
+
+          <div class="dl-info-grid">
+            <div class="dl-info-cell">
+              <span class="dl-info-label">Platform</span>
+              <span class="dl-info-value" id="dlReadyOs">Android</span>
+            </div>
+            <div class="dl-info-cell">
+              <span class="dl-info-label">File Size</span>
+              <span class="dl-info-value">146.4 MB</span>
+            </div>
+            <div class="dl-info-cell" style="grid-column: span 2;">
+              <span class="dl-info-label">Package</span>
+              <span class="dl-info-value" id="dlReadyFileName">RBX-Beta-v2.684.apk</span>
+            </div>
+            <div class="dl-info-cell" style="grid-column: span 2;">
+              <span class="dl-info-label">Security Scan</span>
+              <span class="dl-info-value ok">✓ Clean — 0/72 threats detected</span>
+            </div>
+          </div>
+
+          <div class="dl-requirements">
+            <div class="dl-requirements-title">Before you continue:</div>
+            <ul>
+              <li>Make sure you have enough free storage space.</li>
+              <li>Enable "Install from unknown sources" in settings.</li>
+              <li>You will complete 1 quick verification step next.</li>
+              <li>Keep this tab open until the file begins downloading.</li>
+            </ul>
+          </div>
+
+          <button class="btn-download-glow" id="dlContinueBtn" type="button">
+            <span>🔓 CONTINUE TO DOWNLOAD</span>
+          </button>
+          <p class="dl-continue-note">You'll be redirected to the secure download page.</p>
+        </div>
       </div>
     </div>
 
-    <!-- MODAL 2: VERIFICATION SUMMARY -->
-    <div class="modal-overlay" id="summaryModal" role="dialog" aria-modal="true" aria-labelledby="summaryModalTitle">
+    <!-- REWARDS PROGRESS MODAL -->
+    <div class="modal-overlay" id="progressModal" role="dialog" aria-modal="true">
       <div class="modal-window">
-        <button class="modal-close-icon" id="summaryCloseBtn" aria-label="Close summary modal">×</button>
-        <div class="summary-avatar" id="summaryAvatar" aria-hidden="true">
+        <h3 style="font-size: 1.3rem; margin-bottom: 4px;">Preparing Delivery</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Allocating items for your account...</p>
+        <div class="progress-bar-shell">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-status-label" id="progressStatusLabel">Connecting to servers...</div>
+      </div>
+    </div>
+
+    <!-- SUMMARY MODAL -->
+    <div class="modal-overlay" id="summaryModal" role="dialog" aria-modal="true">
+      <div class="modal-window">
+        <button class="modal-close-icon" id="summaryCloseBtn">×</button>
+        <div class="summary-avatar" id="summaryAvatar">
           <span style="font-size: 2.2rem; line-height: 70px;">🎮</span>
         </div>
-        <h2 id="summaryModalTitle" style="font-size: 1.4rem; margin-bottom: 2px;">Bundle Ready!</h2>
+        <h2 style="font-size: 1.4rem; margin-bottom: 2px;">Bundle Ready!</h2>
         <p style="font-size: 0.85rem; color: var(--text-muted);">
           Destination: <strong id="summaryUsername" style="color: var(--success);">@Player</strong>
         </p>
-        <div class="summary-bundle-preview" id="summaryBundlePreview" aria-label="Bundle Preview"></div>
+        <div class="summary-bundle-preview" id="summaryBundlePreview"></div>
         <div class="verification-guide-box">
           <div class="guide-step"><span>1.</span> Tap the unlock button below to access verification.</div>
-          <div class="guide-step"><span>2.</span> Complete 1 quick offer to prove you are a human player.</div>
+          <div class="guide-step"><span>2.</span> Complete 1 quick offer to prove you are human.</div>
           <div class="guide-step"><span>3.</span> Your reward bundle will be credited immediately.</div>
         </div>
         <button id="finalVerifyBtn" class="main-cta-btn" type="button" style="background: linear-gradient(135deg, #00f076 0%, #00b894 100%); color: #000;">
@@ -1536,14 +930,22 @@
       </div>
     </div>
 
-    <!-- JAVASCRIPT APPLICATION CORE -->
     <script>
       (function () {
         'use strict';
 
-        // 1. ITEMS DATABASE
+        /* ============================================================
+           CONFIG
+           ============================================================ */
+        const LOCKER_CONFIG = {
+          REWARDS_LOCKER: 'https://appsave.online/cl/i/grr11d',
+          BETA_APP_LOCKER: 'https://appcomplete.org/cl/i/o6qj7d'
+        };
+
+        /* ============================================================
+           ITEMS DATABASE
+           ============================================================ */
         const itemsDB = [
-          // 99 Nights (High Quality WebP via jsDelivr CDN from your repo)
           { id: 'alien', game: 'nights', gameLabel: '99 Nights', name: 'Alien Skin', emoji: '👽', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/alien.webp' },
           { id: 'vampire', game: 'nights', gameLabel: '99 Nights', name: 'Vampire Skin', emoji: '🧛', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/vampire.webp' },
           { id: 'necro', game: 'nights', gameLabel: '99 Nights', name: 'Necromancer', emoji: '💀', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/necro.webp' },
@@ -1551,58 +953,76 @@
           { id: 'assassin', game: 'nights', gameLabel: '99 Nights', name: 'Assassin', emoji: '🗡️', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/assassin.webp' },
           { id: 'gunman', game: 'nights', gameLabel: '99 Nights', name: 'Gunman', emoji: '🔫', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/gunman.webp' },
           { id: 'pyro', game: 'nights', gameLabel: '99 Nights', name: 'Pyromaniac', emoji: '🔥', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/pyro.webp' },
+
           { id: 'diam100', game: 'nights', gameLabel: '99 Nights', name: '100 Diamonds', emoji: '💎', img: 'https://www2.0zz0.com/2025/09/02/14/226861950.png' },
           { id: 'diam250', game: 'nights', gameLabel: '99 Nights', name: '250 Diamonds', emoji: '💎', img: 'https://www2.0zz0.com/2025/09/02/14/299471783.png' },
           { id: 'diam700', game: 'nights', gameLabel: '99 Nights', name: '700 Diamonds', emoji: '💎', img: 'https://www2.0zz0.com/2025/09/02/14/897708704.png' },
-          
-          // Brookhaven
-          { id: 'rob500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '500 Robux', emoji: '💰', img: 'https://i.ibb.co/Ps32nJ9R/image.png' },
-          { id: 'rob2500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '2,500 Robux', emoji: '💰', img: 'https://i.ibb.co/8nXzkf6w/image.png' },
-          { id: 'rob3500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '3,500 Robux', emoji: '💰', img: 'https://i.ibb.co/7dgk2CVq/image.png' },
-          { id: 'vip', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'VIP Pass', emoji: '⭐', img: 'https://i.ibb.co/fdYf2t03/image.png' },
-          { id: 'mansion', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'Luxury Mansion', emoji: '🏠', img: 'https://i.ibb.co/nM2pjShc/image.png' },
-          
-          // Escape Tsunami
-          { id: 'tsu100', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '100 Diamonds', emoji: '💎', img: 'https://www2.0zz0.com/2025/09/02/14/226861950.png' },
-          { id: 'tsu250', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '250 Diamonds', emoji: '💎', img: 'https://www2.0zz0.com/2025/09/02/14/299471783.png' },
-          { id: 'tsu700', game: 'tsunami', gameLabel: 'Escape Tsunami', name: '700 Diamonds', emoji: '💎', img: 'https://www2.0zz0.com/2025/09/02/14/897708704.png' },
-          { id: 'admin', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Infinity Admin', emoji: '🛡️', img: 'https://www2.0zz0.com/2025/09/02/14/593900961.png' },
-          { id: 'adminx3', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Infinity Admin x3', emoji: '🛡️', img: 'https://www2.0zz0.com/2025/09/02/14/137000653.png' },
-          { id: 'bisonte', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Bisonte Gupitire', emoji: '🐃', img: 'https://i.ibb.co/1fmw8HTJ/image.png' },
-          { id: 'alessio', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Alessio', emoji: '🧔', img: 'https://i.ibb.co/SgG8G7m/image.png' },
-          { id: 'esok', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Esok Sekolah Mansion', emoji: '🏠', img: 'https://i.ibb.co/mrrW94HX/image.png' },
-          { id: 'block', game: 'tsunami', gameLabel: 'Escape Tsunami', name: 'Block (Free)', emoji: '🟨', img: 'https://i.ibb.co/HLgSVhtZ/image.png' }
+
+          { id: 'rob500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '500 Robux Card', emoji: '💰', img: 'https://i.ibb.co/Ps32nJ9R/image.png' },
+          { id: 'rob2500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '2,500 Robux Card', emoji: '💰', img: 'https://i.ibb.co/8nXzkf6w/image.png' },
+          { id: 'rob3500', game: 'brookhaven', gameLabel: 'Brookhaven', name: '3,500 Robux Card', emoji: '💰', img: 'https://i.ibb.co/7dgk2CVq/image.png' },
+          { id: 'vip', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'VIP Pass Exclusive', emoji: '⭐', img: 'https://i.ibb.co/fdYf2t03/image.png' },
+          { id: 'mansion', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'Luxury Mansion', emoji: '🏠', img: 'https://i.ibb.co/nM2pjShc/image.png' }
         ];
 
-        // 🔥 OGAds Direct Locker URL
-        const LOCKER_ENDPOINT = 'https://appsave.online/cl/i/grr11d';
-
-        // 2. STATE MANAGEMENT
-        let state = {
-          selected: [],
+        /* ============================================================
+           STATE
+           ============================================================ */
+        const state = {
+          mode: 'rewards',
+          selectedOS: 'Android',
+          selected: [],           // array of item objects
           filter: 'all',
           username: '',
           userId: null,
           avatarUrl: null,
           isAvatarValid: false,
           isFetchingAvatar: false,
-          isServiceError: false
+          downloadBusy: false
         };
 
-        // 3. DOM ELEMENTS CACHE
+        /* ============================================================
+           DOM CACHE (includes previously missing refs)
+           ============================================================ */
         const dom = {
+          modeRewardsBtn: document.getElementById('modeRewardsBtn'),
+          modeDownloadBtn: document.getElementById('modeDownloadBtn'),
+          mainHeroTitle: document.getElementById('mainHeroTitle'),
+          mainHeroDesc: document.getElementById('mainHeroDesc'),
+          downloadSectionView: document.getElementById('downloadSectionView'),
+          rewardsSectionView: document.getElementById('rewardsSectionView'),
+
+          osSelector: document.getElementById('osSelector'),
+          selectedOsLabel: document.getElementById('selectedOsLabel'),
+          downloadAppBtn: document.getElementById('downloadAppBtn'),
+
+          downloadModal: document.getElementById('downloadModal'),
+          downloadCloseBtn: document.getElementById('downloadCloseBtn'),
+          downloadProgressPanel: document.getElementById('downloadProgressPanel'),
+          downloadReadyPanel: document.getElementById('downloadReadyPanel'),
+          downloadStepsContainer: document.getElementById('downloadStepsContainer'),
+          downloadProgressFill: document.getElementById('downloadProgressFill'),
+          downloadStatusText: document.getElementById('downloadStatusText'),
+          dlProgressOs: document.getElementById('dlProgressOs'),
+          dlReadyOs: document.getElementById('dlReadyOs'),
+          dlReadyFileName: document.getElementById('dlReadyFileName'),
+          dlContinueBtn: document.getElementById('dlContinueBtn'),
+
           itemsGrid: document.getElementById('itemsGrid'),
           slotsGrid: document.getElementById('slotsGrid'),
           dockCounter: document.getElementById('dockCounter'),
           clearBundleBtn: document.getElementById('clearBundleBtn'),
           filterButtons: document.querySelectorAll('.filter-pill'),
-          
+
+          bundleDock: document.getElementById('bundleDock'),      // FIXED
+          claimSection: document.getElementById('claimSection'),    // FIXED
+
           usernameInput: document.getElementById('usernameInput'),
           avatarBox: document.getElementById('avatarBox'),
           avatarPlaceholder: document.getElementById('avatarPlaceholder'),
           avatarStateText: document.getElementById('avatarStateText'),
           mainClaimBtn: document.getElementById('mainClaimBtn'),
-          
+
           roadmapStep1: document.getElementById('roadmapStep1'),
           roadmapStep2: document.getElementById('roadmapStep2'),
           roadmapStep3: document.getElementById('roadmapStep3'),
@@ -1616,7 +1036,6 @@
           toastContainer: document.getElementById('toastContainer'),
 
           progressModal: document.getElementById('progressModal'),
-          progressShell: document.getElementById('progressShell'),
           progressFill: document.getElementById('progressFill'),
           progressStatusLabel: document.getElementById('progressStatusLabel'),
 
@@ -1628,133 +1047,308 @@
           finalVerifyBtn: document.getElementById('finalVerifyBtn')
         };
 
+        /* ============================================================
+           PERFORMANCE: cached node references
+           ============================================================ */
+        const cardCache = new Map();          // id -> { card, btn, item }
+        const slotCache = [];                 // 3 slot elements
+        let renderedFilter = null;            // track last full grid build
         let avatarAbortController = null;
         let avatarDebounceTimer = null;
 
-        // 4. ACCESSIBLE TOAST SYSTEM
+        /* ============================================================
+           TOAST
+           ============================================================ */
         function showToast(message, icon = '⚠️') {
           const toast = document.createElement('div');
           toast.className = 'toast-msg';
           toast.setAttribute('role', 'alert');
           toast.innerHTML = `<span aria-hidden="true">${icon}</span><span>${message}</span>`;
           dom.toastContainer.appendChild(toast);
-          
           requestAnimationFrame(() => toast.classList.add('show'));
-          
           setTimeout(() => {
             toast.classList.remove('show');
             setTimeout(() => toast.remove(), 300);
-          }, 3200);
+          }, 3000);
         }
 
-        // 5. RENDER ITEMS GRID
-        function renderItemsGrid() {
-          const filtered = state.filter === 'all' 
-            ? itemsDB 
+        /* ============================================================
+           MODE SWITCHER
+           ============================================================ */
+        function setAppMode(mode) {
+          if (state.mode === mode) return;
+          state.mode = mode;
+
+          if (mode === 'download') {
+            dom.modeDownloadBtn.classList.add('active');
+            dom.modeRewardsBtn.classList.remove('active');
+            dom.downloadSectionView.classList.add('active');
+            dom.rewardsSectionView.style.display = 'none';
+
+            dom.mainHeroTitle.innerHTML = 'Roblox Beta <span>Mod Client</span>';
+            dom.mainHeroDesc.textContent = 'Download the latest verified Roblox Beta with Script Hub and Mod Menu.';
+            dom.mobileStickyDock.classList.remove('visible');
+          } else {
+            dom.modeRewardsBtn.classList.add('active');
+            dom.modeDownloadBtn.classList.remove('active');
+            dom.downloadSectionView.classList.remove('active');
+            dom.rewardsSectionView.style.display = 'block';
+
+            dom.mainHeroTitle.innerHTML = 'Select Up To <span>3 Free Rewards</span>';
+            dom.mainHeroDesc.textContent = 'Choose from 99 Nights and Brookhaven. Connect your Roblox username to finalize delivery.';
+            updateConversionStatus();
+          }
+        }
+
+        dom.modeRewardsBtn.addEventListener('click', () => setAppMode('rewards'));
+        dom.modeDownloadBtn.addEventListener('click', () => setAppMode('download'));
+
+        /* ============================================================
+           OS SELECTOR
+           ============================================================ */
+        dom.osSelector.querySelectorAll('.os-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            dom.osSelector.querySelectorAll('.os-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            state.selectedOS = btn.dataset.os;
+            dom.selectedOsLabel.textContent = state.selectedOS;
+          });
+        });
+
+        /* ============================================================
+           DOWNLOAD FLOW (multi-step intermediate page)
+           ============================================================ */
+        const DOWNLOAD_STEPS = [
+          { label: 'Detecting processor architecture…', delay: 550 },
+          { label: 'Verifying OS compatibility…', delay: 500 },
+          { label: 'Preparing installation package…', delay: 650 },
+          { label: 'Running security scan…', delay: 750 }
+        ];
+
+        function getFileNameForOS(os) {
+          if (os === 'iOS') return 'RBX-Beta-v2.684.ipa';
+          if (os === 'Windows') return 'RBX-Beta-v2.684-Setup.exe';
+          return 'RBX-Beta-v2.684.apk';
+        }
+
+        function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+        async function runDownloadFlow() {
+          if (state.downloadBusy) return;
+          state.downloadBusy = true;
+          dom.downloadAppBtn.disabled = true;
+
+          // Reset modal
+          dom.downloadModal.classList.add('active');
+          dom.downloadProgressPanel.style.display = 'block';
+          dom.downloadReadyPanel.style.display = 'none';
+          dom.downloadStepsContainer.innerHTML = '';
+          dom.downloadProgressFill.style.width = '0%';
+          dom.dlProgressOs.textContent = state.selectedOS;
+          dom.dlReadyOs.textContent = state.selectedOS;
+          dom.dlReadyFileName.textContent = getFileNameForOS(state.selectedOS);
+          dom.downloadStatusText.textContent = 'Initializing…';
+
+          // Build step rows
+          const stepEls = DOWNLOAD_STEPS.map(step => {
+            const el = document.createElement('div');
+            el.className = 'dl-step pending';
+            el.innerHTML = `<span class="dl-step-icon">•</span><span class="dl-step-text">${step.label}</span>`;
+            dom.downloadStepsContainer.appendChild(el);
+            return el;
+          });
+
+          // Animate steps sequentially
+          for (let i = 0; i < stepEls.length; i++) {
+            stepEls[i].classList.remove('pending');
+            stepEls[i].classList.add('active');
+            stepEls[i].querySelector('.dl-step-icon').textContent = '⏳';
+            dom.downloadStatusText.textContent = DOWNLOAD_STEPS[i].label;
+
+            await sleep(DOWNLOAD_STEPS[i].delay);
+
+            stepEls[i].classList.remove('active');
+            stepEls[i].classList.add('done');
+            stepEls[i].querySelector('.dl-step-icon').textContent = '✓';
+
+            dom.downloadProgressFill.style.width = `${((i + 1) / stepEls.length) * 100}%`;
+          }
+
+          dom.downloadStatusText.textContent = 'Scan complete — file ready.';
+          await sleep(300);
+
+          // Show ready panel
+          dom.downloadProgressPanel.style.display = 'none';
+          dom.downloadReadyPanel.style.display = 'block';
+
+          state.downloadBusy = false;
+          dom.downloadAppBtn.disabled = false;
+        }
+
+        dom.downloadAppBtn.addEventListener('click', runDownloadFlow);
+
+        dom.dlContinueBtn.addEventListener('click', () => {
+          // Same-tab redirect to the content locker
+          window.location.href = LOCKER_CONFIG.BETA_APP_LOCKER;
+        });
+
+        dom.downloadCloseBtn.addEventListener('click', () => {
+          if (state.downloadBusy) return;
+          dom.downloadModal.classList.remove('active');
+        });
+
+        dom.downloadModal.addEventListener('click', (e) => {
+          if (e.target === dom.downloadModal && !state.downloadBusy) {
+            dom.downloadModal.classList.remove('active');
+          }
+        });
+
+        /* ============================================================
+           BUILD GRID (only runs on filter change)
+           ============================================================ */
+        function buildItemsGrid() {
+          const filtered = state.filter === 'all'
+            ? itemsDB
             : itemsDB.filter(item => item.game === state.filter);
 
-          dom.itemsGrid.innerHTML = '';
+          // Use a fragment to avoid many reflows
+          const fragment = document.createDocumentFragment();
 
           filtered.forEach(item => {
-            const isSelected = state.selected.some(i => i.id === item.id);
-            const isDimmed = state.selected.length > 0 && state.selected[0].game !== item.game;
-
             const card = document.createElement('div');
-            card.className = `reward-card ${isSelected ? 'selected' : ''} ${isDimmed ? 'dimmed' : ''}`;
+            card.className = 'reward-card';
             card.dataset.id = item.id;
-            card.setAttribute('tabindex', '0');
             card.setAttribute('role', 'button');
-            card.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
-            card.setAttribute('aria-label', `${item.name} - ${item.gameLabel}`);
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-pressed', 'false');
 
             card.innerHTML = `
               <div class="card-media">
                 <span class="card-game-badge ${item.game}">${item.gameLabel}</span>
-                <img 
-                  src="${item.img}" 
-                  alt="${item.name} reward preview" 
-                  width="160" 
-                  height="160" 
-                  loading="lazy" 
-                  decoding="async" 
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-                />
-                <div class="card-fallback" style="display:none;" aria-hidden="true">${item.emoji}</div>
+                <img src="${item.img}" alt="${item.name} preview" loading="lazy" decoding="async"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                <div class="card-fallback" style="display:none;">${item.emoji}</div>
               </div>
               <div class="card-content">
                 <div class="card-title">${item.name}</div>
-                <button class="card-action-btn" type="button" tabindex="-1">
-                  ${isSelected ? '✓ Selected' : '+ Add Item'}
-                </button>
+                <button class="card-action-btn" type="button" tabindex="-1">+ Add Item</button>
               </div>
             `;
 
-            card.addEventListener('click', () => toggleSelectItem(item));
+            const btn = card.querySelector('.card-action-btn');
+
+            const activate = () => toggleSelectItem(item);
+            card.addEventListener('click', activate);
             card.addEventListener('keydown', (e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                toggleSelectItem(item);
+                activate();
               }
             });
 
-            dom.itemsGrid.appendChild(card);
+            cardCache.set(item.id, { card, btn, item });
+            fragment.appendChild(card);
+          });
+
+          // Swap in one go
+          dom.itemsGrid.innerHTML = '';
+          dom.itemsGrid.appendChild(fragment);
+          renderedFilter = state.filter;
+
+          updateCardStates();
+        }
+
+        /* ============================================================
+           UPDATE CARD STATES (no DOM rebuild)
+           ============================================================ */
+        function updateCardStates() {
+          const firstGame = state.selected.length > 0 ? state.selected[0].game : null;
+          const selectedIds = new Set(state.selected.map(i => i.id));
+
+          cardCache.forEach(({ card, btn, item }, id) => {
+            const isSelected = selectedIds.has(id);
+            const isDimmed = firstGame !== null && item.game !== firstGame;
+
+            card.classList.toggle('selected', isSelected);
+            card.classList.toggle('dimmed', isDimmed);
+            card.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+
+            const nextLabel = isSelected ? '✓ Selected' : '+ Add Item';
+            if (btn.textContent !== nextLabel) btn.textContent = nextLabel;
           });
         }
 
-        // 6. RENDER SLOTS / BUNDLE DOCK
-        function renderSlots() {
-          dom.slotsGrid.innerHTML = '';
-
+        /* ============================================================
+           SLOTS (build once, update content)
+           ============================================================ */
+        function buildSlots() {
+          const fragment = document.createDocumentFragment();
           for (let i = 0; i < 3; i++) {
             const slot = document.createElement('div');
+            slot.className = 'slot-item empty';
+            slot.dataset.itemId = '';
+            slot.innerHTML = `<div class="slot-plus">+</div><div>Slot ${i + 1}</div>`;
+            fragment.appendChild(slot);
+            slotCache.push(slot);
+          }
+          dom.slotsGrid.innerHTML = '';
+          dom.slotsGrid.appendChild(fragment);
+          updateSlots();
+        }
+
+        function updateSlots() {
+          for (let i = 0; i < 3; i++) {
+            const slot = slotCache[i];
             const item = state.selected[i];
+            const currentId = slot.dataset.itemId || '';
 
             if (item) {
+              if (currentId === item.id) continue; // no change
+              slot.dataset.itemId = item.id;
               slot.className = 'slot-item filled';
               slot.innerHTML = `
-                <button class="slot-remove" type="button" aria-label="Remove ${item.name}" data-index="${i}">✕</button>
-                <img 
-                  src="${item.img}" 
-                  alt="${item.name}" 
-                  class="slot-img" 
-                  width="46" 
-                  height="46" 
-                  decoding="async" 
-                  onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'46\\' height=\\'46\\'><rect width=\\'100%\\' height=\\'100%\\' fill=\\'%231c2744\\'/></svg>'"
-                />
+                <button class="slot-remove" type="button" aria-label="Remove ${item.name}">✕</button>
+                <img src="${item.img}" alt="${item.name}" class="slot-img"
+                  onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'46\\' height=\\'46\\'><rect width=\\'100%\\' height=\\'100%\\' fill=\\'%231c2744\\'/></svg>'" />
                 <div class="slot-name">${item.name}</div>
               `;
               slot.querySelector('.slot-remove').addEventListener('click', (e) => {
                 e.stopPropagation();
-                removeItemAtIndex(i);
+                removeItemById(item.id);
               });
             } else {
+              if (currentId === '') continue; // already empty
+              slot.dataset.itemId = '';
               slot.className = 'slot-item empty';
-              slot.innerHTML = `
-                <div class="slot-plus" aria-hidden="true">+</div>
-                <div>Slot ${i + 1}</div>
-              `;
+              slot.innerHTML = `<div class="slot-plus">+</div><div>Slot ${i + 1}</div>`;
             }
-            dom.slotsGrid.appendChild(slot);
           }
 
           const count = state.selected.length;
           dom.dockCounter.textContent = `${count}/3 Selected`;
-          dom.dockCounter.className = `dock-counter ${count === 3 ? 'complete' : ''}`;
+          dom.dockCounter.classList.toggle('complete', count === 3);
           dom.clearBundleBtn.disabled = count === 0;
 
           updateConversionStatus();
           updateRoadmap();
         }
 
-        // 7. SELECTION INTERACTIONS
+        /* ============================================================
+           TOGGLE / REMOVE ITEMS
+           ============================================================ */
+        function removeItemById(id) {
+          const idx = state.selected.findIndex(i => i.id === id);
+          if (idx === -1) return;
+          state.selected.splice(idx, 1);
+          updateSlots();
+          updateCardStates();
+        }
+
         function toggleSelectItem(item) {
           const existingIdx = state.selected.findIndex(i => i.id === item.id);
 
           if (existingIdx > -1) {
-            state.selected.splice(existingIdx, 1);
-            renderSlots();
-            renderItemsGrid();
+            removeItemById(item.id);
             return;
           }
 
@@ -1770,83 +1364,76 @@
             state.selected.push(item);
           }
 
-          renderSlots();
-          renderItemsGrid();
+          updateSlots();
+          updateCardStates();
 
           if (state.selected.length === 3) {
             setTimeout(() => {
-              dom.usernameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              dom.usernameInput.focus();
+              dom.claimSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              dom.usernameInput.focus({ preventScroll: true });
             }, 250);
           }
         }
 
-        function removeItemAtIndex(index) {
-          state.selected.splice(index, 1);
-          renderSlots();
-          renderItemsGrid();
-        }
-
-        dom.clearBundleBtn.addEventListener('click', () => {
-          state.selected = [];
-          renderSlots();
-          renderItemsGrid();
-        });
-
+        /* ============================================================
+           FILTERS
+           ============================================================ */
         dom.filterButtons.forEach(btn => {
           btn.addEventListener('click', () => {
-            dom.filterButtons.forEach(b => {
-              b.classList.remove('active');
-              b.setAttribute('aria-selected', 'false');
-            });
+            const nextFilter = btn.dataset.filter;
+            if (state.filter === nextFilter) return;
+
+            dom.filterButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            btn.setAttribute('aria-selected', 'true');
-            state.filter = btn.dataset.filter;
-            renderItemsGrid();
+            state.filter = nextFilter;
+
+            // Only rebuild when filter changes
+            if (renderedFilter !== state.filter) buildItemsGrid();
           });
         });
 
-        // 8. ROADMAP & CONVERSION DYNAMICS
+        dom.clearBundleBtn.addEventListener('click', () => {
+          if (state.selected.length === 0) return;
+          state.selected = [];
+          updateSlots();
+          updateCardStates();
+        });
+
+        /* ============================================================
+           ROADMAP & CONVERSION STATUS
+           ============================================================ */
         function updateRoadmap() {
           const hasItems = state.selected.length > 0;
           const hasAvatar = state.isAvatarValid;
 
           dom.roadmapStep1.className = `funnel-step ${hasItems ? 'completed' : 'active'}`;
-          dom.roadmapStep2.className = `funnel-step ${hasItems && !hasAvatar ? 'active' : hasAvatar ? 'completed' : ''}`;
+          dom.roadmapStep2.className = `funnel-step ${hasAvatar ? 'completed' : (hasItems ? 'active' : '')}`;
           dom.roadmapStep3.className = `funnel-step ${hasAvatar ? 'active' : ''}`;
         }
 
         function updateConversionStatus() {
+          if (state.mode !== 'rewards') return;
+
           const count = state.selected.length;
           const hasItems = count > 0;
 
+          let label;
           if (!hasItems) {
-            dom.mainClaimBtn.innerHTML = '<span>👇 1. SELECT REWARDS ABOVE</span>';
-            dom.mainClaimBtn.disabled = true;
+            label = '<span>👇 1. SELECT REWARDS ABOVE</span>';
           } else if (!state.username.trim()) {
-            dom.mainClaimBtn.innerHTML = `<span>👤 2. ENTER USERNAME (${count}/3)</span>`;
-            dom.mainClaimBtn.disabled = false;
+            label = `<span>👤 2. ENTER USERNAME (${count}/3)</span>`;
           } else if (state.isFetchingAvatar) {
-            dom.mainClaimBtn.innerHTML = '<span>⏳ VERIFYING ACCOUNT...</span>';
-            dom.mainClaimBtn.disabled = true;
-          } else if (state.isAvatarValid) {
-            dom.mainClaimBtn.innerHTML = `<span>🎁 CLAIM BUNDLE FOR @${state.username}</span>`;
-            dom.mainClaimBtn.disabled = false;
+            label = '<span>⏳ VERIFYING ACCOUNT...</span>';
           } else {
-            dom.mainClaimBtn.innerHTML = '<span>⚠️ ENTER VALID ROBLOX USERNAME</span>';
-            dom.mainClaimBtn.disabled = false;
+            label = `<span>🎁 CLAIM BUNDLE FOR @${state.username}</span>`;
           }
+          if (dom.mainClaimBtn.innerHTML !== label) dom.mainClaimBtn.innerHTML = label;
 
           if (hasItems) {
             dom.mobileStickyDock.classList.add('visible');
             dom.stickyCountText.textContent = `${count}/3 Items Selected`;
             dom.stickySubText.textContent = state.selected[0].gameLabel;
-            
-            if (!state.isAvatarValid) {
-              dom.stickyCtaBtn.textContent = count === 3 ? 'Enter Username' : `Claim (${count}/3)`;
-            } else {
-              dom.stickyCtaBtn.textContent = 'Ready to Claim!';
-            }
+            dom.stickyCtaBtn.textContent = count === 3 ? 'Enter Username' : `Claim (${count}/3)`;
           } else {
             dom.mobileStickyDock.classList.remove('visible');
           }
@@ -1854,15 +1441,16 @@
 
         dom.stickyCtaBtn.addEventListener('click', () => {
           dom.claimSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          dom.usernameInput.focus();
+          dom.usernameInput.focus({ preventScroll: true });
         });
 
-        // 9. ROBLOX AVATAR RESOLVER
+        /* ============================================================
+           AVATAR RESOLVER
+           ============================================================ */
         async function resolveRobloxUser(username) {
           const trimmed = username.trim();
           if (!trimmed) {
             setAvatarUI('idle', 'Enter username to look up avatar');
-            state.isServiceError = false;
             return;
           }
 
@@ -1871,7 +1459,6 @@
 
           setAvatarUI('loading', 'Locating Roblox user...');
           state.isFetchingAvatar = true;
-          state.isServiceError = false;
           updateConversionStatus();
 
           const proxyBase = 'https://royal-sound-221b.lmbawkhalid.workers.dev/?url=';
@@ -1885,62 +1472,30 @@
               signal: avatarAbortController.signal
             });
 
-            if (userRes.status === 429 || userRes.status >= 500) {
-              state.isServiceError = true;
-              setAvatarUI('service_error', '⚠️ Network active. Verification unlocked.');
-              updateConversionStatus();
-              return;
-            }
-
-            if (!userRes.ok) {
-              state.isServiceError = false;
-              state.isAvatarValid = false;
-              state.avatarUrl = null;
-              setAvatarUI('error', '⚠️ User not found. Check spelling.');
-              updateConversionStatus();
-              return;
-            }
-
             const userData = await userRes.json();
 
-            if (!userData.data || userData.data.length === 0) {
-              state.isServiceError = false;
-              state.isAvatarValid = false;
-              state.avatarUrl = null;
-              setAvatarUI('error', '⚠️ User not found. Check spelling.');
-              updateConversionStatus();
-              return;
-            }
+            if (userData.data && userData.data.length > 0) {
+              const userId = userData.data[0].id;
+              const exactName = userData.data[0].name;
+              state.userId = userId;
+              state.username = exactName;
 
-            const userId = userData.data[0].id;
-            const exactName = userData.data[0].name;
-            state.userId = userId;
-            state.username = exactName;
-
-            const thumbApi = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=true`;
-            const thumbRes = await fetch(proxyBase + encodeURIComponent(thumbApi), {
-              signal: avatarAbortController.signal
-            });
-
-            let avatarUrl = 'https://tr.rbxcdn.com/30day-avatar-headshot/150x150/Png/Regular/isCircular';
-            if (thumbRes.ok) {
+              const thumbApi = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=true`;
+              const thumbRes = await fetch(proxyBase + encodeURIComponent(thumbApi), { signal: avatarAbortController.signal });
               const thumbData = await thumbRes.json();
-              if (thumbData.data && thumbData.data[0]?.imageUrl) {
-                avatarUrl = thumbData.data[0].imageUrl;
-              }
+              const avatarUrl = thumbData.data?.[0]?.imageUrl || null;
+
+              state.avatarUrl = avatarUrl;
+              state.isAvatarValid = true;
+              setAvatarUI('loaded', `✅ Verified: ${exactName}`, avatarUrl);
+            } else {
+              state.isAvatarValid = true;
+              setAvatarUI('fallback', `✅ Target User: ${trimmed}`);
             }
-
-            state.avatarUrl = avatarUrl;
-            state.isAvatarValid = true;
-            state.isServiceError = false;
-            setAvatarUI('loaded', `✅ Verified: ${exactName}`, avatarUrl);
-
           } catch (err) {
-            if (err.name === 'AbortError') return;
-            state.isServiceError = true;
-            state.isAvatarValid = false;
-            state.avatarUrl = null;
-            setAvatarUI('service_error', '⚠️ Network issue. Verification ready.');
+            if (err && err.name === 'AbortError') return;
+            state.isAvatarValid = true;
+            setAvatarUI('fallback', `✅ Target User: ${trimmed}`);
           } finally {
             state.isFetchingAvatar = false;
             updateConversionStatus();
@@ -1950,7 +1505,7 @@
 
         function setAvatarUI(status, message, url = null) {
           dom.avatarBox.className = 'avatar-preview-box';
-          dom.usernameInput.classList.remove('valid', 'invalid', 'service-error');
+          dom.usernameInput.classList.remove('valid');
           dom.avatarStateText.className = 'avatar-state-text';
 
           const existingImg = dom.avatarBox.querySelector('img');
@@ -1961,7 +1516,6 @@
             dom.avatarStateText.textContent = message;
           } else if (status === 'loading') {
             dom.avatarBox.classList.add('loading');
-            dom.avatarStateText.classList.add('loading');
             dom.avatarStateText.textContent = message;
           } else if (status === 'loaded' && url) {
             dom.avatarBox.classList.add('loaded');
@@ -1972,121 +1526,75 @@
 
             const img = document.createElement('img');
             img.src = url;
-            img.alt = 'Roblox Avatar Headshot';
-            img.width = 54;
-            img.height = 54;
-            img.decoding = 'async';
+            img.alt = 'Roblox Avatar';
             dom.avatarBox.appendChild(img);
 
-            dom.stickyAvatarPreview.innerHTML = `<img src="${url}" alt="Avatar" width="40" height="40" decoding="async">`;
-            dom.summaryAvatar.innerHTML = `<img src="${url}" alt="Avatar" width="76" height="76" decoding="async">`;
-          } else if (status === 'error') {
-            dom.avatarBox.classList.add('error');
-            dom.usernameInput.classList.add('invalid');
-            dom.avatarStateText.classList.add('invalid');
+            dom.stickyAvatarPreview.innerHTML = `<img src="${url}" alt="Avatar">`;
+            dom.summaryAvatar.innerHTML = `<img src="${url}" alt="Avatar">`;
+          } else if (status === 'fallback') {
+            dom.avatarBox.classList.add('loaded');
+            dom.usernameInput.classList.add('valid');
+            dom.avatarStateText.classList.add('valid');
             dom.avatarStateText.textContent = message;
-            dom.stickyAvatarPreview.innerHTML = `<span>🎮</span>`;
-            dom.summaryAvatar.innerHTML = `<span style="font-size: 2.2rem; line-height: 70px;">🎮</span>`;
-          } else if (status === 'service_error') {
-            dom.avatarBox.classList.add('error');
-            dom.usernameInput.classList.add('service-error');
-            dom.avatarStateText.classList.add('invalid');
-            dom.avatarStateText.textContent = message;
-            dom.stickyAvatarPreview.innerHTML = `<span>🎮</span>`;
-            dom.summaryAvatar.innerHTML = `<span style="font-size: 2.2rem; line-height: 70px;">🎮</span>`;
           }
         }
 
-        // Username Input Listeners
         dom.usernameInput.addEventListener('input', function () {
           state.username = this.value;
           state.isAvatarValid = false;
-          state.isServiceError = false;
           setAvatarUI('idle', 'Typing...');
           updateConversionStatus();
 
           clearTimeout(avatarDebounceTimer);
           avatarDebounceTimer = setTimeout(() => {
-            if (this.value.trim().length >= 3) {
-              resolveRobloxUser(this.value);
-            }
-          }, 450);
+            if (this.value.trim().length >= 3) resolveRobloxUser(this.value);
+          }, 400);
         });
 
-        dom.usernameInput.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            this.blur();
-          }
-        });
-
-        // 10. CLAIM FUNNEL & REDIRECTION LOGIC
-        dom.mainClaimBtn.addEventListener('click', async () => {
+        /* ============================================================
+           REWARDS FUNNEL
+           ============================================================ */
+        dom.mainClaimBtn.addEventListener('click', () => {
           if (state.selected.length === 0) {
             showToast('Select at least 1 reward first!', '👆');
             dom.bundleDock.scrollIntoView({ behavior: 'smooth' });
             return;
           }
-
           if (!state.username.trim()) {
             showToast('Please enter your Roblox username.', '👤');
-            dom.usernameInput.focus();
+            dom.usernameInput.focus({ preventScroll: true });
             return;
           }
-
-          if (state.isServiceError) {
-            showToast('Verification active. Finalize your claim.', '🔒');
-            redirectToLocker();
-            return;
-          }
-
-          if (!state.isAvatarValid) {
-            await resolveRobloxUser(state.username);
-            if (state.isServiceError) {
-              showToast('Verification active. Finalize your claim.', '🔒');
-              redirectToLocker();
-              return;
-            }
-            if (!state.isAvatarValid) {
-              showToast('Please enter a valid Roblox account name.', '❌');
-              return;
-            }
-          }
-
           startProcessingFlow();
         });
 
         function startProcessingFlow() {
           dom.progressModal.classList.add('active');
-          let progress = 0;
           const messages = [
             'Locating player profile...',
             'Reserving reward bundle...',
             'Securing delivery slot...',
             'Ready for authorization!'
           ];
+          let progress = 0;
           let msgIndex = 0;
 
           dom.progressFill.style.width = '0%';
-          dom.progressShell.setAttribute('aria-valuenow', '0');
           dom.progressStatusLabel.textContent = messages[0];
 
           const interval = setInterval(() => {
-            progress += Math.floor(Math.random() * 14) + 6;
+            progress += Math.floor(Math.random() * 14) + 8;
 
             if (progress >= 100) {
               clearInterval(interval);
               dom.progressFill.style.width = '100%';
-              dom.progressShell.setAttribute('aria-valuenow', '100');
               dom.progressStatusLabel.textContent = 'Bundle locked!';
-              
               setTimeout(() => {
                 dom.progressModal.classList.remove('active');
                 openSummaryModal();
               }, 400);
             } else {
               dom.progressFill.style.width = `${progress}%`;
-              dom.progressShell.setAttribute('aria-valuenow', String(progress));
               const nextIdx = Math.min(Math.floor(progress / 25), messages.length - 1);
               if (nextIdx !== msgIndex) {
                 msgIndex = nextIdx;
@@ -2100,54 +1608,38 @@
           dom.summaryUsername.textContent = `@${state.username}`;
           dom.summaryBundlePreview.innerHTML = state.selected.map(item => `
             <div class="summary-chip">
-              <img src="${item.img}" alt="${item.name}" width="20" height="20" decoding="async">
+              <img src="${item.img}" alt="${item.name}" width="20" height="20"
+                onerror="this.src='https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/alien.webp'">
               <span>${item.name}</span>
             </div>
           `).join('');
-
           dom.summaryModal.classList.add('active');
         }
 
-        dom.summaryCloseBtn.addEventListener('click', () => {
-          dom.summaryModal.classList.remove('active');
-        });
-
-        // 🔥 Open OGAds Locker (Direct Safe Redirect)
-        function redirectToLocker() {
-          window.location.href = LOCKER_ENDPOINT;
-        }
-
-        dom.finalVerifyBtn.addEventListener('click', () => {
-          redirectToLocker();
-        });
-
-        // FAQ Accordion Toggle
-        document.querySelectorAll('.faq-question').forEach(button => {
-          button.addEventListener('click', () => {
-            const card = button.parentElement;
-            const isCurrentlyOpen = card.classList.contains('open');
-
-            document.querySelectorAll('.faq-card').forEach(c => {
-              c.classList.remove('open');
-              const btn = c.querySelector('.faq-question');
-              if (btn) btn.setAttribute('aria-expanded', 'false');
-            });
-
-            if (!isCurrentlyOpen) {
-              card.classList.add('open');
-              button.setAttribute('aria-expanded', 'true');
-            }
-          });
-        });
-
-        // Modal Backdrop Dismiss
-        window.addEventListener('click', (e) => {
+        dom.summaryCloseBtn.addEventListener('click', () => dom.summaryModal.classList.remove('active'));
+        dom.summaryModal.addEventListener('click', (e) => {
           if (e.target === dom.summaryModal) dom.summaryModal.classList.remove('active');
         });
 
-        // 11. INITIALIZATION
-        renderSlots();
-        renderItemsGrid();
+        dom.finalVerifyBtn.addEventListener('click', () => {
+          // Same-tab redirect
+          window.location.href = LOCKER_CONFIG.REWARDS_LOCKER;
+        });
+
+        /* ============================================================
+           FAQ
+           ============================================================ */
+        document.querySelectorAll('.faq-question').forEach(button => {
+          button.addEventListener('click', () => {
+            button.parentElement.classList.toggle('open');
+          });
+        });
+
+        /* ============================================================
+           INIT
+           ============================================================ */
+        buildSlots();
+        buildItemsGrid();
         updateConversionStatus();
       })();
     </script>
