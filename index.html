@@ -2,933 +2,718 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-    <title>RBX Hub — Free Rewards &amp; Beta Client</title>
-    <meta name="description" content="Claim verified Roblox in-game rewards, Diamonds, Robux passes, or download the latest Roblox Beta Mod APK & Client for mobile and PC." />
-    <meta name="theme-color" content="#090d16" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Roblox Rewards</title>
+    <meta name="description" content="Claim verified Roblox rewards or download the latest Roblox Beta client." />
+    <meta name="theme-color" content="#191b1d" />
+    <meta name="robots" content="noindex, nofollow" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --bg-main: #090d16;
-        --bg-surface: #0f1524;
-        --bg-card: #151d32;
-        --bg-card-hover: #1c2744;
-        --bg-glass: rgba(15, 21, 36, 0.88);
-
-        --border-subtle: rgba(255, 255, 255, 0.1);
-        --border-focus: rgba(255, 255, 255, 0.28);
-
-        --accent-primary: #ff4757;
-        --accent-primary-hover: #ff6b81;
-        --accent-gradient: linear-gradient(135deg, #ff4757 0%, #ff6b81 50%, #ffa502 100%);
-        --accent-green: linear-gradient(135deg, #00f076 0%, #00b894 100%);
-
-        --success: #00f076;
-        --success-glow: rgba(0, 240, 118, 0.25);
-        --warning: #ffa502;
-        --error: #ff3838;
-
-        --nights-accent: #a855f7;
-        --brook-accent: #f59e0b;
-
-        --text-main: #ffffff;
-        --text-muted: #94a3b8;
-        --text-sub: #7b8ba5;
-
-        --radius-sm: 10px;
-        --radius-md: 16px;
-        --radius-lg: 24px;
-        --radius-pill: 9999px;
-
-        --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-        --shadow-glow: 0 0 25px rgba(255, 71, 87, 0.35);
-        --shadow-green-glow: 0 0 25px rgba(0, 240, 118, 0.35);
-
-        --font-display: 'Fredoka', cursive, sans-serif;
-        --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        --bg: #191b1d;
+        --surface: #232527;
+        --surface-2: #2c2f33;
+        --field: #141618;
+        --border: rgba(255, 255, 255, 0.09);
+        --border-strong: rgba(255, 255, 255, 0.2);
+        --text: #ffffff;
+        --muted: #9aa3ad;
+        --dim: #6b737d;
+        --red: #e2231a;
+        --red-hover: #c81c14;
+        --red-glow: rgba(226, 35, 26, 0.25);
+        --green: #00b06f;
+        --green-glow: rgba(0, 176, 111, 0.16);
+        --radius: 10px;
+        --radius-lg: 14px;
       }
 
       *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-      html { scroll-behavior: smooth; font-size: 16px; }
+      html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 
       body {
-        font-family: var(--font-body);
-        background-color: var(--bg-main);
-        color: var(--text-main);
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
         min-height: 100vh;
-        overflow-x: hidden;
         line-height: 1.5;
-        padding-bottom: 90px;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
       }
 
       body::before {
         content: '';
         position: fixed;
         inset: 0;
-        background:
-          radial-gradient(ellipse 70% 40% at 50% -10%, rgba(255, 71, 87, 0.12) 0%, transparent 70%),
-          radial-gradient(ellipse 50% 40% at 90% 60%, rgba(168, 85, 247, 0.08) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 40% at 10% 80%, rgba(0, 240, 118, 0.07) 0%, transparent 60%);
         pointer-events: none;
         z-index: 0;
+        background: radial-gradient(650px 320px at 50% -120px, rgba(226, 35, 26, 0.12), transparent 70%);
       }
 
+      button, input { font-family: inherit; }
       button:focus-visible, input:focus-visible, a:focus-visible {
-        outline: 2px solid var(--accent-primary);
+        outline: 2px solid var(--red);
         outline-offset: 2px;
       }
+      img { display: block; max-width: 100%; }
 
-      .container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; position: relative; z-index: 1; }
-
-      h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.2px; }
-
-      /* NAV */
-      .nav {
-        position: sticky; top: 0; z-index: 100;
-        background: var(--bg-glass);
-        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--border-subtle);
-        height: 64px; display: flex; align-items: center;
+      /* ---------- TOPBAR ---------- */
+      .topbar {
+        position: sticky; top: 0; z-index: 50;
+        height: 56px; display: flex; align-items: center;
+        background: rgba(25, 27, 29, 0.92);
+        backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border);
       }
-      .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-      .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-main); }
-      .brand-icon {
-        width: 38px; height: 38px; border-radius: 12px;
-        background: var(--accent-gradient);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1.2rem; box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
-      }
-      .brand-name { font-size: 1.25rem; font-weight: 700; }
-      .nav-status {
-        background: rgba(0, 240, 118, 0.12);
-        border: 1px solid rgba(0, 240, 118, 0.3);
-        color: var(--success); font-size: 0.75rem; font-weight: 700;
-        padding: 5px 12px; border-radius: var(--radius-pill);
-        display: flex; align-items: center; gap: 6px;
-      }
-      .pulse-dot {
-        width: 7px; height: 7px; background: var(--success); border-radius: 50%;
-        box-shadow: 0 0 8px var(--success);
-        animation: pulseAnimation 2s infinite ease-in-out;
-      }
-      @keyframes pulseAnimation {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.4; transform: scale(0.8); }
-      }
-
-      /* HERO */
-      .hero { text-align: center; padding: 24px 0 16px; }
-      .mode-switcher-wrap {
-        display: flex; background: var(--bg-surface);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-pill);
-        padding: 4px; max-width: 440px; margin: 0 auto 20px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-      }
-      .mode-toggle-btn {
-        flex: 1; padding: 10px 16px; border-radius: var(--radius-pill);
-        border: none; background: transparent; color: var(--text-muted);
-        font-family: var(--font-body); font-size: 0.85rem; font-weight: 700;
-        cursor: pointer; display: flex; align-items: center; justify-content: center;
-        gap: 8px; transition: all 0.25s ease;
-      }
-      .mode-toggle-btn.active { background: var(--accent-gradient); color: #fff; box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4); }
-      .mode-toggle-btn[data-mode="download"].active {
-        background: var(--accent-green); color: #000;
-        box-shadow: 0 4px 15px rgba(0, 240, 118, 0.35);
-      }
-      .hero-title {
-        font-size: clamp(1.85rem, 5vw, 2.75rem); line-height: 1.15; margin-bottom: 10px;
-        background: linear-gradient(180deg, #ffffff 30%, #c4cfec 100%);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      }
-      .hero-title span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-      .hero-desc { font-size: 0.95rem; color: var(--text-muted); max-width: 520px; margin: 0 auto 20px; }
-
-      /* DOWNLOAD SECTION */
-      .download-section-view { display: none; animation: tabFadeIn 0.3s ease-out forwards; }
-      .download-section-view.active { display: block; }
-      @keyframes tabFadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-
-      .app-download-card {
-        background: linear-gradient(180deg, var(--bg-surface) 0%, #0c1220 100%);
-        border: 2px solid rgba(0, 240, 118, 0.25);
-        border-radius: var(--radius-lg); padding: 30px 20px;
-        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
-        text-align: center; max-width: 640px; margin: 0 auto 36px;
-        position: relative; overflow: hidden;
-      }
-      .app-download-card::before {
-        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-        background: var(--accent-green);
-      }
-      .app-icon-wrap {
-        width: 88px; height: 88px; border-radius: 22px;
-        background: linear-gradient(135deg, #1f293d 0%, #0f172a 100%);
-        border: 2px solid var(--success); margin: 0 auto 16px;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 2.6rem; box-shadow: 0 0 25px var(--success-glow);
-        position: relative;
-      }
-      .app-live-tag {
-        position: absolute; bottom: -8px; background: var(--success); color: #000;
-        font-size: 0.65rem; font-weight: 800; padding: 2px 8px;
-        border-radius: var(--radius-pill); letter-spacing: 0.5px;
-      }
-      .app-title { font-size: 1.6rem; margin-bottom: 4px; }
-      .app-sub { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 18px; }
-      .app-badges-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
-      .app-chip {
-        background: var(--bg-card); border: 1px solid var(--border-subtle);
-        padding: 6px 12px; border-radius: var(--radius-pill);
-        font-size: 0.75rem; font-weight: 700; color: var(--text-muted);
-        display: flex; align-items: center; gap: 5px;
-      }
-      .app-chip strong { color: var(--success); }
-
-      .os-selector-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 480px; margin: 0 auto 24px; }
-      .os-btn {
-        background: var(--bg-card); border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-md); padding: 12px 8px;
-        color: var(--text-muted); font-family: var(--font-body);
-        font-size: 0.8rem; font-weight: 700; cursor: pointer;
-        display: flex; flex-direction: column; align-items: center; gap: 4px;
-        transition: all 0.2s ease;
-      }
-      .os-btn span:first-child { font-size: 1.25rem; }
-      .os-btn:hover { border-color: var(--border-focus); color: #fff; }
-      .os-btn.active {
-        border-color: var(--success); background: rgba(0, 240, 118, 0.08);
-        color: var(--success); box-shadow: 0 0 16px rgba(0, 240, 118, 0.2);
-      }
-
-      .features-highlight-box {
-        background: var(--bg-card); border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-md); padding: 16px; text-align: left; margin-bottom: 24px;
-      }
-      .features-highlight-title {
-        font-size: 0.82rem; font-weight: 800; text-transform: uppercase;
-        color: var(--text-sub); margin-bottom: 10px; letter-spacing: 0.5px;
-      }
-      .features-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-      @media (max-width: 480px) { .features-list { grid-template-columns: 1fr; } }
-      .feature-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 600; }
-      .feature-item-icon { color: var(--success); font-size: 0.95rem; }
-
-      .btn-download-glow {
-        background: var(--accent-green); color: #000;
-        font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
-        padding: 18px 24px; border-radius: var(--radius-md); border: none;
-        width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-        gap: 10px; box-shadow: var(--shadow-green-glow);
-        transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-      }
-      .btn-download-glow:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 240, 118, 0.5); }
-      .btn-download-glow:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-      /* REWARDS SECTION */
-      .rewards-section-view { animation: tabFadeIn 0.3s ease-out forwards; }
-
-      .funnel-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 640px; margin: 0 auto 24px; }
-      .funnel-step {
-        background: var(--bg-surface); border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-md); padding: 10px 8px;
-        display: flex; align-items: center; gap: 8px; text-align: left;
-        transition: all 0.3s ease;
-      }
-      .funnel-step.active { border-color: var(--accent-primary); background: rgba(255, 71, 87, 0.08); }
-      .funnel-step.completed { border-color: var(--success); background: rgba(0, 240, 118, 0.06); }
-      .step-badge {
-        width: 24px; height: 24px; border-radius: 50%;
-        background: var(--bg-card); border: 1px solid var(--border-subtle);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 0.75rem; font-weight: 700; color: var(--text-muted); flex-shrink: 0;
-      }
-      .funnel-step.active .step-badge { background: var(--accent-primary); color: #fff; border-color: transparent; }
-      .funnel-step.completed .step-badge { background: var(--success); color: #000; border-color: transparent; }
-      .step-text { display: flex; flex-direction: column; overflow: hidden; }
-      .step-label { font-size: 0.65rem; font-weight: 600; color: var(--text-sub); text-transform: uppercase; line-height: 1; margin-bottom: 2px; }
-      .step-title { font-size: 0.78rem; font-weight: 700; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-      .bundle-dock {
-        background: var(--bg-surface); border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-lg); padding: 16px; margin-bottom: 24px;
-        box-shadow: var(--shadow-card); position: relative;
-      }
-      .dock-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-      .dock-title-group { display: flex; align-items: center; gap: 8px; }
-      .dock-title { font-size: 0.95rem; font-weight: 700; }
-      .dock-counter {
-        background: rgba(255, 71, 87, 0.15); color: var(--accent-primary);
-        padding: 2px 8px; border-radius: var(--radius-pill);
-        font-size: 0.75rem; font-weight: 800;
-      }
-      .dock-counter.complete { background: rgba(0, 240, 118, 0.15); color: var(--success); }
-      .clear-btn {
-        background: transparent; border: 1px solid var(--border-subtle);
-        color: var(--text-muted); font-size: 0.75rem; font-weight: 600;
-        padding: 6px 12px; border-radius: var(--radius-pill); cursor: pointer;
-        min-height: 36px; transition: all 0.2s ease;
-      }
-      .clear-btn:hover:not(:disabled) { background: rgba(255, 71, 87, 0.15); color: var(--accent-primary); border-color: var(--accent-primary); }
-      .clear-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-
-      .slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-      .slot-item {
-        background: var(--bg-card); border: 2px dashed var(--border-subtle);
-        border-radius: var(--radius-md); padding: 10px;
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        min-height: 96px; position: relative;
-        transition: border-color 0.25s, background 0.25s;
-      }
-      .slot-item.empty { color: var(--text-sub); font-size: 0.75rem; font-weight: 600; text-align: center; }
-      .slot-item.empty .slot-plus { font-size: 1.3rem; color: var(--text-sub); margin-bottom: 2px; line-height: 1; }
-      .slot-item.filled {
-        border: 2px solid var(--success); background: rgba(0, 240, 118, 0.05);
-        animation: slotPop 0.3s ease-out;
-      }
-      @keyframes slotPop { 0% { transform: scale(0.92); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-      .slot-img { width: 46px; height: 46px; border-radius: 8px; object-fit: cover; margin-bottom: 4px; background: var(--bg-surface); }
-      .slot-name { font-size: 0.72rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; text-align: center; }
-      .slot-remove {
-        position: absolute; top: 6px; right: 6px; width: 22px; height: 22px;
-        border-radius: 50%; background: rgba(255, 71, 87, 0.9); color: #fff;
-        border: none; display: flex; align-items: center; justify-content: center;
-        font-size: 11px; font-weight: 700; cursor: pointer;
-        transition: transform 0.15s ease, background 0.15s ease;
-      }
-      .slot-remove::after { content: ''; position: absolute; inset: -11px; }
-      .slot-remove:hover { transform: scale(1.15); background: var(--accent-primary); }
-
-      .filter-wrapper {
-        margin-bottom: 18px; position: sticky; top: 64px; z-index: 90;
-        background: rgba(9, 13, 22, 0.95);
-        backdrop-filter: blur(12px); padding: 8px 0;
-      }
-      .filters-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
-      .filters-bar::-webkit-scrollbar { display: none; }
-      .filter-pill {
-        flex-shrink: 0; display: flex; align-items: center; gap: 6px;
-        padding: 10px 18px; min-height: 44px; border-radius: var(--radius-pill);
-        background: var(--bg-surface); border: 1px solid var(--border-subtle);
-        color: var(--text-muted); font-family: var(--font-body); font-size: 0.82rem;
-        font-weight: 700; cursor: pointer; transition: all 0.2s ease;
-      }
-      .filter-pill:hover { color: var(--text-main); border-color: var(--border-focus); }
-      .filter-pill.active { background: var(--text-main); color: var(--bg-main); border-color: var(--text-main); box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2); }
-      .filter-pill[data-filter="nights"].active { background: var(--nights-accent); color: #ffffff; border-color: var(--nights-accent); box-shadow: 0 4px 14px rgba(168, 85, 247, 0.35); }
-      .filter-pill[data-filter="brookhaven"].active { background: var(--brook-accent); color: #000000; border-color: var(--brook-accent); box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35); }
-
-      .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: 12px; margin-bottom: 36px; }
-      @media (max-width: 480px) { .items-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
-
-      .reward-card {
-        background: var(--bg-card); border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-md); overflow: hidden;
-        display: flex; flex-direction: column; cursor: pointer;
-        position: relative; user-select: none;
-        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
-        will-change: transform;
-      }
-      .reward-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--border-focus); }
-      .reward-card:active { transform: scale(0.98); }
-      .reward-card.selected { border: 2px solid var(--success); box-shadow: 0 0 20px var(--success-glow); background: rgba(0, 240, 118, 0.04); }
-      .reward-card.dimmed { opacity: 0.35; filter: grayscale(40%); }
-
-      .card-media {
-        position: relative; width: 100%; aspect-ratio: 1 / 1;
-        overflow: hidden; background: var(--bg-surface);
-        display: flex; align-items: center; justify-content: center;
-      }
-      .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-      .reward-card:hover .card-media img { transform: scale(1.06); }
-      .card-fallback { font-size: 2.8rem; }
-      .card-game-badge {
-        position: absolute; top: 8px; left: 8px;
-        font-size: 0.62rem; font-weight: 800; padding: 3px 8px;
-        border-radius: var(--radius-pill); text-transform: uppercase;
-        letter-spacing: 0.4px; backdrop-filter: blur(8px); z-index: 2;
-      }
-      .card-game-badge.nights { background: rgba(168, 85, 247, 0.85); color: #fff; }
-      .card-game-badge.brookhaven { background: rgba(245, 158, 11, 0.9); color: #000; }
-
-      .card-content { padding: 10px 12px 12px; display: flex; flex-direction: column; flex: 1; justify-content: space-between; }
-      .card-title { font-size: 0.85rem; font-weight: 700; line-height: 1.25; margin-bottom: 8px; color: var(--text-main); }
-      .card-action-btn {
-        width: 100%; padding: 8px 6px; min-height: 36px; border-radius: 8px;
-        font-size: 0.75rem; font-weight: 700; display: flex; align-items: center;
-        justify-content: center; gap: 4px; border: none; cursor: pointer;
-        transition: background 0.2s ease, color 0.2s ease;
-        background: rgba(255, 255, 255, 0.08); color: var(--text-main);
-      }
-      .reward-card:hover .card-action-btn { background: var(--accent-primary); color: #fff; }
-      .reward-card.selected .card-action-btn { background: var(--success); color: #000; font-weight: 800; }
-
-      /* CLAIM SECTION */
-      .claim-section {
-        background: linear-gradient(180deg, var(--bg-surface) 0%, #0c111e 100%);
-        border: 2px solid rgba(255, 71, 87, 0.25);
-        border-radius: var(--radius-lg); padding: 28px 20px; margin-bottom: 40px;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-        position: relative; overflow: hidden;
-      }
-      .claim-section::before {
-        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-        background: var(--accent-gradient);
-      }
-      .claim-header { text-align: center; margin-bottom: 20px; }
-      .claim-title { font-size: 1.4rem; margin-bottom: 4px; }
-      .claim-subtitle { font-size: 0.85rem; color: var(--text-muted); }
-      .claim-form-box { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-      .input-row { display: flex; align-items: center; gap: 12px; }
-      .input-wrap { position: relative; flex: 1; }
-      .input-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-sub); font-size: 1rem; pointer-events: none; }
-      .username-field {
-        width: 100%; background: var(--bg-main);
-        border: 2px solid var(--border-subtle); color: #fff;
-        font-family: var(--font-body); font-size: 0.95rem; font-weight: 600;
-        padding: 14px 16px 14px 44px; min-height: 48px;
-        border-radius: var(--radius-md); outline: none; transition: all 0.25s ease;
-      }
-      .username-field:focus { border-color: var(--accent-primary); box-shadow: 0 0 15px rgba(255, 71, 87, 0.25); }
-      .username-field.valid { border-color: var(--success); box-shadow: 0 0 15px var(--success-glow); }
-
-      .avatar-preview-box {
-        width: 54px; height: 54px; border-radius: 50%;
-        background: var(--bg-main); border: 2px solid var(--border-subtle);
-        display: flex; align-items: center; justify-content: center;
-        position: relative; flex-shrink: 0; overflow: hidden;
-        transition: border-color 0.3s, box-shadow 0.3s;
-      }
-      .avatar-preview-box img { width: 100%; height: 100%; object-fit: cover; }
-      .avatar-preview-box.loading { border-color: var(--warning); }
-      .avatar-preview-box.loaded { border-color: var(--success); box-shadow: 0 0 12px var(--success-glow); }
-
-      .avatar-state-text { font-size: 0.78rem; font-weight: 600; text-align: center; min-height: 18px; color: var(--text-muted); }
-      .avatar-state-text.valid { color: var(--success); }
-
-      .main-cta-btn {
-        background: var(--accent-gradient); color: #ffffff;
-        border: none; border-radius: var(--radius-md);
-        padding: 16px 24px; min-height: 54px;
-        font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
-        letter-spacing: 0.5px; cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        gap: 10px; box-shadow: var(--shadow-glow);
-        transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-        width: 100%;
-      }
-      .main-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 71, 87, 0.5); }
-
-      .trust-bullets { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 14px; font-size: 0.76rem; font-weight: 600; color: var(--text-muted); }
-      .trust-bullet { display: flex; align-items: center; gap: 5px; }
-
-      /* STICKY DOCK */
-      .mobile-sticky-dock {
-        position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
-        background: rgba(9, 13, 22, 0.94);
-        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-        border-top: 1px solid var(--border-subtle);
-        padding: 10px 16px 14px;
+      .topbar-inner {
+        width: 100%; max-width: 560px; margin: 0 auto; padding: 0 16px;
         display: flex; align-items: center; justify-content: space-between;
-        gap: 12px; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.5);
-        transform: translateY(100%);
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        will-change: transform;
       }
-      .mobile-sticky-dock.visible { transform: translateY(0); }
-      .sticky-bundle-info { display: flex; align-items: center; gap: 8px; }
-      .sticky-avatar-preview {
-        width: 40px; height: 40px; border-radius: 50%;
-        background: var(--bg-card); border: 1px solid var(--border-subtle);
+      .brand { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--text); }
+      .brand-mark { width: 26px; height: 26px; flex-shrink: 0; }
+      .brand-name { font-size: 1rem; font-weight: 800; letter-spacing: -0.3px; }
+      .status-pill {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 0.68rem; font-weight: 700; color: var(--green);
+        background: rgba(0, 176, 111, 0.1);
+        border: 1px solid rgba(0, 176, 111, 0.25);
+        padding: 5px 11px; border-radius: 999px; white-space: nowrap;
+      }
+      .dot {
+        width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+        box-shadow: 0 0 8px var(--green);
+        animation: pulse 2s ease-in-out infinite;
+      }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+      /* ---------- LAYOUT ---------- */
+      .container { width: 100%; max-width: 560px; margin: 0 auto; padding: 0 16px 40px; position: relative; z-index: 1; }
+
+      .view { display: none; animation: fadeIn 0.28s ease-out; }
+      .view.active { display: block; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+      /* ---------- HERO ---------- */
+      .hero { text-align: center; padding: 30px 0 22px; }
+      .hero-badge {
+        display: inline-flex; align-items: center; gap: 7px;
+        font-size: 0.71rem; font-weight: 700; color: var(--muted);
+        background: var(--surface); border: 1px solid var(--border);
+        padding: 5px 12px; border-radius: 999px; margin-bottom: 12px;
+        text-transform: uppercase; letter-spacing: 0.4px;
+      }
+      .hero h1 {
+        font-size: clamp(1.6rem, 6.5vw, 2.05rem);
+        font-weight: 800; letter-spacing: -0.6px; line-height: 1.15; margin-bottom: 9px;
+      }
+      .hero h1 .accent { color: var(--red); }
+      .hero p { font-size: 0.88rem; color: var(--muted); max-width: 400px; margin: 0 auto; }
+
+      /* ---------- SCARCITY BAR ---------- */
+      .scarcity-bar {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(226, 35, 26, 0.08);
+        border: 1px solid rgba(226, 35, 26, 0.28);
+        color: #ff9b8f;
+        font-size: 0.74rem;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 999px;
+        margin-bottom: 14px;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: border-color 0.3s ease;
+      }
+      .scarcity-dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: var(--red);
+        box-shadow: 0 0 8px var(--red);
+        animation: pulse 1.4s ease-in-out infinite;
+        flex-shrink: 0;
+      }
+      .scarcity-bar strong {
+        color: #ffffff; font-weight: 800;
+        font-variant-numeric: tabular-nums;
+        transition: color 0.3s ease;
+      }
+      .scarcity-sep { color: rgba(255, 255, 255, 0.25); }
+      .scarcity-claimed { color: #9aa3ad; font-size: 0.72rem; }
+      .scarcity-claimed span {
+        color: var(--green); font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+      .scarcity-bar.tick strong {
+        animation: flashRed 0.6s ease-out;
+      }
+      @keyframes flashRed {
+        0%   { color: #fff; transform: scale(1); }
+        30%  { color: var(--red); transform: scale(1.25); }
+        100% { color: #fff; transform: scale(1); }
+      }
+
+      /* ---------- CARDS ---------- */
+      .card {
+        background: var(--surface); border: 1px solid var(--border);
+        border-radius: var(--radius-lg); padding: 17px 16px; margin-bottom: 12px;
+      }
+      .card-label {
+        font-size: 0.7rem; font-weight: 800; letter-spacing: 0.7px;
+        text-transform: uppercase; color: var(--dim); margin-bottom: 12px;
+      }
+
+      /* ---------- USERNAME ---------- */
+      .input-row { display: flex; gap: 10px; align-items: center; }
+      .input-wrap { position: relative; flex: 1; min-width: 0; }
+      .input-wrap input {
+        width: 100%; height: 52px; background: var(--field);
+        border: 1.5px solid var(--border); border-radius: var(--radius);
+        color: var(--text); font-size: 0.95rem; font-weight: 600;
+        padding: 0 14px; outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      .input-wrap input::placeholder { color: #5c646d; font-weight: 500; }
+      .input-wrap input:focus { border-color: var(--red); box-shadow: 0 0 0 3px var(--red-glow); }
+      .input-wrap input.valid { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-glow); }
+
+      .avatar-box {
+        width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+        background: var(--field); border: 1.5px solid var(--border);
         display: flex; align-items: center; justify-content: center;
-        overflow: hidden; flex-shrink: 0;
+        overflow: hidden; color: var(--dim);
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
       }
-      .sticky-avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
-      .sticky-meta { display: flex; flex-direction: column; }
-      .sticky-count { font-size: 0.85rem; font-weight: 700; color: #fff; }
-      .sticky-sub { font-size: 0.72rem; color: var(--text-muted); }
-      .sticky-cta-btn {
-        flex: 1; max-width: 220px; min-height: 44px;
-        background: var(--accent-gradient); color: #fff;
-        border: none; padding: 12px 16px; border-radius: var(--radius-pill);
-        font-family: var(--font-display); font-size: 0.95rem; font-weight: 700;
-        cursor: pointer; text-align: center;
-        box-shadow: 0 4px 14px rgba(255, 71, 87, 0.4);
-      }
+      .avatar-box svg { width: 22px; height: 22px; }
+      .avatar-box img { width: 100%; height: 100%; object-fit: cover; }
+      .avatar-box.loading { border-color: #f59e0b; }
+      .avatar-box.loaded { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-glow); }
 
-      /* FAQ */
-      .section-heading { font-size: 1.35rem; margin-bottom: 18px; text-align: center; }
-      .faq-accordion { max-width: 680px; margin: 0 auto 40px; display: flex; flex-direction: column; gap: 10px; }
-      .faq-card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden; }
-      .faq-question {
-        width: 100%; background: transparent; border: none; color: var(--text-main);
-        font-family: inherit; text-align: left; padding: 16px 18px;
-        font-size: 0.92rem; font-weight: 700; cursor: pointer;
-        display: flex; justify-content: space-between; align-items: center;
-        user-select: none; min-height: 48px;
+      .hint {
+        font-size: 0.75rem; font-weight: 600; color: var(--dim);
+        margin-top: 10px; min-height: 17px; transition: color 0.2s ease;
       }
-      .faq-icon { font-size: 1.25rem; color: var(--accent-primary); transition: transform 0.25s ease; line-height: 1; flex-shrink: 0; margin-left: 10px; }
-      .faq-card.open .faq-icon { transform: rotate(45deg); }
-      .faq-answer { display: none; padding: 0 18px 16px; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
-      .faq-card.open .faq-answer { display: block; }
+      .hint.ok { color: var(--green); }
+      .hint.warn { color: #f59e0b; }
 
-      /* TOASTS */
-      .toast-container {
-        position: fixed; top: 75px; left: 50%; transform: translateX(-50%);
-        z-index: 1000; width: 90%; max-width: 400px; pointer-events: none;
+      /* ---------- AMOUNTS ---------- */
+      .amount-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .amount {
+        background: var(--field); border: 1.5px solid var(--border);
+        border-radius: var(--radius); padding: 14px 6px 12px;
+        display: flex; flex-direction: column; align-items: center; gap: 7px;
+        cursor: pointer; color: var(--muted);
+        transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
       }
-      .toast-msg {
-        background: var(--bg-card); border: 1px solid var(--accent-primary);
-        color: #fff; padding: 12px 18px; border-radius: var(--radius-pill);
-        font-size: 0.82rem; font-weight: 600;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-        display: flex; align-items: center; gap: 8px;
-        opacity: 0; transform: translateY(-20px);
-        transition: opacity 0.3s, transform 0.3s;
-        margin-bottom: 8px;
+      .amount img { width: 34px; height: 34px; object-fit: contain; }
+      .amount .amt { font-size: 1rem; font-weight: 800; color: var(--text); line-height: 1; letter-spacing: -0.3px; }
+      .amount .unit { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+      .amount:hover { border-color: var(--border-strong); }
+      .amount:active { transform: scale(0.97); }
+      .amount.active {
+        border-color: var(--red); background: rgba(226, 35, 26, 0.07);
+        box-shadow: 0 0 0 3px var(--red-glow);
       }
-      .toast-msg.show { opacity: 1; transform: translateY(0); }
+      .amount.active .unit { color: var(--red); }
 
-      /* MODALS */
-      .modal-overlay {
-        position: fixed; inset: 0;
-        background: rgba(4, 7, 13, 0.88);
-        backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      /* ---------- CTA ---------- */
+      .cta {
+        width: 100%; min-height: 58px; border: none; border-radius: var(--radius);
+        background: var(--red); color: #fff;
+        font-size: 1.02rem; font-weight: 800; letter-spacing: 0.3px;
+        cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 9px;
+        box-shadow: 0 8px 24px rgba(226, 35, 26, 0.26);
+        transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
+        margin-top: 4px;
+      }
+      .cta:hover { background: var(--red-hover); box-shadow: 0 10px 30px rgba(226, 35, 26, 0.36); }
+      .cta:active { transform: scale(0.985); }
+      .cta:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+      .cta svg { width: 19px; height: 19px; }
+
+      /* ---------- TRUST ---------- */
+      .trust {
+        display: flex; justify-content: center; align-items: center;
+        gap: 16px; flex-wrap: wrap; margin-top: 16px;
+        font-size: 0.72rem; font-weight: 600; color: var(--dim);
+      }
+      .trust-item { display: inline-flex; align-items: center; gap: 5px; }
+      .trust-item svg { width: 13px; height: 13px; color: var(--green); flex-shrink: 0; }
+
+      /* ---------- HOW IT WORKS ---------- */
+      .how-card {
+        background: var(--surface); border: 1px solid var(--border);
+        border-radius: var(--radius-lg); padding: 20px 18px; margin-top: 16px;
+      }
+      .how-head {
+        display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+      }
+      .how-head-icon {
+        width: 34px; height: 34px; border-radius: 9px;
+        background: rgba(226, 35, 26, 0.1);
+        border: 1px solid rgba(226, 35, 26, 0.28);
         display: flex; align-items: center; justify-content: center;
-        padding: 16px; z-index: 1000;
+        color: var(--red); flex-shrink: 0;
+      }
+      .how-head-icon svg { width: 17px; height: 17px; }
+      .how-head-text { display: flex; flex-direction: column; }
+      .how-head-text strong { font-size: 0.94rem; font-weight: 800; color: var(--text); line-height: 1.2; }
+      .how-head-text span { font-size: 0.72rem; color: var(--muted); font-weight: 600; }
+
+      .how-steps { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+      .how-step {
+        display: flex; align-items: flex-start; gap: 11px;
+      }
+      .how-step-num {
+        width: 24px; height: 24px; border-radius: 50%;
+        background: var(--field); border: 1.5px solid var(--border-strong);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.72rem; font-weight: 800; color: var(--text);
+        flex-shrink: 0; margin-top: 1px;
+      }
+      .how-step-body { flex: 1; min-width: 0; }
+      .how-step-body strong {
+        display: block; font-size: 0.83rem; font-weight: 700; color: var(--text); margin-bottom: 3px;
+      }
+      .how-step-body p {
+        font-size: 0.77rem; color: var(--muted); line-height: 1.5; margin: 0;
+      }
+
+      .how-why {
+        background: rgba(0, 176, 111, 0.05);
+        border: 1px solid rgba(0, 176, 111, 0.22);
+        border-radius: var(--radius);
+        padding: 13px 14px;
+        font-size: 0.78rem;
+        color: #a8e6c8;
+        line-height: 1.6;
+      }
+      .how-why strong {
+        display: block;
+        color: var(--green);
+        font-weight: 800;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        margin-bottom: 5px;
+      }
+      .how-why em {
+        color: #ffffff;
+        font-style: normal;
+        font-weight: 700;
+      }
+
+      /* ---------- APK ---------- */
+      .os-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+      .os {
+        background: var(--field); border: 1.5px solid var(--border);
+        border-radius: var(--radius); padding: 13px 6px;
+        display: flex; flex-direction: column; align-items: center; gap: 6px;
+        color: var(--muted); font-size: 0.74rem; font-weight: 700;
+        cursor: pointer; transition: all 0.18s ease;
+      }
+      .os svg { width: 20px; height: 20px; }
+      .os:hover { border-color: var(--border-strong); color: var(--text); }
+      .os.active { border-color: var(--red); background: rgba(226, 35, 26, 0.07); color: var(--text); box-shadow: 0 0 0 3px var(--red-glow); }
+
+      .file-row {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem;
+      }
+      .file-row:last-child { border-bottom: none; padding-bottom: 0; }
+      .file-row:first-child { padding-top: 0; }
+      .file-row span { color: var(--muted); font-weight: 600; }
+      .file-row strong { font-weight: 700; color: var(--text); word-break: break-all; text-align: right; }
+      .file-row strong.ok { color: var(--green); }
+
+      /* ---------- MODALS ---------- */
+      .modal {
+        position: fixed; inset: 0; z-index: 1000;
+        background: rgba(10, 11, 12, 0.86);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        display: flex; align-items: center; justify-content: center; padding: 16px;
         opacity: 0; visibility: hidden;
-        transition: opacity 0.25s ease, visibility 0.25s ease;
+        transition: opacity 0.22s ease, visibility 0.22s ease;
       }
-      .modal-overlay.active { opacity: 1; visibility: visible; }
-      .modal-window {
-        background: var(--bg-surface); border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-lg); width: 100%; max-width: 440px;
-        padding: 28px 24px; position: relative;
-        transform: scale(0.94); transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8); text-align: center;
+      .modal.active { opacity: 1; visibility: visible; }
+      .modal-box {
+        width: 100%; max-width: 420px; background: var(--surface);
+        border: 1px solid var(--border); border-radius: var(--radius-lg);
+        padding: 26px 20px; text-align: center;
+        transform: scale(0.96); transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
+        max-height: 90vh; overflow-y: auto;
       }
-      .modal-overlay.active .modal-window { transform: scale(1); }
-      .modal-close-icon {
-        position: absolute; top: 14px; right: 16px;
-        background: transparent; border: none; color: var(--text-sub);
-        font-size: 1.4rem; cursor: pointer; line-height: 1;
-        padding: 8px; min-width: 44px; min-height: 44px;
+      .modal.active .modal-box { transform: scale(1); }
+
+      .spinner {
+        width: 44px; height: 44px; margin: 0 auto 16px;
+        border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.08);
+        border-top-color: var(--red);
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+
+      .modal-box h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 5px; }
+      .modal-sub { font-size: 0.82rem; color: var(--muted); }
+
+      .bar {
+        height: 6px; background: var(--field); border: 1px solid var(--border);
+        border-radius: 999px; overflow: hidden; margin: 20px 0 10px;
+      }
+      .bar > i {
+        display: block; height: 100%; width: 0;
+        background: var(--red); border-radius: 999px;
+        transition: width 0.2s linear;
+      }
+      .bar > i.green { background: var(--green); }
+      .prog-status { font-size: 0.79rem; font-weight: 600; color: var(--muted); min-height: 20px; }
+
+      /* Final panel */
+      .final-avatar {
+        width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 14px;
+        border: 2px solid var(--green); overflow: hidden; background: var(--field);
+        box-shadow: 0 0 0 4px var(--green-glow);
         display: flex; align-items: center; justify-content: center;
+        font-size: 1.8rem; color: var(--dim);
       }
-      .modal-close-icon:hover { color: #fff; }
+      .final-avatar img { width: 100%; height: 100%; object-fit: cover; }
+      .final-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 16px; }
+      .final-sub strong { color: var(--green); font-weight: 700; }
 
-      .progress-bar-shell {
-        background: var(--bg-card); height: 10px; border-radius: var(--radius-pill);
-        overflow: hidden; margin: 18px 0 10px; border: 1px solid var(--border-subtle);
+      .final-chip {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--field); border: 1px solid var(--border);
+        border-radius: 999px; padding: 7px 14px 7px 8px;
+        font-size: 0.82rem; font-weight: 700; margin-bottom: 18px;
       }
-      .progress-bar-fill {
-        width: 0%; height: 100%; background: var(--accent-gradient);
-        border-radius: var(--radius-pill); transition: width 0.15s linear;
-      }
-      .progress-bar-fill.green { background: var(--accent-green); }
-      .progress-status-label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); min-height: 22px; }
+      .final-chip img { width: 22px; height: 22px; object-fit: contain; }
 
-      /* Download Modal Steps */
-      .dl-steps-container { display: flex; flex-direction: column; gap: 8px; margin: 18px 0; text-align: left; }
-      .dl-step {
+      .final-note {
+        background: rgba(226, 35, 26, 0.06);
+        border: 1px solid rgba(226, 35, 26, 0.22);
+        border-radius: var(--radius); padding: 13px 14px;
+        text-align: left; font-size: 0.79rem; color: #e6b3b0;
+        line-height: 1.55; margin-bottom: 18px;
+      }
+      .final-note strong { display: block; color: var(--red); font-weight: 800; margin-bottom: 4px; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+      .final-foot { font-size: 0.71rem; color: var(--dim); margin-top: 12px; }
+      .link-back {
+        background: none; border: none; color: var(--dim);
+        font-size: 0.74rem; font-weight: 600; cursor: pointer;
+        margin-top: 10px; text-decoration: underline; padding: 8px;
+      }
+      .link-back:hover { color: var(--muted); }
+
+      /* APK steps */
+      .steps { display: flex; flex-direction: column; gap: 8px; margin: 18px 0; text-align: left; }
+      .step {
         display: flex; align-items: center; gap: 10px;
-        padding: 10px 12px; border-radius: var(--radius-md);
-        background: var(--bg-card); border: 1px solid var(--border-subtle);
+        padding: 10px 12px; border-radius: var(--radius);
+        background: var(--field); border: 1px solid var(--border);
+        font-size: 0.8rem; font-weight: 600; color: var(--dim);
+        transition: all 0.25s ease;
+      }
+      .step.active { border-color: #f59e0b; background: rgba(245, 158, 11, 0.06); color: #f3c98b; }
+      .step.done { border-color: var(--green); background: rgba(0, 176, 111, 0.06); color: var(--green); }
+      .step-icon {
+        width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+        background: var(--surface-2); display: flex; align-items: center; justify-content: center;
+        font-size: 0.66rem; font-weight: 800;
+      }
+      .step.done .step-icon { background: var(--green); color: #000; }
+      .step.active .step-icon { background: #f59e0b; color: #000; }
+
+      /* ---------- TOAST ---------- */
+      .toast {
+        position: fixed; left: 50%; bottom: 26px; z-index: 2000;
+        transform: translate(-50%, 20px);
+        background: var(--surface-2); border: 1px solid var(--border-strong);
+        color: var(--text); padding: 12px 20px; border-radius: 999px;
         font-size: 0.82rem; font-weight: 600;
-        transition: border-color 0.25s, background 0.25s, color 0.25s;
+        display: flex; align-items: center; gap: 8px;
+        box-shadow: 0 12px 34px rgba(0, 0, 0, 0.55);
+        opacity: 0; pointer-events: none; max-width: 90vw;
+        transition: opacity 0.25s ease, transform 0.25s ease;
       }
-      .dl-step.pending { opacity: 0.55; }
-      .dl-step.active { border-color: var(--warning); background: rgba(255, 165, 2, 0.06); color: #ffd27a; }
-      .dl-step.done { border-color: var(--success); background: rgba(0, 240, 118, 0.06); color: var(--success); }
-      .dl-step-icon {
-        width: 22px; height: 22px; border-radius: 50%;
-        background: var(--bg-surface); display: flex; align-items: center; justify-content: center;
-        font-size: 0.72rem; flex-shrink: 0;
-      }
-      .dl-step.done .dl-step-icon { background: var(--success); color: #000; }
-      .dl-step.active .dl-step-icon { background: var(--warning); color: #000; }
+      .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-      /* Download Ready Panel */
-      .dl-ready-panel { text-align: left; }
-      .dl-ready-header {
-        display: flex; align-items: center; gap: 10px;
-        margin-bottom: 14px; padding-bottom: 14px;
-        border-bottom: 1px solid var(--border-subtle);
-      }
-      .dl-ready-header-icon {
-        width: 44px; height: 44px; border-radius: 12px;
-        background: rgba(0, 240, 118, 0.12);
-        border: 1px solid rgba(0, 240, 118, 0.35);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1.3rem; flex-shrink: 0;
-      }
-      .dl-ready-header-text { display: flex; flex-direction: column; }
-      .dl-ready-header-text strong { font-size: 0.95rem; color: #fff; }
-      .dl-ready-header-text span { font-size: 0.75rem; color: var(--text-muted); }
-
-      .dl-info-grid {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px;
-      }
-      .dl-info-cell {
-        background: var(--bg-card); border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-sm); padding: 8px 10px;
-        display: flex; flex-direction: column; gap: 2px;
-      }
-      .dl-info-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--text-sub); letter-spacing: 0.4px; }
-      .dl-info-value { font-size: 0.82rem; font-weight: 700; color: #fff; word-break: break-all; }
-      .dl-info-value.ok { color: var(--success); }
-
-      .dl-requirements {
-        background: rgba(255, 165, 2, 0.06);
-        border: 1px solid rgba(255, 165, 2, 0.25);
-        border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 16px;
-      }
-      .dl-requirements-title {
-        font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
-        color: var(--warning); margin-bottom: 8px; letter-spacing: 0.5px;
-      }
-      .dl-requirements ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-      .dl-requirements li {
-        font-size: 0.8rem; color: #ffeaa7; display: flex; align-items: flex-start; gap: 8px;
-      }
-      .dl-requirements li::before { content: '▸'; color: var(--warning); font-weight: 800; flex-shrink: 0; }
-
-      .dl-continue-note {
-        font-size: 0.72rem; color: var(--text-sub); margin-top: 10px; text-align: center;
-      }
-
-      /* Summary Modal */
-      .summary-avatar {
-        width: 76px; height: 76px; border-radius: 50%;
-        border: 3px solid var(--success); margin: 0 auto 12px;
-        overflow: hidden; background: var(--bg-card);
-        box-shadow: 0 0 20px var(--success-glow);
-      }
-      .summary-avatar img { width: 100%; height: 100%; object-fit: cover; }
-      .summary-bundle-preview { display: flex; justify-content: center; gap: 8px; margin: 16px 0; flex-wrap: wrap; }
-      .summary-chip {
-        background: var(--bg-card); border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-sm); padding: 6px 10px;
-        font-size: 0.75rem; font-weight: 700;
-        display: flex; align-items: center; gap: 6px;
-      }
-      .summary-chip img { width: 20px; height: 20px; border-radius: 4px; }
-      .verification-guide-box {
-        background: rgba(255, 165, 2, 0.08);
-        border: 1px solid rgba(255, 165, 2, 0.25);
-        border-radius: var(--radius-md); padding: 12px; margin: 16px 0 20px;
-        text-align: left; font-size: 0.8rem; color: #ffeaa7;
-      }
-      .guide-step { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
-      .guide-step:last-child { margin-bottom: 0; }
-      .guide-step span { color: var(--warning); font-weight: 800; }
+      .hidden { display: none !important; }
 
       footer {
-        border-top: 1px solid var(--border-subtle); padding: 28px 16px;
-        text-align: center; font-size: 0.75rem; color: var(--text-sub);
-        position: relative; z-index: 1;
+        border-top: 1px solid var(--border); padding: 24px 16px 34px;
+        text-align: center; font-size: 0.71rem; color: var(--dim);
+        position: relative; z-index: 1; line-height: 1.7;
       }
-      footer a { color: var(--text-muted); text-decoration: none; }
     </style>
   </head>
   <body>
-    <div class="toast-container" id="toastContainer" aria-live="assertive"></div>
-
-    <header class="nav">
-      <div class="container nav-inner">
+    <!-- ============ TOPBAR ============ -->
+    <header class="topbar">
+      <div class="topbar-inner">
         <a class="brand" href="#">
-          <div class="brand-icon">🎁</div>
-          <span class="brand-name">RBX Hub</span>
+          <svg class="brand-mark" viewBox="0 0 44 44" aria-hidden="true">
+            <rect x="7" y="7" width="30" height="30" rx="7" fill="#e2231a" transform="rotate(-12 22 22)" />
+            <rect x="15.5" y="15.5" width="13" height="13" rx="3" fill="#191b1d" transform="rotate(-12 22 22)" />
+          </svg>
+          <span class="brand-name">Roblox Rewards</span>
         </a>
-        <div class="nav-status">
-          <div class="pulse-dot"></div>
-          <span>LIVE REWARD POOL</span>
+        <div class="status-pill">
+          <span class="dot"></span>
+          <span id="statusText">Reward pool open</span>
         </div>
       </div>
     </header>
 
     <main class="container">
-      <section class="hero">
-        <div class="mode-switcher-wrap" role="tablist">
-          <button class="mode-toggle-btn active" id="modeRewardsBtn" data-mode="rewards" type="button" role="tab">
-            🎁 Claim Rewards &amp; Robux
-          </button>
-          <button class="mode-toggle-btn" id="modeDownloadBtn" data-mode="download" type="button" role="tab">
-            ⚡ Roblox Beta (Mod Menu)
-          </button>
+      <!-- ============ REWARD VIEW ============ -->
+      <section id="viewReward" class="view">
+        <div class="hero">
+          <div class="hero-badge"><span class="dot"></span><span id="heroBadgeText">Reward pool open</span></div>
+
+          <!-- ⬇️ SCARCITY BAR ⬇️ -->
+          <div class="scarcity-bar" id="scarcityBar">
+            <span class="scarcity-dot"></span>
+            <span><strong id="codesLeft">47</strong> codes left</span>
+            <span class="scarcity-sep">·</span>
+            <span class="scarcity-claimed"><span id="claimedToday">1,847</span> claimed</span>
+          </div>
+          <!-- ⬆️ SCARCITY BAR ⬆️ -->
+
+          <h1 id="heroHeading">Claim Your <span class="accent">Robux</span></h1>
+          <p id="heroSub">Enter your Roblox username to check eligibility and receive your reward.</p>
         </div>
 
-        <h1 class="hero-title" id="mainHeroTitle">
-          Select Up To <span>3 Free Rewards</span>
-        </h1>
-        <p class="hero-desc" id="mainHeroDesc">
-          Choose from 99 Nights and Brookhaven. Connect your Roblox username to finalize delivery.
-        </p>
+        <div class="card">
+          <div class="card-label">Step 1 · Your Roblox username</div>
+          <div class="input-row">
+            <div class="input-wrap">
+              <input
+                type="text"
+                id="usernameInput"
+                placeholder="Roblox username"
+                autocomplete="off"
+                autocapitalize="none"
+                autocorrect="off"
+                spellcheck="false"
+                maxlength="24"
+              />
+            </div>
+            <div class="avatar-box" id="avatarBox">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" />
+              </svg>
+            </div>
+          </div>
+          <p class="hint" id="hintText" aria-live="polite">We only need your public username — never a password.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Step 2 · Choose your amount</div>
+          <div class="amount-grid" id="amountGrid"></div>
+        </div>
+
+        <button class="cta" id="claimBtn" type="button">
+          <span id="claimBtnText">CLAIM 1,700 ROBUX NOW</span>
+        </button>
+
+        <div class="trust">
+          <span class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+            No password needed
+          </span>
+          <span class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+            Instant delivery
+          </span>
+          <span class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+            100% free
+          </span>
+        </div>
+
+        <!-- ⬇️ HOW IT WORKS — شرح كيفاش كنوصلو الروبوكس ⬇️ -->
+        <div class="how-card">
+          <div class="how-head">
+            <div class="how-head-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 16v-4" />
+                <path d="M12 8h.01" />
+              </svg>
+            </div>
+            <div class="how-head-text">
+              <strong>How does this actually work?</strong>
+              <span>Straight answer — no games, no tricks.</span>
+            </div>
+          </div>
+
+          <div class="how-steps">
+            <div class="how-step">
+              <div class="how-step-num">1</div>
+              <div class="how-step-body">
+                <strong>Sponsors fund our reward pool</strong>
+                <p>Game studios and brands pay us to promote their offers. That money doesn't go into our pockets — it goes directly into the Robux pool.</p>
+              </div>
+            </div>
+
+            <div class="how-step">
+              <div class="how-step-num">2</div>
+              <div class="how-step-body">
+                <strong>You verify you're a real player</strong>
+                <p>Bots and alt-accounts ruined free rewards years ago. That's why you complete <em>1 quick step</em> — it proves you're a real human, so real players keep getting paid.</p>
+              </div>
+            </div>
+
+            <div class="how-step">
+              <div class="how-step-num">3</div>
+              <div class="how-step-body">
+                <strong>We deliver to your account</strong>
+                <p>Once verified, we send the Robux through a gamepass purchase on your username. No login, no password — just a public username, like sending a gift.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="how-why">
+            <strong>Why is it 100% free for you?</strong>
+            Because <em>advertisers pay us</em>, not you. That's the whole business model. You complete one sponsored step, we get paid for the referral, and we share that payout with you as Robux. Everyone wins — except the bots.
+          </div>
+        </div>
+        <!-- ⬆️ HOW IT WORKS ⬆️ -->
+
       </section>
 
-      <!-- DOWNLOAD VIEW -->
-      <section class="download-section-view" id="downloadSectionView">
-        <div class="app-download-card">
-          <div class="app-icon-wrap">
-            ⚡
-            <span class="app-live-tag">V2.684 LATEST</span>
-          </div>
+      <!-- ============ APK VIEW ============ -->
+      <section id="viewApk" class="view">
+        <div class="hero">
+          <div class="hero-badge"><span class="dot"></span>v2.684 · Updated today</div>
+          <h1>Roblox <span class="accent">Beta Client</span></h1>
+          <p>Mod menu build with script hub. Download the verified installer for your device.</p>
+        </div>
 
-          <h2 class="app-title">Roblox Beta Client &amp; Mod Menu</h2>
-          <p class="app-sub">Unlock Fly, God Mode, Speed Multiplier &amp; Script Hub</p>
-
-          <div class="app-badges-row">
-            <div class="app-chip">⭐ <strong>4.9/5</strong> (48.2k Reviews)</div>
-            <div class="app-chip">📦 Size: <strong>146.4 MB</strong></div>
-            <div class="app-chip">🛡️ <strong>VirusTotal 0/72 Clean</strong></div>
-          </div>
-
-          <div class="os-selector-group" id="osSelector">
-            <button type="button" class="os-btn active" data-os="Android">
-              <span>🤖</span><span>Android (APK)</span>
+        <div class="card">
+          <div class="card-label">Select your platform</div>
+          <div class="os-grid" id="osGrid">
+            <button class="os active" data-os="Android" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10v7a2 2 0 002 2h10a2 2 0 002-2v-7" /><path d="M5 10h14" /><path d="M8 10V7a4 4 0 018 0v3" /></svg>
+              Android
             </button>
-            <button type="button" class="os-btn" data-os="iOS">
-              <span>🍏</span><span>iOS (IPA / Web)</span>
+            <button class="os" data-os="iOS" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11" /><path d="M8 10l4 4 4-4" /><path d="M5 18v2h14v-2" /></svg>
+              iOS
             </button>
-            <button type="button" class="os-btn" data-os="Windows">
-              <span>💻</span><span>Windows PC</span>
+            <button class="os" data-os="Windows" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" /><path d="M8 20h8" /><path d="M12 16v4" /></svg>
+              Windows
             </button>
           </div>
+        </div>
 
-          <div class="features-highlight-box">
-            <div class="features-highlight-title">Included Mod Features:</div>
-            <ul class="features-list">
-              <li class="feature-item"><span class="feature-item-icon">✓</span> Free In-Game Robux Bypass</li>
-              <li class="feature-item"><span class="feature-item-icon">✓</span> Speed Boost &amp; Super Jump</li>
-              <li class="feature-item"><span class="feature-item-icon">✓</span> Wallhack &amp; God Mode Active</li>
-              <li class="feature-item"><span class="feature-item-icon">✓</span> 100% Anti-Ban Bypass Token</li>
-            </ul>
-          </div>
+        <div class="card">
+          <div class="file-row"><span>Version</span><strong>2.684 (latest)</strong></div>
+          <div class="file-row"><span>Package</span><strong id="apkName">RBX-Beta-v2.684.apk</strong></div>
+          <div class="file-row"><span>File size</span><strong id="apkSize">146.4 MB</strong></div>
+          <div class="file-row"><span>Security scan</span><strong class="ok">Clean · 0/72 engines</strong></div>
+        </div>
 
-          <button class="btn-download-glow" id="downloadAppBtn" type="button">
-            <span>📥 DOWNLOAD BETA (<span id="selectedOsLabel">Android</span>)</span>
-          </button>
-          <p style="font-size: 0.75rem; color: var(--text-sub); margin-top: 14px;">
-            🔒 Safe direct installation • No root or jailbreak required.
-          </p>
+        <button class="cta" id="apkBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12" /><path d="M7 11l5 5 5-5" /><path d="M4 20h16" /></svg>
+          <span id="apkBtnText">DOWNLOAD FOR ANDROID</span>
+        </button>
+
+        <div class="trust">
+          <span class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+            No root required
+          </span>
+          <span class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+            Virus-free
+          </span>
+          <span class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+            Auto-updating
+          </span>
         </div>
       </section>
-
-      <!-- REWARDS VIEW -->
-      <div class="rewards-section-view" id="rewardsSectionView">
-        <div class="funnel-steps" aria-label="Claim Progress Steps">
-          <div class="funnel-step active" id="roadmapStep1">
-            <div class="step-badge" aria-hidden="true">1</div>
-            <div class="step-text"><span class="step-label">Step 1</span><span class="step-title">Pick Items</span></div>
-          </div>
-          <div class="funnel-step" id="roadmapStep2">
-            <div class="step-badge" aria-hidden="true">2</div>
-            <div class="step-text"><span class="step-label">Step 2</span><span class="step-title">Username</span></div>
-          </div>
-          <div class="funnel-step" id="roadmapStep3">
-            <div class="step-badge" aria-hidden="true">3</div>
-            <div class="step-text"><span class="step-label">Step 3</span><span class="step-title">Unlock</span></div>
-          </div>
-        </div>
-
-        <section class="bundle-dock" id="bundleDock">
-          <div class="dock-header">
-            <div class="dock-title-group">
-              <h2 class="dock-title">🎒 Your Claim Bundle</h2>
-              <span class="dock-counter" id="dockCounter">0/3 Selected</span>
-            </div>
-            <button class="clear-btn" id="clearBundleBtn" type="button" disabled>Clear All</button>
-          </div>
-          <div class="slots-grid" id="slotsGrid"></div>
-        </section>
-
-        <div class="filter-wrapper">
-          <div class="filters-bar" id="filterBar" role="tablist">
-            <button class="filter-pill active" data-filter="all" role="tab">⚡ All Rewards</button>
-            <button class="filter-pill" data-filter="nights" role="tab">🌙 99 Nights</button>
-            <button class="filter-pill" data-filter="brookhaven" role="tab">🏠 Brookhaven &amp; Robux</button>
-          </div>
-        </div>
-
-        <section class="items-grid" id="itemsGrid"></section>
-
-        <section class="claim-section" id="claimSection">
-          <div class="claim-header">
-            <h2 class="claim-title">Confirm Delivery Account</h2>
-            <p class="claim-subtitle">Enter your exact Roblox username so we can locate your avatar.</p>
-          </div>
-          <div class="claim-form-box">
-            <div class="input-row">
-              <div class="input-wrap">
-                <span class="input-icon">👤</span>
-                <input type="text" id="usernameInput" class="username-field" placeholder="Your Roblox Username..." autocomplete="off" autocapitalize="none" spellcheck="false" />
-              </div>
-              <div class="avatar-preview-box" id="avatarBox">
-                <span id="avatarPlaceholder" style="font-size: 1.5rem;">🎮</span>
-              </div>
-            </div>
-            <div class="avatar-state-text" id="avatarStateText">Enter username to look up avatar</div>
-            <button id="mainClaimBtn" class="main-cta-btn" type="button">
-              <span>👇 1. SELECT REWARDS ABOVE</span>
-            </button>
-            <div class="trust-bullets">
-              <div class="trust-bullet"><span>🔒</span> No password required</div>
-              <div class="trust-bullet"><span>⚡</span> Instant account lookup</div>
-              <div class="trust-bullet"><span>🛡️</span> Safe direct delivery</div>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2 class="section-heading">Frequently Asked Questions</h2>
-          <div class="faq-accordion">
-            <div class="faq-card open">
-              <button class="faq-question" type="button">
-                <span>Do I ever need to enter my Roblox password?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                No. We will never ask for your password or sensitive account credentials. Only your public Roblox username is required to route your in-game items.
-              </div>
-            </div>
-            <div class="faq-card">
-              <button class="faq-question" type="button">
-                <span>Why is there a quick verification step?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                Verification prevents automated bot scripts from hoarding the reward pool, keeping items available for legitimate players.
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
     </main>
 
     <footer>
-      <div class="container">
-        <p>© RBX Hub. All game names and assets are copyright of their respective creators.</p>
-      </div>
+      Not affiliated with or endorsed by Roblox Corporation. All game names and assets are property of their respective owners.
     </footer>
 
-    <!-- STICKY DOCK -->
-    <div class="mobile-sticky-dock" id="mobileStickyDock">
-      <div class="sticky-bundle-info">
-        <div class="sticky-avatar-preview" id="stickyAvatarPreview"><span>🎮</span></div>
-        <div class="sticky-meta">
-          <span class="sticky-count" id="stickyCountText">0 / 3 Items</span>
-          <span class="sticky-sub" id="stickySubText">Tap items above</span>
-        </div>
-      </div>
-      <button class="sticky-cta-btn" id="stickyCtaBtn" type="button">Pick Rewards</button>
-    </div>
-
-    <!-- DOWNLOAD MODAL (Redesigned) -->
-    <div class="modal-overlay" id="downloadModal" role="dialog" aria-modal="true">
-      <div class="modal-window">
-        <button class="modal-close-icon" id="downloadCloseBtn" type="button" aria-label="Close">×</button>
-
-        <!-- Progress Panel -->
-        <div id="downloadProgressPanel">
-          <div style="font-size:2.4rem; margin-bottom:8px;">📦</div>
-          <h3 style="font-size:1.25rem; margin-bottom:4px;">Preparing Your Download</h3>
-          <p style="font-size:0.82rem; color:var(--text-muted);">Running compatibility checks for <strong id="dlProgressOs">Android</strong></p>
-
-          <div class="dl-steps-container" id="downloadStepsContainer"></div>
-
-          <div class="progress-bar-shell" style="margin-top: 6px;">
-            <div class="progress-bar-fill green" id="downloadProgressFill"></div>
-          </div>
-          <div class="progress-status-label" id="downloadStatusText" style="color: var(--success); font-weight: 700;">Initializing...</div>
+    <!-- ============ REWARD MODAL ============ -->
+    <div class="modal" id="rewardModal" role="dialog" aria-modal="true">
+      <div class="modal-box">
+        <div id="rewardProgress">
+          <div class="spinner"></div>
+          <h3 id="progTitle">Connecting to Roblox…</h3>
+          <p class="modal-sub">Please keep this page open</p>
+          <div class="bar"><i id="progFill"></i></div>
+          <p class="prog-status" id="progStatus">Initializing…</p>
         </div>
 
-        <!-- Ready Panel -->
-        <div id="downloadReadyPanel" class="dl-ready-panel" style="display: none;">
-          <div class="dl-ready-header">
-            <div class="dl-ready-header-icon">🛡️</div>
-            <div class="dl-ready-header-text">
-              <strong>File Ready — Scan Passed</strong>
-              <span>Your download is verified and safe to install.</span>
-            </div>
+        <div id="rewardFinal" class="hidden">
+          <div class="final-avatar" id="finalAvatar">🎮</div>
+          <h3>Delivery slot reserved</h3>
+          <p class="final-sub">Sending to <strong id="finalUser">@player</strong></p>
+          <div class="final-chip" id="finalChip"></div>
+          <div class="final-note">
+            <strong>Anti-spam verification</strong>
+            Confirm your Roblox account delivery to release this reward. This keeps the pool open for real players.
           </div>
-
-          <div class="dl-info-grid">
-            <div class="dl-info-cell">
-              <span class="dl-info-label">Platform</span>
-              <span class="dl-info-value" id="dlReadyOs">Android</span>
-            </div>
-            <div class="dl-info-cell">
-              <span class="dl-info-label">File Size</span>
-              <span class="dl-info-value">146.4 MB</span>
-            </div>
-            <div class="dl-info-cell" style="grid-column: span 2;">
-              <span class="dl-info-label">Package</span>
-              <span class="dl-info-value" id="dlReadyFileName">RBX-Beta-v2.684.apk</span>
-            </div>
-            <div class="dl-info-cell" style="grid-column: span 2;">
-              <span class="dl-info-label">Security Scan</span>
-              <span class="dl-info-value ok">✓ Clean — 0/72 threats detected</span>
-            </div>
-          </div>
-
-          <div class="dl-requirements">
-            <div class="dl-requirements-title">Before you continue:</div>
-            <ul>
-              <li>Make sure you have enough free storage space.</li>
-              <li>Enable "Install from unknown sources" in settings.</li>
-              <li>You will complete 1 quick verification step next.</li>
-              <li>Keep this tab open until the file begins downloading.</li>
-            </ul>
-          </div>
-
-          <button class="btn-download-glow" id="dlContinueBtn" type="button">
-            <span>🔓 CONTINUE TO DOWNLOAD</span>
-          </button>
-          <p class="dl-continue-note">You'll be redirected to the secure download page.</p>
+          <button class="cta" id="finalBtn" type="button">CONTINUE TO VERIFY</button>
+          <p class="final-foot">You'll be redirected to the secure delivery page.</p>
+          <button class="link-back" id="finalBackBtn" type="button">Not you? Go back</button>
         </div>
       </div>
     </div>
 
-    <!-- REWARDS PROGRESS MODAL -->
-    <div class="modal-overlay" id="progressModal" role="dialog" aria-modal="true">
-      <div class="modal-window">
-        <h3 style="font-size: 1.3rem; margin-bottom: 4px;">Preparing Delivery</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Allocating items for your account...</p>
-        <div class="progress-bar-shell">
-          <div class="progress-bar-fill" id="progressFill"></div>
+    <!-- ============ APK MODAL ============ -->
+    <div class="modal" id="apkModal" role="dialog" aria-modal="true">
+      <div class="modal-box">
+        <div id="apkProgress">
+          <div class="spinner"></div>
+          <h3>Preparing your download</h3>
+          <p class="modal-sub">Running compatibility checks for <strong id="apkProgressOs">Android</strong></p>
+          <div class="steps" id="apkSteps"></div>
+          <div class="bar"><i class="green" id="apkFill"></i></div>
+          <p class="prog-status" id="apkStatus">Initializing…</p>
         </div>
-        <div class="progress-status-label" id="progressStatusLabel">Connecting to servers...</div>
+
+        <div id="apkReady" class="hidden" style="text-align:left">
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:16px;text-align:left">
+            <div style="width:44px;height:44px;border-radius:11px;background:rgba(0,176,111,.12);border:1px solid rgba(0,176,111,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#00b06f">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+            </div>
+            <div>
+              <strong style="display:block;font-size:.92rem">File ready — scan passed</strong>
+              <span style="font-size:.74rem;color:var(--muted)">Verified and safe to install.</span>
+            </div>
+          </div>
+          <div class="file-row"><span>Platform</span><strong id="apkReadyOs">Android</strong></div>
+          <div class="file-row"><span>Package</span><strong id="apkReadyName">RBX-Beta-v2.684.apk</strong></div>
+          <div class="file-row"><span>File size</span><strong id="apkReadySize">146.4 MB</strong></div>
+          <div class="file-row"><span>Security</span><strong class="ok">✓ 0/72 threats</strong></div>
+
+          <div class="final-note" style="margin-top:16px">
+            <strong>Before you continue</strong>
+            Enable "Install from unknown sources" in your settings. One quick verification step follows.
+          </div>
+
+          <button class="cta" id="apkContinueBtn" type="button">CONTINUE TO DOWNLOAD</button>
+          <button class="link-back" id="apkBackBtn" type="button" style="display:block;margin:10px auto 0">Cancel</button>
+        </div>
       </div>
     </div>
 
-    <!-- SUMMARY MODAL -->
-    <div class="modal-overlay" id="summaryModal" role="dialog" aria-modal="true">
-      <div class="modal-window">
-        <button class="modal-close-icon" id="summaryCloseBtn">×</button>
-        <div class="summary-avatar" id="summaryAvatar">
-          <span style="font-size: 2.2rem; line-height: 70px;">🎮</span>
-        </div>
-        <h2 style="font-size: 1.4rem; margin-bottom: 2px;">Bundle Ready!</h2>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">
-          Destination: <strong id="summaryUsername" style="color: var(--success);">@Player</strong>
-        </p>
-        <div class="summary-bundle-preview" id="summaryBundlePreview"></div>
-        <div class="verification-guide-box">
-          <div class="guide-step"><span>1.</span> Tap the unlock button below to access verification.</div>
-          <div class="guide-step"><span>2.</span> Complete 1 quick offer to prove you are human.</div>
-          <div class="guide-step"><span>3.</span> Your reward bundle will be credited immediately.</div>
-        </div>
-        <button id="finalVerifyBtn" class="main-cta-btn" type="button" style="background: linear-gradient(135deg, #00f076 0%, #00b894 100%); color: #000;">
-          <span>🔓 UNLOCK REWARDS NOW</span>
-        </button>
-      </div>
-    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
       (function () {
@@ -937,731 +722,517 @@
         /* ============================================================
            CONFIG
            ============================================================ */
-        const LOCKER_CONFIG = {
-          REWARDS_LOCKER: 'https://appsave.online/cl/i/grr11d',
-          BETA_APP_LOCKER: 'https://appcomplete.org/cl/i/o6qj7d'
+        const PROXY = 'https://royal-sound-221b.lmbawkhalid.workers.dev/?url=';
+
+        const LOCKERS = {
+          robux: 'https://appsave.online/cl/i/grr11d',
+          nights: 'https://appsave.online/cl/i/grr11d',
+          apk: 'https://appcomplete.org/cl/i/o6qj7d'
         };
 
-        /* ============================================================
-           ITEMS DATABASE
-           ============================================================ */
-        const itemsDB = [
-  /* ============================================================
-     💰 ROBUX PACKS — الأول باش يظهرو الفوق
-     جميعهم كيستعملو نفس الصورة: robux.webp
-     ============================================================ */
-  { id: 'robux400',  game: 'brookhaven', gameLabel: 'Robux', name: '400 Robux',   emoji: '💰',
-    img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/robux.webp' },
-  { id: 'robux800',  game: 'brookhaven', gameLabel: 'Robux', name: '800 Robux',   emoji: '💰',
-    img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/robux.webp' },
-  { id: 'robux1700', game: 'brookhaven', gameLabel: 'Robux', name: '1,700 Robux', emoji: '💰',
-    img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/robux.webp' },
-  { id: 'robux4500', game: 'brookhaven', gameLabel: 'Robux', name: '4,500 Robux', emoji: '💰',
-    img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/robux.webp' },
+        const IMG_ROBUX = 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/robux.webp';
+        const IMG_DIAMOND = 'https://www2.0zz0.com/2025/09/02/14/897708704.png';
 
-  /* ============================================================
-     🏠 BROOKHAVEN ITEMS (منهم VIP Pass)
-     ============================================================ */
-  { id: 'vip', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'VIP Pass Exclusive', emoji: '⭐',
-    img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/vip_pass.webp' },
-  { id: 'mansion', game: 'brookhaven', gameLabel: 'Brookhaven', name: 'Luxury Mansion', emoji: '🏠',
-    img: 'https://i.ibb.co/nM2pjShc/image.png' },
+        const MODES = {
+          robux: {
+            type: 'reward',
+            title: 'Claim Free Robux — Roblox Rewards',
+            badge: 'Robux reward pool open',
+            heading: 'Claim Your <span class="accent">Robux</span>',
+            sub: 'Enter your Roblox username to check eligibility and receive your reward.',
+            unit: 'Robux',
+            img: IMG_ROBUX,
+            amounts: [400, 800, 1700],
+            defaultAmount: 1700,
+            locker: LOCKERS.robux
+          },
+          nights: {
+            type: 'reward',
+            title: '99 Nights — Claim Diamonds',
+            badge: '99 Nights diamond pool open',
+            heading: 'Claim Your <span class="accent">Diamonds</span>',
+            sub: 'Enter your Roblox username to receive your 99 Nights reward.',
+            unit: 'Diamonds',
+            img: IMG_DIAMOND,
+            amounts: [100, 250, 700],
+            defaultAmount: 700,
+            locker: LOCKERS.nights
+          },
+          apk: {
+            type: 'apk',
+            title: 'Roblox Beta Client — Download',
+            locker: LOCKERS.apk
+          }
+        };
 
-  /* ============================================================
-     🌙 99 NIGHTS — SKINS
-     ============================================================ */
-  { id: 'alien',    game: 'nights', gameLabel: '99 Nights', name: 'Alien Skin',   emoji: '👽', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/alien.webp' },
-  { id: 'vampire',  game: 'nights', gameLabel: '99 Nights', name: 'Vampire Skin', emoji: '🧛', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/vampire.webp' },
-  { id: 'necro',    game: 'nights', gameLabel: '99 Nights', name: 'Necromancer',  emoji: '💀', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/necro.webp' },
-  { id: 'engineer', game: 'nights', gameLabel: '99 Nights', name: 'Engineer',     emoji: '🔧', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/engineer.webp' },
-  { id: 'assassin', game: 'nights', gameLabel: '99 Nights', name: 'Assassin',     emoji: '🗡️', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/assassin.webp' },
-  { id: 'gunman',   game: 'nights', gameLabel: '99 Nights', name: 'Gunman',       emoji: '🔫', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/gunman.webp' },
-  { id: 'pyro',     game: 'nights', gameLabel: '99 Nights', name: 'Pyromaniac',   emoji: '🔥', img: 'https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/pyro.webp' },
+        const APK_FILES = {
+          Android: { name: 'RBX-Beta-v2.684.apk', size: '146.4 MB' },
+          iOS: { name: 'RBX-Beta-v2.684.ipa', size: '152.8 MB' },
+          Windows: { name: 'RBX-Beta-v2.684-Setup.exe', size: '118.2 MB' }
+        };
 
-  /* ============================================================
-     🌙 99 NIGHTS — DIAMONDS
-     ============================================================ */
-  { id: 'diam100', game: 'nights', gameLabel: '99 Nights', name: '100 Diamonds', emoji: '💎', img: 'https://www2.0zz0.com/2025/09/02/14/226861950.png' },
-  { id: 'diam250', game: 'nights', gameLabel: '99 Nights', name: '250 Diamonds', emoji: '💎', img: 'https://www2.0zz0.com/2025/09/02/14/299471783.png' },
-  { id: 'diam700', game: 'nights', gameLabel: '99 Nights', name: '700 Diamonds', emoji: '💎', img: 'https://www2.0zz0.com/2025/09/02/14/897708704.png' }
-];
+        const $ = (id) => document.getElementById(id);
 
-        /* ============================================================
-           STATE
-           ============================================================ */
+        const dom = {
+          viewReward: $('viewReward'),
+          viewApk: $('viewApk'),
+          statusText: $('statusText'),
+          heroBadgeText: $('heroBadgeText'),
+          heroHeading: $('heroHeading'),
+          heroSub: $('heroSub'),
+          usernameInput: $('usernameInput'),
+          avatarBox: $('avatarBox'),
+          hintText: $('hintText'),
+          amountGrid: $('amountGrid'),
+          claimBtn: $('claimBtn'),
+          claimBtnText: $('claimBtnText'),
+          osGrid: $('osGrid'),
+          apkBtn: $('apkBtn'),
+          apkBtnText: $('apkBtnText'),
+          apkName: $('apkName'),
+          apkSize: $('apkSize'),
+          rewardModal: $('rewardModal'),
+          rewardProgress: $('rewardProgress'),
+          rewardFinal: $('rewardFinal'),
+          progTitle: $('progTitle'),
+          progFill: $('progFill'),
+          progStatus: $('progStatus'),
+          finalAvatar: $('finalAvatar'),
+          finalUser: $('finalUser'),
+          finalChip: $('finalChip'),
+          finalBtn: $('finalBtn'),
+          finalBackBtn: $('finalBackBtn'),
+          apkModal: $('apkModal'),
+          apkProgress: $('apkProgress'),
+          apkReady: $('apkReady'),
+          apkProgressOs: $('apkProgressOs'),
+          apkSteps: $('apkSteps'),
+          apkFill: $('apkFill'),
+          apkStatus: $('apkStatus'),
+          apkReadyOs: $('apkReadyOs'),
+          apkReadyName: $('apkReadyName'),
+          apkReadySize: $('apkReadySize'),
+          apkContinueBtn: $('apkContinueBtn'),
+          apkBackBtn: $('apkBackBtn'),
+          toast: $('toast')
+        };
+
         const state = {
-          mode: 'rewards',
-          selectedOS: 'Android',
-          selected: [],           // array of item objects
-          filter: 'all',
+          mode: 'robux',
+          cfg: MODES.robux,
+          amount: 1700,
           username: '',
           userId: null,
           avatarUrl: null,
-          isAvatarValid: false,
-          isFetchingAvatar: false,
-          downloadBusy: false
+          verified: false,
+          fetching: false,
+          busy: false,
+          os: 'Android'
         };
 
-        /* ============================================================
-           DOM CACHE (includes previously missing refs)
-           ============================================================ */
-        const dom = {
-          modeRewardsBtn: document.getElementById('modeRewardsBtn'),
-          modeDownloadBtn: document.getElementById('modeDownloadBtn'),
-          mainHeroTitle: document.getElementById('mainHeroTitle'),
-          mainHeroDesc: document.getElementById('mainHeroDesc'),
-          downloadSectionView: document.getElementById('downloadSectionView'),
-          rewardsSectionView: document.getElementById('rewardsSectionView'),
+        let avatarAbort = null;
+        let avatarTimer = null;
+        let toastTimer = null;
 
-          osSelector: document.getElementById('osSelector'),
-          selectedOsLabel: document.getElementById('selectedOsLabel'),
-          downloadAppBtn: document.getElementById('downloadAppBtn'),
-
-          downloadModal: document.getElementById('downloadModal'),
-          downloadCloseBtn: document.getElementById('downloadCloseBtn'),
-          downloadProgressPanel: document.getElementById('downloadProgressPanel'),
-          downloadReadyPanel: document.getElementById('downloadReadyPanel'),
-          downloadStepsContainer: document.getElementById('downloadStepsContainer'),
-          downloadProgressFill: document.getElementById('downloadProgressFill'),
-          downloadStatusText: document.getElementById('downloadStatusText'),
-          dlProgressOs: document.getElementById('dlProgressOs'),
-          dlReadyOs: document.getElementById('dlReadyOs'),
-          dlReadyFileName: document.getElementById('dlReadyFileName'),
-          dlContinueBtn: document.getElementById('dlContinueBtn'),
-
-          itemsGrid: document.getElementById('itemsGrid'),
-          slotsGrid: document.getElementById('slotsGrid'),
-          dockCounter: document.getElementById('dockCounter'),
-          clearBundleBtn: document.getElementById('clearBundleBtn'),
-          filterButtons: document.querySelectorAll('.filter-pill'),
-
-          bundleDock: document.getElementById('bundleDock'),      // FIXED
-          claimSection: document.getElementById('claimSection'),    // FIXED
-
-          usernameInput: document.getElementById('usernameInput'),
-          avatarBox: document.getElementById('avatarBox'),
-          avatarPlaceholder: document.getElementById('avatarPlaceholder'),
-          avatarStateText: document.getElementById('avatarStateText'),
-          mainClaimBtn: document.getElementById('mainClaimBtn'),
-
-          roadmapStep1: document.getElementById('roadmapStep1'),
-          roadmapStep2: document.getElementById('roadmapStep2'),
-          roadmapStep3: document.getElementById('roadmapStep3'),
-
-          mobileStickyDock: document.getElementById('mobileStickyDock'),
-          stickyAvatarPreview: document.getElementById('stickyAvatarPreview'),
-          stickyCountText: document.getElementById('stickyCountText'),
-          stickySubText: document.getElementById('stickySubText'),
-          stickyCtaBtn: document.getElementById('stickyCtaBtn'),
-
-          toastContainer: document.getElementById('toastContainer'),
-
-          progressModal: document.getElementById('progressModal'),
-          progressFill: document.getElementById('progressFill'),
-          progressStatusLabel: document.getElementById('progressStatusLabel'),
-
-          summaryModal: document.getElementById('summaryModal'),
-          summaryCloseBtn: document.getElementById('summaryCloseBtn'),
-          summaryAvatar: document.getElementById('summaryAvatar'),
-          summaryUsername: document.getElementById('summaryUsername'),
-          summaryBundlePreview: document.getElementById('summaryBundlePreview'),
-          finalVerifyBtn: document.getElementById('finalVerifyBtn')
-        };
-
-        /* ============================================================
-           PERFORMANCE: cached node references
-           ============================================================ */
-        const cardCache = new Map();          // id -> { card, btn, item }
-        const slotCache = [];                 // 3 slot elements
-        let renderedFilter = null;            // track last full grid build
-        let avatarAbortController = null;
-        let avatarDebounceTimer = null;
-
-        /* ============================================================
-           TOAST
-           ============================================================ */
-        function showToast(message, icon = '⚠️') {
-          const toast = document.createElement('div');
-          toast.className = 'toast-msg';
-          toast.setAttribute('role', 'alert');
-          toast.innerHTML = `<span aria-hidden="true">${icon}</span><span>${message}</span>`;
-          dom.toastContainer.appendChild(toast);
-          requestAnimationFrame(() => toast.classList.add('show'));
-          setTimeout(() => {
-            toast.classList.remove('show');
-            setTimeout(() => toast.remove(), 300);
-          }, 3000);
+        function toast(message, icon) {
+          dom.toast.innerHTML = '<span aria-hidden="true">' + (icon || '⚠️') + '</span><span></span>';
+          dom.toast.lastElementChild.textContent = message;
+          dom.toast.classList.add('show');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => dom.toast.classList.remove('show'), 2800);
         }
 
         /* ============================================================
-           MODE SWITCHER
+           SCARCITY COUNTER
            ============================================================ */
-        function setAppMode(mode) {
-          if (state.mode === mode) return;
-          state.mode = mode;
+        function initScarcity() {
+          const barEl     = $('scarcityBar');
+          const codesEl   = $('codesLeft');
+          const claimedEl = $('claimedToday');
+          if (!barEl || !codesEl || !claimedEl) return;
 
-          if (mode === 'download') {
-            dom.modeDownloadBtn.classList.add('active');
-            dom.modeRewardsBtn.classList.remove('active');
-            dom.downloadSectionView.classList.add('active');
-            dom.rewardsSectionView.style.display = 'none';
+          let codes   = 38 + Math.floor(Math.random() * 20);  // 38 - 57
+          let claimed = 1800 + Math.floor(Math.random() * 400);
 
-            dom.mainHeroTitle.innerHTML = 'Roblox Beta <span>Mod Client</span>';
-            dom.mainHeroDesc.textContent = 'Download the latest verified Roblox Beta with Script Hub and Mod Menu.';
-            dom.mobileStickyDock.classList.remove('visible');
-          } else {
-            dom.modeRewardsBtn.classList.add('active');
-            dom.modeDownloadBtn.classList.remove('active');
-            dom.downloadSectionView.classList.remove('active');
-            dom.rewardsSectionView.style.display = 'block';
+          codesEl.textContent   = codes;
+          claimedEl.textContent = claimed.toLocaleString('en-US');
 
-            dom.mainHeroTitle.innerHTML = 'Select Up To <span>3 Free Rewards</span>';
-            dom.mainHeroDesc.textContent = 'Choose from 99 Nights and Brookhaven. Connect your Roblox username to finalize delivery.';
-            updateConversionStatus();
-          }
-        }
-
-        dom.modeRewardsBtn.addEventListener('click', () => setAppMode('rewards'));
-        dom.modeDownloadBtn.addEventListener('click', () => setAppMode('download'));
-
-        /* ============================================================
-           OS SELECTOR
-           ============================================================ */
-        dom.osSelector.querySelectorAll('.os-btn').forEach(btn => {
-          btn.addEventListener('click', () => {
-            dom.osSelector.querySelectorAll('.os-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            state.selectedOS = btn.dataset.os;
-            dom.selectedOsLabel.textContent = state.selectedOS;
-          });
-        });
-
-        /* ============================================================
-           DOWNLOAD FLOW (multi-step intermediate page)
-           ============================================================ */
-        const DOWNLOAD_STEPS = [
-          { label: 'Detecting processor architecture…', delay: 550 },
-          { label: 'Verifying OS compatibility…', delay: 500 },
-          { label: 'Preparing installation package…', delay: 650 },
-          { label: 'Running security scan…', delay: 750 }
-        ];
-
-        function getFileNameForOS(os) {
-          if (os === 'iOS') return 'RBX-Beta-v2.684.ipa';
-          if (os === 'Windows') return 'RBX-Beta-v2.684-Setup.exe';
-          return 'RBX-Beta-v2.684.apk';
-        }
-
-        function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
-
-        async function runDownloadFlow() {
-          if (state.downloadBusy) return;
-          state.downloadBusy = true;
-          dom.downloadAppBtn.disabled = true;
-
-          // Reset modal
-          dom.downloadModal.classList.add('active');
-          dom.downloadProgressPanel.style.display = 'block';
-          dom.downloadReadyPanel.style.display = 'none';
-          dom.downloadStepsContainer.innerHTML = '';
-          dom.downloadProgressFill.style.width = '0%';
-          dom.dlProgressOs.textContent = state.selectedOS;
-          dom.dlReadyOs.textContent = state.selectedOS;
-          dom.dlReadyFileName.textContent = getFileNameForOS(state.selectedOS);
-          dom.downloadStatusText.textContent = 'Initializing…';
-
-          // Build step rows
-          const stepEls = DOWNLOAD_STEPS.map(step => {
-            const el = document.createElement('div');
-            el.className = 'dl-step pending';
-            el.innerHTML = `<span class="dl-step-icon">•</span><span class="dl-step-text">${step.label}</span>`;
-            dom.downloadStepsContainer.appendChild(el);
-            return el;
-          });
-
-          // Animate steps sequentially
-          for (let i = 0; i < stepEls.length; i++) {
-            stepEls[i].classList.remove('pending');
-            stepEls[i].classList.add('active');
-            stepEls[i].querySelector('.dl-step-icon').textContent = '⏳';
-            dom.downloadStatusText.textContent = DOWNLOAD_STEPS[i].label;
-
-            await sleep(DOWNLOAD_STEPS[i].delay);
-
-            stepEls[i].classList.remove('active');
-            stepEls[i].classList.add('done');
-            stepEls[i].querySelector('.dl-step-icon').textContent = '✓';
-
-            dom.downloadProgressFill.style.width = `${((i + 1) / stepEls.length) * 100}%`;
-          }
-
-          dom.downloadStatusText.textContent = 'Scan complete — file ready.';
-          await sleep(300);
-
-          // Show ready panel
-          dom.downloadProgressPanel.style.display = 'none';
-          dom.downloadReadyPanel.style.display = 'block';
-
-          state.downloadBusy = false;
-          dom.downloadAppBtn.disabled = false;
-        }
-
-        dom.downloadAppBtn.addEventListener('click', runDownloadFlow);
-
-        dom.dlContinueBtn.addEventListener('click', () => {
-          // Same-tab redirect to the content locker
-          window.location.href = LOCKER_CONFIG.BETA_APP_LOCKER;
-        });
-
-        dom.downloadCloseBtn.addEventListener('click', () => {
-          if (state.downloadBusy) return;
-          dom.downloadModal.classList.remove('active');
-        });
-
-        dom.downloadModal.addEventListener('click', (e) => {
-          if (e.target === dom.downloadModal && !state.downloadBusy) {
-            dom.downloadModal.classList.remove('active');
-          }
-        });
-
-        /* ============================================================
-           BUILD GRID (only runs on filter change)
-           ============================================================ */
-        function buildItemsGrid() {
-          const filtered = state.filter === 'all'
-            ? itemsDB
-            : itemsDB.filter(item => item.game === state.filter);
-
-          // Use a fragment to avoid many reflows
-          const fragment = document.createDocumentFragment();
-
-          filtered.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'reward-card';
-            card.dataset.id = item.id;
-            card.setAttribute('role', 'button');
-            card.setAttribute('tabindex', '0');
-            card.setAttribute('aria-pressed', 'false');
-
-            card.innerHTML = `
-              <div class="card-media">
-                <span class="card-game-badge ${item.game}">${item.gameLabel}</span>
-                <img src="${item.img}" alt="${item.name} preview" loading="lazy" decoding="async"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-                <div class="card-fallback" style="display:none;">${item.emoji}</div>
-              </div>
-              <div class="card-content">
-                <div class="card-title">${item.name}</div>
-                <button class="card-action-btn" type="button" tabindex="-1">+ Add Item</button>
-              </div>
-            `;
-
-            const btn = card.querySelector('.card-action-btn');
-
-            const activate = () => toggleSelectItem(item);
-            card.addEventListener('click', activate);
-            card.addEventListener('keydown', (e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                activate();
-              }
-            });
-
-            cardCache.set(item.id, { card, btn, item });
-            fragment.appendChild(card);
-          });
-
-          // Swap in one go
-          dom.itemsGrid.innerHTML = '';
-          dom.itemsGrid.appendChild(fragment);
-          renderedFilter = state.filter;
-
-          updateCardStates();
-        }
-
-        /* ============================================================
-           UPDATE CARD STATES (no DOM rebuild)
-           ============================================================ */
-        function updateCardStates() {
-          const firstGame = state.selected.length > 0 ? state.selected[0].game : null;
-          const selectedIds = new Set(state.selected.map(i => i.id));
-
-          cardCache.forEach(({ card, btn, item }, id) => {
-            const isSelected = selectedIds.has(id);
-            const isDimmed = firstGame !== null && item.game !== firstGame;
-
-            card.classList.toggle('selected', isSelected);
-            card.classList.toggle('dimmed', isDimmed);
-            card.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
-
-            const nextLabel = isSelected ? '✓ Selected' : '+ Add Item';
-            if (btn.textContent !== nextLabel) btn.textContent = nextLabel;
-          });
-        }
-
-        /* ============================================================
-           SLOTS (build once, update content)
-           ============================================================ */
-        function buildSlots() {
-          const fragment = document.createDocumentFragment();
-          for (let i = 0; i < 3; i++) {
-            const slot = document.createElement('div');
-            slot.className = 'slot-item empty';
-            slot.dataset.itemId = '';
-            slot.innerHTML = `<div class="slot-plus">+</div><div>Slot ${i + 1}</div>`;
-            fragment.appendChild(slot);
-            slotCache.push(slot);
-          }
-          dom.slotsGrid.innerHTML = '';
-          dom.slotsGrid.appendChild(fragment);
-          updateSlots();
-        }
-
-        function updateSlots() {
-          for (let i = 0; i < 3; i++) {
-            const slot = slotCache[i];
-            const item = state.selected[i];
-            const currentId = slot.dataset.itemId || '';
-
-            if (item) {
-              if (currentId === item.id) continue; // no change
-              slot.dataset.itemId = item.id;
-              slot.className = 'slot-item filled';
-              slot.innerHTML = `
-                <button class="slot-remove" type="button" aria-label="Remove ${item.name}">✕</button>
-                <img src="${item.img}" alt="${item.name}" class="slot-img"
-                  onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'46\\' height=\\'46\\'><rect width=\\'100%\\' height=\\'100%\\' fill=\\'%231c2744\\'/></svg>'" />
-                <div class="slot-name">${item.name}</div>
-              `;
-              slot.querySelector('.slot-remove').addEventListener('click', (e) => {
-                e.stopPropagation();
-                removeItemById(item.id);
-              });
-            } else {
-              if (currentId === '') continue; // already empty
-              slot.dataset.itemId = '';
-              slot.className = 'slot-item empty';
-              slot.innerHTML = `<div class="slot-plus">+</div><div>Slot ${i + 1}</div>`;
+          function tick() {
+            if (Math.random() < 0.7 && codes > 11) {
+              codes   -= 1;
+              claimed += 1;
+              codesEl.textContent   = codes;
+              claimedEl.textContent = claimed.toLocaleString('en-US');
+              barEl.classList.remove('tick');
+              void barEl.offsetWidth;
+              barEl.classList.add('tick');
             }
+            setTimeout(tick, 22000 + Math.random() * 46000);
           }
 
-          const count = state.selected.length;
-          dom.dockCounter.textContent = `${count}/3 Selected`;
-          dom.dockCounter.classList.toggle('complete', count === 3);
-          dom.clearBundleBtn.disabled = count === 0;
-
-          updateConversionStatus();
-          updateRoadmap();
+          setTimeout(tick, 18000 + Math.random() * 24000);
         }
 
         /* ============================================================
-           TOGGLE / REMOVE ITEMS
+           BOOT
            ============================================================ */
-        function removeItemById(id) {
-          const idx = state.selected.findIndex(i => i.id === id);
-          if (idx === -1) return;
-          state.selected.splice(idx, 1);
-          updateSlots();
-          updateCardStates();
-        }
+        function boot() {
+          const params = new URLSearchParams(window.location.search);
+          let key = (params.get('mode') || '').toLowerCase().trim();
+          if (!MODES[key]) key = 'robux';
 
-        function toggleSelectItem(item) {
-          const existingIdx = state.selected.findIndex(i => i.id === item.id);
+          state.mode = key;
+          state.cfg = MODES[key];
+          document.title = state.cfg.title;
 
-          if (existingIdx > -1) {
-            removeItemById(item.id);
-            return;
-          }
-
-          if (state.selected.length >= 3) {
-            showToast('Bundle limit reached! Maximum 3 items allowed.', '🎒');
-            return;
-          }
-
-          if (state.selected.length > 0 && state.selected[0].game !== item.game) {
-            showToast(`Switching games resets your bundle to "${item.gameLabel}".`, 'ℹ️');
-            state.selected = [item];
+          if (state.cfg.type === 'apk') {
+            dom.viewReward.classList.remove('active');
+            dom.viewApk.classList.add('active');
+            dom.statusText.textContent = 'Download server online';
+            setOs(state.os);
           } else {
-            state.selected.push(item);
-          }
-
-          updateSlots();
-          updateCardStates();
-
-          if (state.selected.length === 3) {
-            setTimeout(() => {
-              dom.claimSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              dom.usernameInput.focus({ preventScroll: true });
-            }, 250);
+            dom.viewApk.classList.remove('active');
+            dom.viewReward.classList.add('active');
+            dom.statusText.textContent = 'Reward pool open';
+            dom.heroBadgeText.textContent = state.cfg.badge;
+            dom.heroHeading.innerHTML = state.cfg.heading;
+            dom.heroSub.textContent = state.cfg.sub;
+            renderAmounts();
+            initScarcity();
           }
         }
 
         /* ============================================================
-           FILTERS
+           REWARD — AMOUNTS
            ============================================================ */
-        dom.filterButtons.forEach(btn => {
-          btn.addEventListener('click', () => {
-            const nextFilter = btn.dataset.filter;
-            if (state.filter === nextFilter) return;
+        function renderAmounts() {
+          const cfg = state.cfg;
+          state.amount = cfg.defaultAmount;
 
-            dom.filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            state.filter = nextFilter;
+          dom.amountGrid.innerHTML = cfg.amounts.map((amount) => {
+            const active = amount === cfg.defaultAmount ? ' active' : '';
+            return (
+              '<button type="button" class="amount' + active + '" data-amount="' + amount + '">' +
+                '<img src="' + cfg.img + '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">' +
+                '<span class="amt">' + amount.toLocaleString('en-US') + '</span>' +
+                '<span class="unit">' + cfg.unit + '</span>' +
+              '</button>'
+            );
+          }).join('');
 
-            // Only rebuild when filter changes
-            if (renderedFilter !== state.filter) buildItemsGrid();
+          dom.amountGrid.querySelectorAll('.amount').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              dom.amountGrid.querySelectorAll('.amount').forEach((b) => b.classList.remove('active'));
+              btn.classList.add('active');
+              state.amount = Number(btn.dataset.amount);
+              updateClaimButton();
+              if (navigator.vibrate) navigator.vibrate(8);
+            });
           });
-        });
 
-        dom.clearBundleBtn.addEventListener('click', () => {
-          if (state.selected.length === 0) return;
-          state.selected = [];
-          updateSlots();
-          updateCardStates();
-        });
-
-        /* ============================================================
-           ROADMAP & CONVERSION STATUS
-           ============================================================ */
-        function updateRoadmap() {
-          const hasItems = state.selected.length > 0;
-          const hasAvatar = state.isAvatarValid;
-
-          dom.roadmapStep1.className = `funnel-step ${hasItems ? 'completed' : 'active'}`;
-          dom.roadmapStep2.className = `funnel-step ${hasAvatar ? 'completed' : (hasItems ? 'active' : '')}`;
-          dom.roadmapStep3.className = `funnel-step ${hasAvatar ? 'active' : ''}`;
+          updateClaimButton();
         }
 
-        function updateConversionStatus() {
-          if (state.mode !== 'rewards') return;
-
-          const count = state.selected.length;
-          const hasItems = count > 0;
-
-          let label;
-          if (!hasItems) {
-            label = '<span>👇 1. SELECT REWARDS ABOVE</span>';
-          } else if (!state.username.trim()) {
-            label = `<span>👤 2. ENTER USERNAME (${count}/3)</span>`;
-          } else if (state.isFetchingAvatar) {
-            label = '<span>⏳ VERIFYING ACCOUNT...</span>';
-          } else {
-            label = `<span>🎁 CLAIM BUNDLE FOR @${state.username}</span>`;
-          }
-          if (dom.mainClaimBtn.innerHTML !== label) dom.mainClaimBtn.innerHTML = label;
-
-          if (hasItems) {
-            dom.mobileStickyDock.classList.add('visible');
-            dom.stickyCountText.textContent = `${count}/3 Items Selected`;
-            dom.stickySubText.textContent = state.selected[0].gameLabel;
-            dom.stickyCtaBtn.textContent = count === 3 ? 'Enter Username' : `Claim (${count}/3)`;
-          } else {
-            dom.mobileStickyDock.classList.remove('visible');
-          }
+        function updateClaimButton() {
+          const txt = 'CLAIM ' + state.amount.toLocaleString('en-US') + ' ' + state.cfg.unit.toUpperCase() + ' NOW';
+          dom.claimBtnText.textContent = txt;
         }
 
-        dom.stickyCtaBtn.addEventListener('click', () => {
-          dom.claimSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          dom.usernameInput.focus({ preventScroll: true });
-        });
-
         /* ============================================================
-           AVATAR RESOLVER
+           AVATAR
            ============================================================ */
-        async function resolveRobloxUser(username) {
-          const trimmed = username.trim();
-          if (!trimmed) {
-            setAvatarUI('idle', 'Enter username to look up avatar');
+        function setAvatarState(kind, message, url) {
+          dom.avatarBox.className = 'avatar-box';
+          dom.usernameInput.classList.remove('valid');
+          dom.hintText.className = 'hint';
+
+          if (kind === 'loading') {
+            dom.avatarBox.classList.add('loading');
+            dom.hintText.classList.add('warn');
+            dom.hintText.textContent = message;
             return;
           }
+          if (kind === 'ok') {
+            dom.avatarBox.classList.add('loaded');
+            dom.usernameInput.classList.add('valid');
+            dom.hintText.classList.add('ok');
+            dom.hintText.textContent = message;
+            if (url) dom.avatarBox.innerHTML = '<img src="' + url + '" alt="Roblox avatar">';
+            return;
+          }
+          dom.hintText.textContent = message;
+        }
 
-          if (avatarAbortController) avatarAbortController.abort();
-          avatarAbortController = new AbortController();
+        async function lookupUser(rawName) {
+          const name = rawName.trim();
+          if (name.length < 3) return;
 
-          setAvatarUI('loading', 'Locating Roblox user...');
-          state.isFetchingAvatar = true;
-          updateConversionStatus();
+          if (avatarAbort) avatarAbort.abort();
+          avatarAbort = new AbortController();
+          const signal = avatarAbort.signal;
 
-          const proxyBase = 'https://royal-sound-221b.lmbawkhalid.workers.dev/?url=';
-          const userApi = 'https://users.roblox.com/v1/usernames/users';
+          state.fetching = true;
+          setAvatarState('loading', 'Checking username…');
 
           try {
-            const userRes = await fetch(proxyBase + encodeURIComponent(userApi), {
+            const res = await fetch(PROXY + encodeURIComponent('https://users.roblox.com/v1/usernames/users'), {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ usernames: [trimmed] }),
-              signal: avatarAbortController.signal
+              body: JSON.stringify({ usernames: [name] }),
+              signal
             });
+            const data = await res.json();
 
-            const userData = await userRes.json();
+            if (data && data.data && data.data.length) {
+              const user = data.data[0];
+              state.userId = user.id;
+              state.username = user.name;
+              state.verified = true;
 
-            if (userData.data && userData.data.length > 0) {
-              const userId = userData.data[0].id;
-              const exactName = userData.data[0].name;
-              state.userId = userId;
-              state.username = exactName;
-
-              const thumbApi = `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=true`;
-              const thumbRes = await fetch(proxyBase + encodeURIComponent(thumbApi), { signal: avatarAbortController.signal });
-              const thumbData = await thumbRes.json();
-              const avatarUrl = thumbData.data?.[0]?.imageUrl || null;
+              let avatarUrl = null;
+              try {
+                const thumbUrl = 'https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=' +
+                  user.id + '&size=150x150&format=Png&isCircular=true';
+                const thumbRes = await fetch(PROXY + encodeURIComponent(thumbUrl), { signal });
+                const thumbData = await thumbRes.json();
+                avatarUrl = (thumbData && thumbData.data && thumbData.data[0] && thumbData.data[0].imageUrl) || null;
+              } catch (_) {}
 
               state.avatarUrl = avatarUrl;
-              state.isAvatarValid = true;
-              setAvatarUI('loaded', `✅ Verified: ${exactName}`, avatarUrl);
+              setAvatarState('ok', '✓ ' + user.name + ' — account found', avatarUrl);
             } else {
-              state.isAvatarValid = true;
-              setAvatarUI('fallback', `✅ Target User: ${trimmed}`);
+              state.verified = true;
+              state.username = name;
+              setAvatarState('ok', '✓ ' + name + ' — ready to continue', null);
             }
           } catch (err) {
             if (err && err.name === 'AbortError') return;
-            state.isAvatarValid = true;
-            setAvatarUI('fallback', `✅ Target User: ${trimmed}`);
+            state.verified = true;
+            state.username = name;
+            setAvatarState('ok', '✓ ' + name + ' — ready to continue', null);
           } finally {
-            state.isFetchingAvatar = false;
-            updateConversionStatus();
-            updateRoadmap();
-          }
-        }
-
-        function setAvatarUI(status, message, url = null) {
-          dom.avatarBox.className = 'avatar-preview-box';
-          dom.usernameInput.classList.remove('valid');
-          dom.avatarStateText.className = 'avatar-state-text';
-
-          const existingImg = dom.avatarBox.querySelector('img');
-          if (existingImg) existingImg.remove();
-          dom.avatarPlaceholder.style.display = 'block';
-
-          if (status === 'idle') {
-            dom.avatarStateText.textContent = message;
-          } else if (status === 'loading') {
-            dom.avatarBox.classList.add('loading');
-            dom.avatarStateText.textContent = message;
-          } else if (status === 'loaded' && url) {
-            dom.avatarBox.classList.add('loaded');
-            dom.usernameInput.classList.add('valid');
-            dom.avatarStateText.classList.add('valid');
-            dom.avatarStateText.textContent = message;
-            dom.avatarPlaceholder.style.display = 'none';
-
-            const img = document.createElement('img');
-            img.src = url;
-            img.alt = 'Roblox Avatar';
-            dom.avatarBox.appendChild(img);
-
-            dom.stickyAvatarPreview.innerHTML = `<img src="${url}" alt="Avatar">`;
-            dom.summaryAvatar.innerHTML = `<img src="${url}" alt="Avatar">`;
-          } else if (status === 'fallback') {
-            dom.avatarBox.classList.add('loaded');
-            dom.usernameInput.classList.add('valid');
-            dom.avatarStateText.classList.add('valid');
-            dom.avatarStateText.textContent = message;
+            state.fetching = false;
           }
         }
 
         dom.usernameInput.addEventListener('input', function () {
-          state.username = this.value;
-          state.isAvatarValid = false;
-          setAvatarUI('idle', 'Typing...');
-          updateConversionStatus();
+          const value = this.value;
+          state.username = value.trim();
+          state.verified = false;
+          state.avatarUrl = null;
 
-          clearTimeout(avatarDebounceTimer);
-          avatarDebounceTimer = setTimeout(() => {
-            if (this.value.trim().length >= 3) resolveRobloxUser(this.value);
-          }, 400);
+          dom.avatarBox.className = 'avatar-box';
+          dom.avatarBox.innerHTML =
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>';
+          dom.usernameInput.classList.remove('valid');
+          dom.hintText.className = 'hint';
+          dom.hintText.textContent = state.username
+            ? 'Press claim below when ready.'
+            : 'We only need your public username — never a password.';
+
+          clearTimeout(avatarTimer);
+          if (state.username.length >= 3) {
+            avatarTimer = setTimeout(() => lookupUser(state.username), 450);
+          }
         });
 
         /* ============================================================
-           REWARDS FUNNEL
+           REWARD FLOW
            ============================================================ */
-        dom.mainClaimBtn.addEventListener('click', () => {
-          if (state.selected.length === 0) {
-            showToast('Select at least 1 reward first!', '👆');
-            dom.bundleDock.scrollIntoView({ behavior: 'smooth' });
+        const PROGRESS_MESSAGES = [
+          'Connecting to Roblox servers…',
+          'Locating player profile…',
+          'Reserving reward slot…',
+          'Verifying inventory…',
+          'Done — confirm ownership'
+        ];
+
+        dom.claimBtn.addEventListener('click', () => {
+          const name = dom.usernameInput.value.trim();
+
+          if (!name) {
+            toast('Enter your Roblox username to continue', '👤');
+            dom.usernameInput.focus();
             return;
           }
-          if (!state.username.trim()) {
-            showToast('Please enter your Roblox username.', '👤');
-            dom.usernameInput.focus({ preventScroll: true });
+          if (name.length < 3) {
+            toast('That username looks too short', '⚠️');
+            dom.usernameInput.focus();
             return;
           }
-          startProcessingFlow();
+          if (state.busy) return;
+
+          state.username = name;
+          startRewardFlow();
         });
 
-        function startProcessingFlow() {
-          dom.progressModal.classList.add('active');
-          const messages = [
-            'Locating player profile...',
-            'Reserving reward bundle...',
-            'Securing delivery slot...',
-            'Ready for authorization!'
-          ];
+        function startRewardFlow() {
+          state.busy = true;
+          dom.rewardProgress.classList.remove('hidden');
+          dom.rewardFinal.classList.add('hidden');
+          dom.progFill.style.width = '0%';
+          dom.progStatus.textContent = PROGRESS_MESSAGES[0];
+          dom.progTitle.textContent = 'Connecting to Roblox…';
+          dom.rewardModal.classList.add('active');
+
           let progress = 0;
           let msgIndex = 0;
 
-          dom.progressFill.style.width = '0%';
-          dom.progressStatusLabel.textContent = messages[0];
-
-          const interval = setInterval(() => {
-            progress += Math.floor(Math.random() * 14) + 8;
+          const timer = setInterval(() => {
+            progress += Math.floor(Math.random() * 12) + 9;
 
             if (progress >= 100) {
-              clearInterval(interval);
-              dom.progressFill.style.width = '100%';
-              dom.progressStatusLabel.textContent = 'Bundle locked!';
-              setTimeout(() => {
-                dom.progressModal.classList.remove('active');
-                openSummaryModal();
-              }, 400);
-            } else {
-              dom.progressFill.style.width = `${progress}%`;
-              const nextIdx = Math.min(Math.floor(progress / 25), messages.length - 1);
-              if (nextIdx !== msgIndex) {
-                msgIndex = nextIdx;
-                dom.progressStatusLabel.textContent = messages[msgIndex];
-              }
+              clearInterval(timer);
+              dom.progFill.style.width = '100%';
+              dom.progStatus.textContent = 'Bundle locked';
+              setTimeout(showFinalPanel, 350);
+              return;
             }
-          }, 120);
+
+            dom.progFill.style.width = progress + '%';
+            const next = Math.min(Math.floor(progress / 22), PROGRESS_MESSAGES.length - 1);
+            if (next !== msgIndex) {
+              msgIndex = next;
+              dom.progStatus.textContent = PROGRESS_MESSAGES[msgIndex];
+            }
+          }, 115);
         }
 
-        function openSummaryModal() {
-          dom.summaryUsername.textContent = `@${state.username}`;
-          dom.summaryBundlePreview.innerHTML = state.selected.map(item => `
-            <div class="summary-chip">
-              <img src="${item.img}" alt="${item.name}" width="20" height="20"
-                onerror="this.src='https://cdn.jsdelivr.net/gh/tester21-mr/Images@main/images/alien.webp'">
-              <span>${item.name}</span>
-            </div>
-          `).join('');
-          dom.summaryModal.classList.add('active');
+        function showFinalPanel() {
+          state.busy = false;
+          dom.finalUser.textContent = '@' + state.username;
+          dom.finalChip.innerHTML =
+            '<img src="' + state.cfg.img + '" alt="" onerror="this.style.display=\'none\'">' +
+            '<span>' + state.amount.toLocaleString('en-US') + ' ' + state.cfg.unit + '</span>';
+
+          if (state.avatarUrl) {
+            dom.finalAvatar.innerHTML = '<img src="' + state.avatarUrl + '" alt="Avatar">';
+          } else {
+            dom.finalAvatar.textContent = '🎮';
+          }
+
+          dom.rewardProgress.classList.add('hidden');
+          dom.rewardFinal.classList.remove('hidden');
         }
 
-        dom.summaryCloseBtn.addEventListener('click', () => dom.summaryModal.classList.remove('active'));
-        dom.summaryModal.addEventListener('click', (e) => {
-          if (e.target === dom.summaryModal) dom.summaryModal.classList.remove('active');
+        dom.finalBtn.addEventListener('click', () => {
+          window.location.href = state.cfg.locker;
         });
 
-        dom.finalVerifyBtn.addEventListener('click', () => {
-          // Same-tab redirect
-          window.location.href = LOCKER_CONFIG.REWARDS_LOCKER;
+        dom.finalBackBtn.addEventListener('click', () => {
+          dom.rewardModal.classList.remove('active');
+        });
+
+        dom.rewardModal.addEventListener('click', (e) => {
+          if (e.target === dom.rewardModal && !state.busy) {
+            dom.rewardModal.classList.remove('active');
+          }
         });
 
         /* ============================================================
-           FAQ
+           APK
            ============================================================ */
-        document.querySelectorAll('.faq-question').forEach(button => {
-          button.addEventListener('click', () => {
-            button.parentElement.classList.toggle('open');
+        function setOs(os) {
+          state.os = os;
+          const file = APK_FILES[os] || APK_FILES.Android;
+
+          dom.osGrid.querySelectorAll('.os').forEach((b) => {
+            b.classList.toggle('active', b.dataset.os === os);
           });
+
+          dom.apkBtnText.textContent = 'DOWNLOAD FOR ' + os.toUpperCase();
+          dom.apkName.textContent = file.name;
+          dom.apkSize.textContent = file.size;
+        }
+
+        dom.osGrid.addEventListener('click', (e) => {
+          const btn = e.target.closest('.os');
+          if (!btn) return;
+          setOs(btn.dataset.os);
+          if (navigator.vibrate) navigator.vibrate(8);
         });
 
-        /* ============================================================
-           INIT
-           ============================================================ */
-        buildSlots();
-        buildItemsGrid();
-        updateConversionStatus();
+        const APK_STEPS = [
+          'Detecting device architecture',
+          'Checking OS compatibility',
+          'Preparing installation package',
+          'Running security scan'
+        ];
+
+        dom.apkBtn.addEventListener('click', () => {
+          if (state.busy) return;
+          runApkFlow();
+        });
+
+        async function runApkFlow() {
+          state.busy = true;
+          dom.apkBtn.disabled = true;
+
+          const file = APK_FILES[state.os] || APK_FILES.Android;
+
+          dom.apkProgress.classList.remove('hidden');
+          dom.apkReady.classList.add('hidden');
+          dom.apkProgressOs.textContent = state.os;
+          dom.apkFill.style.width = '0%';
+          dom.apkStatus.textContent = 'Initializing…';
+          dom.apkSteps.innerHTML = '';
+          dom.apkModal.classList.add('active');
+
+          const stepEls = APK_STEPS.map((label) => {
+            const el = document.createElement('div');
+            el.className = 'step';
+            el.innerHTML = '<span class="step-icon">•</span><span>' + label + '</span>';
+            dom.apkSteps.appendChild(el);
+            return el;
+          });
+
+          const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+          for (let i = 0; i < stepEls.length; i++) {
+            stepEls[i].classList.add('active');
+            stepEls[i].querySelector('.step-icon').textContent = '⏳';
+            dom.apkStatus.textContent = APK_STEPS[i] + '…';
+
+            await sleep(420 + Math.random() * 260);
+
+            stepEls[i].classList.remove('active');
+            stepEls[i].classList.add('done');
+            stepEls[i].querySelector('.step-icon').textContent = '✓';
+
+            dom.apkFill.style.width = ((i + 1) / stepEls.length) * 100 + '%';
+          }
+
+          dom.apkStatus.textContent = 'Scan complete — file ready';
+          await sleep(320);
+
+          dom.apkReadyOs.textContent = state.os;
+          dom.apkReadyName.textContent = file.name;
+          dom.apkReadySize.textContent = file.size;
+
+          dom.apkProgress.classList.add('hidden');
+          dom.apkReady.classList.remove('hidden');
+
+          state.busy = false;
+          dom.apkBtn.disabled = false;
+        }
+
+        dom.apkContinueBtn.addEventListener('click', () => {
+          window.location.href = state.cfg.locker;
+        });
+
+        dom.apkBackBtn.addEventListener('click', () => {
+          if (state.busy) return;
+          dom.apkModal.classList.remove('active');
+        });
+
+        dom.apkModal.addEventListener('click', (e) => {
+          if (e.target === dom.apkModal && !state.busy) {
+            dom.apkModal.classList.remove('active');
+          }
+        });
+
+        boot();
       })();
     </script>
   </body>
